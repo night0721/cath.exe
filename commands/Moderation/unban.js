@@ -18,7 +18,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle("User Unbanned")
         .addField("**Moderator**", message.author.tag, true)
-        .addField("**User**", user.user.tag, true)
+        .addField("**User**", user.tag, true)
         .setFooter(
           message.member.displayName || message.author.username,
           message.author.displayAvatarURL({ dynamic: true })

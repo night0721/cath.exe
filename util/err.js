@@ -203,5 +203,5 @@ module.exports = async (message, dir, file, err) => {
     .setThumbnail(client.user.displayAvatarURL({ dynamic: false }))
     .setURL(client.web)
     .setFooter(`Made by ${client.author}`);
-  message.inlineReply(embed).then(msg => msg.delete({ timeout: 10000 }));
+  message.inlineReply(embed).then(msg => msg.delete({ timeout: 15000 }));
 };

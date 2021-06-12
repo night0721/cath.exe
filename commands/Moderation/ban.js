@@ -18,7 +18,26 @@ module.exports = {
     let reason = args.slice(1).join(" ") || "No reason provided";
     if (!target) {
       try {
-        target = await client.users.fetch(args[0]);
+        const one = await client.users.fetch(args[0]);
+        if (one.id === message.author.id)
+          return client.err(message, "Moderation", "ban", 2);
+        if (reason.length > 1024) reason = reason.slice(0, 1021) + "...";
+        const embed = new MessageEmbed()
+          .setTitle("User Banned")
+          .addField("**Moderator**", message.author.tag, true)
+          .addField("**User**", one.tag, true)
+          .addField("**Reason**", reason, true)
+          .setFooter(
+            message.member.displayName || message.author.username,
+            message.author.displayAvatarURL({ dynamic: true })
+          )
+          .setThumbnail(client.user.displayAvatarURL())
+          .setColor(client.color)
+          .setTimestamp();
+        message.inlineReply(embed);
+        await message.guild.members.ban(one.id, {
+          reason: reason,
+        });
       } catch (e) {
         console.log(e);
         return client.err(message, "Moderation", "ban", 1);
@@ -32,28 +51,29 @@ module.exports = {
         message.guild.me.roles.highest.position < target.roles.highest.position
       )
         return client.err(message, "Moderation", "ban", 9);
-    }
-    if (reason.length > 1024) reason = reason.slice(0, 1021) + "...";
-    try {
-      const embed = new MessageEmbed()
-        .setTitle("User Banned")
-        .addField("**Moderator**", message.author.tag, true)
-        .addField("**User**", target.user.tag, true)
-        .addField("**Reason**", reason, true)
-        .setFooter(
-          message.member.displayName || message.author.username,
-          message.author.displayAvatarURL({ dynamic: true })
-        )
-        .setThumbnail(client.user.displayAvatarURL())
-        .setColor(client.color)
-        .setTimestamp();
-      message.inlineReply(embed);
-      await message.guild.members.ban(target.id, {
-        reason: reason,
-      });
-    } catch (e) {
-      console.log(e);
-      return client.err(message, "Moderation", "ban", 999);
+
+      if (reason.length > 1024) reason = reason.slice(0, 1021) + "...";
+      try {
+        const embed = new MessageEmbed()
+          .setTitle("User Banned")
+          .addField("**Moderator**", message.author.tag, true)
+          .addField("**User**", target.user.tag, true)
+          .addField("**Reason**", reason, true)
+          .setFooter(
+            message.member.displayName || message.author.username,
+            message.author.displayAvatarURL({ dynamic: true })
+          )
+          .setThumbnail(client.user.displayAvatarURL())
+          .setColor(client.color)
+          .setTimestamp();
+        message.inlineReply(embed);
+        await message.guild.members.ban(target.id, {
+          reason: reason,
+        });
+      } catch (e) {
+        console.log(e);
+        return client.err(message, "Moderation", "ban", 999);
+      }
     }
   },
 };
