@@ -17,7 +17,13 @@
     "type": "git",
     "url": "git+https://github.com/night0721/cath.git"
   },
-  "keywords": [],
+  "keywords": [
+    "cat",
+    "cath",
+    "codm",
+    "discord",
+    "discord bot"
+  ],
   "author": "Ń1ght#0001",
   "license": "ISC",
   "bugs": {
