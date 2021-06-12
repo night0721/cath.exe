@@ -11,7 +11,7 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (client, message, args) => {
-    const user = client.users.cache.get(id);
+    const user = client.users.cache.get(args[0]);
     if (!user) return message.inlineReply("User?");
     if (!args.slice(1).join(" ")) return message.inlineReply("Message?");
     try {
