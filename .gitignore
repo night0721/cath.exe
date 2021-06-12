@@ -1,0 +1,14 @@
+node_modules/
+/.env
+/commands/CODM/
+/dashboard/
+/util/Data/aliases.json
+/util/Data/attachments.json
+/util/Data/builds.json
+/util/Data/data.json
+/util/Data/perk.json
+/util/Data/skins.json
+/util/Data/weapons.json
+/util/functions/common.json
+/util/bash.sh
+/bot.js
