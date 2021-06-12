@@ -23,7 +23,7 @@ or
   - Application ID(Client ID)<br>
   - Client Secret<br>
 <br>
-4. Create a MongoDB Connection URI from [here](https://www.mongodb.com)<br><br>
+4. Create a MongoDB Connection URI from [here](https://www.mongodb.com) <br><br>
 5. Create 5 Webhooks in **Your Discord Server**: <br>
 - Server Log(Log new Server Added/Premium Server) <br>
 - Error Log(Log Unhandled Rejection Error) <br>
