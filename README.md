@@ -2,7 +2,7 @@
 cath.exe is a CODM-theme based Discord Bot with many categories of commands like Moderation, Music and Economy. It is an open source project based on Project Lighthouse by path.exe, written in node.js(JavaScript), mainly using discord.js and mongoose module.<br><br>If you like this bot, feel free to **star** and **fork** the repository!<br>
 Click [here](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands) to invite cath.exe
 
-[![Discord](https://img.shields.io/discord/685862664223850497?color=46828d&label=Support&style=for-the-badge)](https://discord.gg/SbQHChmGcp)
+[![Discord](https://img.shields.io/discord/718762019586572341?color=46828d&label=Support&style=for-the-badge)](https://discord.gg/SbQHChmGcp)
 ![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?color=46828d&style=for-the-badge)
 # How to deploy the bot? <img src = "https://cdn.discordapp.com/emojis/740978278055280722.png" width = "40">
 
