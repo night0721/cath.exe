@@ -51,6 +51,7 @@ process.on("unhandledRejection", async err => {
   return console.log(err);
 });
 client.SuggestionLog = config.Suggestion;
+client.ReportLog = config.Report;
 client.commands = new Collection();
 client.aliases = new Collection();
 client.events = new Collection();
@@ -72,6 +73,7 @@ client.owners = [
   "749692825402212494",
   "766645910087139338",
   "755476040029306952",
+  "534027706325532694",
 ];
 client.currency = "<:cp:836630372661329990>";
 client.path = [
@@ -81,7 +83,7 @@ client.path = [
   "718762019586572341",
   "784052348561522730",
   "840225563193114624",
-  "800396461229080619"
+  "800396461229080619",
 ];
 client.xp = [
   "749135655350697986",

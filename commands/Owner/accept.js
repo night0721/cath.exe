@@ -1,5 +1,4 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-const { Suggestion } = require("../../config.json");
 module.exports = {
   name: "accept",
   category: "Owner",
@@ -14,11 +13,13 @@ module.exports = {
   run: async (client, message, args) => {
     const MessageID = args[0];
     const acceptQuery =
-      args.slice(1).join(" ") || `Night doesn't leave any message.`;
+      args.slice(1).join(" ") || `They didn't leave any message.`;
 
     if (!MessageID) return message.reply("Please specify a valid ID");
     try {
-      const suggestionChannel = message.guild.channels.cache.get(Suggestion);
+      const suggestionChannel = message.guild.channels.cache.get(
+        client.SuggestionLog
+      );
       const suggestEmbed = await suggestionChannel.messages.fetch(MessageID);
       console.log(suggestEmbed);
       const data = suggestEmbed.embeds[0];

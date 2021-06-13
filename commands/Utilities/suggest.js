@@ -1,9 +1,7 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-require("../../inlinereply");
-
 module.exports = {
-  name: "report",
-  description: "Report a bug of the bot",
+  name: "suggest",
+  description: "Make a suggestion of the bot",
   category: "Utilities",
   /**
    * @param {Client} client
@@ -12,7 +10,7 @@ module.exports = {
    */
   run: async (client, message, args) => {
     const questions = [
-      "Describe the bug",
+      "Describe the suggestion",
       //"question 2"
     ];
 
@@ -49,7 +47,7 @@ module.exports = {
           new MessageEmbed()
             .setTitle("SUCCESS!")
             .setDescription(
-              "You have reported a bug.\nPlease wait for us to solve it"
+              "You have sent a suggestion.\nPlease wait for us to review it"
             )
             .setColor("GREEN")
         );
@@ -73,7 +71,7 @@ module.exports = {
               message.author.tag,
               message.author.displayAvatarURL({ dynamic: true })
             )
-            .setTitle("New Bug")
+            .setTitle("New Suggestion")
             .setDescription(mapedResponses)
             .setColor("ORANGE")
             .setTimestamp()
