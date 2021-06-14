@@ -3,6 +3,7 @@ const config = require("../config.json");
 const prefix = config.prefix;
 const version = require("../package.json").version;
 const { MessageEmbed } = require("discord.js");
+const m = require("../models/status");
 client.on("ready", () => {
   var users = client.guilds.cache
     .reduce((a, b) => a + b.memberCount, 0)
@@ -12,14 +13,27 @@ client.on("ready", () => {
     client.web,
     `with ${users} users`,
   ];
-  var interval = setInterval(function () {
-    var game = Math.floor(Math.random() * playing.length + 0);
-    client.user.setActivity({
-      name: playing[game],
-      type: "STREAMING",
-      url: "https://www.twitch.tv/thekiritosgaming",
+  async function find() {
+    const statusdb = await m.findOne({
+      Status: "true",
     });
-  }, 5000);
+    if (statusdb && statusdb.Status == "true") {
+      await client.user.setPresence({ status: "dnd" });
+      client.user.setActivity({
+        name: "Under Maintenance",
+      });
+    } else {
+      var set = setInterval(function () {
+        var game = Math.floor(Math.random() * playing.length + 0);
+        client.user.setActivity({
+          name: playing[game],
+          type: "STREAMING",
+          url: "https://www.twitch.tv/thekiritosgaming",
+        });
+      }, 5000);
+    }
+  }
+  find();
   console.log(`${client.user.username} ✅\nVersion: v${version}`);
   var embed = new MessageEmbed()
     .setColor(client.color)

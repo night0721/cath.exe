@@ -10,6 +10,11 @@ const Timeout2 = new Collection();
 client.on("message", async message => {
   const p = await client.prefix(message);
   if (message.author.bot) return;
+  if (!message.content.startsWith(p)) return;
+  if (!message.guild) return;
+  if (!message.member) {
+    message.member = await message.guild.fetchMember(message);
+  }
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const _ = new MessageEmbed()
       .setTitle("cath.exe")
@@ -18,7 +23,6 @@ client.on("message", async message => {
         "Prefix/Usage",
         `My prefix in **${message.guild.name}** is **${p}**\n\nRun \`${p}help\` to start using the bot`
       )
-
       .setThumbnail(client.user.displayAvatarURL())
       .setURL(client.web)
       .setFooter("Made by Cath Team")
@@ -26,21 +30,26 @@ client.on("message", async message => {
       .setColor(client.color);
     return message.inlineReply(_).then(m => m.delete({ timeout: 10000 }));
   }
-  if (!message.content.startsWith(p)) return;
-  if (!message.guild) return;
-  if (!message.member) {
-    message.member = await message.guild.fetchMember(message);
-  }
-
+  const data = {};
   let guildDB = await client.data.getGuild(message.guild.id);
   if (!guildDB) return;
   let userDB = await client.data.getUser(message.author.id);
   if (!userDB) return;
-  const data = {};
+  let botDB = await client.data.getBot(client.user.id);
+  if (!botDB) return;
+  data.Bot = botDB;
   data.Guild = guildDB;
   data.User = userDB;
+  if (
+    botDB &&
+    botDB.Status == "true" &&
+    !client.owners.includes(message.author.id)
+  )
+    return message.inlineReply(
+      `**${client.user.username}** is currently in maintenance.\nYou can use **cath.exe#9686** or **Cath 2#7414** if it is online\nIf you need help, please contact **Cat drinking a cat#0795** or **Ń1ght#0001**`
+    );
   if (!guildDB) {
-    client.data.CreateGuild(message.guild.id);
+    await client.data.CreateGuild(message.guild.id);
   }
   if (data.User) {
     if (data.User.Blacklist) {
@@ -96,6 +105,9 @@ client.on("message", async message => {
         .then(msg => msg.delete({ timeout: 10000 }));
     }
     if (command) {
+      if (command.Owner == true) {
+        if (!client.owners.includes(message.author.id)) return;
+      }
       if (command.Premium == true) {
         if (data.User.Premium == false) {
           return message.inlineReply(

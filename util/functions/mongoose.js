@@ -6,7 +6,8 @@ const cachegoose = new GooseCache(mongoose, {
 mongoose.set("useFindAndModify", false);
 const u = require("../../models/users");
 const g = require("../../models/guilds");
-const Econ = require("../../models/econ");
+const e = require("../../models/econ");
+const m = require("../../models/status");
 module.exports = {
   /**
    * @param {String} URI - Mongo Connection URI
@@ -115,6 +116,29 @@ module.exports = {
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
+      };
+    }
+  },
+  /**
+   * @param {String} ID - Bot ID
+   */
+  async getBot(ID) {
+    if (!ID) throw new Error("Bot ID?");
+    const bot = await m.findOne({ Bot: ID }).lean().cache(120);
+    if (!bot) {
+      const ss = new m({ Bot: ID });
+      const { Bot, Status } = ss;
+      await ss.save().catch(error => console.log(error));
+      return {
+        Bot,
+        Status,
+      };
+    } else {
+      const Bot = bot.Bot;
+      const Status = bot.Status;
+      return {
+        Bot,
+        Status,
       };
     }
   },
@@ -231,6 +255,13 @@ module.exports = {
    */
   async CreateGuild(ID) {
     await new g({ Guild: ID });
+    return;
+  },
+  /**
+   * @param {String} ID
+   */
+  async CreateBot(ID) {
+    await new m({ Guild: ID });
     return;
   },
   /**
@@ -429,7 +460,7 @@ module.exports = {
   //  */
   // async bal(ID) {
   //   new Promise(async ful => {
-  //     const data = await Econ.findOne({ User: ID });
+  //     const data = await e.findOne({ User: ID });
   //     if (!data) return ful(0);
   //     ful(data.CP);
   //   });
@@ -438,7 +469,7 @@ module.exports = {
    * @param {String} ID - User ID
    */
   async bal(ID) {
-    const data = await Econ.findOne({ User: ID });
+    const data = await e.findOne({ User: ID });
     if (!data) return 0;
     else return data.CP;
   },
@@ -447,12 +478,12 @@ module.exports = {
    * @param {Number} CP - Number
    */
   async add(ID, CP) {
-    Econ.findOne({ User: ID }, async (err, data) => {
+    e.findOne({ User: ID }, async (err, data) => {
       if (err) throw err;
       if (data) {
         data.CP += CP;
       } else {
-        data = new Econ({ User: ID, CP });
+        data = new e({ User: ID, CP });
       }
       await data.save();
     });
@@ -462,14 +493,42 @@ module.exports = {
    * @param {Number} CP - Number
    */
   async rmv(ID, CP) {
-    Econ.findOne({ User: ID }, async (err, data) => {
+    e.findOne({ User: ID }, async (err, data) => {
       if (err) throw err;
       if (data) {
         data.CP -= CP;
       } else {
-        data = new Econ({ User: ID, CP: -CP });
+        data = new e({ User: ID, CP: -CP });
       }
       await data.save();
     });
+  },
+  /**
+   * @param {String} ID - Bot ID
+   * @param {String} Toggle - Maintenance Toggle
+   */
+  async maintenance(ID, Toggle) {
+    if (!ID) throw new Error("Please Provide a ID!");
+    if (!Toggle) throw new Error("Please Provide a Toggle!");
+    const idk = await m.findOne({ Bot: ID });
+    if (!idk) {
+      const newdb = new m({ Bot: ID });
+      if (Toggle === "true") {
+        newdb.Status === "true";
+      } else {
+        newdb.Status === "false";
+      }
+      await newdb.save().catch(error => console.log(error));
+      return;
+    } else {
+      if (Toggle === "true") {
+        idk.Status = "true";
+      } else {
+        idk.Status = "false";
+      }
+    }
+    await idk.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
   },
 };
