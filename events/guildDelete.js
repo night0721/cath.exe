@@ -1,6 +1,6 @@
 const client = require("../index");
 const db = require("../models/guilds");
-const { prefix, Log } = require("../config.json");
+const { prefix } = require("../config.json");
 const { MessageEmbed } = require("discord.js");
 
 client.on("guildDelete", async guild => {
@@ -9,15 +9,17 @@ client.on("guildDelete", async guild => {
     new MessageEmbed()
       .setTitle("Deleted from server")
       .addField("Server Info", [
-        `**>**Server Name: ${guild.name}`,
-        `**>**Server ID: ${guild.id}`,
-        `**>**Server Member Count: ${guild.memberCount}`,
+        `**>Server Name**: \n${guild.name}`,
+        `**>Server ID**: \n${guild.id}`,
+        `**>Server Member Count**: \n${guild.memberCount}`,
       ])
       .addField("Owner Info", [
-        `Owner Tag: ${guild.owner.user.tag}`,
-        `Owner ID: ${guild.owner.id}`,
+        `**>Owner Tag**: \n${guild.owner.user.tag}`,
+        `**>Owner ID**: \n${guild.owner.id}`,
       ])
-      .setFooter(`Currently in ${client.guilds.cache.size} servers`)
+      .setFooter(
+        `${client.user.username} Currently in ${client.guilds.cache.size} servers`
+      )
       .setTimestamp()
       .setThumbnail(guild.iconURL({ dynamic: true }))
       .setColor("RED")

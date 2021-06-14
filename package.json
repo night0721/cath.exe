@@ -1,9 +1,9 @@
 {
   "name": "cath.exe",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "cath.exe bot created by Night",
   "engines": {
-    "node": "14.17",
+    "node": "*",
     "npm": "*"
   },
   "main": "index.js",
@@ -72,6 +72,7 @@
     "quickchart-js": "^1.0.7",
     "reconlx": "^1.2.41",
     "soundcloud-downloader": "^0.2.4",
+    "string-toolkit": "^1.4.0",
     "weky": "^1.4.2",
     "yt-search": "^2.8.0",
     "ytdl-core": "^4.8.0",

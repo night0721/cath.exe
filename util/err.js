@@ -166,6 +166,15 @@ module.exports = async (message, dir, file, err) => {
       err =
         "The error maybe the link isn't a image, or the image size is too big";
       break;
+    case 51:
+      err = "Missing 'Query' argument";
+      break;
+    case 52:
+      err = "This message doesn't exist in this channel";
+      break;
+    case 53:
+      err = "Missing 'Code' argument";
+      break;
     case 404:
       err = "Error 404 - Not Found";
       break;
