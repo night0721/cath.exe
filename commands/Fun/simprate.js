@@ -5,11 +5,6 @@ module.exports = {
   description: "Check how simp is the user",
   usage: "(@User)",
   category: "Fun",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let simp = Math.floor(Math.random() * 100);
     if (message.mentions.users.first()) {

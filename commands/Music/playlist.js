@@ -10,11 +10,6 @@ module.exports = {
   usage: "(YouTube Playlist URL)/(Playlist Name)",
   category: "Music",
   BotPerm: ["CONNECT", "SPEAK"],
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const channel = message.member.voice.channel;
     if (!channel) return client.err(message, "Music", "playlist", 35);

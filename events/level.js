@@ -1,5 +1,5 @@
 const Levels = require("discord-xp");
-const client = require("../index");
+const client = require("../bot");
 const users = require("../models/users");
 Levels.setURL(require("../config.json").mongo);
 client.on("message", async message => {

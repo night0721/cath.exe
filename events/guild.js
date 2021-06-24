@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 const { MessageEmbed } = require("discord.js");
 const { Welcome } = require("../config.json");
 client.on("guildMemberAdd", async member => {

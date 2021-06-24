@@ -1,12 +1,7 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
-  name: "test",
+  name: "rr",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const embed = new MessageEmbed()
       .setAuthor(
@@ -40,7 +35,7 @@ module.exports = {
         },
         {
           name: "YouTube<:YouTube:841186450497339412>",
-          value: "<@&765928569397575750>",
+          value: "<@&841026772790673448>",
           inline: true,
         }
       )

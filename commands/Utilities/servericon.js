@@ -4,11 +4,6 @@ module.exports = {
   name: "servericon",
   description: "View the icon of the server",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const Embed = new MessageEmbed()
       .setTitle(`Icon of ${message.guild.name}`)

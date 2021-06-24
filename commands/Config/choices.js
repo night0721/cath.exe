@@ -6,11 +6,6 @@ module.exports = {
   description: "Add choices for modmail in a server",
   usage: "(add/list/rmv) (Emoji) {Text}",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     schema.findOne({ Guild: message.guild.id }, async (err, data) => {
       if (data) return;

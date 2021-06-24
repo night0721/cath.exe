@@ -6,11 +6,6 @@ module.exports = {
   description: "Set the prefix at the server",
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const res = args.join(" ");
     if (!res) return client.err(message, "Config", "prefix", 46);

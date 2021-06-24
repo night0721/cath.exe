@@ -2,11 +2,7 @@ const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "gae",
   timeout: 15000,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+
   run: async (client, message, args) => {
     const MEE6 = [
       "u = gae",

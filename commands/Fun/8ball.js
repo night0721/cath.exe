@@ -31,15 +31,10 @@ module.exports = {
   name: "8ball",
   usage: "(Question)",
   description: "8ball an answer",
-  category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+  category: "Fun",
   run: async (client, message, args) => {
     if (!args.join(" ").endsWith("?"))
-      return client.err(message, "Utilities", "8ball", 101);
+      return client.err(message, "Fun", "8ball", 101);
     else {
       const embed = new MessageEmbed()
         .setAuthor(
@@ -54,7 +49,7 @@ module.exports = {
         .setColor(client.color)
         .setTimestamp()
         .setURL(client.web)
-        .setFooter("Made by Cath Team");
+        .setFooter(`Made by ${client.author}`);
       message.inlineReply(embed);
     }
   },

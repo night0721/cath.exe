@@ -5,11 +5,6 @@ module.exports = {
   description: "Work to earn money",
   category: "Economy",
   timeout: 1000 * 60 * 10,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const job = [
       "Software engineer",

@@ -1,17 +1,12 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 const inventory = require("../../models/econ");
-const items = require("../../util/item");
+const items = require("../../util/dist/item");
 module.exports = {
   name: "purchase",
   aliases: ["buy"],
   usage: "(Item)",
   description: "Buy something from the shop",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) {
       return client.err(message, "Economy", "buy", 21);

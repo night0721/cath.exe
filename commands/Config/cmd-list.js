@@ -6,11 +6,6 @@ module.exports = {
   UserPerm: "ADMINISTRATOR",
   description: "Check the custom commands in a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const data = await schema.find({ Guild: message.guild.id });
     if (!!data === false) return client.err(messgae, "Config", "cmd-list", 10);

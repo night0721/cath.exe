@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 const { MessageEmbed } = require("discord.js");
 const db = require("../models/guilds");
 const config = require("../config.json");
@@ -16,7 +16,8 @@ client.on("guildCreate", guild => {
         `**>Owner ID**: \n${guild.owner.id}`,
       ])
       .setFooter(
-        `${client.user.username} Currently in ${client.guilds.cache.size} servers`
+        `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+        client.user.displayAvatarURL()
       )
       .setTimestamp()
       .setThumbnail(guild.iconURL({ dynamic: true }))

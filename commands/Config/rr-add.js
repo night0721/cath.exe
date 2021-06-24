@@ -6,11 +6,6 @@ module.exports = {
   description: "Create reaction role for server",
   usage: "(Role) (emoji(Must be in server)",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const role =
       message.mentions.roles.first() ||

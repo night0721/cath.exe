@@ -1,8 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs");
-const { ca } = require("../../config.json");
 const ms = require("ms");
-require("../../inlinereply");
 
 module.exports = {
   name: "help",
@@ -10,21 +8,16 @@ module.exports = {
   usage: "(Command/Category)",
   description: "Shows all available bot commands",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const p = await client.prefix(message);
     const emoji = {
-      CODM: "<a:AA99_codm_logo:821348295045283880>",
-      Config: "<:staff:829718501224480788>",
+      CODM: "<a:AA99_codm_logo:840231960441257995>",
+      Config: "<:staff:840231971526803467>",
       Economy: client.currency,
       Fun: "<a:lollll:804325253265621012>",
       Moderation: ":tools:",
       Utilities: ":gear:",
-      Music: "<a:music:824231520993935370>",
+      Music: "<a:music:840231980692144130>",
       Giveaway: "<a:DankCat:798963811902160896>",
     };
     if (!args[0]) {
@@ -42,9 +35,21 @@ module.exports = {
         categories.push(data);
       });
       const embed = new MessageEmbed()
-        .setTitle("**cath.exe commands**")
+        .setTitle(`**${client.user.username} commands**`)
         .addFields(categories)
-        .setDescription(`Links:${ca}`)
+
+        .addField(
+          "**Invite Link**",
+          `**Invite me to your server by clicking [here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)**`
+        )
+        .addField(
+          "**Support Server Invite**",
+          "**Join the support server by clicking [here](https://discord.gg/SbQHChmGcp)**"
+        )
+        .addField(
+          "**Premium**",
+          "**You can either boost support server or gift a nitro to one of the Developer of Cath Team to be premium user**"
+        )
         .setURL(client.web)
         .setFooter(
           `Requested by ${message.author.tag}`,
@@ -98,7 +103,7 @@ module.exports = {
           .setURL(client.web)
           .setColor(client.color)
           .setTitle(
-            "<a:AA99_codm_logo:821348295045283880>**CODM Commands**<a:AA99_codm_logo:821348295045283880>"
+            "<a:AA99_codm_logo:840231960441257995>**CODM Commands**<a:AA99_codm_logo:840231960441257995>"
           )
       );
     } else if (args[0] === "config") {
@@ -131,9 +136,7 @@ module.exports = {
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color)
-          .setTitle(
-            "<a:BigManRich:815137721084674048>**Economy Commands**<a:BigManRich:815137721084674048>"
-          )
+          .setTitle(`${client.currency}**Economy Commands**${client.currency}`)
       );
     } else if (args[0] === "fun") {
       const commandList = [];
@@ -168,7 +171,7 @@ module.exports = {
           .setURL(client.web)
           .setColor(client.color)
           .setTitle(
-            "<a:music:824231520993935370>**Music Commands**<a:music:824231520993935370>"
+            "<a:music:840231980692144130>**Music Commands**<a:music:840231980692144130>"
           )
       );
     } else if (args[0] === "giveaway") {
@@ -200,109 +203,54 @@ module.exports = {
           `There isn't any command or category named "${args[0]}"`
         );
       } else {
-        let BotPerm;
-        let UserPerm;
-        const UserPermissions = [command.UserPerm ? command.UserPerm : ""];
-        const BotPermissions = [command.BotPerm ? command.BotPerm : ""];
-        BotPermissions.forEach(perm => {
-          if (BotPermissions.includes(command.BotPerm))
-            BotPerm = `${perm
-              .replace("CREATE_INSTANT_INVITE", "Create Invite")
-              .replace("KICK_MEMBERS", "Kick Members")
-              .replace("BAN_MEMBERS", "Ban Members")
-              .replace("ADMINISTRATOR", "Administrator")
-              .replace("MANAGE_CHANNELS", "Manage Channels")
-              .replace("MANAGE_GUILD", "Manage Guild")
-              .replace("ADD_REACTIONS", "Add Reactions")
-              .replace("VIEW_AUDIT_LOG", "View Audit Log")
-              .replace("PRIORITY_SPEAKER", "Priority Speaker")
-              .replace("STREAM", "Stream")
-              .replace("VIEW_CHANNEL", "View Channel")
-              .replace("SEND_MESSAGES", "Send Messages")
-              .replace("SEND_TTS_MESSAGES", "Send TTS Messages")
-              .replace("MANAGE_MESSAGES", "Manage Messages")
-              .replace("EMBED_LINKS", "Embed Links")
-              .replace("ATTACH_FILES", "Attach Files")
-              .replace("READ_MESSAGE_HISTORY", "Read Message History")
-              .replace("MENTION_EVERYONE", "Mention Everyone")
-              .replace("USE_EXTERNAL_EMOJIS", "Use External Emojis")
-              .replace("VIEW_GUILD_INSIGHTS", "View Guild Insights")
-              .replace("CONNECT", "Connect")
-              .replace("SPEAK", "Speak")
-              .replace("MUTE_MEMBERS", "Mute Members")
-              .replace("DEAFEN_MEMBERS", "Defean Members")
-              .replace("MOVE_MEMBERS", "Move Members")
-              .replace("USE_VAD", "Use VAD")
-              .replace("CHANGE_NICKNAME", "Change Nickname")
-              .replace("MANAGE_NICKNAMES", "Manage Nicknames")
-              .replace("MANAGE_ROLES", "Manage Roles")
-              .replace("MANAGE_WEBHOOKS", "Manage Webhooks")
-              .replace("MANAGE_EMOJIS", "Manage Emojis")}\n`;
-        });
-        UserPermissions.forEach(perm => {
-          if (UserPermissions.includes(command.UserPerm))
-            UserPerm = `${perm
-              .replace("CREATE_INSTANT_INVITE", "Create Invite")
-              .replace("KICK_MEMBERS", "Kick Members")
-              .replace("BAN_MEMBERS", "Ban Members")
-              .replace("ADMINISTRATOR", "Administrator")
-              .replace("MANAGE_CHANNELS", "Manage Channels")
-              .replace("MANAGE_GUILD", "Manage Guild")
-              .replace("ADD_REACTIONS", "Add Reactions")
-              .replace("VIEW_AUDIT_LOG", "View Audit Log")
-              .replace("PRIORITY_SPEAKER", "Priority Speaker")
-              .replace("STREAM", "Stream")
-              .replace("VIEW_CHANNEL", "View Channel")
-              .replace("SEND_MESSAGES", "Send Messages")
-              .replace("SEND_TTS_MESSAGES", "Send TTS Messages")
-              .replace("MANAGE_MESSAGES", "Manage Messages")
-              .replace("EMBED_LINKS", "Embed Links")
-              .replace("ATTACH_FILES", "Attach Files")
-              .replace("READ_MESSAGE_HISTORY", "Read Message History")
-              .replace("MENTION_EVERYONE", "Mention Everyone")
-              .replace("USE_EXTERNAL_EMOJIS", "Use External Emojis")
-              .replace("VIEW_GUILD_INSIGHTS", "View Guild Insights")
-              .replace("CONNECT", "Connect")
-              .replace("SPEAK", "Speak")
-              .replace("MUTE_MEMBERS", "Mute Members")
-              .replace("DEAFEN_MEMBERS", "Defean Members")
-              .replace("MOVE_MEMBERS", "Move Members")
-              .replace("USE_VAD", "Use VAD")
-              .replace("CHANGE_NICKNAME", "Change Nickname")
-              .replace("MANAGE_NICKNAMES", "Manage Nicknames")
-              .replace("MANAGE_ROLES", "Manage Roles")
-              .replace("MANAGE_WEBHOOKS", "Manage Webhooks")
-              .replace("MANAGE_EMOJIS", "Manage Emojis")}\n`;
-        });
+        if (command.UserPerm && Array.isArray(command.UserPerm)) {
+          UserPermissions = command.UserPerm;
+        } else UserPermissions = [command.UserPerm ? command.UserPerm : ""];
+        if (command.BotPerm && Array.isArray(command.BotPerm)) {
+          BotPermissions = command.BotPerm;
+        } else BotPermissions = [command.BotPerm ? command.BotPerm : ""];
+        const BotPerms = BotPermissions.map(x =>
+          x
+            .split("_")
+            .map(y => y[0] + y.substring(1, y.length).toLowerCase())
+            .join(" ")
+        ).join(", ");
+        const UserPerms = UserPermissions.map(x =>
+          x
+            .split("_")
+            .map(y => y[0] + y.substring(1, y.length).toLowerCase())
+            .join(" ")
+        ).join(", ");
         const embed = new MessageEmbed()
           .setTitle(`"${command.name}" command details`)
           .addField(
             "**Command**:",
             command.name ? `\`${command.name}\`` : "N/A"
-          )
-          .addField(
-            "**Aliases**:",
-            command.aliases ? `\`${command.aliases.join(", ")}\`` : "N/A"
-          )
-          .addField(
+          );
+        if (command.aliases) {
+          embed.addField("**Aliases**:", `\`${command.aliases.join(", ")}\``);
+        }
+        if (command.usage) {
+          embed.addField(
             "**Usage**:",
-            command.usage
-              ? `\`${p}${command.name} ${command.usage}\``
-              : `\`${p}${command.name}\``
-          )
-          .addField(
-            "**Description**:",
-            command.description ? command.description : "N/A"
-          )
-          .addField(
-            "**Cooldown**:",
-            command.timeout ? ms(command.timeout, { long: true }) : "N/A"
-          )
-          .addField(
-            "**Required User Permission**:",
-            UserPerm ? UserPerm : "N/A"
-          )
-          .addField("**Required Bot Permission**:", BotPerm ? BotPerm : "N/A")
+            `\`${p}${command.name} ${command.usage}\``
+          );
+        } else {
+          embed.addField("**Usage**:", `\`${p}${command.name}\``);
+        }
+        if (command.description) {
+          embed.addField("**Description**:", command.description);
+        }
+        if (command.timeout) {
+          embed.addField("**Cooldown**:", ms(command.timeout, { long: true }));
+        }
+        if (command.UserPerm) {
+          embed.addField("**Required User Permission**:", UserPerms);
+        }
+        if (command.BotPerm) {
+          embed.addField("**Required Bot Permission**:", BotPerms);
+        }
+        embed
           .setFooter(
             `Requested by ${message.author.tag}`,
             message.author.displayAvatarURL({ dynamic: true })

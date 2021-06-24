@@ -4,11 +4,6 @@ module.exports = {
   usage: "(Server ID)",
   description: "Migrate all emojis from a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const oldGuild = args[0];

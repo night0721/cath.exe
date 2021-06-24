@@ -6,11 +6,6 @@ module.exports = {
   UserPerm: "ADMINISTRATOR",
   description: "Crate custom commands for a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     message.delete();
     message.channel.send(

@@ -1,17 +1,12 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 const inventory = require("../../models/econ");
-const items = require("../../util/item");
+const items = require("../../util/dist/item");
 module.exports = {
   name: "gift",
   timeout: 5000,
   usage: "(User) (Item)",
   description: "Gift item to an user",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const user =
       message.mentions.users.first() ||

@@ -1,6 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const client = require("../index");
-require("../inlinereply.js");
+const client = require("../../bot");
 /**
  * @param {String} message
  * @param {String} dir
@@ -191,7 +190,7 @@ module.exports = async (message, dir, file, err) => {
       "Missing argument";
       break;
   }
-  const pull = require(`../commands/${dir}/${file}`);
+  const pull = require(`../../commands/${dir}/${file}`);
   let pre = await client.prefix(message);
   let embed = new MessageEmbed()
     .setAuthor(
@@ -200,7 +199,7 @@ module.exports = async (message, dir, file, err) => {
     )
     .setColor("RED")
     .setDescription(
-      `${require("../config.json").ca}\nUse \`${pre}help ${
+      `${require("../../config.json").ca}\nUse \`${pre}help ${
         pull.name
       }\` to get help\n \n `
     )

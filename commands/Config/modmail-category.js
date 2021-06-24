@@ -7,11 +7,6 @@ module.exports = {
   description: "Setup modmail category in a server",
   usage: "(Category ID)",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args.length)
       return client.err(message, "Config", "modmail-category", 0);

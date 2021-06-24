@@ -6,11 +6,6 @@ module.exports = {
   description: "Pin a message in the server",
   BotPerm: "MANAGE_MESSAGES",
   UserPerm: "MANAGE_MESSAGES",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) return client.err(message, "Moderation", "pin", 27);
     try {

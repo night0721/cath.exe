@@ -6,11 +6,6 @@ module.exports = {
   usage: "(User) (Number)",
   description: "Give money to an user",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const user =
       message.mentions.users.first() ||

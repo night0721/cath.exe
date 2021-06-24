@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Number)",
   aliases: ["vol"],
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const channel = message.member.voice.channel;
     if (!channel) return client.err(message, "Music", "volume", 35);

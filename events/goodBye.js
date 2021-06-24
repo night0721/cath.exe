@@ -1,5 +1,5 @@
 const { MessageAttachment } = require("discord.js");
-const client = require("../index");
+const client = require("../bot");
 const schema = require("../models/guilds");
 const canvas = require("discord-canvas");
 

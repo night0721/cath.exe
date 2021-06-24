@@ -4,11 +4,7 @@ module.exports = {
   description: "Check how gae is the user",
   usage: "(User)",
   Path: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+
   run: async (client, message, args) => {
     const target = message.mentions.users.first() || message.author;
     if (target.id === "366562874039992331") {

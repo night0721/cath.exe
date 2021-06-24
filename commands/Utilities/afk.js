@@ -4,11 +4,6 @@ module.exports = {
   description: "Tell someone you are AFK.",
   usage: "{Status}",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let uuser = message.guild.members.cache.get(message.author.id);
     const content = args.join(" ") || "No status provided.";
@@ -19,7 +14,7 @@ module.exports = {
         `${message.author.username} is set into AFK.\nStatus : ${content}`
       )
       .setTimestamp()
-      .setFooter(`Made by Cath Team`)
+      .setFooter(`Made by ${client.author}`)
       .setColor(client.color)
       .setAuthor(
         message.author.tag,

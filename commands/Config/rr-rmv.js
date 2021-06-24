@@ -6,11 +6,6 @@ module.exports = {
   UserPerm: "ADMINISTRATOR",
   description: "Remove reaction role for server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     message.channel
       .send("**Do you want to remove the reaction roles?**")

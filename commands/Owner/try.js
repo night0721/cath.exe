@@ -1,11 +1,6 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "auth",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const random = client.function.rndint(100000, 999999);
     let ed;
@@ -23,7 +18,7 @@ module.exports = {
           .setTitle("One-Time Password")
           .setDescription(questions[collectCounter++])
           .setColor(client.color)
-          .setFooter(`Made by Cath Team`)
+          .setFooter(`Made by ${client.author}`)
           .setTimestamp()
       );
       const channel = appStart.channel;
@@ -42,7 +37,7 @@ module.exports = {
                   .setDescription(`Success`)
                   .setTimestamp()
                   .setColor("GREEN")
-                  .setFooter(`Made by Cath Team`)
+                  .setFooter(`Made by ${client.author}`)
               );
             } else {
               message.author.send(
@@ -50,7 +45,7 @@ module.exports = {
                   .setDescription(`Failed\nPlease try again.`)
                   .setTimestamp()
                   .setColor("RED")
-                  .setFooter(`Made by Cath Team`)
+                  .setFooter(`Made by ${client.author}`)
               );
             }
           });

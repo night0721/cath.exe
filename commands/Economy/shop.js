@@ -1,15 +1,10 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-const util = require("../../util/pagination");
-const items = require("../../util/item");
+const util = require("../../util/pagination/pagination");
+const items = require("../../util/dist/item");
 module.exports = {
   name: "shop",
   description: "Check the items from the shop",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const list = items.map((value, index) => {
       return `**${value.item}** — ${value.price.toLocaleString()}${

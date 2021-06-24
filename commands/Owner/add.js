@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Number)",
   description: "Add coins from someone",
   Owner: true,
-  /**
-   * @param {Client}client
-   * @param {Message}message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0] || isNaN(args[0]))
       return message.channel.send("Number of coins?");

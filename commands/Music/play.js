@@ -11,11 +11,6 @@ module.exports = {
   aliases: ["p"],
   category: "Music",
   BotPerm: ["CONNECT", "SPEAK"],
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let channel = message.member.voice.channel;
     if (!channel) return client.err(message, "Music", "play", 35);

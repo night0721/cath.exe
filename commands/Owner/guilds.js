@@ -4,11 +4,6 @@ module.exports = {
   category: "Owner",
   description: "Check top 10 guilds of the bot",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const guilds = client.guilds.cache
       .sort((a, b) => b.memberCount - a.memberCount)
@@ -22,7 +17,7 @@ module.exports = {
       .setTitle("Guilds")
       .setDescription(description)
       .setColor(client.color)
-      .setFooter(`Made by Cath Team`)
+      .setFooter(`Made by ${client.author}`)
       .setTimestamp();
     message.channel.send(embed);
   },

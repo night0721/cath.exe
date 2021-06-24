@@ -5,11 +5,6 @@ module.exports = {
   description: "Set a timer for yourself",
   usage: "(Time)",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) {
       return client.err(message, "Utilities", "timer", 19);

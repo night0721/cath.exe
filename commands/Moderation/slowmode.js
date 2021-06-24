@@ -7,11 +7,6 @@ module.exports = {
   BotPerm: "MANAGE_CHANNELS",
   usage: "(Time)",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       if (!args[0]) {

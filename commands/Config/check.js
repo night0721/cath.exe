@@ -5,11 +5,6 @@ module.exports = {
   usage: "(goodbye/welcome/log) (Channel)",
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const data = await client.data.getGuild(message.guild.id);
     if (!args[0]) return client.err(messgae, "Config", "check", 45);

@@ -8,11 +8,6 @@ module.exports = {
   description: "Clear/Purge 1-100 messages in the channel",
   usage: "(Number)",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (
       !args[0] ||

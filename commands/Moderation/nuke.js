@@ -6,11 +6,6 @@ module.exports = {
   UserPerm: "MANAGE_CHANNELS",
   BotPerm: "MANAGE_CHANNELS",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       let filter = m => m.author.id === message.author.id;

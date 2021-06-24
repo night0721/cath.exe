@@ -5,11 +5,6 @@ module.exports = {
   timeout: 5000,
   description: "Win more coins by slots",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const max = 1000000;
     const slots = [
@@ -81,12 +76,11 @@ module.exports = {
         )
         .setTitle(`${message.author.username} loses a slots game`)
         .setDescription(
-          `You lose\n**${amt}**${client.currency}\nYou now have **${
+          `You lost\n**${amt}**${client.currency}\nYou now have **${
             parseInt(await client.data.bal(message.author.id)) - amt
           }**${client.currency}`
         );
       message.inlineReply(lost);
-      console.log(`Coins: ${await client.data.bal(message.author.id)}`);
     }
   },
 };

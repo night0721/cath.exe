@@ -5,11 +5,6 @@ module.exports = {
   description: "Choose random things",
   usage: "(Choices)",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const split = args.join(" ").split(" ");
     if (!split) return client.err(message, "Utilities", "choose", 0);

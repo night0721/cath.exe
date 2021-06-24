@@ -4,11 +4,6 @@ module.exports = {
   usage: "(User)",
   description: "Kiss someone",
   category: "Fun",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const words = args.slice(1).join(" ");
     const user =

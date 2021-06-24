@@ -4,11 +4,7 @@ module.exports = {
   description: "To resume the paused music",
   aliases: ["continue"],
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+
   run: async (client, message, args) => {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue && !serverQueue.playing) {

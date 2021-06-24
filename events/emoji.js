@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 client.on("message", async message => {
   function Check(str) {
     if (
@@ -12,9 +12,8 @@ client.on("message", async message => {
   }
   if (message.content.startsWith(":") && message.content.endsWith(":")) {
     let EmojiName = message.content.slice(1, -1);
-
+    if (client.path.includes(message.guild.id)) return;
     if (Check(EmojiName) === true) {
-      console.log("cmeoji");
       const channel = client.channels.cache.get(message.channel.id);
       try {
         if (message.author.bot) return;
@@ -48,8 +47,8 @@ client.on("message", async message => {
           avatarURL: message.author.displayAvatarURL({ dynamic: true }),
         });
         message.delete();
-      } catch (error) {
-        console.log(`Error :\n${error}`);
+      } catch (e) {
+        console.log(e);
       }
     } else return;
   } else return;

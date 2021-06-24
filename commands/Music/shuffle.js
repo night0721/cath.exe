@@ -3,11 +3,6 @@ module.exports = {
   name: "shuffle",
   description: "Shuffle queue",
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!serverQueue) return client.err(message, "Music", "shuffle", 37);

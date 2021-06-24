@@ -1,16 +1,11 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-const util = require("../../util/pagination");
+const util = require("../../util/pagination/pagination");
 module.exports = {
   name: "queue",
   description: "To show the songs queue",
   aliases: ["q"],
   category: "Music",
   BotPerm: ["MANAGE_MESSAGES", "ADD_REACTIONS"],
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const queue = message.client.queue.get(message.guild.id);
     if (!queue) return client.err(message, "Music", "queue", 34);

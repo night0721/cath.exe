@@ -4,11 +4,6 @@ module.exports = {
   name: "snipe",
   description: "Snipes a deleted message.",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     var i = 0;
     var description = "";
@@ -18,14 +13,13 @@ module.exports = {
         message.author.displayAvatarURL({ dynamic: true })
       )
       .setColor(client.color)
-      .setFooter("Made by Cath Team")
+      .setFooter(`Made by ${client.author}`)
       .setURL(client.web);
     client.snipes.reverse().forEach(msg => {
       if (msg.channel.id != message.channel.id) return;
       if (i >= 5) return;
       if (msg.attachment) {
         if (msg.attachment.length == 1) {
-          console.log("one");
           description =
             description +
             `\n\n**Author:** ${msg.author.username}#${

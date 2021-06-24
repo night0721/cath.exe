@@ -5,11 +5,6 @@ module.exports = {
   usage: "(User) (Toggle) (Reason)",
   description: "Blacklist someone from the bot",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let user = args[0];
     toggle = args[1];

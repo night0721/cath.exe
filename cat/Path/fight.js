@@ -3,11 +3,7 @@ module.exports = {
   name: "fight",
   description: "Goooooooooooooooolag!",
   timeout: 15000,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+
   run: async (client, message, args) => {
     const gaes = [
       "Gae",
@@ -60,12 +56,15 @@ module.exports = {
       "a Bot",
       "locknload with 200 round RPD gae",
       "ros gae",
+      "Cath Gae",
+      "Cat drinking a cat gae",
+      "Night Gae",
     ];
     const gae = gaes[Math.floor(Math.random() * gaes.length)];
     const embed = new MessageEmbed()
       .setTitle("**Gulag Fight**")
       .setDescription(
-        `**${message.author}has taken a chance at redemption in The Gulag. \nYou fight only to find out that you're \`${gae}\`. If you somehow turned out to not be gae, DM an admin to get your timer halved ||only if your mute is less than 69m||**`
+        `**${message.author} has taken a chance at redemption in The Gulag. \nYou fight only to find out that you're \`${gae}\`. If you somehow turned out to not be gae, DM an admin to get your timer halved ||only if your mute is less than 69m||**`
       )
       .setColor(5198940);
     message.channel.send(embed);

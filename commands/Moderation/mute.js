@@ -7,11 +7,6 @@ module.exports = {
   UserPerm: "MANAGE_MESSAGES",
   BotPerm: "MANAGE_ROLES",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let Member = message.mentions.members.first();
     const time = args[1];

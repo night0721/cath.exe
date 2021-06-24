@@ -2,11 +2,7 @@ const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "nab",
   timeout: 15000,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+
   run: async (client, message, args) => {
     const NAB = [
       "stop being a nab, nab",

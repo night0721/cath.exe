@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 client.on("messageUpdate", (message, newMessage) => {
   function getAllTextFromEmbed(embed) {
     let text = "";

@@ -6,11 +6,6 @@ module.exports = {
   usage: "(Command) {Channel}",
   description: "Enable a command in a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const type = args[0].toLowerCase();
     const name = args[1].toLowerCase();

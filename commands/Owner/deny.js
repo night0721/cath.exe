@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Message)",
   description: "Deny a suggestion",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const MessageID = args[0];
     const denyQuery =
@@ -21,7 +16,6 @@ module.exports = {
         client.SuggestionLog
       );
       const suggestEmbed = await suggestionChannel.messages.fetch(MessageID);
-      console.log(suggestEmbed);
       const data = suggestEmbed.embeds[0];
       const denyEmbed = new MessageEmbed()
         .setAuthor(data.author.name, data.author.iconURL)

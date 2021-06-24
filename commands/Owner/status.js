@@ -5,11 +5,6 @@ module.exports = {
   description: "Maintenance mode",
   category: "Owner",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) return message.channel.send("True or False?");
     if (args[0].toLowerCase() === "true") {

@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 const leven = require("leven");
 const { Collection, MessageEmbed } = require("discord.js");
 const { prefix } = require("../config.json");
@@ -7,14 +7,10 @@ const ms = require("ms");
 const schema = require("../models/custom-commands");
 const Timeout = new Collection();
 const Timeout2 = new Collection();
+const db = require("../models/status");
 client.on("message", async message => {
   const p = await client.prefix(message);
   if (message.author.bot) return;
-  if (!message.content.startsWith(p)) return;
-  if (!message.guild) return;
-  if (!message.member) {
-    message.member = await message.guild.fetchMember(message);
-  }
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const _ = new MessageEmbed()
       .setTitle("cath.exe")
@@ -25,29 +21,41 @@ client.on("message", async message => {
       )
       .setThumbnail(client.user.displayAvatarURL())
       .setURL(client.web)
-      .setFooter("Made by Cath Team")
+      .setFooter(`Made by ${client.author}`)
       .setTimestamp()
       .setColor(client.color);
-    return message.inlineReply(_).then(m => m.delete({ timeout: 10000 }));
+    return message.inlineReply(_).then(m => m.delete({ timeout: 15000 }));
   }
+  if (!message.content.toLowerCase().startsWith(p.toLowerCase())) return;
+  if (!message.guild) return;
+  if (!message.member) {
+    message.member = await message.guild.fetchMember(message);
+  }
+
+  db.findOne({ Bot: client.user.id }, async (err, data) => {
+    if (!data) {
+      new db({
+        Bot: client.user.id,
+        Status: "false",
+      });
+    } else {
+      if (
+        data.Status &&
+        data.Status == "true" &&
+        !client.owners.includes(message.author.id)
+      )
+        return message.inlineReply(
+          `**${client.user.username}** is currently in maintenance.\nYou can use **cath.exe#9686** or **Cath 2#7414** if it is online\nIf you need help, please contact **Cat drinking a cat#0795** or **Ń1ght#0001**`
+        );
+    }
+  });
   const data = {};
   let guildDB = await client.data.getGuild(message.guild.id);
   if (!guildDB) return;
   let userDB = await client.data.getUser(message.author.id);
   if (!userDB) return;
-  let botDB = await client.data.getBot(client.user.id);
-  if (!botDB) return;
-  data.Bot = botDB;
   data.Guild = guildDB;
   data.User = userDB;
-  if (
-    botDB &&
-    botDB.Status == "true" &&
-    !client.owners.includes(message.author.id)
-  )
-    return message.inlineReply(
-      `**${client.user.username}** is currently in maintenance.\nYou can use **cath.exe#9686** or **Cath 2#7414** if it is online\nIf you need help, please contact **Cat drinking a cat#0795** or **Ń1ght#0001**`
-    );
   if (!guildDB) {
     await client.data.CreateGuild(message.guild.id);
   }
@@ -119,10 +127,10 @@ client.on("message", async message => {
               )
               .setColor(client.color)
               .setDescription(
-                `You aren't a premium user. Please join [this](https://discord.gg/SbQHChmGcp) server and know more`
+                `You aren't a premium user. You can either boost support server or gift a nitro to one of the Developer of Cath Team to be premium user`
               )
               .setTimestamp()
-              .setFooter(`Made by Cath Team`)
+              .setFooter(`Made by ${client.author}`)
           );
         }
       }

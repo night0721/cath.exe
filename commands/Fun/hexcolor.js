@@ -12,14 +12,14 @@ module.exports = {
   usage: "(Hex Color Code)",
   description: "Get Hex and RGB info of a color",
   aliases: ["hex"],
-  category: "Utilities",
+  category: "Fun",
   run: async (client, message, args) => {
     let color;
     if (args[0]) {
       if (/(#|0x)([0-9A-F]{6})/i.test(args[0])) {
         color = args[0].match(/(#|0x)([0-9A-F]{6})/i)[2];
       } else {
-        return client.err(message, "Utilities", "hexcolor", 101);
+        return client.err(message, "Fun", "hexcolor", 101);
       }
     } else {
       color = message.member.displayHexColor;

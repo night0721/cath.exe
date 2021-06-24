@@ -5,11 +5,6 @@ module.exports = {
   usage: "{Channel} (Number)",
   description: "Drops money to a channel",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const p = await client.prefix(message);
     const channel = message.mentions.channels.first() || message.channel;

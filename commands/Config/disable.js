@@ -6,11 +6,6 @@ module.exports = {
   usage: "(Command/Category) (Name)",
   description: "Disable a command in a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const type = args[0].toLowerCase();
     if (!type) return client.err(message, "Config", "disable", 17);

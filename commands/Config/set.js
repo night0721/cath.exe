@@ -5,11 +5,6 @@ module.exports = {
   usage: "(goodbye/welcome/log) (#Channel)",
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) return client.err(message, "Config", "set", 45);
     if (args[0].toLowerCase() === "goodbye") {
@@ -20,7 +15,22 @@ module.exports = {
     } else if (args[0].toLowerCase() === "log") {
       const channel = message.mentions.channels.first();
       if (!channel) return client.err(message, "Config", "set", 28);
-      await client.data.setLog(message.guild.id, channel.id);
+      let webhookid;
+      let webhooktoken;
+      await channel
+        .createWebhook(message.guild.name, {
+          avatar: message.guild.iconURL({ format: "png" }),
+        })
+        .then(webhook => {
+          webhookid = webhook.id;
+          webhooktoken = webhook.token;
+        });
+      await client.data.setLog(
+        message.guild.id,
+        channel.id,
+        webhookid,
+        webhooktoken
+      );
       message.channel.send(`Saved ${channel} as the log channel.`);
     } else if (args[0].toLowerCase() === "welcome") {
       const channel = message.mentions.channels.first();

@@ -6,11 +6,6 @@ module.exports = {
   name: "hangman",
   description: "Play a hangman game",
   category: "Fun",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (playing.has(message.channel.id))
       return message.reply("Only one game may be occurring per channel.");

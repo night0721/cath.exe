@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Emoji)",
   description: "Show an emoji URL",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args.length) return client.err(message, "Utilities", "emoji", 11);
     for (const rawEmoji of args) {

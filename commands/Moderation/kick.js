@@ -6,11 +6,6 @@ module.exports = {
   BotPem: "KICK_MEMBERS",
   usage: "(User) {Reason}",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let target =
       message.mentions.members.first() ||

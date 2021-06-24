@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Guild)",
   description: "Generates an invitation to the server",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let guild = null;
     if (!args[0]) return client.err(message, "Owner", "getinvite", 0);

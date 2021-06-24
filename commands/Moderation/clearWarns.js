@@ -6,11 +6,6 @@ module.exports = {
   description: "Clear an user's warns",
   UserPerm: "MANAGE_MESSAGES",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const user =
       message.mentions.members.first() ||

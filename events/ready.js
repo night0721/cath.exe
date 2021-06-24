@@ -1,4 +1,4 @@
-const client = require("../index");
+const client = require("../bot");
 const config = require("../config.json");
 const prefix = config.prefix;
 const version = require("../package.json").version;

@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Link)",
   description: "Set bot avatar from a link",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (message.deletable) {
       message.delete();

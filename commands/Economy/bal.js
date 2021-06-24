@@ -4,11 +4,6 @@ module.exports = {
   aliases: ["bal"],
   usage: "(User)",
   category: "Economy",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const user =
       message.mentions.members.first() ||

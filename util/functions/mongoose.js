@@ -120,29 +120,6 @@ module.exports = {
     }
   },
   /**
-   * @param {String} ID - Bot ID
-   */
-  async getBot(ID) {
-    if (!ID) throw new Error("Bot ID?");
-    const bot = await m.findOne({ Bot: ID }).lean().cache(120);
-    if (!bot) {
-      const ss = new m({ Bot: ID });
-      const { Bot, Status } = ss;
-      await ss.save().catch(error => console.log(error));
-      return {
-        Bot,
-        Status,
-      };
-    } else {
-      const Bot = bot.Bot;
-      const Status = bot.Status;
-      return {
-        Bot,
-        Status,
-      };
-    }
-  },
-  /**
    * @param {String} ID - User ID
    * @param {String} Reason - AFK Reason
    */
@@ -328,17 +305,26 @@ module.exports = {
   /**
    * @param {String} ID - Guild ID
    * @param {String} Channel - Log Channel
+   * @param {String} WebhookID - WebhookID
+   * @param {String} WebhookToken - WebhookToken
    */
-  async setLog(ID, Channel) {
+  async setLog(ID, Channel, WID, WToken) {
     if (!ID) throw new Error("Guild ID?");
     if (!Channel) throw new Error("Channel?");
+    if (!WID) throw new Error("WebhookID?");
+    if (!WToken) throw new Error("WebhookToken?");
     const guild = await g.findOne({ Guild: ID });
     if (!guild) {
       const newU = new g({ Guild: ID });
+      newU.LogChannel = Channel;
+      newU.LogWebhookID = WID;
+      newU.LogWebhookToken = WToken;
       await newU.save().catch(error => console.log(error));
       return { Channel };
     }
     guild.Log = Channel;
+    guild.LogWebhookID = WID;
+    guild.LogWebhookToken = WToken;
     await guild.save().catch(error => console.log(error));
     cachegoose.clearCache();
     return { Channel };

@@ -6,11 +6,6 @@ module.exports = {
   usage: "{Channel} (Message)",
   description: "Announce a message to a channel.",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const channel = message.mentions.channels.first() || message.channel;
     if (!args[0]) return client.err(message, "Moderation", "announce", 4);

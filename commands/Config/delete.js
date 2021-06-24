@@ -6,11 +6,6 @@ module.exports = {
   usage: "(command)",
   description: "Delete a custom command for a server",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const name = args[0];
     if (!name) return client.err(message, "Config", "cc-delete", 47);

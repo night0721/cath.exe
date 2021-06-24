@@ -5,11 +5,6 @@ module.exports = {
   usage: "(User) (Toggle) (Tier)",
   description: "Set someone into Premium with tiers",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const member =
       message.mentions.members.first() ||

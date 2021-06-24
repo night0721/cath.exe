@@ -3,11 +3,6 @@ const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "code",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const encrypted = encrypt(args.slice(0).join(" "));
     message.channel.send(`\`\`\`${encrypted}\`\`\``);

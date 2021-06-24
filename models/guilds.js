@@ -16,10 +16,9 @@ module.exports = mongoose.model(
       type: String,
       default: "null",
     },
-    Log: {
-      type: String,
-      default: "null",
-    },
+    Log: { type: String, default: "null" },
+    LogWebhookID: { type: String, default: "null" },
+    LogWebhookToken: { type: String, default: "null" },
     Premium: {
       type: Boolean,
       default: false,

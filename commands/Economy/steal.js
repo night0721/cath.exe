@@ -7,11 +7,6 @@ module.exports = {
   aliases: ["rob"],
   category: "Economy",
   timeout: 120000,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     var tryrob =
       message.mentions.users.first() ||

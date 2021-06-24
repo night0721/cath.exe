@@ -6,11 +6,6 @@ module.exports = {
   description: "Start a giveaway",
   usage: "(Channel) (Time) (Winners(Number)) (Prize)",
   UserPerm: "MANAGE_MESSAGES",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const channel = message.mentions.channels.first();
     if (!channel) return client.err(message, "Giveaway", "giveaway", 28);
@@ -33,7 +28,7 @@ module.exports = {
         inviteToParticipate: "React with 🎉 to enter!",
         winMessage: `Congratulations {winners}! You won the **${prize}**!`,
         noWinner: "Could not determine a winner!",
-        embedFooter: "Made by Ń1ght",
+        embedFooter: `Made by ${client.author}`,
         hostedBy: "Hosted by: {user}",
         winners: "Winner(s)",
         messageURL: "",

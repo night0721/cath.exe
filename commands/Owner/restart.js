@@ -4,16 +4,10 @@ module.exports = {
   category: "Owner",
   description: "Restart the bot",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
-    message.channel
-      .send("Restarting...")
-      .then(message => client.destroy())
-      .then(() => client.login(process.env.TOKEN));
-    message.channel.send("Restarted");
+    const msg = await message.channel.send("Restarting...");
+    await client.destroy();
+    await client.login(process.env.TOKEN);
+    await msg.delete().then(msg => message.channel.send("Restarted"));
   },
 };

@@ -4,16 +4,11 @@ module.exports = {
   aliases: ["dc"],
   description: "Leave The Voice Channel",
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let channel = message.member.voice.channel;
-    if (!channel) return client.err(message, "Music", "disconnect", 35);
+    if (!channel) return client.err(message, "Music", "leave", 35);
     if (!message.guild.me.voice.channel)
-      return client.err(message, "Music", "disconnect", 41);
+      return client.err(message, "Music", "leave", 41);
     try {
       await message.guild.me.voice.channel.leave();
     } catch (error) {

@@ -7,11 +7,6 @@ module.exports = {
   UserPerm: "MANAGE_CHANNELS",
   BotPerm: "MANAGE_CHANNELS",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     message.channel
       .createOverwrite(message.guild.id, { SEND_MESSAGES: false })

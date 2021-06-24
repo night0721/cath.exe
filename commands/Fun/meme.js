@@ -5,11 +5,6 @@ module.exports = {
   aliases: ["memes"],
   category: "Fun",
   description: "A meme command",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const wait = await message.inlineReply("Getting meme...");
     let subreddits = ["comedyheaven", "dank", "meme", "memes"];

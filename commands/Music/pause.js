@@ -3,11 +3,6 @@ module.exports = {
   name: "pause",
   description: "To pause the current music in the server",
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (serverQueue && serverQueue.playing) {

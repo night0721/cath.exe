@@ -4,11 +4,6 @@ module.exports = {
   name: "poll",
   description: "Join a poll for develop of this bot",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const questions = [
       "Which statistic of gun you want to see?",

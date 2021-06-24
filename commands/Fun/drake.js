@@ -9,11 +9,7 @@ module.exports = {
   name: "drake",
   description: "Drake meme",
   usage: "(Text) (Text)",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
+  category: "Fun",
   run: async (client, message, args) => {
     const t1 = args[0];
     const t2 = args.slice(1).join(" ");

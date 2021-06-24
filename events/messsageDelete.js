@@ -1,4 +1,4 @@
-const client = require("../index.js");
+const client = require("../bot");
 client.on("messageDelete", async message => {
   let all = [];
   if (message.attachments) {

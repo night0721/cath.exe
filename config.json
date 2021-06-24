@@ -1,6 +1,6 @@
 {
   "prefix": "C.",
-  "mongo": "mongodb://127.0.0.1:27017",
+  "mongo": "mongodb://127.0.0.1:27017/cath",
   "URL": "https://cath.gq/",
   "color": "02023a",
   "soundcloud": "dmDh7QSlmGpzH9qQoH1YExYCGcyYeYYC",

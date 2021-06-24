@@ -5,11 +5,6 @@ module.exports = {
   usage: "(User) (Message)",
   description: "DM a user",
   Owner: true,
-  /**
-   * @param {Client}client
-   * @param {Message}message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const user = client.users.cache.get(args[0]);
     if (!user) return message.inlineReply("User?");

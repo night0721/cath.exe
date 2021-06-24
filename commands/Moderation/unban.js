@@ -6,11 +6,6 @@ module.exports = {
   BotPerm: "BAN_MEMBERS",
   usage: "(User)",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       if (!args[0]) return client.err(message, "Moderation", "unban", 1);

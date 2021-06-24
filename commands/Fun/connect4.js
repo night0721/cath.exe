@@ -5,11 +5,6 @@ module.exports = {
   usage: "(User)",
   description: "Play a connect 4 game with a user",
   category: "Fun",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const challenger = message.member;
     const oppenent = message.mentions.members.first();

@@ -6,11 +6,6 @@ module.exports = {
   usage: "(User)",
   description: "Unmute an user",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const user =

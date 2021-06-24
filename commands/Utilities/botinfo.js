@@ -12,11 +12,6 @@ module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const core = os.cpus()[0];
     const embed = new MessageEmbed()

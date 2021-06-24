@@ -6,11 +6,6 @@ module.exports = {
   usage: "(User) {Reason}",
   description: "Warn a user",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const user =

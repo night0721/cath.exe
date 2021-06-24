@@ -6,11 +6,6 @@ module.exports = {
   aliases: ["psadd", "psa", "premiumserver"],
   description: "Add premium to a server",
   Premium: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const user = await client.data.getUser(message.author.id);

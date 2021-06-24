@@ -5,11 +5,6 @@ module.exports = {
   usage: "(User)",
   description: "Show user's permission in server/channel",
   category: "Utilities",
-  /**
-   * @param {Client}client
-   * @param {Message}message
-   * @param {String[]args}
-   */
   run: async (client, message, args) => {
     const yes = "✔️";
     const no = "❌";

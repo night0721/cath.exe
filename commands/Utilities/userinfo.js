@@ -6,11 +6,6 @@ module.exports = {
   description: "Check the info of a user",
   usage: "{User}",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const member =
       message.mentions.members.first() ||
@@ -24,34 +19,34 @@ module.exports = {
       ) ||
       message.member;
     const flags = {
-      DISCORD_EMPLOYEE: "Discord Staff<:staff:829718501224480788>",
-      DISCORD_PARTNER: "Partnered Server Owner<:partner:829718449436622858>",
-      BUGHUNTER_LEVEL_1: "Discord Bug Hunter<:bughunter:829718598343196672>",
-      BUGHUNTER_LEVEL_2: "Discord Bug Hunter<:bughunterlv2:829718545298358313>",
-      HYPESQUAD_EVENTS: "HypeSquad Events<:HypeSquad:829718113913405440>",
-      HOUSE_BRAVERY: "HypeSquad Bravery<:bravery:829718178527182869>",
-      HOUSE_BRILLIANCE: "HypeSquad Brilliance<:brilliance:829718391727456311>",
-      HOUSE_BALANCE: "HypeSquad Balance<:balance:829718333204856854>",
-      EARLY_SUPPORTER: "Early Supporter<:earlysupporter:829717947052195880>",
+      DISCORD_EMPLOYEE: "Discord Staff<:staff:840231971526803467>",
+      DISCORD_PARTNER: "Partnered Server Owner<:partner:840231939944480829>",
+      BUGHUNTER_LEVEL_1: "Discord Bug Hunter<:bughunter:840231967600803920>",
+      BUGHUNTER_LEVEL_2: "Discord Bug Hunter<:bughunterlv2:840231970017771571>",
+      HYPESQUAD_EVENTS: "HypeSquad Events<:HypeSquad:840231908599922721>",
+      HOUSE_BRAVERY: "HypeSquad Bravery<:bravery:840231941974655007>",
+      HOUSE_BRILLIANCE: "HypeSquad Brilliance<:brilliance:840231943764443136>",
+      HOUSE_BALANCE: "HypeSquad Balance<:balance:840231925876523018>",
+      EARLY_SUPPORTER: "Early Supporter<:earlysupporter:840231983216984085>",
       TEAM_USER: "Team User",
       SYSTEM: "System",
-      VERIFIED_BOT: "Verified Bot<:VerifiedBot:822497433933709343>",
+      VERIFIED_BOT: "Verified Bot<:VerifiedBot:840231982054375425>",
       VERIFIED_DEVELOPER:
-        "Early Verified Bot Developer<:discord_bot_dev:829717061802131466>",
+        "Early Verified Bot Developer<:discord_bot_dev:840231906200387666>",
     };
     let status;
     switch (member.user.presence.status) {
       case "online":
-        status = "<:online:829714260199997482>Online";
+        status = "<:online:840231921123721237>Online";
         break;
       case "dnd":
-        status = "<:do_not_disturb:829714335952535632>Do Not Disturb";
+        status = "<:do_not_disturb:840231907715448842>Do Not Disturb";
         break;
       case "idle":
-        status = "<:idle:829714296211505182>Idle";
+        status = "<:idle:840231935485149184>Idle";
         break;
       case "offline":
-        status = "<:offline:829714364511682582>Offline";
+        status = "<:offline:840231954897305620>Offline";
         break;
     }
     let x = Date.now() - member.user.createdAt;

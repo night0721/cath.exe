@@ -6,11 +6,6 @@ module.exports = {
   aliases: ["esnipe"],
   usage: "{Channel}",
   description: "Snipe an edited message",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let channel =
         message.mentions.channels.first() ||

@@ -4,11 +4,6 @@ module.exports = {
   description: "Skip to the selected queue number",
   usage: "(Number)",
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args.length || isNaN(args[0]))
       return client.err(message, "Music", "skipto", 101);

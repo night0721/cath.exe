@@ -6,11 +6,6 @@ module.exports = {
   usage: "(Role) (User)",
   description: "Add/Remove a role for an user",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const target =

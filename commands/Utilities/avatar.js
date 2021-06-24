@@ -5,11 +5,6 @@ module.exports = {
   aliases: ["av"],
   usage: "{User}",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const member =
       message.mentions.members.first() ||
@@ -46,7 +41,7 @@ module.exports = {
         })})**`
       )
       .setImage(member.user.displayAvatarURL({ dynamic: true, size: 1024 }))
-      .setFooter("Made by Cath Team")
+      .setFooter(`Made by ${client.author}`)
       .setURL(client.web)
       .setTimestamp();
     return message.inlineReply(embed);

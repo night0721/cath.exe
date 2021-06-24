@@ -6,11 +6,6 @@ module.exports = {
   description: "Remove a latest warn for an user",
   usage: "(User)",
   category: "Moderation",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     try {
       const user =

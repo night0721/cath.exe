@@ -6,11 +6,6 @@ module.exports = {
   description: "Reaction-Role Panel",
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const channel = message.mentions.channels.first() || message.channel;
     Schema.findOne({ Guild: message.guild.id }, async (err, data) => {

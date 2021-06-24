@@ -1,7 +1,6 @@
-const client = require("../index");
+const client = require("../bot");
 const moment = require("moment");
-require("../inlinereply");
-client.on("message", async (message) => {
+client.on("message", async message => {
   if (message.author.bot) return;
   if (!message.guild) return;
   const dataa = await client.data.getUser(message.author.id);

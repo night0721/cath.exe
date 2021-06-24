@@ -4,11 +4,6 @@ module.exports = {
   description: "Earns daily money",
   category: "Economy",
   timeout: 1000 * 60 * 60 * 24,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     var money;
     const user = await client.data.getUser(message.author.id);
@@ -25,7 +20,7 @@ module.exports = {
           )
           .setURL(client.web)
           .setColor(client.color)
-          .setFooter(`Made by Cath Team`)
+          .setFooter(`Made by ${client.author}`)
           .setTimestamp();
         await client.data.add(message.author.id, money);
         return message.inlineReply(pre_embed);
@@ -41,7 +36,7 @@ module.exports = {
           )
           .setURL(client.web)
           .setColor(client.color)
-          .setFooter(`Made by Cath Team`)
+          .setFooter(`Made by ${client.author}`)
           .setTimestamp();
         await client.data.add(message.author.id, money);
         return message.inlineReply(norm_embed);

@@ -6,11 +6,6 @@ module.exports = {
   description: "Add role for modmail in a server",
   usage: "(Role)",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args.length) return client.err(message, "Config", "modmail-role", 0);
     const role =

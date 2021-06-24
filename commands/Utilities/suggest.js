@@ -3,11 +3,6 @@ module.exports = {
   name: "suggest",
   description: "Make a suggestion of the bot",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const questions = [
       "Describe the suggestion",

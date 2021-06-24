@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Number)",
   aliases: ["rm"],
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const queue = message.client.queue.get(message.guild.id);
     if (!queue) return client.err(message, "Music", "remove", 37);
@@ -23,7 +18,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setColor(client.color)
         .setDescription(`❌ **|** Removed: **${song[0].title}** from the queue`)
-        .setTimestamp("Made by Cath Team");
+        .setTimestamp(`Made by ${client.author}`);
       const song = queue.songs.splice(args[0] - 1, 1);
       message.inlineReply(embed);
       message.react("✅");

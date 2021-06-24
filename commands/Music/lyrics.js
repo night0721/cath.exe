@@ -1,16 +1,11 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 const lyricsFinder = require("lyrics-finder");
-const splitlyrics = require("../../util/pagination");
+const splitlyrics = require("../../util/pagination/pagination");
 
 module.exports = {
   name: "lyrics",
   description: "Get lyrics for the currently playing song",
   category: "Music",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const queue = message.client.queue.get(message.guild.id);
     if (!queue) return client.err(message, "Music", "lyrics", 34);

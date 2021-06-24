@@ -7,11 +7,6 @@ module.exports = {
   description: 'Reset the prefix to "C." at the server',
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message) => {
     message.channel
       .send("**Do you want to reset your prefix?**")

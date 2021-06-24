@@ -1,5 +1,5 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-const client = require("../index");
+const client = require("../bot");
 async function createApiMessage(interaction, content) {
   const apiMessage = await APIMessage.create(
     client.channels.resolve(interaction.channel_id),
@@ -18,7 +18,7 @@ client.on("ready", async () => {
     },
   });
 });
-client.ws.on("INTERACTION_CREATE", async (interaction) => {
+client.ws.on("INTERACTION_CREATE", async interaction => {
   let command = interaction.data.name.toLowerCase();
   let args = interaction.data.options;
   if (command === "help") {

@@ -35,11 +35,6 @@ module.exports = {
   name: "serverinfo",
   description: "Check the info of the server",
   category: "Utilities",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const roles = message.guild.roles.cache
       .sort((a, b) => b.position - a.position)

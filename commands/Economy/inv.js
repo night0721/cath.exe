@@ -1,6 +1,6 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 const inv = require("../../models/econ");
-const util = require("../../util/pagination");
+const util = require("../../util/pagination/pagination");
 module.exports = {
   name: "inventory",
   aliases: ["inv"],
@@ -8,11 +8,6 @@ module.exports = {
   usage: "{User}",
   category: "Economy",
   timeout: 5000,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     const p = await client.prefix(message);
     const user =

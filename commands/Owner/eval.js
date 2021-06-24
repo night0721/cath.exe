@@ -5,11 +5,6 @@ module.exports = {
   aliases: ["e"],
   usage: "(Code)",
   Owner: true,
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     let code = args.join(" ");
     if (!code) return client.err(message, "Owner", "eval", 53);

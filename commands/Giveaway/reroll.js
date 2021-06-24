@@ -5,11 +5,6 @@ module.exports = {
   usage: "(Message ID)",
   description: "Reroll a giveaway",
   UserPerm: "MANAGE_MESSAGES",
-  /**
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
-   */
   run: async (client, message, args) => {
     if (!args[0]) return client.err(message, "Giveaway", "reroll", 27);
     const giveaway = client.giveaways.giveaways.find(
