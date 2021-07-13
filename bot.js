@@ -20,7 +20,6 @@ client.author = "Cath Team";
 client.invite = "https://discord.gg/SbQHChmGcp";
 client.web = config.URL;
 require("./util/dist/cmds").cmds();
-require("./app");
 require("./inlinereply");
 require("./util/functions/economy")(client);
 require("./util/dist/manager")(client);
