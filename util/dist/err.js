@@ -174,6 +174,12 @@ module.exports = async (message, dir, file, err) => {
     case 53:
       err = "Missing 'Code' argument";
       break;
+    case 54:
+      err = "'Text' argument must be less than or equal to 2000";
+      break;
+    case 55:
+      err = "Different channel between user and client";
+      break;
     case 404:
       err = "Error 404 - Not Found";
       break;

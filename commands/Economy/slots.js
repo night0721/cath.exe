@@ -8,10 +8,9 @@ module.exports = {
   run: async (client, message, args) => {
     const max = 1000000;
     const slots = [
-      "<:dumbcat:818913965353730068>",
-      "<:nicecat:740978278055280722>",
-      "<:wah:836951911729987597>",
-      "<:startledcat:836619417550061580>",
+      "<:blushca:852174555513618502>",
+      "<:abusecat:853501068074942464>",
+      "<:dumbcat:855462498550415362>",
     ];
     const slotOne = slots[Math.floor(Math.random() * slots.length)];
     const slotTwo = slots[Math.floor(Math.random() * slots.length)];
@@ -26,7 +25,7 @@ module.exports = {
     if (isNaN(args[0])) return client.err(message, "Economy", "slots", 7);
     const amt = parseInt(args[0]);
     if (amt > max) return client.err(message, "Economy", "slots", 101);
-    if ((await client.data.bal(message.author.id)) < amt) {
+    if ((await client.bal(message.author.id)) < amt) {
       return client.err(message, "Economy", "slots", 20);
     }
     if (
@@ -35,7 +34,8 @@ module.exports = {
       (slotseven === sloteight && slotseven === slotnine)
     ) {
       const winamt = Math.floor(Math.random() * 2 * amt);
-      await client.data.add(message.author.id, winamt);
+      await client.add(message.author.id, winamt, message);
+      await client.ADDSWin(message.author.id);
       const won = new MessageEmbed()
         .setColor("GREEN")
         .addField(
@@ -53,13 +53,12 @@ module.exports = {
         .setTitle(`${message.author.username} wins a slots game`)
         .setDescription(
           `You win\n**${winamt}**${client.currency}\nYou now have **${
-            parseInt(await client.data.bal(message.author.id)) - amt
+            parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
       message.inlineReply(won);
-      console.log(`Coins: ${await client.data.bal(message.author.id)}`);
     } else {
-      await client.data.rmv(message.author.id, amt);
+      await client.rmv(message.author.id, amt);
       const lost = new MessageEmbed()
         .setColor("RED")
         .addField(
@@ -77,7 +76,7 @@ module.exports = {
         .setTitle(`${message.author.username} loses a slots game`)
         .setDescription(
           `You lost\n**${amt}**${client.currency}\nYou now have **${
-            parseInt(await client.data.bal(message.author.id)) - amt
+            parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
       message.inlineReply(lost);

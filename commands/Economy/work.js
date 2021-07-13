@@ -1,5 +1,4 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-require("../../inlinereply");
 module.exports = {
   name: "work",
   description: "Work to earn money",
@@ -18,7 +17,9 @@ module.exports = {
     ];
     const earning = client.function.rndint(5000, 3000);
     const jobs = job[Math.floor(Math.random() * job.length)];
-    await client.data.add(message.author.id, earning);
-    return message.inlineReply(`You worked as a ${jobs} and earned ${earning}`);
+    await client.add(message.author.id, earning, message);
+    return message.inlineReply(
+      `You worked as a **${jobs}** and earned **${earning}${client.currency}**`
+    );
   },
 };

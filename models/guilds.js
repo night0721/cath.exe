@@ -31,5 +31,9 @@ module.exports = mongoose.model(
       type: Array,
       default: [],
     },
+    Level: {
+      type: Boolean,
+      default: false,
+    },
   })
 );

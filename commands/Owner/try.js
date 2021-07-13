@@ -27,7 +27,6 @@ module.exports = {
         collector.stop("fulfilled");
       });
 
-      const chan = client.channels.cache.get(Suggestion);
       collector.on("end", (collected, reason) => {
         if (reason === "fulfilled") {
           const msss = collected.map(msg => {
@@ -52,7 +51,7 @@ module.exports = {
         }
       });
     } catch (err) {
-      message.channel.send(`Please enable your DM allowance`);
+      console.log(err);
     }
   },
 };

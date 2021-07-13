@@ -27,5 +27,9 @@ module.exports = mongoose.model(
       type: Array,
       default: [],
     },
+    CommandUsed: {
+      type: Number,
+      default: 0,
+    },
   })
 );

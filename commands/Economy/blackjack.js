@@ -5,14 +5,14 @@ module.exports = {
   usage: "(Number)",
   description: "Play a blackjack game to win money",
   category: "Economy",
-  timeout: 10000,
+  //timeout: 10000,
   run: async (client, message, args) => {
     const money = parseInt(args[0]);
     const author = message.author;
     if (isNaN(money) || !money) {
       return client.err(message, "Economy", "blackjack", 101);
     }
-    if ((await client.data.bal(author.id)) < bet) {
+    if ((await client.bal(author.id)) < bet) {
       client.err(message, "Economy", "blackjack", 20);
     }
     var numCardsPulled = 0;
@@ -87,11 +87,11 @@ module.exports = {
     deck.shuffle();
     async function bet(outcome) {
       if (outcome === "win") {
-        client.data.add(author.id, money);
-        //client.ADDbjWin(message.author.id);
+        await client.add(author.id, money, message);
+        await client.ADDBJWin(message.author.id);
       }
       if (outcome === "lose") {
-        client.data.rmv(author.id, money);
+        await client.rmv(author.id, money);
       }
     }
 
@@ -135,12 +135,11 @@ module.exports = {
       }
 
       const gambleEmbed = new Discord.MessageEmbed()
-        .setColor(cl)
+        .setColor(cl || client.color)
         .setTitle(message.author.username + `'s Blackjack game`)
         .addField("You", cardsMsg, true)
         .addField("cath.exe", dealerMsg, true)
         .addField(f, msg);
-
       message.channel.send(gambleEmbed);
     }
 
@@ -213,11 +212,7 @@ module.exports = {
         dealer.score < 21
       ) {
         gameOver = true;
-        await endMsg(
-          `Tie! UwU`,
-          `cath.exe had ${dealer.score.toString()}`,
-          `RED`
-        );
+        await endMsg(`Tie!`, `cath.exe had ${dealer.score.toString()}`, `RED`);
       }
     }
 
@@ -254,7 +249,11 @@ module.exports = {
     async function loop() {
       if (gameOver) return;
 
-      endMsg("To hit type `h`, for stand type `s`", `GoodLuck ;)`, `GRAY`);
+      endMsg(
+        "To hit type `h`, for stand type `s`",
+        `GoodLuck ;)`,
+        client.color
+      );
 
       let filter = m => m.author.id === message.author.id;
       message.channel
@@ -265,11 +264,17 @@ module.exports = {
         })
         .then(message => {
           message = message.first();
-          if (message.content === "h" || message.content === "hit") {
+          if (
+            message.content.toLowerCase() === "h" ||
+            message.content.toLowerCase() === "hit"
+          ) {
             hit();
             loop();
             return;
-          } else if (message.content === "s" || message.content === "stand") {
+          } else if (
+            message.content.toLowerCase() === "s" ||
+            message.content.toLowerCase() === "stand"
+          ) {
             stand();
             loop();
             return;

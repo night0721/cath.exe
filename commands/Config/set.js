@@ -37,6 +37,17 @@ module.exports = {
       if (!channel) return client.err(message, "Config", "set", 28);
       await client.data.setWelcome(message.guild.id, channel.id);
       message.channel.send(`Saved ${channel} as the welcome channel.`);
+    } else if (args[0].toLowerCase() === "level") {
+      if (args[1].toLowerCase() === "on" || args[1].toLowerCase() === "true") {
+        await client.data.setGLevel(message.guild.id, "true");
+        message.channel.send(`Levelling is enabled in this server now.`);
+      } else if (
+        args[1].toLowerCase() === "off" ||
+        args[1].toLowerCase() === "false"
+      ) {
+        await client.data.setGLevel(message.guild.id, "false");
+        message.channel.send(`Levelling is disabled in this server now.`);
+      } else return client.err(message, "Config", "set", 45);
     } else {
       return client.err(message, "Config", "set", 45);
     }

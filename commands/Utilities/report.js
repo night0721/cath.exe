@@ -1,5 +1,4 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
-require("../../inlinereply");
 
 module.exports = {
   name: "report",

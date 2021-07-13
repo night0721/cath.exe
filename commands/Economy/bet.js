@@ -15,7 +15,7 @@ module.exports = {
       return client.err(message, "Economy", "bet", 7);
     }
     const amt = parseInt(args[0]);
-    if ((await client.data.bal(message.author.id)) < amt) {
+    if ((await client.bal(message.author.id)) < amt) {
       return client.err(message, "Economy", "bet", 20);
     }
     if (amt > max) {
@@ -23,26 +23,27 @@ module.exports = {
     }
     if (client.function.random() === true) {
       const winamt = amt * 1;
-      await client.data.add(message.author.id, winamt);
+      await client.add(message.author.id, winamt, message);
+      await client.ADDBWin(message.author.id);
       const abc = new MessageEmbed()
         .setColor("GREEN")
         .setTimestamp()
         .setTitle(`${message.author.username} wins a gamble game`)
         .setDescription(
           `You win\n**${winamt}**${client.currency}\nYou now have **${
-            parseInt(await client.data.bal(message.author.id)) - amt
+            parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
       message.inlineReply(abc);
     } else {
-      await client.data.rmv(message.author.id, amt);
+      await client.rmv(message.author.id, amt);
       const cba = new MessageEmbed()
         .setColor("RED")
         .setTimestamp()
         .setTitle(`${message.author.username} loses a gamble game`)
         .setDescription(
-          `You lost\n**${winamt}**${client.currency}\nYou now have **${
-            parseInt(await client.data.bal(message.author.id)) - amt
+          `You lost\n**${amt}**${client.currency}\nYou now have **${
+            parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
       message.inlineReply(cba);

@@ -21,11 +21,11 @@ module.exports = {
     if (isNaN(parsed)) return client.err(message, "Economy", "give", 7);
     if (user.id === message.author.id)
       return client.err(message, "Economy", "give", 2);
-    if (parsed > (await client.data.bal(message.author.id))) {
+    if (parsed > (await client.bal(message.author.id))) {
       return client.err(message, "Economy", "give", 20);
     }
-    await client.data.rmv(message.author.id, parsed);
-    await client.data.add(user.id, parsed);
+    await client.rmv(message.author.id, parsed);
+    await client.add(user.id, parsed, message);
     message.channel.send(
       new MessageEmbed()
         .setColor(client.color)
@@ -33,7 +33,7 @@ module.exports = {
         .setDescription(
           `**${message.author.username}** has given **${
             user.username
-          }** **${parsed.toLocaleString()}**${client.currrency}`
+          }** **${parsed.toLocaleString()}**${client.currency}`
         )
     );
   },

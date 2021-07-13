@@ -37,7 +37,7 @@ module.exports = {
         new db({
           User: message.author.id,
           CP: 0,
-          Inventory: "",
+          Inventory: {},
         }).save();
         return client.err(message, "Economy", "steal", 20);
       } else if (data) {
@@ -49,7 +49,7 @@ module.exports = {
             new db({
               User: tryrob.id,
               CP: 0,
-              Inventory: "",
+              Inventory: {},
             }).save();
             return message.inlineReply(
               new MessageEmbed()

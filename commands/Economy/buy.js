@@ -24,7 +24,7 @@ module.exports = {
     const itemPrice = items.find(
       item => item.alias.toLowerCase() === itemToBuy
     ).price;
-    if ((await client.data.bal(message.author.id)) < itemPrice)
+    if ((await client.bal(message.author.id)) < itemPrice)
       return client.err(message, "Economy", "buy", 20);
     const params = {
       User: message.author.id,
@@ -60,7 +60,7 @@ module.exports = {
           .setColor("GREEN")
           .setURL(client.web)
       );
-      await client.data.rmv(message.author.id, itemPrice);
+      await client.rmv(message.author.id, itemPrice);
     });
   },
 };

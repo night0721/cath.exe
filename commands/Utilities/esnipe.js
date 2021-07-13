@@ -15,7 +15,7 @@ module.exports = {
       page = 0,
       reactions = ["◀️", "⏪", "⏩", "▶️"];
     if (!snipes)
-      return message.reply(
+      return message.inlineReply(
         `No snipes have been found for the channel \`${channel.name}\``
       );
 

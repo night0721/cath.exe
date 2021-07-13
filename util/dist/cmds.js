@@ -2,7 +2,6 @@ const { readdirSync } = require("fs");
 const ms = require("ms");
 function cmds() {
   let categories = [];
-
   readdirSync("./commands").forEach(dir => {
     const dirs = readdirSync(`./commands/${dir}`).filter(file =>
       file.endsWith(".js")
@@ -26,6 +25,7 @@ function cmds() {
         UserPermission: file.UserPerm
           ? file.UserPerm
           : "No required user permission",
+        status: file.status ? file.status : true,
       });
     });
     let data = {

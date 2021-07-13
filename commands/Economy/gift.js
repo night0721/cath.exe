@@ -62,6 +62,7 @@ module.exports = {
           if (data.Inventory[itemName] <= 0) {
             return client.err(message, "Economy", "gift", 23);
           } else {
+            data.CP+=0
             data.Inventory[itemName]--;
             message.channel.send(
               new MessageEmbed()
@@ -88,6 +89,7 @@ module.exports = {
       } else {
         new inventory({
           User: user.id,
+          CP: 0,
           Inventory: {
             [itemName]: 1,
           },

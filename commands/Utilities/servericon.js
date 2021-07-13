@@ -9,7 +9,7 @@ module.exports = {
       .setTitle(`Icon of ${message.guild.name}`)
       .setURL(client.web)
       .setTimestamp()
-      .setFooter(`Requested by ${message.authpr.tag}`)
+      .setFooter(`Requested by ${message.author.tag}`)
       .setImage(message.guild.iconURL({ dynamic: true, size: 2048 }));
     message.inlineReply(Embed);
   },

@@ -7,6 +7,7 @@ module.exports = {
   usage: "{User}",
   timeout: 5000,
   category: "Utilities",
+  Level: true,
   run: async (client, message, args) => {
     if (!message.guild) return;
     if (message.author.bot) return;

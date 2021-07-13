@@ -22,7 +22,7 @@ module.exports = {
           .setColor(client.color)
           .setFooter(`Made by ${client.author}`)
           .setTimestamp();
-        await client.data.add(message.author.id, money);
+        await client.add(message.author.id, money, message);
         return message.inlineReply(pre_embed);
       } else {
         money = 10000;
@@ -38,7 +38,7 @@ module.exports = {
           .setColor(client.color)
           .setFooter(`Made by ${client.author}`)
           .setTimestamp();
-        await client.data.add(message.author.id, money);
+        await client.add(message.author.id, money, message);
         return message.inlineReply(norm_embed);
       }
     }

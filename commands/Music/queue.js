@@ -1,47 +1,44 @@
-const { Client, Message, MessageEmbed } = require("discord.js");
-const util = require("../../util/pagination/pagination");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "queue",
   description: "To show the songs queue",
   aliases: ["q"],
   category: "Music",
-  BotPerm: ["MANAGE_MESSAGES", "ADD_REACTIONS"],
   run: async (client, message, args) => {
-    const queue = message.client.queue.get(message.guild.id);
-    if (!queue) return client.err(message, "Music", "queue", 34);
-    const que = queue.songs.map(
-      (t, i) => `\`${++i}.\` | [\`${t.title}\`](${t.url}) - [<@${t.req.id}>]`
-    );
-    const chunked = util.chunk(que, 10).map(x => x.join("\n"));
+    const player = message.client.manager.get(message.guild.id);
+    if (!player) return client.err(message, "Music", "queue", 34);
+    const queue = player.queue;
     const embed = new MessageEmbed()
-      .setAuthor("Songs Queue", "https://i.imgur.com/qHPXWxN.gif")
-      .setThumbnail(message.guild.iconURL())
-      .setColor("client.color")
-      .setDescription(chunked[0])
-      .addField(
-        "Now Playing",
-        `[${queue.songs[0].title}](${queue.songs[0].url})`,
-        true
+      .setAuthor(
+        message.author.tag,
+        message.author.displayAvatarURL({ dynamic: true })
       )
-      .addField("Text Channel", queue.textChannel, true)
-      .addField("Voice Channel", queue.voiceChannel, true)
-      .setFooter(
-        `Currently Server Volume is ${queue.volume} | Page 1 of ${chunked.length}.`
-      );
-    if (queue.songs.length === 1)
-      embed.setDescription(
-        `**No songs to play next. Add songs by \`\`${await client.prefix(
-          message
-        )}play <song_name>\`\`**`
+      .setTitle(`Queue for ${message.guild.name}`)
+      .setTimestamp()
+      .setColor("RANDOM");
+    const multiple = 10;
+    const page = args.length && Number(args[0]) ? Number(args[0]) : 1;
+    const end = page * multiple;
+    const start = end - multiple;
+    const tracks = queue.slice(start, end);
+    if (queue.current)
+      embed.addField(
+        "Current",
+        `[${queue.current.title}](${queue.current.uri})`
       );
 
-    try {
-      const queueMsg = await message.channel.send(embed);
-      if (chunked.length > 1)
-        await util.pagination(queueMsg, message.author, chunked);
-    } catch (e) {
-      console.log(e);
-      return client.err(message, "Music", "queue", 999);
-    }
+    if (!tracks.length)
+      embed.setDescription(
+        `No tracks in ${page > 1 ? `page ${page}` : "the queue"}.`
+      );
+    else
+      embed.setDescription(
+        tracks
+          .map((track, i) => `${start + ++i} - [${track.title}](${track.uri})`)
+          .join("\n")
+      );
+    const maxPages = Math.ceil(queue.length / multiple);
+    embed.setFooter(`Page ${page > maxPages ? maxPages : page} of ${maxPages}`);
+    return message.inlineReply(embed);
   },
 };

@@ -10,7 +10,7 @@ module.exports = {
     const acceptQuery =
       args.slice(1).join(" ") || `They didn't leave any message.`;
 
-    if (!MessageID) return message.reply("Please specify a valid ID");
+    if (!MessageID) return message.inlineReply("Please specify a valid ID");
     try {
       const suggestionChannel = message.guild.channels.cache.get(
         client.SuggestionLog

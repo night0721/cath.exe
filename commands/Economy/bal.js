@@ -16,7 +16,7 @@ module.exports = {
         r => r.displayName.toLowerCase() === args.join(" ").toLocaleLowerCase()
       ) ||
       message.member;
-    const bal = await client.data.bal(user.id);
+    const bal = await client.bal(user.id);
     let embed = new MessageEmbed()
       .addField(`${client.currency} Balance`, `**${bal}**`)
       .setColor(client.color)

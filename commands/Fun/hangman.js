@@ -8,7 +8,7 @@ module.exports = {
   category: "Fun",
   run: async (client, message, args) => {
     if (playing.has(message.channel.id))
-      return message.reply("Only one game may be occurring per channel.");
+      return message.inlineReply("Only one game may be occurring per channel.");
     playing.add(message.channel.id);
     try {
       const { body } = await get("https://emilia-api.xyz/api/hangman").set(
@@ -55,7 +55,7 @@ module.exports = {
         });
         //m.delete();
         if (!guess.size) {
-          await message.reply("Sorry, time is up!");
+          await message.inlineReply("Sorry, time is up!");
           break;
         }
         const choice = guess.first().content.toLowerCase();

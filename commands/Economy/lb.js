@@ -6,6 +6,7 @@ module.exports = {
   timeout: 5000,
   usage: "Check the leaderboard of a server",
   category: "Economy",
+  Level: true,
   run: async (client, message, args) => {
     const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10);
     if (rawLeaderboard.length < 1)

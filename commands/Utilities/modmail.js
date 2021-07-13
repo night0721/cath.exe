@@ -132,7 +132,7 @@ module.exports = {
         }
       });
     } catch {
-      return message.reply("please let me send DM to you.");
+      return message.inlineReply("please let me send DM to you.");
     }
   },
 };

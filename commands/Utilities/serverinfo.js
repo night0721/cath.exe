@@ -69,6 +69,9 @@ module.exports = {
         )} ${moment(message.guild.createdTimestamp).format("LL")} ${moment(
           message.guild.createdTimestamp
         ).fromNow()}`,
+        `**❯ Community Features:** ${
+          message.guild.features.join(", ") || "No Community Features!"
+        }`,
         "\u200b",
       ])
       .addField("Statistics", [

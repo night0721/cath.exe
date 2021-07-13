@@ -1,10 +1,12 @@
 const Levels = require("discord-xp");
 const client = require("../bot");
-const users = require("../models/users");
-Levels.setURL(require("../config.json").mongo);
+require("dotenv").config();
+Levels.setURL(process.env.MONGO);
 client.on("message", async message => {
   if (!message.guild) return;
   if (message.author.bot) return;
+  const guild = await client.data.getGuild(message.guild.id);
+  if (guild.Level == false) return;
   const user = await client.data.getUser(message.author.id);
   var max = 30;
   if (user) {
@@ -15,7 +17,6 @@ client.on("message", async message => {
     }
   }
   const randomAmountOfXp = client.function.rndint(10, max);
-  if (client.xp.includes(message.guild.id)) return;
   const hasLeveledUp = await Levels.appendXp(
     message.author.id,
     message.guild.id,

@@ -6,7 +6,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setAuthor(
         "Ń1ght and Cath Nation",
-        "https://images-ext-2.discordapp.net/external/JyjN4pXpaLIaSOSszAR9dyp03Hf3ouzjUb8kRa0OFiE/%3Fsize%3D2048/https/cdn.discordapp.com/icons/718762019586572341/c35c387563c7527f056276f2a16f526b.webp"
+        message.guild.iconURL({ dynamic: true, size: 4096 })
       )
       .setColor(client.color)
       .setDescription(
@@ -43,7 +43,7 @@ module.exports = {
       .setURL(client.web)
       .setFooter(
         "Ń1ght#0001",
-        "https://images-ext-2.discordapp.net/external/JyjN4pXpaLIaSOSszAR9dyp03Hf3ouzjUb8kRa0OFiE/%3Fsize%3D2048/https/cdn.discordapp.com/icons/718762019586572341/c35c387563c7527f056276f2a16f526b.webp"
+        message.author.displayAvatarURL({ dynamic: true, size: 4096 })
       )
       .setTimestamp();
     message.channel.send(embed);

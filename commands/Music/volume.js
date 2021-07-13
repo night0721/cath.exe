@@ -1,30 +1,25 @@
-const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "volume",
   description: "To change the server song queue volume",
   usage: "(Number)",
-  aliases: ["vol"],
+  aliases: ["vol", "v"],
   category: "Music",
+  description: "Set volume level of the music",
   run: async (client, message, args) => {
-    const channel = message.member.voice.channel;
+    const player = message.client.manager.get(message.guild.id);
+    if (!player) return client.err(message, "Music", "volume", 34);
+    if (!args.length)
+      return message.inlineReply(`The player volume is \`${player.volume}\``);
+    const { channel } = message.member.voice;
     if (!channel) return client.err(message, "Music", "volume", 35);
-    const serverQueue = message.client.queue.get(message.guild.id);
-    if (!serverQueue) return client.err(message, "Music", "volume", 34);
-    if (!serverQueue.connection)
-      return client.err(message, "Music", "volume", 34);
-    if (!args[0])
-      return message.channel.send(
-        `The current volume is: **${serverQueue.volume}**`
-      );
-    if (isNaN(args[0])) return client.err(message, "Music", "volume", 101);
-    if (parseInt(args[0]) > 150 || args[0] < 0)
+    if (channel.id !== player.voiceChannel)
+      return client.err(message, "Music", "volume", 55);
+    const volume = Number(args[0]);
+    if (!volume || volume < 1 || volume > 100 || isNaN(volume))
       return client.err(message, "Music", "volume", 101);
-    serverQueue.volume = args[0];
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
-    let xd = new MessageEmbed()
-      .setDescription(`Tuned the volume to: **${args[0] / 1}/100**`)
-      .setAuthor("Server Volume Manager", "https://i.imgur.com/qHPXWxN.gif")
-      .setColor("client.color");
-    return message.channel.send(xd);
+    player.setVolume(volume);
+    return message.inlineReply(
+      `The player's volume has been set to \`${volume}\`.`
+    );
   },
 };

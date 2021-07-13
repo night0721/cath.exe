@@ -1,7 +1,7 @@
 const { Client, Message, MessageEmbed, Util } = require("discord.js");
 module.exports = {
   name: "emojiadd",
-  usage: "(Link/Photo)",
+  usage: "(Link/Photo) (Name)",
   aliases: ["addemoji"],
   description: "Show an emoji URL or add the emoji to the server",
   category: "Utilities",

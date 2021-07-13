@@ -8,8 +8,19 @@ module.exports = model(
     },
     CP: {
       type: Number,
-      required: true,
+      default: 0,
     },
-    Inventory: Object,
+    BJWins: {
+      type: Number,
+      default: 0,
+    },
+    SlotsWins: {
+      type: Number,
+      default: 0,
+    },
+    BetWins: {
+      type: Number,
+      default: 0,
+    },
   })
 );

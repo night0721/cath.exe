@@ -6,8 +6,8 @@ const cachegoose = new GooseCache(mongoose, {
 mongoose.set("useFindAndModify", false);
 const u = require("../../models/users");
 const g = require("../../models/guilds");
+const m = require("../../models/bot");
 const e = require("../../models/econ");
-const m = require("../../models/status");
 module.exports = {
   /**
    * @param {String} URI - Mongo Connection URI
@@ -36,6 +36,7 @@ module.exports = {
         Premium,
         Category,
         Commands,
+        Level,
       } = gg;
       await gg.save().catch(error => console.log(error));
       return {
@@ -47,6 +48,7 @@ module.exports = {
         Premium,
         Category,
         Commands,
+        Level,
       };
     } else {
       const Guild = guild.Guild;
@@ -57,6 +59,7 @@ module.exports = {
       const Premium = guild.Premium;
       const Category = guild.Category;
       const Commands = guild.Commands;
+      const Level = guild.Level;
       return {
         Guild,
         Prefix,
@@ -66,6 +69,7 @@ module.exports = {
         Premium,
         Category,
         Commands,
+        Level,
       };
     }
   },
@@ -86,6 +90,7 @@ module.exports = {
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
+        CommandUsed,
       } = ss;
       await ss.save().catch(error => console.log(error));
       return {
@@ -97,6 +102,7 @@ module.exports = {
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
+        CommandUsed,
       };
     } else {
       const User = user.User;
@@ -107,6 +113,7 @@ module.exports = {
       const Blacklist = user.Blacklist;
       const Blacklist_Reason = user.Blacklist_Reason;
       const PremiumServers = user.PremiumServers;
+      const CommandUsed = user.CommandUsed;
       return {
         User,
         AFK,
@@ -116,6 +123,39 @@ module.exports = {
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
+        CommandUsed,
+      };
+    }
+  },
+  /**
+   * @param {String} ID - User ID
+   */
+  async getUserEcon(ID) {
+    if (!ID) throw new Error("User ID?");
+    const user = await u.findOne({ User: ID }).lean().cache(120);
+    if (!user) {
+      const ss = new u({ User: ID });
+      const { User, CP, BJWins, SlotsWins, BetWins } = ss;
+      await ss.save().catch(error => console.log(error));
+      return {
+        User,
+        CP,
+        BJWins,
+        SlotsWins,
+        BetWins,
+      };
+    } else {
+      const User = user.User;
+      const CP = user.CP;
+      const BJWins = user.BJWins;
+      const SlotsWins = user.SlotsWins;
+      const BetWins = user.BetWins;
+      return {
+        User,
+        CP,
+        BJWins,
+        SlotsWins,
+        BetWins,
       };
     }
   },
@@ -441,54 +481,6 @@ module.exports = {
     cachegoose.clearCache();
     return true;
   },
-  // /**
-  //  * @param {String} ID - User ID
-  //  */
-  // async bal(ID) {
-  //   new Promise(async ful => {
-  //     const data = await e.findOne({ User: ID });
-  //     if (!data) return ful(0);
-  //     ful(data.CP);
-  //   });
-  // },
-  /**
-   * @param {String} ID - User ID
-   */
-  async bal(ID) {
-    const data = await e.findOne({ User: ID });
-    if (!data) return 0;
-    else return data.CP;
-  },
-  /**
-   * @param {String} ID - User ID
-   * @param {Number} CP - Number
-   */
-  async add(ID, CP) {
-    e.findOne({ User: ID }, async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        data.CP += CP;
-      } else {
-        data = new e({ User: ID, CP });
-      }
-      await data.save();
-    });
-  },
-  /**
-   * @param {String} ID - User ID
-   * @param {Number} CP - Number
-   */
-  async rmv(ID, CP) {
-    e.findOne({ User: ID }, async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        data.CP -= CP;
-      } else {
-        data = new e({ User: ID, CP: -CP });
-      }
-      await data.save();
-    });
-  },
   /**
    * @param {String} ID - Bot ID
    * @param {String} Toggle - Maintenance Toggle
@@ -500,9 +492,9 @@ module.exports = {
     if (!idk) {
       const newdb = new m({ Bot: ID });
       if (Toggle === "true") {
-        newdb.Status === "true";
+        newdb.Status = "true";
       } else {
-        newdb.Status === "false";
+        newdb.Status = "false";
       }
       await newdb.save().catch(error => console.log(error));
       return;
@@ -514,6 +506,96 @@ module.exports = {
       }
     }
     await idk.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
+  },
+  /**
+   * @param {String} ID - Bot ID
+   * @param {String} Guilds - Guilds Number
+   * @param {String} Users - Users Number
+   */
+  async botcache(ID, Guild, User) {
+    if (!ID) throw new Error("Please Provide a ID!");
+    if (!Guild) throw new Error("Please Provide a Guild Number!");
+    if (!User) throw new Error("Please Provide a User Number!");
+    const idk = await m.findOne({ Bot: ID });
+    if (!idk) {
+      const newdb = new m({ Bot: ID });
+      if (Guild && User) {
+        newdb.Guilds = Guild;
+        newdb.Users = User;
+      } else {
+        newdb.Guilds = Guild;
+        newdb.Users = User;
+      }
+      await newdb.save().catch(error => console.log(error));
+      return;
+    } else {
+      if (Guild && User) {
+        idk.Guilds = Guild;
+        idk.Users = User;
+      } else {
+        idk.Guilds = Guild;
+        idk.Users = User;
+      }
+    }
+    await idk.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
+  },
+  /**
+   * @param {String} ID - Bot ID
+   * @param {String} Commands - Commands
+   */
+  async commands(ID, Cmds) {
+    if (!ID) throw new Error("Please Provide a ID!");
+    if (!Cmds) throw new Error("Please Provide Commands!");
+    const idk = await m.findOne({ Bot: ID });
+    if (!idk) {
+      const newdb = new m({ Bot: ID });
+      if (Cmds) {
+        newdb.Commands = Cmds;
+      } else {
+        newdb.Commands = Cmds;
+      }
+      await newdb.save().catch(error => console.log(error));
+      return;
+    } else {
+      if (Cmds) {
+        idk.Commands = Cmds;
+      } else {
+        idk.Commands = Cmds;
+      }
+    }
+    await idk.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Toggle - Level Toggle
+   */
+  async setGLevel(ID, Toggle) {
+    if (!ID) throw new Error("Please Provide a Guild ID");
+    if (!Toggle) throw new Error("Please Provide a Toggle!");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
+      if (Toggle == "true") {
+        guild.Level = true;
+      } else {
+        guild.Level = false;
+      }
+      await newU.save().catch(error => console.log(error));
+      return;
+    } else {
+      if (Toggle == "true") {
+        guild.Level = true;
+      } else {
+        guild.Level = false;
+      }
+    }
+    await guild.save().catch(error => console.log(error));
     cachegoose.clearCache();
     return;
   },
