@@ -114,7 +114,7 @@ You can report bugs or issues by opening a issue in this repository. Alternateve
 
 <h1 align = "center">CONTRIBUTORS</h1>
 
-Contributions are always welcomed but make sure to read [Contributing.md](/CONTRIBUTING.md) first.
+Contributions are always welcomed, but make sure to read [Contributing.md](/CONTRIBUTING.md) first.
 
 <a href="https://github.com/night0721/cath.exe/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=night0721/cath.exe" />
