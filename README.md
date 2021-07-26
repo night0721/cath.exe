@@ -1,7 +1,5 @@
-# CATH.EXE TEMPLATE
-
-<!-- header -->
 <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
+<h1 align="center"> CATH.EXE TEMPLATE</h1>
 
 *This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.* 
 
@@ -21,11 +19,12 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
 <img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122"><br>
 
-# <img src = "https://discord.com/assets/a6d05968d7706183143518d96c9f066e.svg" width = "26"> Deployment
+<h1 align="center"> <img src = "https://discord.com/assets/a6d05968d7706183143518d96c9f066e.svg" width = "20"> Deployment <img src = "https://discord.com/assets/a6d05968d7706183143518d96c9f066e.svg" width = "20"> </h1>
 
 ## Deploy Online
 [![Run On Replit](https://img.shields.io/static/v1?label=Run%20On&message=Repl.it&color=5865F2&logo=replit&logoColor=white&style=for-the-badge&scale=1.4)](https://repl.it/github/night0721/cath.exe)
 [![Deploy On Heroku](https://img.shields.io/static/v1?label=Deploy%20On&message=Heroku&color=5865F2&logo=heroku&logoColor=white&style=for-the-badge&scale=1.4)](https://heroku.com/deploy?template=https://github.com/night0721/cath.exe)
+[![Remix on Glitch](https://img.shields.io/static/v1?label=Remix%20On&message=Glitch&color=5865F2&logo=glitch&logoColor=white&style=for-the-badge&scale=1.4)](https://glitch.com/edit/#!/import/github/night0721/cath.exe)
 
 ## Deploy Locally
 
@@ -46,16 +45,16 @@ Download all these programs on your local machine by clicking on the badge & fol
 git clone https://github.com/night0721/cath.exe
 ```
 
-2. Rename the [`.env.example`<span>&#10138;</span>
-](https://github.com/night0721/cath.exe/blob/main/.env.example) file to `.env`<br>
+2. Make a new file & name it ``.env`` then copy-paste all the contents from [`.env.example`<span>&#10138;</span>
+](https://github.com/night0721/cath.exe/blob/main/.env.example) into the `.env` file <br>
 
-3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br> 
+3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br>
 [![Open Discord Developer Portal](https://badgen.net/badge/icon/discord?icon=discord&label=Developer%20Portal&color=5865F2&style=for-the-badge)](https://discord.com/developers/applications)
     - **Bot Token**<br>
     - **Application ID** (Client ID)<br>
     - **Client Secret**<br>
     
-4. To view the logs, Create 5 Channels & 5 Webhooks in *your* **Discord Server:** corresponding to these logs.
+4. To view the logs, Create 5 Channels & 5 Webhooks in *your* **Discord Server** corresponding to these logs.
     - **Server Log** (Log new Server Added/Premium Server)<br>
     - **Error Log** (Log Unhandled Rejection Error)<br>
     - **Ready Log** (Log when bot online)<br>
@@ -74,13 +73,12 @@ git clone https://github.com/night0721/cath.exe
     npm i
     ```
 
-7. Now, to start the bot use this command.
+7. Now, to start the bot use this command in your terminal.
     ```cmd
     node .
     ```
 
 # Additional Steps
-
 To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
 
 1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
