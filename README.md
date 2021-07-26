@@ -24,7 +24,6 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 ## Deploy Online
 [![Run On Replit](https://img.shields.io/static/v1?label=Run%20On&message=Repl.it&color=5865F2&logo=replit&logoColor=white&style=for-the-badge&scale=1.4)](https://repl.it/github/night0721/cath.exe)
 [![Deploy On Heroku](https://img.shields.io/static/v1?label=Deploy%20On&message=Heroku&color=5865F2&logo=heroku&logoColor=white&style=for-the-badge&scale=1.4)](https://heroku.com/deploy?template=https://github.com/night0721/cath.exe)
-[![Remix on Glitch](https://img.shields.io/static/v1?label=Remix%20On&message=Glitch&color=5865F2&logo=glitch&logoColor=white&style=for-the-badge&scale=1.4)](https://glitch.com/edit/#!/import/github/night0721/cath.exe)
 
 ## Deploy Locally
 
