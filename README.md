@@ -62,7 +62,7 @@ git clone https://github.com/night0721/cath.exe
     - **Command Log** (Log command usage)<br>
     - **DM Log** (Log when someone send DM to Bot)<br>
 
-    *You can also just use one Channel & one Webhook for everything but it will be really inconvenient.*
+    >You can also just use one Channel & one Webhook for everything but it will be really inconvenient.
 
     <img src = "https://media.discordapp.net/attachments/540218400413188116/867797464169709661/unknown.png" width="640"> <br>
 
