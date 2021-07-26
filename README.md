@@ -74,13 +74,17 @@ git clone https://github.com/night0721/cath.exe
 
 7. Setup a **Spotify Application** as [instructed](https://github.com/night0721/cath.exe#spotify-setup) below. 
 
-8. After this, you need to install all dependencies by using this command. This will takes a few minutes.
+8. Go back to the Discord Developer's Portal in the OAuth2 tab, Select `BOT` in the **Scopes Section** & Select `ADMINSTRATOR`from the **BOT PERMISSIONS** Section. 
+
+9. Copy the URL and by using the URL invite the bot to a server.
+
+10. After this, you need to install all dependencies by using this command. This will takes a few minutes.
 
     ```cmd
     npm i
     ```
 
-9. Now, to start the bot use this command in the terminal.
+11. Now, to start the bot use this command in the terminal.
     ```cmd
     node .
     ```
@@ -96,7 +100,7 @@ To use the Economy Commands, you need to Setup a MongoDB Database.
 5. Then you can Name your Cluster, after that click on `Create Cluster`. *This will take a couple of minutes.*
 6. Then click on `Database Access` from the sidebar & then click on `Add New Database User`.
 7. Under the `Password - Authentication Method`. Enter a username & password. then click on `Add User`.
-8. After that, click on `Network Access` from the sidebar & then click on `Add IP Address`. & click on the `Add Current IP Address` Then click on `Confirm`.
+8. After that, click on `Network Access` from the sidebar & then click on `Add IP Address`. & click on the `Allow Access from Anywhere` Then click on `Confirm`.
 9. now, Click on `Database` from the sidebar & then click on `Connect`.
 10. Then on click on `Connect your Application`. & Copy the link.
 11. The paste that link in the `MONGODB` feild in the `.env` file.
