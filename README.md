@@ -1,7 +1,9 @@
 <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
 <h1 align="center"> CATH.EXE</h1>
 
-> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Warning-icon.png" width = "16"> This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.
+> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Warning-icon.png" width = "16"> This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse.
+
+>For Call of duty mobile stats, Please invite the main instance using the **INVITE ME** badge.
 
 **Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
 If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
@@ -47,7 +49,7 @@ git clone https://github.com/night0721/cath.exe
 ```
 
 2. Rename the [`.env.example`<span>&#10138;</span>
-](https://github.com/night0721/cath.exe/blob/main/.env.example) into `.env`. <br>
+](https://github.com/night0721/cath.exe/blob/main/.env.example) file into `.env`. <br>
 
 3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br>
 [![Open Discord Developer Portal](https://badgen.net/badge/icon/discord?icon=discord&label=Developer%20Portal&color=5865F2&style=for-the-badge)](https://discord.com/developers/applications)
@@ -68,9 +70,9 @@ git clone https://github.com/night0721/cath.exe
 
 5. One by one paste the webhook url in a web browser & copy the **ID** & the **TOKEN** and paste it in the corresponding feilds in the `.env` file. <br>
 
-6. Setup the **MongoDB Database** as [instructed](https://github.com/night0721/cath.exe#additional-steps) below.
+6. Setup the **MongoDB Database** as [instructed](https://github.com/night0721/cath.exe#mongo-db-setup) below.
 
-7. Setup a **Spotify Application** as [instructed](https://github.com/night0721/cath.exe#additional-steps) below. 
+7. Setup a **Spotify Application** as [instructed](https://github.com/night0721/cath.exe#spotify-setup) below. 
 
 8. After this, you need to install all dependencies by using this command. This will takes a few minutes.
 
@@ -85,7 +87,7 @@ git clone https://github.com/night0721/cath.exe
 
 # Additional Steps
 ## Mongo DB Setup
-To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
+To use the Economy Commands, you need to Setup a MongoDB Database.
 
 1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
 2. Click on the `Create a New Database`.
