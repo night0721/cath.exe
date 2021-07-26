@@ -1,7 +1,9 @@
 <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
-<h1 align="center"> CATH.EXE TEMPLATE</h1>
+<h1 align="center"> CATH.EXE</h1>
 
-> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Warning-icon.png" width = "16"> This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.
+> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Warning-icon.png" width = "16"> This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse.
+
+>For Call of duty mobile stats, Please invite the main instance using the **INVITE ME** badge.
 
 **Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
 If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
@@ -11,6 +13,7 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
 ![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?colorB=5865F2&style=for-the-badge)](https://github.com/night0721/cath.exe/blob/main/CODE_OF_CONDUCT.md)
+[![Trello](https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/b/dIgR0QNm)
 
 
 <!-- Build with badges -->
@@ -35,7 +38,6 @@ Download all these programs on your local machine by clicking on the badge & fol
 [![git](https://badgen.net/badge/icon/git?icon=git&label&color=5865F2&style=for-the-badge&scale=1.4)](https://git-scm.com/downloads) 
 [![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/Download) 
 [![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/download/)
-<!-- [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/cloud/atlas/lp/try2) -->
 
 ### Step by Step Walkthrough
 
@@ -46,16 +48,16 @@ Download all these programs on your local machine by clicking on the badge & fol
 git clone https://github.com/night0721/cath.exe
 ```
 
-2. Make a new file & name it ``.env`` then copy-paste all the contents from [`.env.example`<span>&#10138;</span>
-](https://github.com/night0721/cath.exe/blob/main/.env.example) into the `.env` file <br>
+2. Rename the [`.env.example`<span>&#10138;</span>
+](https://github.com/night0721/cath.exe/blob/main/.env.example) file into `.env`. <br>
 
 3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br>
 [![Open Discord Developer Portal](https://badgen.net/badge/icon/discord?icon=discord&label=Developer%20Portal&color=5865F2&style=for-the-badge)](https://discord.com/developers/applications)
-    - **Bot Token**<br>
-    - **Application ID** (Client ID)<br>
-    - **Client Secret**<br>
+    - **Bot Token** (TOKEN)<br>
+    - **Application ID** (CLIENT_ID)<br>
+    - **Client Secret** (CLIENT_SECRET) <br>
     
-4. To view the logs, Create 5 Channels & 5 Webhooks in *your* **Discord Server** corresponding to these logs.
+4. To view the logs, Create 5 Channels & 5 Webhooks in a **Discord Server** corresponding to these logs.
     - **Server Log** (Log new Server Added/Premium Server)<br>
     - **Error Log** (Log Unhandled Rejection Error)<br>
     - **Ready Log** (Log when bot online)<br>
@@ -68,20 +70,24 @@ git clone https://github.com/night0721/cath.exe
 
 5. One by one paste the webhook url in a web browser & copy the **ID** & the **TOKEN** and paste it in the corresponding feilds in the `.env` file. <br>
 
-6. After this, you need to install all dependencies by using this command. This will takes a few minutes.
+6. Setup the **MongoDB Database** as [instructed](https://github.com/night0721/cath.exe#mongo-db-setup) below.
+
+7. Setup a **Spotify Application** as [instructed](https://github.com/night0721/cath.exe#spotify-setup) below. 
+
+8. After this, you need to install all dependencies by using this command. This will takes a few minutes.
 
     ```cmd
     npm i
     ```
 
-7. Now, to start the bot use this command in your terminal.
+9. Now, to start the bot use this command in the terminal.
     ```cmd
     node .
     ```
 
 # Additional Steps
-## Economy Commands [MongoDB]
-To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
+## Mongo DB Setup
+To use the Economy Commands, you need to Setup a MongoDB Database.
 
 1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
 2. Click on the `Create a New Database`.
@@ -99,7 +105,7 @@ To enable the Economy Commands, you need to Setup a MongoDB Database. You can al
     - Replace `myFirstDatabase` with the name of the Database that you named in **Step 5**.
 13. That's it.
 
-## Music (Spotify)
+## Spotify Setup
 To use spotify urls to play music follow these steps.
 
 1. Go to the [**Spotify's Developer Dashboard**](https://developer.spotify.com/dashboard/).
