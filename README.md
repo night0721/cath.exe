@@ -10,7 +10,7 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 [![inviteme](https://badgen.net/badge/Invite%20Me/Online/5865F2?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands) 
 [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
 ![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?colorB=5865F2&style=for-the-badge)](code_of_conduct.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?colorB=5865F2&style=for-the-badge)](https://github.com/night0721/cath.exe/blob/main/CODE_OF_CONDUCT.md)
 
 
 <!-- Build with badges -->
