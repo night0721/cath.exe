@@ -80,7 +80,7 @@ git clone https://github.com/night0721/cath.exe
     ```
 
 # Additional Steps
-## Economy Commands
+## Economy Commands [MongoDB]
 To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
 
 1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
@@ -97,9 +97,18 @@ To enable the Economy Commands, you need to Setup a MongoDB Database. You can al
 12. Now you need to modify that link, 
     - Replace `<password>` with the password for the user that you created in **Step 7**.
     - Replace `myFirstDatabase` with the name of the Database that you named in **Step 5**.
-13. That's it!
+13. That's it.
 
 ## Music (Spotify)
+To use spotify urls to play music follow these steps.
+
+1. Go to the [**Spotify's Developer Dashboard**](https://developer.spotify.com/dashboard/).
+2. Click on **Create an app**.
+3. Fill out the required info, then click on **CREATE**.
+4. Copy the **Client ID** & paste it in the `SPOTIFY_ID` feild in the `.env` file.
+5. Back in the Dashboard, Click on **SHOW CLIENT SECRET**
+6. Copy the **Client Secret** & paste it in the `SPOTIFY_SECRET` feild in the `.env` file.
+7. That's it.
 
 # Support, Feature Request & Bug Reports
 
