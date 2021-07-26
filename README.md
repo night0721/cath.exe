@@ -1,7 +1,7 @@
 <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
 <h1 align="center"> CATH.EXE TEMPLATE</h1>
 
-*This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.* 
+> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Warning-icon.png" width = "16"> This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.
 
 **Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
 If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
