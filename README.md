@@ -13,7 +13,7 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
 ![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?colorB=5865F2&style=for-the-badge)](https://github.com/night0721/cath.exe/blob/main/CODE_OF_CONDUCT.md)
-[![Trello](https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/b/dIgR0QNm)
+<a href="https://trello.com/b/dIgR0QNm" target="_blank"><img src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white&scale=1.4" alt="Trello Board"></a>
 
 
 <!-- Build with badges -->
@@ -41,7 +41,8 @@ Download all these programs on your local machine by clicking on the badge & fol
 
 ### Step by Step Walkthrough
 
-### [![YouTube Tutorial](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/_D5xG7XoF88)
+### <a href="https://youtu.be/ureUEQCAGic" target="_blank"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&scale=1.4" alt="Youtube Walkthrough"></a><br>
+
 1. Clone this repository
 
 ```cmd
@@ -97,7 +98,7 @@ To use the Economy Commands, you need to Setup a MongoDB Database.
 2. Click on the `Create a New Database`.
 3. Selct the `CREATE` option in the **Shared** Teir.
 4. Select a `Cloud Provider & Region` that is geographically closer to the average user that will use the bot. *This will effect the responce time of the bot.*
-5. Then you can Name your Cluster, after that click on `Create Cluster`. *This will take a couple of minutes.*
+5. Then you can Name your Cluster, after that click on `Create Cluster`. *This should take a couple of minutes.*
 6. Then click on `Database Access` from the sidebar & then click on `Add New Database User`.
 7. Under the `Password - Authentication Method`. Enter a username & password. then click on `Add User`.
 8. After that, click on `Network Access` from the sidebar & then click on `Add IP Address`. & click on the `Allow Access from Anywhere` Then click on `Confirm`.
