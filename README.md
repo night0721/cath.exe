@@ -14,6 +14,7 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 ![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?colorB=5865F2&style=for-the-badge)](https://github.com/night0721/cath.exe/blob/main/CODE_OF_CONDUCT.md)
 <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white&scale=1.4" alt="Trello Board"></a>
+[![ko-fi](https://img.shields.io/static/v1?label=Support%20Us%20On&message=KO.FI&color=ff5e5b&logo=kofi&logoColor=white&style=for-the-badge&scale=1.4)](https://ko-fi.com/I2I35XISJ)
 
 
 <!-- Build with badges -->
