@@ -22,7 +22,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed);
+        message.reply(embed);
       }
       const milliseconds = ms(args[0]);
       if (isNaN(milliseconds))
@@ -48,7 +48,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
     } catch (e) {
       console.log(e);
       return client.err(message, "Moderation", "slowmode", 999);

@@ -1,5 +1,5 @@
 const client = require("../bot");
-client.on("message", async message => {
+client.on("messageCreate", async message => {
   function Check(str) {
     if (
       client.emojis.cache.find(emoji => emoji.name === str) ||

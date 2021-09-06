@@ -12,6 +12,6 @@ module.exports = {
       return client.err(message, "Music", "stop", 55);
     player.destroy();
     message.react("✅");
-    return message.inlineReply("The player has been destroyed");
+    return message.reply("The player has been destroyed");
   },
 };

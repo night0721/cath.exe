@@ -34,7 +34,7 @@ module.exports = {
             parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
-      message.inlineReply(abc);
+      message.reply(abc);
     } else {
       await client.rmv(message.author.id, amt);
       const cba = new MessageEmbed()
@@ -46,7 +46,7 @@ module.exports = {
             parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
-      message.inlineReply(cba);
+      message.reply(cba);
     }
   },
 };

@@ -2,7 +2,7 @@ const Levels = require("discord-xp");
 const client = require("../bot");
 require("dotenv").config();
 Levels.setURL(process.env.MONGO);
-client.on("message", async message => {
+client.on("messageCreate", async message => {
   if (!message.guild) return;
   if (message.author.bot) return;
   const guild = await client.data.getGuild(message.guild.id);

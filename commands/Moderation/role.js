@@ -29,7 +29,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed).then(await target.roles.remove(role));
+        message.reply(embed).then(await target.roles.remove(role));
       } else {
         const embed = new MessageEmbed()
           .setTitle("Role Added")
@@ -42,7 +42,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed).then(await target.roles.add(role));
+        message.reply(embed).then(await target.roles.add(role));
       }
     } catch (e) {
       console.log(e);

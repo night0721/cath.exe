@@ -1,9 +1,7 @@
-# CATH.EXE TEMPLATE
+# CATH.EXE [![botStatus](https://discord-md-badge.vercel.app/api/shield/bot/800966959268364288?style=flat-square&flat-Square&theme=clean-inverted&compact=true)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands)
 
 <!-- header -->
-<img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
-
-*This is a Bot Template based on Cath.exe, This templated **does not** conatain any data from Project Lighthouse. For Call of duty mobile stats invite the main instance using the **INVITE ME** badge.* 
+<img src = "https://media.discordapp.net/attachments/789642309632786434/867156734795055173/Cath-banner.png?width=1298&height=433">
 
 **Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
 If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
@@ -11,7 +9,9 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 <!-- Main Badges  -->
 [![inviteme](https://badgen.net/badge/Invite%20Me/Online/5865F2?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands) 
 [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
-![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
+![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge) 
+[![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://open.vscode.dev/night0721/cath/) 
+[![Trello](https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/b/dIgR0QNm) 
 
 <!-- Build with badges -->
 ## Build with:
@@ -27,15 +27,14 @@ If you like this bot, feel free to <img src = "https://discord.com/assets/141d49
 [![Run On Replit](https://img.shields.io/static/v1?label=Run%20On&message=Repl.it&color=5865F2&logo=replit&logoColor=white&style=for-the-badge&scale=1.4)](https://repl.it/github/night0721/cath.exe)
 [![Deploy On Heroku](https://img.shields.io/static/v1?label=Deploy%20On&message=Heroku&color=5865F2&logo=heroku&logoColor=white&style=for-the-badge&scale=1.4)](https://heroku.com/deploy?template=https://github.com/night0721/cath.exe)
 
-## Deploy Locally
+## Deployment Locally
 
 ### Prerequisite 
 Download all these programs on your local machine by clicking on the badge & following the standard installing procedure. You can use any IDE but we recommand VS Code. 
 
 [![git](https://badgen.net/badge/icon/git?icon=git&label&color=5865F2&style=for-the-badge&scale=1.4)](https://git-scm.com/downloads) 
 [![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/Download) 
-[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/download/)
-<!-- [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/cloud/atlas/lp/try2) -->
+[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
 
 ### Step by Step Walkthrough
 
@@ -74,7 +73,7 @@ git clone https://github.com/night0721/cath.exe
     npm i
     ```
 
-7. Now, to start the bot use this command.
+7. Now, to start the bot use this command in the terminal.
     ```cmd
     node .
     ```
@@ -98,6 +97,8 @@ To enable the Economy Commands, you need to Setup a MongoDB Database. You can al
     - Replace `<password>` with the password for the user that you created in **Step 7**.
     - Replace `myFirstDatabase` with the name of the Database that you named in **Step 5**.
 13. That's it!
+
+
 
 # Support, Feature Request & Bug Reports
 

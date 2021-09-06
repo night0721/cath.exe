@@ -22,7 +22,7 @@ module.exports = {
             Guild: message.guild.id,
             User: user.id,
           });
-          return message.inlineReply(
+          return message.reply(
             new MessageEmbed()
               .setTitle(`Warns Cleared`)
               .addField("**Moderator**", message.author.tag, true)

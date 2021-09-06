@@ -13,6 +13,6 @@ module.exports = {
     if (!player.queue.current) return client.err(message, "Music", "skip", 34);
     const { title } = player.queue.current;
     player.stop();
-    return message.inlineReply(`**${title}** was skipped`);
+    return message.reply(`**${title}** was skipped`);
   },
 };

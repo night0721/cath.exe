@@ -10,7 +10,7 @@ module.exports = {
     let collectCounter = 0;
     let endCounter = 0;
     const filter = m => m.author.id === message.author.id;
-    message.inlineReply("Please check your DM.");
+    message.reply("Please check your DM.");
     try {
       const appStart = await message.author.send(
         new MessageEmbed()

@@ -22,7 +22,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed);
+        message.reply(embed);
       });
   },
 };

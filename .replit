@@ -1,2 +1,2 @@
 "language"="nodejs"
-"run"="node ."
+"run"="node_modules/.bin/node index.js"

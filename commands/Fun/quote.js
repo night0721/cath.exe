@@ -22,7 +22,7 @@ module.exports = {
         color: "ffffff",
       });
       const attach = new MessageAttachment(imgae, "quote.png");
-      message.inlineReply(attach);
+      message.reply(attach);
     } else {
       const imgae = await Canvas.quote({
         image: message.author.displayAvatarURL({
@@ -35,7 +35,7 @@ module.exports = {
         color: "ffffff",
       });
       const attach = new MessageAttachment(imgae, "quote.png");
-      message.inlineReply(attach);
+      message.reply(attach);
     }
   },
 };

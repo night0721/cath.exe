@@ -11,14 +11,14 @@ module.exports = {
     reason = args.slice(2).join(" ");
     if (toggle === "true") {
       await client.data.BK(user, toggle, reason);
-      message.inlineReply(
+      message.reply(
         `**Blacklisted** ${message.guild.members.cache.get(
           user
         )}.\n**Reason: **${reason}`
       );
     } else {
       await client.data.BK(user, toggle, reason);
-      message.inlineReply(
+      message.reply(
         `Removed blacklist from ${message.guild.members.cache.get(user)}`
       );
     }

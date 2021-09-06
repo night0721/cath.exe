@@ -19,7 +19,7 @@ module.exports = {
         guild = found;
       }
     } else {
-      return message.inlineReply("Invalid Name/ID!");
+      return message.reply("Invalid Name/ID!");
     }
     if (guild) {
       let tChannel = guild.channels.cache.find(
@@ -33,13 +33,11 @@ module.exports = {
       let invite = await tChannel
         .createInvite({ temporary: false, maxAge: 0 })
         .catch(err => {
-          return message.inlineReply(`${err} has occured!`);
+          return message.reply(`${err} has occured!`);
         });
-      message.inlineReply(invite.url);
+      message.reply(invite.url);
     } else {
-      return message.inlineReply(
-        `\`${args.join(" ")}\` - Bot is Not in this server`
-      );
+      return message.reply(`\`${args.join(" ")}\` - Bot is Not in this server`);
     }
   },
 };

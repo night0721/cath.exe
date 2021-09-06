@@ -10,7 +10,7 @@ module.exports = {
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]);
     client.data.Premium(member.id, "true", args[1]);
-    message.inlineReply(
+    message.reply(
       `**${member.user.username}**'s premium status:\nTier **${args[1]}**`
     );
   },

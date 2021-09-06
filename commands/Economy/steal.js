@@ -51,7 +51,7 @@ module.exports = {
               CP: 0,
               Inventory: {},
             }).save();
-            return message.inlineReply(
+            return message.reply(
               new MessageEmbed()
                 .setAuthor(
                   message.author.tag,
@@ -64,7 +64,7 @@ module.exports = {
             );
           } else if (data1) {
             if (data1.CP <= 0 || !data1.CP) {
-              return message.inlineReply(
+              return message.reply(
                 new MessageEmbed()
                   .setAuthor(
                     message.author.tag,
@@ -81,7 +81,7 @@ module.exports = {
               data.save();
               data1.CP -= coins1;
               data1.save();
-              return message.inlineReply(
+              return message.reply(
                 new MessageEmbed()
                   .setAuthor(
                     message.author.tag,
@@ -97,7 +97,7 @@ module.exports = {
               data.save();
               data1.CP += coins;
               data1.save();
-              return message.inlineReply(
+              return message.reply(
                 new MessageEmbed()
                   .setAuthor(
                     message.author.tag,

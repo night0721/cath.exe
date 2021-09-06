@@ -33,7 +33,7 @@ module.exports = {
       switch (res.loadType) {
         case "NO_MATCHES":
           if (!player.queue.current) player.destroy();
-          return message.inlineReply("No result is found");
+          return message.reply({ content: "No result is found" });
         case "TRACK_LOADED":
           const playmusic = new Discord.MessageEmbed()
             .setColor("#00f70c")
@@ -48,7 +48,7 @@ module.exports = {
           player.queue.add(res.tracks[0]);
           if (!player.playing && !player.paused && !player.queue.size)
             player.play();
-          return message.channel.send(playmusic);
+          return message.channel.send({ embeds: [playmusic] });
         case "PLAYLIST_LOADED":
           player.queue.add(res.tracks);
           const playlist = new Discord.MessageEmbed()
@@ -69,7 +69,7 @@ module.exports = {
             player.queue.totalSize === res.tracks.length
           )
             player.play();
-          return message.channel.send(playlist);
+          return message.channel.send({ embeds: [playlist] });
         case "SEARCH_RESULT":
           let max = 5,
             collected,
@@ -96,7 +96,7 @@ module.exports = {
               true
             )
             .setTimestamp();
-          message.channel.send(searchResult);
+          message.channel.send({ embeds: [searchResult] });
           try {
             collected = await message.channel.awaitMessages(filter, {
               max: 1,
@@ -105,9 +105,9 @@ module.exports = {
             });
           } catch (e) {
             if (!player.queue.current) player.destroy();
-            return message.inlineReply(
-              "You didn't provide a selection. Cancelled"
-            );
+            return message.reply({
+              content: "You didn't provide a selection. Cancelled",
+            });
           }
           const first = collected.first().content;
 
@@ -118,9 +118,9 @@ module.exports = {
 
           const index = Number(first) - 1;
           if (index < 0 || index > max - 1)
-            return message.inlineReply(
-              `The number that you provided too small or too big (1-${max})`
-            );
+            return message.reply({
+              content: `The number that you provided too small or too big (1-${max})`,
+            });
           const track = res.tracks[index];
           player.queue.add(track);
           const trackadd = new Discord.MessageEmbed()
@@ -135,7 +135,7 @@ module.exports = {
             .addField(`Requested By : `, `${track.requester}`, true);
           if (!player.playing && !player.paused && !player.queue.size)
             player.play();
-          return message.channel.send(trackadd);
+          return message.channel.send({ embeds: [trackadd] });
       }
     } catch (e) {
       console.log(e);

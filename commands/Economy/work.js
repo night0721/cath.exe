@@ -18,7 +18,7 @@ module.exports = {
     const earning = client.function.rndint(5000, 3000);
     const jobs = job[Math.floor(Math.random() * job.length)];
     await client.add(message.author.id, earning, message);
-    return message.inlineReply(
+    return message.reply(
       `You worked as a **${jobs}** and earned **${earning}${client.currency}**`
     );
   },

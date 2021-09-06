@@ -39,6 +39,6 @@ module.exports = {
       );
     const maxPages = Math.ceil(queue.length / multiple);
     embed.setFooter(`Page ${page > maxPages ? maxPages : page} of ${maxPages}`);
-    return message.inlineReply(embed);
+    return message.reply(embed);
   },
 };

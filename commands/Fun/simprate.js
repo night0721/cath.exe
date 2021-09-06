@@ -9,14 +9,14 @@ module.exports = {
     let simp = Math.floor(Math.random() * 100);
     if (message.mentions.users.first()) {
       let target = message.mentions.users.first();
-      message.inlineReply(
+      message.reply(
         new MessageEmbed()
           .setTitle(`${target.username}'s simp rate`)
           .setDescription(`${target.username} is a ${simp}% simp`)
       );
     } else {
       const target = message.author;
-      message.inlineReply(
+      message.reply(
         new MessageEmbed()
           .setTitle(`${target.username}'s simp rate`)
           .setDescription(`You are a ${simp}% simp`)

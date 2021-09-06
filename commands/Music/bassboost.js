@@ -26,7 +26,7 @@ module.exports = {
       .fill(null)
       .map((_, i) => ({ band: i, gain: levels[level] }));
     player.setEQ(...bands);
-    return message.inlineReply(
+    return message.reply(
       `The player's bassboost level has been set to ${level}`
     );
   },

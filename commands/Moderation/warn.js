@@ -50,7 +50,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
     } catch (e) {
       console.log(e);
       return client.err(message, "Moderation", "warn", 1);

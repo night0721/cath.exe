@@ -15,6 +15,6 @@ module.exports = {
     });
     if (!data) return client.err(message, "Config", "cc-delete", 404);
     await schema.findOneAndDelete({ Guild: message.guild.id, Command: name });
-    message.inlineReply(`Removed **${name}** from custom commands.`);
+    message.reply(`Removed **${name}** from custom commands.`);
   },
 };

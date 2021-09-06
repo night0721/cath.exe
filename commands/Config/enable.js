@@ -34,9 +34,7 @@ module.exports = {
           "category",
           `${up}${others}`
         );
-        message.inlineReply(
-          `This command is enabled now:\n\n\`${up}${others}\``
-        );
+        message.reply(`This command is enabled now:\n\n\`${up}${others}\``);
       } else return client.err(message, "Config", "enable", 18);
     }
   },

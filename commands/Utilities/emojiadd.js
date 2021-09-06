@@ -28,9 +28,7 @@ module.exports = {
                   const em = message.guild.emojis.cache.find(
                     a => a.name == args[0]
                   );
-                  message.inlineReply(
-                    `Added <:${em.name}:${em.id}> to the server`
-                  );
+                  message.reply(`Added <:${em.name}:${em.id}> to the server`);
                 });
               } catch (e) {
                 console.log(e);
@@ -50,7 +48,7 @@ module.exports = {
           return client.err(message, "Utilities", "emojiadd", 49);
         message.guild.emojis.create(args[0], args[1]).then(msg => {
           const em = message.guild.emojis.cache.find(a => a.name == args[1]);
-          message.inlineReply(`Added <:${em.name}:${em.id}> to the server`);
+          message.reply(`Added <:${em.name}:${em.id}> to the server`);
         });
       } catch (e) {
         console.log(e);

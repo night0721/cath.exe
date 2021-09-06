@@ -49,7 +49,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
     }
     if (!ms(time)) {
       let reason = args.slice(1).join(" ") || "No reason provided";
@@ -89,7 +89,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
       setTimeout(async () => {
         await Member.roles.remove(role2);
       }, ms(time));
@@ -132,7 +132,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
       setTimeout(async () => {
         await Member.roles.remove(role2);
       }, ms(time));

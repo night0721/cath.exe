@@ -56,7 +56,7 @@ module.exports = {
             parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
-      message.inlineReply(won);
+      message.reply(won);
     } else {
       await client.rmv(message.author.id, amt);
       const lost = new MessageEmbed()
@@ -79,7 +79,7 @@ module.exports = {
             parseInt(await client.bal(message.author.id)) - amt
           }**${client.currency}`
         );
-      message.inlineReply(lost);
+      message.reply(lost);
     }
   },
 };

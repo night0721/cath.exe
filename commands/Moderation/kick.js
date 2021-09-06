@@ -37,7 +37,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .setColor(client.color)
         .setTimestamp();
-      message.inlineReply(embed);
+      message.reply(embed);
       await target.kick(reason);
     } catch (e) {
       console.log(e);

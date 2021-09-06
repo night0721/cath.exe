@@ -1,6 +1,6 @@
 {
   "name": "cath.exe",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "cath.exe bot created by Night",
   "engines": {
     "node": "*",
@@ -9,9 +9,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "dashboard": "cd dashboard && npm run dev"
+    "dev": "nodemon .",
+    "start": "node .",
+    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
+    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
+    "node-update-then-clean": "npm run node-update && npm run node-clean-cache",
+    "canvas": "npm uninstall canvas && npm i canvas",
+    "all": "npm run node-update && npm run node-clean && npm uninstall canvas && npm i canvas && node ."
   },
   "repository": {
     "type": "git",
@@ -34,6 +38,7 @@
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "jshint": "^2.13.0",
+    "node": "^16.6.1",
     "prettier": "^2.3.2"
   },
   "dependencies": {
@@ -47,13 +52,14 @@
     "discord-canvas": "^1.4.1",
     "discord-giveaways": "^4.5.1",
     "discord-xp": "^1.1.16",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "figlet": "^1.5.0",
+    "glob": "^7.1.7",
     "goosecache": "^9.0.14",
     "imageapi.js": "^1.7.0",
     "leven": "^3.1.0",
@@ -69,6 +75,6 @@
     "soundcloud-downloader": "^0.2.4",
     "string-toolkit": "^1.4.0",
     "superscript-text": "^1.0.0",
-    "weky": "^1.9.9"
+    "weky": "^3.1.5"
   }
 }

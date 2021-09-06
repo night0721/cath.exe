@@ -48,7 +48,7 @@ module.exports = {
         )
         .addField(
           "**Premium**",
-          "**You can either boost support server or gift a nitro to one of the Developer of Cath Team to be premium user**"
+          "**You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team **"
         )
         .setURL(client.web)
         .setFooter(
@@ -65,7 +65,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -80,7 +80,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -96,7 +96,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -113,7 +113,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -130,7 +130,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -146,7 +146,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -164,7 +164,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -182,7 +182,7 @@ module.exports = {
         const name = `\`${pull.name}\``;
         commandList.push(name);
       });
-      return message.inlineReply(
+      return message.reply(
         new MessageEmbed()
           .setDescription(commandList.map(data => `${data}`).join(", "))
           .setTimestamp()
@@ -258,7 +258,7 @@ module.exports = {
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color);
-        message.inlineReply(embed);
+        message.reply(embed);
       }
     }
   },

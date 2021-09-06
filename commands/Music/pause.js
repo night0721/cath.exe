@@ -10,9 +10,8 @@ module.exports = {
     if (!channel) return client.err(message, "Music", "pause", 35);
     if (channel.id !== player.voiceChannel)
       return client.err(message, "Music", "pause", 55);
-    if (player.paused)
-      return message.inlineReply("The player is already paused");
+    if (player.paused) return message.reply("The player is already paused");
     player.pause(true);
-    return message.inlineReply("The player is paused");
+    return message.reply("The player is paused");
   },
 };

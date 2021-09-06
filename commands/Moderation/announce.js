@@ -21,7 +21,7 @@ module.exports = {
           .setTimestamp()
           .setColor(client.color)
       );
-      message.inlineReply(
+      message.reply(
         new MessageEmbed()
           .setTitle(`Message Announced`)
           .addField("**Moderator**", message.author.tag, true)

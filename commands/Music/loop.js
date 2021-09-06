@@ -13,10 +13,10 @@ module.exports = {
     if (args.length && /queue/i.test(args[0])) {
       player.setQueueRepeat(!player.queueRepeat);
       const queueRepeat = player.queueRepeat ? "enabled" : "disabled";
-      return message.inlineReply(`Queue repeat is ${queueRepeat}`);
+      return message.reply(`Queue repeat is ${queueRepeat}`);
     }
     player.setTrackRepeat(!player.trackRepeat);
     const trackRepeat = player.trackRepeat ? "enabled" : "disabled";
-    return message.inlineReply(`Queue repeat is ${trackRepeat}`);
+    return message.reply(`Queue repeat is ${trackRepeat}`);
   },
 };

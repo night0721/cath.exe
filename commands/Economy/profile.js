@@ -42,6 +42,6 @@ module.exports = {
         "**Balance**\n",
         `💲CP: \`${bal}\`\n` + `➕Multiplier: \`${`1.${multi}x`}\``
       );
-    message.inlineReply(game);
+    message.reply(game);
   },
 };

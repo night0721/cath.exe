@@ -27,7 +27,7 @@ module.exports = {
       await client.add(id, coinsToClaim, message);
       msg
         .first()
-        .inlineReply(
+        .reply(
           `Congratultions! You have claimed **${coinsToClaim}** ${client.currency}!`
         );
     });

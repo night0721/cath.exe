@@ -42,6 +42,6 @@ module.exports = {
         },
       },
     });
-    message.inlineReply(`Giveaway is started in ${channel}`);
+    message.reply(`Giveaway is started in ${channel}`);
   },
 };

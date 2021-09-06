@@ -32,7 +32,7 @@ module.exports = {
         });
         if (data) {
           nameCollector.stop();
-          return message.inlineReply("This command has already exist.");
+          return message.reply("This command has already exist.");
         }
         if (name === "cancel") {
           msg.channel.send("The setup has been cancelled.");
@@ -175,7 +175,7 @@ module.exports = {
                             data
                           );
                           console.log(data);
-                          msg.inlineReply(
+                          msg.reply(
                             `Saved **${data.Command}** as a custom command`
                           );
                         }
@@ -206,7 +206,7 @@ module.exports = {
                             data
                           );
                           console.log(data);
-                          msg.inlineReply(
+                          msg.reply(
                             `Saved **${data.Command}** as a custom command`
                           );
                         }
@@ -281,7 +281,7 @@ module.exports = {
                             },
                             data
                           );
-                          msg.inlineReply(
+                          msg.reply(
                             `Saved **${data.Command}** as a custom command`
                           );
                         }
@@ -310,7 +310,7 @@ module.exports = {
                             },
                             data
                           );
-                          msg.inlineReply(
+                          msg.reply(
                             `Saved **${data.Command}** as a custom command`
                           );
                         }
@@ -381,7 +381,7 @@ module.exports = {
                         },
                         data
                       );
-                      msg.inlineReply(
+                      msg.reply(
                         `Saved **${data.Command}** as a custom command`
                       );
                     }
@@ -408,7 +408,7 @@ module.exports = {
                         },
                         data
                       );
-                      msg.inlineReply(
+                      msg.reply(
                         `Saved **${data.Command}** as a custom command`
                       );
                     }

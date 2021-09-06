@@ -36,7 +36,7 @@ module.exports = {
       .setDiscriminator(target.discriminator);
     Rank.build().then(data => {
       const attachment = new MessageAttachment(data, "RankCard.png");
-      message.inlineReply(attachment);
+      message.reply(attachment);
     });
   },
 };

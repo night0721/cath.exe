@@ -1,85 +1,61 @@
-const {
-  Client,
-  Collection,
-  WebhookClient,
-  MessageEmbed,
-} = require("discord.js");
+const { Client, Collection, MessageEmbed, Intents } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
-const fs = require("fs");
-const config = require("./config.json");
 require("dotenv").config();
 const client = new Client({
   allowedMentions: { parse: ["users", "roles"], repliedUser: true },
   restTimeOffset: 0,
   partials: ["MESSAGE", "CHANNEL", "REACTION", "GUILD_MEMBER"],
-  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS", "GUILD_PRESENCES"],
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_BANS,
+    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    Intents.FLAGS.GUILD_INVITES,
+    Intents.FLAGS.GUILD_VOICE_STATES,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.DIRECT_MESSAGES,
+    Intents.FLAGS.GUILD_PRESENCES,
+  ],
 });
 module.exports = client;
-client.color = config.color;
-client.author = "Cath Team";
-client.invite = "https://discord.gg/SbQHChmGcp";
-client.web = config.URL;
-require("./util/dist/cmds").cmds();
-require("./inlinereply");
 require("./util/functions/economy")(client);
 require("./util/dist/manager")(client);
-client.CMDLog = new WebhookClient(
-  process.env.CMDLogID,
-  process.env.CMDLogToken
-);
-client.ReadyLog = new WebhookClient(
-  process.env.ReadyLogID,
-  process.env.ReadyLogToken
-);
-client.ServerLog = new WebhookClient(
-  process.env.ServerLogID,
-  process.env.ServerLogToken
-);
-client.ErrorLog = new WebhookClient(
-  process.env.ErrorLogID,
-  process.env.ErrorLogToken
-);
-process.on("unhandledRejection", async err => {
-  if (client.user) {
-    if (client.user.id === client.user.id) {
-      const embed = new MessageEmbed()
-        .setTitle("UnhandledRejection Error")
-        .setDescription(`\`\`\`ini\n${err.stack}\`\`\``)
-        .setTimestamp()
-        .setColor(client.color)
-        .setFooter(client.user.username);
-      client.ErrorLog.send(embed);
-    }
-  }
-  return console.log(err);
-});
-client.SuggestionLog = config.Suggestion;
-client.ReportLog = config.Report;
-client.DMLog = config.DM;
+require("./util/dist/handler")(client);
 client.commands = new Collection();
+client.slashCommands = new Collection();
 client.aliases = new Collection();
-client.events = new Collection();
-client.snipes = [];
 client.esnipes = new Collection();
-client.hide = new Collection();
+client.snipes = new Array();
 client.queue = new Map();
 client.Timers = new Map();
-client.cat = config.ca;
+client.config = require("./config.json");
 client.function = require("./util/functions/function");
 client.data = require("./util/functions/mongoose");
 client.err = require("./util/dist/err");
+client.cat = client.config.ca;
+client.SuggestionLog = client.config.Suggestion;
+client.ReportLog = client.config.Report;
+client.DMLog = client.config.DMLog;
+client.CMDLog = client.config.CMDLog;
+client.ReadyLog = client.config.ReadyLog;
+client.ServerLog = client.config.ServerLog;
+client.ErrorLog = client.config.ErrorLog;
+client.color = client.config.color;
+client.author = "Cath Team";
+client.invite = "https://discord.gg/SbQHChmGcp";
+client.web = client.config.URL;
 client.data
   .connect(process.env.MONGO)
   .then(() => console.log("Connected to MongoDB!"))
   .catch(e => console.log(e));
 client.owners = [
-  "452076196419600394",
-  "749692825402212494",
-  "766645910087139338",
-  "755476040029306952",
-  "534027706325532694",
-  "381442059111759883",
-  "556808365574193194",
+  "452076196419600394", //Night
+  "766645910087139338", //chekseaa
+  "755476040029306952", //Kałÿ
+  "534027706325532694", //Cat drinking a cat
+  "381442059111759883", //Thunder
+  "556808365574193194", //chunchunmaru
 ];
 client.currency = "<:cp:840231933933387797>";
 client.path = [
@@ -100,9 +76,18 @@ client.giveaways = new GiveawaysManager(client, {
     reaction: "🎉",
   },
 });
-client.categories = fs.readdirSync("./commands/");
-client.paths = fs.readdirSync("./cat/");
-["command"].forEach(handler => {
-  require(`./util/command-handler`)(client);
+process.on("unhandledRejection", async err => {
+  if (client.user) {
+    if (client.user.id === client.user.id) {
+      const embed = new MessageEmbed()
+        .setTitle("UnhandledRejection Error")
+        .setDescription(`\`\`\`ini\n${err.stack}\`\`\``)
+        .setTimestamp()
+        .setColor(client.color)
+        .setFooter(client.user.username);
+      client.channels.cache.get(client.ErrorLog).send({ embeds: [embed] });
+    }
+  }
+  return console.log(err);
 });
 client.login(process.env.TOKEN);

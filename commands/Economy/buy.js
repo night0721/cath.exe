@@ -51,7 +51,7 @@ module.exports = {
           },
         }).save();
       }
-      message.inlineReply(
+      message.reply(
         new MessageEmbed()
           .setTimestamp()
           .setDescription(

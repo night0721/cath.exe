@@ -39,9 +39,7 @@ module.exports = {
           "category",
           `${up}${others}`
         );
-        message.inlineReply(
-          `This command is disabled now:\n\n\`${up}${others}\``
-        );
+        message.reply(`This command is disabled now:\n\n\`${up}${others}\``);
       }
     }
   },

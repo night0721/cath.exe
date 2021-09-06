@@ -5,26 +5,28 @@ const { MessageEmbed } = require("discord.js");
 
 client.on("guildDelete", async guild => {
   client.data.DelGuild(guild.id);
-  client.ServerLog.send(
-    new MessageEmbed()
-      .setTitle("Deleted Server")
-      .addField("Server Info", [
-        `**>Server Name**: \n${guild.name}`,
-        `**>Server ID**: \n${guild.id}`,
-        `**>Server Member Count**: \n${guild.memberCount}`,
-      ])
-      .addField("Owner Info", [
-        `**>Owner Tag**: \n${guild.owner.user.tag}`,
-        `**>Owner ID**: \n${guild.owner.id}`,
-      ])
-      .setFooter(
-        `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
-        client.user.displayAvatarURL()
-      )
-      .setTimestamp()
-      .setThumbnail(guild.iconURL({ dynamic: true }))
-      .setColor("RED")
-  );
+  client.channels.cache.get(client.ServerLog).send({
+    embeds: [
+      new MessageEmbed()
+        .setTitle("Deleted Server")
+        .addField("Server Info", [
+          `**>Server Name**: \n${guild.name}`,
+          `**>Server ID**: \n${guild.id}`,
+          `**>Server Member Count**: \n${guild.memberCount}`,
+        ])
+        .addField("Owner Info", [
+          `**>Owner Tag**: \n${guild.owner.user.tag}`,
+          `**>Owner ID**: \n${guild.owner.id}`,
+        ])
+        .setFooter(
+          `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+          client.user.displayAvatarURL()
+        )
+        .setTimestamp()
+        .setThumbnail(guild.iconURL({ dynamic: true }))
+        .setColor("RED"),
+    ],
+  });
 });
 
 /**

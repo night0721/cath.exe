@@ -29,7 +29,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed);
+        message.reply(embed);
         await message.guild.members.ban(one.id, {
           reason: reason,
         });
@@ -61,7 +61,7 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setColor(client.color)
           .setTimestamp();
-        message.inlineReply(embed);
+        message.reply(embed);
         await message.guild.members.ban(target.id, {
           reason: reason,
         });

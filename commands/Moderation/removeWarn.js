@@ -38,7 +38,7 @@ module.exports = {
               .setThumbnail(client.user.displayAvatarURL())
               .setColor(client.color)
               .setTimestamp();
-            message.inlineReply(embed);
+            message.reply(embed);
             data.save();
           } else {
             return client.err(message, "Moderation", "removeWarn", 10);

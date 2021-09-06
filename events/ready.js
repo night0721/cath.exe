@@ -20,32 +20,26 @@ client.on("ready", async () => {
     });
     if (statusdb && statusdb.Status == "true") {
       client.user.setPresence({
-        activity: [
+        activities: [
           {
             name: "Under Maintenance",
-            type: "WATCHING",
+            type: "STREAMING",
+            url: "https://twtich.tv/thekiritosgaming",
           },
         ],
-        status: "dnd",
+        status: "online",
       });
-      // client.user.setPresence({
-      //   activity: [
-      //     {
-      //       name: "Under Maintenance",
-      //       type: "STREAMING",
-      //       url: "https://twtich.tv/thekiritosgaming",
-      //     },
-      //   ],
-      //   status: "dnd",
-      // });
     } else {
       setInterval(function () {
         var game = Math.floor(Math.random() * playing.length + 0);
-        client.user.setActivity({
-          name: playing[game],
-          type: "STREAMING",
-          url: "https://twitch.tv/thekiritosgaming",
-          //status: "online",
+        client.user.setPresence({
+          activities: [
+            {
+              name: playing[game],
+              type: "STREAMING",
+              url: "https://twitch.tv/thekiritosgaming",
+            },
+          ],
         });
       }, 5000);
     }
@@ -58,5 +52,5 @@ client.on("ready", async () => {
     .setDescription(`${client.user.username} ✅\nVersion: v${version}`)
     .setTimestamp()
     .setFooter(`${client.user.username}`);
-  client.ReadyLog.send(embed);
+  client.channels.cache.get(client.ReadyLog).send({ embeds: [embed] });
 });

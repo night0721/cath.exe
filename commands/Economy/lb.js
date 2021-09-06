@@ -30,6 +30,6 @@ module.exports = {
         message.author.displayAvatarURL({ dynamic: true })
       )
       .setColor(client.color);
-    message.inlineReply(embed);
+    message.reply(embed);
   },
 };
