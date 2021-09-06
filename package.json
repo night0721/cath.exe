@@ -62,7 +62,7 @@
     "glob": "^7.1.7",
     "goosecache": "^9.0.14",
     "imageapi.js": "^1.7.0",
-    "leven": "^3.1.0",
+    "leven": "^4.0.0",
     "lyrics-finder": "^21.7.0",
     "moment": "^2.29.1",
     "mongoose": "^5.13.2",
