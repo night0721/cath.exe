@@ -68,7 +68,7 @@
     "mongoose": "^5.13.2",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.2",
-    "node-superfetch": "^0.1.11",
+    "node-superfetch": "^0.2.3",
     "quick.db": "^7.1.3",
     "quickchart-js": "^1.2.0",
     "reconlx": "^2.4.3",
