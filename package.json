@@ -46,7 +46,7 @@
     "axios": "^0.21.4",
     "canvacord": "^5.2.1",
     "canvas": "^2.8.0",
-    "cath": "^1.0.7",
+    "cath": "^1.1.0",
     "common-tags": "^1.8.0",
     "cors": "^2.8.5",
     "discord-canvas": "^1.4.1",
