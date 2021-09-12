@@ -3,21 +3,26 @@
 <p align="center">
     <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
     <br>
-    <a href="https://trello.com/b/dIgR0QNm"><img alt='Trello' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
-    <a href="https://rebrand.ly/cathGithubInvite"><img alt='Support Server' src="https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white"></a>
-    <a href="https://trello.com/b/dIgR0QNm"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
-   <a href="https://thunder75.gitbook.io/cath-bot" target="_blank"><img src="https://img.shields.io/static/v1?label=Docs&message=available&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
-    <a href="https://ko-fi.com/I2I35XISJ"><img alt='Kofi' src="https://img.shields.io/static/v1?label=Support%20Us&message=KO.FI&color=ff5e5b&logo=kofi&logoColor=white&style=for-the-badge&scale=1.4"></a>
-    <a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath.exe&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
-<a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath%202&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
-    <a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=API&message=Under%20Devlopment&color=FF5E5B&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
+    <a href="https://github.com/night0721/cath.exe/blob/main/LICENSE" target="_blank"><img alt='LICENSE' src="https://img.shields.io/static/v1?label=LICENSE&message=Apache%202.0&color=5865F2&style=for-the-badge&scale=1.4"></a>
+    <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
+    <a href="https://thunder75.gitbook.io/cath-bot" target="_blank"><img src="https://img.shields.io/static/v1?label=Docs&message=available&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://ko-fi.com/I2I35XISJ" target="_blank"><img alt='Kofi' src="https://img.shields.io/static/v1?label=Support%20Us&message=KO.FI&color=ff5e5b&logo=kofi&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://cath.statuspage.io/"target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath.exe&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://cath.statuspage.io/" target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath%202&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://cath.statuspage.io/" target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=API&message=Under%20Devlopment&color=FF5E5B&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
 </p>
+
+<p align = "center">
+    <a href="https://rebrand.ly/cathSupport"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner2" alt="Support Server" /></a>
+</p>
+
 
 <!-- description -->
 
 **Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of **Project Lighthouse** by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
-If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br>
+If you like this bot, feel free to :star: **Star** this repository.<br>
 
 # Features
 <a href="https://thunder75.gitbook.io/cath-bot/core/commands" ><img src="https://img.shields.io/static/v1?label=List %20OF&message=Commands&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
@@ -71,7 +76,7 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
   
 </details>
 
-# Support, Feature Request & Bug Reports
+<h1 align = "center"> Support, Feature Request & Bug Reports </h1>
 
 ## <img src = "https://cdn.discordapp.com/emojis/867093614403256350.png?v=1" width = 18> Support & Feature Request
 
@@ -82,7 +87,11 @@ To Request new features contact us on Discord using the support server.
 
 You can report bugs or issues by opening a issue in this repository. Alternatevely you can also contact us on Discord using the support server.
 
-[![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
+<!-- [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67) -->
+
+<p align = "center">
+  <a href="https://rebrand.ly/cathSupport" target="_blank"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner1"></a>
+</p>
 
 <h1 align="center"> Contributors </h1> 
 
