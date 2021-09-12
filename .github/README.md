@@ -3,7 +3,7 @@
 <p align="center">
     <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
     <br>
-    <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
+    <a href="https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
     <a href="https://github.com/night0721/cath.exe/blob/main/LICENSE" target="_blank"><img alt='LICENSE' src="https://img.shields.io/static/v1?label=LICENSE&message=Apache%202.0&color=5865F2&style=for-the-badge&scale=1.4"></a>
     <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
     <a href="https://thunder75.gitbook.io/cath-bot" target="_blank"><img src="https://img.shields.io/static/v1?label=Docs&message=available&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
