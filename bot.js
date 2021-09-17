@@ -1,13 +1,24 @@
 const { Client, Collection, MessageEmbed, Intents } = require("discord.js");
 const { GiveawaysManager } = require("discord-giveaways");
+const config = require("./config.json");
+const version = require("./package.json").version;
 require("dotenv").config();
 const client = new Client({
   allowedMentions: { parse: ["users", "roles"], repliedUser: true },
+  presence: {
+    activities: [
+      {
+        name: `v${version} | ${config.prefix}help`,
+        type: "STREAMING",
+        url: "https://www.youtube.com/watch?v=_D5xG7XoF88",
+      },
+    ],
+  },
   restTimeOffset: 0,
   partials: ["MESSAGE", "CHANNEL", "REACTION", "GUILD_MEMBER"],
   intents: [
     Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MEMBERS,
+    //Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_BANS,
     Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
     Intents.FLAGS.GUILD_INVITES,
@@ -15,7 +26,7 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     Intents.FLAGS.DIRECT_MESSAGES,
-    Intents.FLAGS.GUILD_PRESENCES,
+    //Intents.FLAGS.GUILD_PRESENCES,
   ],
 });
 module.exports = client;
@@ -26,19 +37,20 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 client.aliases = new Collection();
 client.esnipes = new Collection();
+client.hide = new Collection();
 client.snipes = new Array();
 client.queue = new Map();
 client.Timers = new Map();
-client.config = require("./config.json");
+client.config = config;
 client.function = require("./util/functions/function");
 client.data = require("./util/functions/mongoose");
 client.err = require("./util/dist/err");
+client.serr = require("./util/dist/slash");
 client.cat = client.config.ca;
 client.SuggestionLog = client.config.Suggestion;
 client.ReportLog = client.config.Report;
 client.DMLog = client.config.DMLog;
 client.CMDLog = client.config.CMDLog;
-client.ReadyLog = client.config.ReadyLog;
 client.ServerLog = client.config.ServerLog;
 client.ErrorLog = client.config.ErrorLog;
 client.color = client.config.color;

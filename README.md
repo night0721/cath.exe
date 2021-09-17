@@ -1,0 +1,115 @@
+# CATH.EXE [![botStatus](https://discord-md-badge.vercel.app/api/shield/bot/800966959268364288?style=flat-square&flat-Square&theme=clean-inverted&compact=true)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands)
+
+<!-- header -->
+<img src = "https://media.discordapp.net/attachments/789642309632786434/867156734795055173/Cath-banner.png?width=1298&height=433">
+
+**Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
+If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
+
+<!-- Main Badges  -->
+
+[![inviteme](https://badgen.net/badge/Invite%20Me/Online/5865F2?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands)
+[![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
+![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
+[![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://open.vscode.dev/night0721/cath/)
+[![Trello](https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/b/dIgR0QNm)
+
+<!-- Build with badges -->
+
+## Build with:
+
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
+[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+<img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122"><br>
+
+# <img src = "https://discord.com/assets/a6d05968d7706183143518d96c9f066e.svg" width = "26"> Deployment
+
+## Deploy Online
+
+[![Run On Replit](https://img.shields.io/static/v1?label=Run%20On&message=Repl.it&color=5865F2&logo=replit&logoColor=white&style=for-the-badge&scale=1.4)](https://repl.it/github/night0721/cath.exe)
+[![Deploy On Heroku](https://img.shields.io/static/v1?label=Deploy%20On&message=Heroku&color=5865F2&logo=heroku&logoColor=white&style=for-the-badge&scale=1.4)](https://heroku.com/deploy?template=https://github.com/night0721/cath.exe)
+
+## Deployment Locally
+
+### Prerequisite
+
+Download all these programs on your local machine by clicking on the badge & following the standard installing procedure. You can use any IDE but we recommand VS Code.
+
+[![git](https://badgen.net/badge/icon/git?icon=git&label&color=5865F2&style=for-the-badge&scale=1.4)](https://git-scm.com/downloads)
+[![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/Download)
+[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
+
+### Step by Step Walkthrough
+
+### [![YouTube Tutorial](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/_D5xG7XoF88)
+
+1. Clone this repository
+
+```cmd
+git clone https://github.com/night0721/cath.exe
+```
+
+2. Rename the [`.env.example`<span>&#10138;</span>
+   ](https://github.com/night0721/cath.exe/blob/main/.env.example) file to `.env`<br>
+
+3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br>
+   [![Open Discord Developer Portal](https://badgen.net/badge/icon/discord?icon=discord&label=Developer%20Portal&color=5865F2&style=for-the-badge)](https://discord.com/developers/applications) - **Bot Token**<br> - **Application ID** (Client ID)<br> - **Client Secret**<br>
+4. To view the logs, Create 5 Channels & 5 Webhooks in _your_ **Discord Server:** corresponding to these logs.
+
+   - **Server Log** (Log new Server Added/Premium Server)<br>
+   - **Error Log** (Log Unhandled Rejection Error)<br>
+   - **Ready Log** (Log when bot online)<br>
+   - **Command Log** (Log command usage)<br>
+   - **DM Log** (Log when someone send DM to Bot)<br>
+
+   _You can also just use one Channel & one Webhook for everything but it will be really inconvenient._
+
+   <img src = "https://media.discordapp.net/attachments/540218400413188116/867797464169709661/unknown.png" width="640"> <br>
+
+5. One by one paste the webhook url in a web browser & copy the **ID** & the **TOKEN** and paste it in the corresponding feilds in the `.env` file. <br>
+
+6. After this, you need to install all dependencies by using this command. This will takes a few minutes.
+
+   ```cmd
+   npm i
+   ```
+
+7. Now, to start the bot use this command in the terminal.
+   ```cmd
+   node .
+   ```
+
+# Additional Steps
+
+To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
+
+1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
+2. Click on the `Create a New Database`.
+3. Selct the `CREATE` option in the **Shared** Teir.
+4. Select a `Cloud Provider & Region` that is geographically closer to the average user that will use the bot. _This will effect the responce time of the bot._
+5. Then you can Name your Cluster, after that click on `Create Cluster`. _This will take a couple of minutes._
+6. Then click on `Database Access` from the sidebar & then click on `Add New Database User`.
+7. Under the `Password - Authentication Method`. Enter a username & password. then click on `Add User`.
+8. After that, click on `Network Access` from the sidebar & then click on `Add IP Address`. & click on the `Add Current IP Address` Then click on `Confirm`.
+9. now, Click on `Database` from the sidebar & then click on `Connect`.
+10. Then on click on `Connect your Application`. & Copy the link.
+11. The paste that link in the `MONGODB` feild in the `.env` file.
+12. Now you need to modify that link,
+    - Replace `<password>` with the password for the user that you created in **Step 7**.
+    - Replace `myFirstDatabase` with the name of the Database that you named in **Step 5**.
+13. That's it!
+
+# Support, Feature Request & Bug Reports
+
+## <img src = "https://cdn.discordapp.com/emojis/867093614403256350.png?v=1" width = 18> Support & Feature Request
+
+Join the official [Support Server](https://discord.gg/SbQHChmGcp) on Discord & we will be happy to assist you. <br>
+To Request new features contact us on Discord using the support server.
+
+## <img src = "https://cdn.discordapp.com/emojis/867093601962950666.png?v=1" width = "18"> Report Bugs
+
+You can report bugs or issues by opening a issue in this repository. Alternatevely you can also contact us on Discord using the support server.
+
+[![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)

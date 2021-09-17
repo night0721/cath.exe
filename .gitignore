@@ -1,7 +1,4 @@
 node_modules
 package-lock.json
 .env
-/events/log.js
-/.prettierignore
-/util/functions/economy(backup).js
 .vscode

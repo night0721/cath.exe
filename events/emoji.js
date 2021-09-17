@@ -4,11 +4,9 @@ client.on("messageCreate", async message => {
     if (
       client.emojis.cache.find(emoji => emoji.name === str) ||
       message.guild.emojis.cache.find(emoji => emoji.name === str)
-    ) {
+    )
       return true;
-    } else {
-      return false;
-    }
+    else return false;
   }
   if (message.content.startsWith(":") && message.content.endsWith(":")) {
     let EmojiName = message.content.slice(1, -1);

@@ -1,17 +1,16 @@
 const schema = require("../../models/guilds");
 const prefix = require("../../config.json").prefix;
-const { confirmation } = require("@reconlx/discord.js");
 module.exports = {
   name: "prefix-reset",
   aliases: ["pr"],
   description: 'Reset the prefix to "C." at the server',
   UserPerm: "ADMINISTRATOR",
   category: "Config",
-  run: async (client, message) => {
+  run: async (client, message, args, utils) => {
     message.channel
-      .send("**Do you want to reset your prefix?**")
+      .send({ content: "**Do you want to reset your prefix?**" })
       .then(async msg => {
-        const emoji = await confirmation(
+        const emoji = await utils.confirmation(
           msg,
           message.author,
           ["✅", "❌"],
@@ -25,11 +24,13 @@ module.exports = {
               await schema.findOneAndUpdate({ Guild: message.guild.id }, data);
             }
           });
-          message.channel.send(`The prefix has been reset to **${prefix}**`);
+          message.channel.send({
+            content: `The prefix has been reset to **${prefix}**`,
+          });
         }
         if (emoji === "❌") {
           msg.delete();
-          message.channel.send("Cancelled.");
+          message.channel.send({ content: "Cancelled." });
         }
       });
   },

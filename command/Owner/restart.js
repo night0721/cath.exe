@@ -4,10 +4,11 @@ module.exports = {
   description: "Restart the bot",
   Owner: true,
   run: async (client, interaction, args) => {
+    await interaction.deleteReply();
     const msg = await interaction.channel.send("Restarting...");
     await client.destroy();
     await client.login(process.env.TOKEN);
     await msg.delete();
-    await interaction.followUp("Restarted");
+    await interaction.channel.send("Restarted");
   },
 };

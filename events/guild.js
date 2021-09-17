@@ -1,46 +1,63 @@
 const client = require("../bot");
 const { MessageEmbed } = require("discord.js");
-const { Welcome } = require("../config.json");
-client.on("guildMemberAdd", async member => {
-  const channel = member.guild.channels.cache.find(
-    channel => channel.id === Welcome
-  );
-  if (!channel) return;
-  const embed = new MessageEmbed()
-    .setTitle(
-      `<:YouTube:841186450497339412> ${member},welcome to Night\'s official Discord server! <:YouTube:841186450497339412>`
-    )
-    .setThumbnail(member.guild.iconURL({ dynamic: true }))
-    .addField(
-      "Read the rules at <#799074874513555496> channel, and enjoy your stay~",
-      `We now have ${member.guild.memberCount} members!`
-    )
-    .setFooter(
-      `${member.user.tag} joined the server!`,
-      member.user.displayAvatarURL({ dynamic: true })
-    )
-    .setColor(client.color)
-    .setTimestamp();
-
-  channel.send(embed);
+const db = require("../models/guilds");
+const config = require("../config.json");
+client.on("guildCreate", guild => {
+  client.channels.cache.get(client.ServerLog).send({
+    embeds: [
+      new MessageEmbed()
+        .setTitle("New Server")
+        .addField(
+          "Server Info",
+          `**>Server Name**: \n${guild.name}
+          **>Server ID**: \n${guild.id}
+          **>Server Member Count**: \n${guild.memberCount}`
+        )
+        .setFooter(
+          `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+          client.user.displayAvatarURL()
+        )
+        .setTimestamp()
+        .setThumbnail(guild.iconURL({ dynamic: true }))
+        .setColor("GREEN"),
+    ],
+  });
+  const newdb = new db({
+    Guild: guild.id,
+    Prefix: config.prefix,
+  });
+  newdb.save();
 });
-client.on("guildMemberRemove", async member => {
-  const channel = member.guild.channels.cache.find(
-    channel => channel.id === Welcome
-  );
-  if (!channel) return;
-  const embed = new MessageEmbed()
-    .setTitle(
-      `<:YouTube:841186450497339412> ${member} can\'t handle being cool! <:YouTube:841186450497339412>`
-    )
-    .setThumbnail(member.guild.iconURL({ dynamic: true }))
-    .setDescription(`We now only have ${member.guild.memberCount} members`)
-    .setFooter(
-      `${member.user.tag} leaved the server!`,
-      member.user.displayAvatarURL({ dynamic: true })
-    )
-    .setColor(client.color)
-    .setTimestamp();
 
-  channel.send(embed);
+client.on("guildDelete", async guild => {
+  client.data.DelGuild(guild.id);
+  client.channels.cache.get(client.ServerLog).send({
+    embeds: [
+      new MessageEmbed()
+        .setTitle("Deleted Server")
+        .addField(
+          "Server Info",
+          `**>Server Name**: \n${guild.name}
+          **>Server ID**: \n${guild.id}
+          **>Server Member Count**: \n${guild.memberCount}`
+        )
+        .setFooter(
+          `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+          client.user.displayAvatarURL()
+        )
+        .setTimestamp()
+        .setThumbnail(guild.iconURL({ dynamic: true }))
+        .setColor("RED"),
+    ],
+  });
 });
+client.prefix = async function (message) {
+  let custom;
+  if (!message.guild) return;
+  const data = await db
+    .findOne({ Guild: message.guild.id })
+    .catch(err => console.log(err));
+  if (data) custom = data.Prefix;
+  else custom = client.configprefix;
+  return custom;
+};

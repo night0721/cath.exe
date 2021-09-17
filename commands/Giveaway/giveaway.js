@@ -1,12 +1,10 @@
-const ms = require("ms");
-const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "giveaway",
   aliases: ["gstart"],
   description: "Start a giveaway",
   usage: "(Channel) (Time) (Winners(Number)) (Prize)",
   UserPerm: "MANAGE_MESSAGES",
-  run: async (client, message, args) => {
+  run: async (client, message, args, utils) => {
     const channel = message.mentions.channels.first();
     if (!channel) return client.err(message, "Giveaway", "giveaway", 28);
     const duration = args[1];
@@ -17,7 +15,7 @@ module.exports = {
     const prize = args.slice(3).join(" ");
     if (!prize) return client.err(message, "Giveaway", "giveaway", 32);
     client.giveaways.start(channel, {
-      time: ms(duration),
+      time: utils.ms(duration),
       prize: prize,
       winnerCount: winners,
       hostedBy: message.author,

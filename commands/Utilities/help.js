@@ -1,6 +1,5 @@
-const { MessageEmbed } = require("discord.js");
+const Discord = require("discord.js");
 const { readdirSync } = require("fs");
-const ms = require("ms");
 
 module.exports = {
   name: "help",
@@ -15,29 +14,39 @@ module.exports = {
       Config: "<:staff:840231971526803467>",
       Economy: client.currency,
       Fun: "<a:lollll:804325253265621012>",
-      Moderation: ":tools:",
-      Utilities: ":gear:",
+      Moderation: "🔨",
+      Utilities: "⚙",
       Music: "<a:music:840231980692144130>",
       Giveaway: "<a:DankCat:798963811902160896>",
+      Information: "ℹ",
     };
     if (!args[0]) {
-      let categories = [];
-      readdirSync("./commands/").forEach(dir => {
-        const category = ["Owner"];
-        if (category.includes(dir)) return;
-        const edited = `${emoji[dir]} ${dir}`;
-        let data = new Object();
-        data = {
-          name: edited,
-          value: `\`${p}help ${dir.toLowerCase()}\``,
-          inline: true,
+      const directories = [
+        ...new Set(client.commands.map(cmd => cmd.directory)),
+      ];
+      const categories = directories.map(dir => {
+        if (dir == "Owner") return;
+        const getCmds = client.commands
+          .filter(c => c.directory == dir)
+          .map(cmd => {
+            return {
+              name: cmd.name || "No command name",
+            };
+          });
+        return {
+          directory: dir,
+          commands: getCmds,
         };
-        categories.push(data);
       });
-      const embed = new MessageEmbed()
+      const embed = new Discord.MessageEmbed()
         .setTitle(`**${client.user.username} commands**`)
-        .addFields(categories)
-
+        .setDescription(`Please choose a category in the dropdown menu`)
+        .setColor(client.color)
+        .setTimestamp()
+        .setAuthor(
+          `Requested by ${message.author.tag}`,
+          message.author.displayAvatarURL({ dynamic: true })
+        )
         .addField(
           "**Invite Link**",
           `**Invite me to your server by clicking [here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)**`
@@ -54,144 +63,61 @@ module.exports = {
         .setFooter(
           `Requested by ${message.author.tag}`,
           message.author.displayAvatarURL({ dynamic: true })
-        )
-        .setTimestamp()
-        .setColor(client.color);
-      return message.channel.send(embed);
-    } else if (args[0] === "moderation") {
-      const commandList = [];
-      readdirSync(`./commands/Moderation`).forEach(file => {
-        const pull = require(`../../commands/Moderation/${file}`);
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
+        );
+      const components = state => [
+        new Discord.MessageActionRow().addComponents(
+          new Discord.MessageSelectMenu()
+            .setCustomId("help-menu")
+            .setPlaceholder(`Please select a category`)
+            .setDisabled(state)
+            .addOptions(
+              categories.map(cmd => {
+                return {
+                  label: cmd.directory,
+                  value: cmd.directory,
+                  description: `Commands from ${cmd.directory} category`,
+                  emoji: emoji[cmd.directory] || null,
+                };
+              })
+            )
+        ),
+      ];
+
+      const msg = await message.channel.send({
+        embeds: [embed],
+        components: components(false),
       });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(":tools:**Moderation Commands**:tools:")
-      );
-    } else if (args[0] === "utilities") {
-      const commandList = [];
-      readdirSync(`./commands/Utilities`).forEach(file => {
-        const pull = require(`../../commands/Utilities/${file}`);
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
+      const filter = m => m.user.id === message.author.id;
+      const collector = message.channel.createMessageComponentCollector({
+        filter,
+        componentType: "SELECT_MENU",
+        time: 60000,
       });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(":gear:**Utiltiies Commands**:gear:")
-      );
-    } else if (args[0] === "codm") {
-      const commandList = [];
-      readdirSync(`./commands/CODM`).forEach(file => {
-        const command = readdirSync(`./commands/CODM`);
-        const pull = require(`../../commands/CODM/${file}`);
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
-      });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
+      collector.on("collect", async interaction => {
+        const [directory] = interaction.values;
+        const category = categories.find(u => u.directory === directory);
+        const newembed = new Discord.MessageEmbed()
           .setTitle(
-            "<a:AA99_codm_logo:840231960441257995>**CODM Commands**<a:AA99_codm_logo:840231960441257995>"
+            `${emoji[directory]}${directory} Commands${emoji[directory]}`
           )
-      );
-    } else if (args[0] === "config") {
-      const commandList = [];
-      readdirSync(`./commands/Config`).forEach(file => {
-        const pull = require(`../../commands/Config/${file}`);
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
-      });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
+          .setAuthor(
+            `Requested by ${message.author.tag}`,
+            message.author.displayAvatarURL({ dynamic: true })
+          )
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color)
-          .setTitle(
-            "<:staff:829718501224480788>**Config Commands**<:staff:829718501224480788>"
-          )
-      );
-    } else if (args[0] === "economy") {
-      const commandList = [];
-      readdirSync(`./commands/Economy`).forEach(file => {
-        const pull = require(`../../commands/Economy/${file}`);
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
+          .setFooter(`Please use /help (Command Name) for more details`)
+          .setDescription(
+            category.commands
+              .map(cmd => {
+                return [`\`${cmd.name}\``];
+              })
+              .join(", ")
+          );
+        interaction.reply({ embeds: [newembed] });
       });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(`${client.currency}**Economy Commands**${client.currency}`)
-      );
-    } else if (args[0] === "fun") {
-      const commandList = [];
-      readdirSync(`./commands/Fun`).forEach(file => {
-        const pull = require(`../../commands/Fun/${file}`);
-        if (pull.hidden) return;
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
-      });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(
-            "<a:lollll:804325253265621012>**Fun Commands**<a:lollll:804325253265621012>"
-          )
-      );
-    } else if (args[0] === "music") {
-      const commandList = [];
-      readdirSync(`./commands/Music`).forEach(file => {
-        const pull = require(`../../commands/Music/${file}`);
-        if (pull.hidden) return;
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
-      });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(
-            "<a:music:840231980692144130>**Music Commands**<a:music:840231980692144130>"
-          )
-      );
-    } else if (args[0] === "giveaway") {
-      const commandList = [];
-      readdirSync(`./commands/Giveaway`).forEach(file => {
-        const pull = require(`../../commands/Giveaway/${file}`);
-        if (pull.hidden) return;
-        const name = `\`${pull.name}\``;
-        commandList.push(name);
-      });
-      return message.reply(
-        new MessageEmbed()
-          .setDescription(commandList.map(data => `${data}`).join(", "))
-          .setTimestamp()
-          .setURL(client.web)
-          .setColor(client.color)
-          .setTitle(
-            "<a:DankCat:798963811902160896>**Giveaway Commands**<a:DankCat:798963811902160896>"
-          )
-      );
+      collector.on("end", () => msg.edit({ components: components(true) }));
     } else {
       const command =
         client.commands.get(args[0].toLowerCase()) ||
@@ -199,9 +125,9 @@ module.exports = {
           c => c.aliases && c.aliases.includes(args[0].toLowerCase())
         );
       if (!command) {
-        message.channel.send(
-          `There isn't any command or category named "${args[0]}"`
-        );
+        message.channel.send({
+          content: `There isn't any command named "${args[0]}"`,
+        });
       } else {
         if (command.UserPerm && Array.isArray(command.UserPerm)) {
           UserPermissions = command.UserPerm;
@@ -221,7 +147,7 @@ module.exports = {
             .map(y => y[0] + y.substring(1, y.length).toLowerCase())
             .join(" ")
         ).join(", ");
-        const embed = new MessageEmbed()
+        const embed = new Discord.MessageEmbed()
           .setTitle(`"${command.name}" command details`)
           .addField(
             "**Command**:",
@@ -242,7 +168,10 @@ module.exports = {
           embed.addField("**Description**:", command.description);
         }
         if (command.timeout) {
-          embed.addField("**Cooldown**:", ms(command.timeout, { long: true }));
+          embed.addField(
+            "**Cooldown**:",
+            utils.ms(command.timeout, { long: true })
+          );
         }
         if (command.UserPerm) {
           embed.addField("**Required User Permission**:", UserPerms);
@@ -258,7 +187,7 @@ module.exports = {
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color);
-        message.reply(embed);
+        message.reply({ embeds: [embed] });
       }
     }
   },

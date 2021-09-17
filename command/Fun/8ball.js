@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const axios = require("axios");
+const { random8ball } = require("cath");
 module.exports = {
   name: "8ball",
   usage: "(Question)",
@@ -15,9 +15,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const data = await axios
-      .get(`${process.env.api}/api/v1/fun/8ball`)
-      .then(res => res.data.answer);
+    const data = await random8ball();
     const embed = new MessageEmbed()
       .setAuthor(
         `🎱 ${interaction.member.user.tag} asks`,

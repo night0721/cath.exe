@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 module.exports = {
   name: "doublestruck",
   description: "Doublestruck your text",
@@ -15,7 +15,7 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     let text = args[0].split(" ").join("+");
-    let res = await fetch(
+    let res = await axios.get(
       "https://api.popcatdev.repl.co/doublestruck?text=" + text
     );
     let json = await res.json();

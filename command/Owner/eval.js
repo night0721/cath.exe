@@ -71,7 +71,8 @@ module.exports = {
       (evaled.length === 1 ? ["❌", "⏹️"] : reactions).some(
         e => e === reaction.emoji.name
       ) && user.id === interaction.user.id;
-    let collector = mainMessage.createReactionCollector(filter, {
+    let collector = mainMessage.createReactionCollector({
+      filter,
       time: 300000,
     });
     collector.on("collect", async (reaction, user) => {

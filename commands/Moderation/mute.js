@@ -1,5 +1,4 @@
-const { Client, Message, MessageEmbed } = require("discord.js");
-const ms = require("ms");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "mute",
   description: "Mute an user.",
@@ -7,7 +6,7 @@ module.exports = {
   UserPerm: "MANAGE_MESSAGES",
   BotPerm: "MANAGE_ROLES",
   category: "Moderation",
-  run: async (client, message, args) => {
+  run: async (client, message, args, utils) => {
     let Member = message.mentions.members.first();
     const time = args[1];
     if (!Member) return client.err(message, "Moderation", "mute", 1);
@@ -51,7 +50,7 @@ module.exports = {
         .setTimestamp();
       message.reply(embed);
     }
-    if (!ms(time)) {
+    if (!utils.ms(time)) {
       let reason = args.slice(1).join(" ") || "No reason provided";
       const role = message.guild.roles.cache.find(x => x.name === "Muted");
       if (!role) {
@@ -71,7 +70,7 @@ module.exports = {
               });
             });
         } catch (e) {
-          console.log(err);
+          console.log(e);
           return client.err(message, "Moderation", "mute", 999);
         }
       }
@@ -90,9 +89,6 @@ module.exports = {
         .setColor(client.color)
         .setTimestamp();
       message.reply(embed);
-      setTimeout(async () => {
-        await Member.roles.remove(role2);
-      }, ms(time));
     } else {
       let reason = args.slice(2).join(" ") || "No reason provided";
       const role = message.guild.roles.cache.find(x => x.name === "Muted");
@@ -135,7 +131,7 @@ module.exports = {
       message.reply(embed);
       setTimeout(async () => {
         await Member.roles.remove(role2);
-      }, ms(time));
+      }, utils.ms(time));
     }
   },
 };

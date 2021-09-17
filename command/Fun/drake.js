@@ -1,5 +1,5 @@
 const { MessageAttachment } = require("discord.js");
-const fetch = require("node-fetch");
+const axios = require("axios");
 module.exports = {
   name: "drake",
   description: "Drake meme",
@@ -20,7 +20,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const res = await fetch(
+    const res = await axios.get(
       `https://frenchnoodles.xyz/api/endpoints/drake/?text1=${args[0]}&text2=${args[1]}`,
       {}
     );

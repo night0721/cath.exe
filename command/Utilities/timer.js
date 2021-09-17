@@ -1,4 +1,3 @@
-const ms = require("ms");
 const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "timer",
@@ -16,14 +15,18 @@ module.exports = {
   ],
   run: async (client, interaction, args, utils) => {
     const time = args[0];
-    const mss = ms(args[0]);
+    const mss = utils.ms(args[0]);
     if (!time.endsWith("d")) {
       if (!time.endsWith("h")) {
         if (!time.endsWith("m")) {
-          if (!time.endsWith("s")) {
-            return await interaction.followUp({
-              content: "You can only use valid time (Example: 3s)",
-            });
+          if (!time.endsWith("w")) {
+            if (!time.endsWith("mo")) {
+              if (!time.endsWith("s")) {
+                return await interaction.followUp({
+                  content: "You can only use valid time (Example: 3s)",
+                });
+              }
+            }
           }
         }
       }
@@ -64,6 +67,6 @@ module.exports = {
       client.Timers.delete(
         interaction.user.id + " G " + interaction.guild.name
       );
-    }, ms(time));
+    }, utils.ms(time));
   },
 };

@@ -64,7 +64,11 @@ module.exports = {
           "**Premium**",
           "**You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team **"
         )
-        .setFooter(`Made by ${client.author}`);
+        .setURL(client.web)
+        .setFooter(
+          `Requested by ${interaction.user.tag}`,
+          interaction.user.displayAvatarURL({ dynamic: true })
+        );
       const components = state => [
         new Discord.MessageActionRow().addComponents(
           new Discord.MessageSelectMenu()

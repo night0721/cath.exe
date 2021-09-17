@@ -25,13 +25,7 @@ client.on("messageCreate", async message => {
         message.reply(
           `${message.mentions.members.first().user.tag}is in afk (${data1.AFK})`
         );
-      } else {
-        return;
       }
-    } else {
-      return;
     }
-  } else {
-    return;
   }
 });

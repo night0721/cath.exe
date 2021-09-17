@@ -2,13 +2,12 @@ const { MessageEmbed, version: djsversion } = require("discord.js");
 const version = require("../../package.json").version;
 const { utc } = require("moment");
 const os = require("os");
-const ms = require("ms");
 module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Information",
   type: "CHAT_INPUT",
-  run: async (client, interaction, args) => {
+  run: async (client, interaction, args, utils) => {
     const core = os.cpus()[0];
     const embed = new MessageEmbed()
       .setURL(client.web)
@@ -35,7 +34,7 @@ module.exports = {
       .addField(
         "System",
         `**❯ Platform:** ${process.platform}
-        **❯ Uptime:** ${ms(os.uptime() * 1000, { long: true })}
+        **❯ Uptime:** ${utils.timer(os.uptime() * 1000, { long: true })}
         **❯ CPU:**
         \u3000 Cores: ${os.cpus().length}
         \u3000 Model: ${core.model}

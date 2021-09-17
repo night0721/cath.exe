@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 module.exports = {
   name: "docs",
   usage: "(Query)",
@@ -14,11 +14,12 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     const query = args.join(" ");
-    fetch(
-      `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(
-        query
-      )}`
-    )
+    await axios
+      .get(
+        `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(
+          query
+        )}`
+      )
       .then(res => res.json())
       .then(async data => {
         await interaction.followUp({ embeds: [data] });

@@ -33,7 +33,7 @@ module.exports = {
                   )
                 )
                 .setTimestamp()
-                .setColor("client.color")
+                .setColor(client.color)
             );
           } else {
             return client.err(message, "Moderation", "warns", 10);
