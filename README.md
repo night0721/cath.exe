@@ -1,105 +1,75 @@
-# CATH.EXE [![botStatus](https://discord-md-badge.vercel.app/api/shield/bot/800966959268364288?style=flat-square&flat-Square&theme=clean-inverted&compact=true)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands)
+<h1 align="center"> CATH.EXE </h1> 
 
-<!-- header -->
-<img src = "https://media.discordapp.net/attachments/789642309632786434/867156734795055173/Cath-banner.png?width=1298&height=433">
+<p align="center">
+    <img src = "https://media.discordapp.net/attachments/842014909264953354/867806346593042483/Cath-temp-banner.png?width=1244&height=415">
+    <br>
+    <a href="https://trello.com/b/dIgR0QNm"><img alt='Trello' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
+    <a href="https://rebrand.ly/cathGithubInvite"><img alt='Support Server' src="https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white"></a>
+    <a href="https://trello.com/b/dIgR0QNm"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
+   <a href="https://thunder75.gitbook.io/cath-bot" target="_blank"><img src="https://img.shields.io/static/v1?label=Docs&message=available&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://ko-fi.com/I2I35XISJ"><img alt='Kofi' src="https://img.shields.io/static/v1?label=Support%20Us&message=KO.FI&color=ff5e5b&logo=kofi&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath.exe&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+<a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=Cath%202&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <a href="https://cath.statuspage.io/"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=API&message=Under%20Devlopment&color=FF5E5B&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
-**Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of [**Project Lighthouse**](https://discord.gg/ARNFCu9NxK) by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
-If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br><br>
+</p>
 
-<!-- Main Badges  -->
+<!-- description -->
 
-[![inviteme](https://badgen.net/badge/Invite%20Me/Online/5865F2?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands)
-[![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
-![Repo Stars](https://img.shields.io/github/stars/night0721/cath.exe?logo=github&color=5865F2&style=for-the-badge)
-[![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://open.vscode.dev/night0721/cath/)
-[![Trello](https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/b/dIgR0QNm)
+**Cath.exe** is a Multipurpose Discord Bot with many features that include but are not limited to Moderation, Music and Economy. The Call of Duty Stats are courtesy of **Project Lighthouse** by [**Path.exe**](https://www.youtube.com/channel/UC0hvUWYhyx_DOEBzLWEJxsw).<br><br>
+If you like this bot, feel free to <img src = "https://discord.com/assets/141d49436743034a59dec6bd5618675d.svg" width = "16"> **Star** and **fork** this repository.<br>
 
-<!-- Build with badges -->
+# Features
+<a href="https://thunder75.gitbook.io/cath-bot/core/commands" ><img src="https://img.shields.io/static/v1?label=List %20OF&message=Commands&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
-## Build with:
+🚨 **Moderation** - Classic commands like kick, ban, warn, role and many more.. <br>
+📈 **Economy** - A Robust economy system, inspired by **pepe bot.** <br>
+✨ **Fun Commands** - A massive collection of fun commands `(35+ commands)` <br>
+🎵 **Music** - Classic Music Commands that can play from various sources. <br>
+🛠 **Utility** - A wide range of useful commands `(Around 20)` <br>
+🕹 **Games** - Many fun games to spend your time ... 
+> To access the full list of commands, check out our [Documentation](https://thunder75.gitbook.io/cath-bot/core/commands).
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
-[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
-<img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122"><br>
+🎮 **Call of Duty** - Check Call od Duty Mobile Stats exclusivly using our bot
+> ⚠ Only avaliable on the Live instance for now.
 
-# <img src = "https://discord.com/assets/a6d05968d7706183143518d96c9f066e.svg" width = "26"> Deployment
+## More Info
 
-## Deploy Online
+[![Top language](https://img.shields.io/github/languages/top/night0721/cath.exe?labelColor=F7DF1E&color=555555&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe)
+[![CodeFactor](https://www.codefactor.io/repository/github/night0721/cath/badge?s=ffdc3c246a8b91a3d7064d128a1b81b9dbeca61f&style=for-the-badge)]((https://www.codefactor.io/repository/github/night0721/cath)) 
+<a href="https://thunder75.gitbook.io/cath-bot/deployment" target="_blank"><img src="https://img.shields.io/static/v1?label=Deployment&message=Guide&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
-[![Run On Replit](https://img.shields.io/static/v1?label=Run%20On&message=Repl.it&color=5865F2&logo=replit&logoColor=white&style=for-the-badge&scale=1.4)](https://repl.it/github/night0721/cath.exe)
-[![Deploy On Heroku](https://img.shields.io/static/v1?label=Deploy%20On&message=Heroku&color=5865F2&logo=heroku&logoColor=white&style=for-the-badge&scale=1.4)](https://heroku.com/deploy?template=https://github.com/night0721/cath.exe)
+A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cath-bot/deployment).
 
-## Deployment Locally
+<details>
+  <summary>Made With</summary>
+  
+   [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+   [![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
+   [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+   [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+   <img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122"><br>
+</details>
 
-### Prerequisite
+<details>
+  <summary>Issues & PRs</summary>
+  
+  [![Open issues](https://img.shields.io/github/issues-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
+  [![Closed issues](https://img.shields.io/github/issues-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
+  [![Open PRs](https://img.shields.io/github/issues-pr-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
+  [![Closed PRs](https://img.shields.io/github/issues-pr-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
+</details>
 
-Download all these programs on your local machine by clicking on the badge & following the standard installing procedure. You can use any IDE but we recommand VS Code.
-
-[![git](https://badgen.net/badge/icon/git?icon=git&label&color=5865F2&style=for-the-badge&scale=1.4)](https://git-scm.com/downloads)
-[![Open in Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-5865F2?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/Download)
-[![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
-
-### Step by Step Walkthrough
-
-### [![YouTube Tutorial](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/_D5xG7XoF88)
-
-1. Clone this repository
-
-```cmd
-git clone https://github.com/night0721/cath.exe
-```
-
-2. Rename the [`.env.example`<span>&#10138;</span>
-   ](https://github.com/night0721/cath.exe/blob/main/.env.example) file to `.env`<br>
-
-3. Create an application from Discord Developer's Portal then copy these things into the `.env` file.<br>
-   [![Open Discord Developer Portal](https://badgen.net/badge/icon/discord?icon=discord&label=Developer%20Portal&color=5865F2&style=for-the-badge)](https://discord.com/developers/applications) - **Bot Token**<br> - **Application ID** (Client ID)<br> - **Client Secret**<br>
-4. To view the logs, Create 5 Channels & 5 Webhooks in _your_ **Discord Server:** corresponding to these logs.
-
-   - **Server Log** (Log new Server Added/Premium Server)<br>
-   - **Error Log** (Log Unhandled Rejection Error)<br>
-   - **Ready Log** (Log when bot online)<br>
-   - **Command Log** (Log command usage)<br>
-   - **DM Log** (Log when someone send DM to Bot)<br>
-
-   _You can also just use one Channel & one Webhook for everything but it will be really inconvenient._
-
-   <img src = "https://media.discordapp.net/attachments/540218400413188116/867797464169709661/unknown.png" width="640"> <br>
-
-5. One by one paste the webhook url in a web browser & copy the **ID** & the **TOKEN** and paste it in the corresponding feilds in the `.env` file. <br>
-
-6. After this, you need to install all dependencies by using this command. This will takes a few minutes.
-
-   ```cmd
-   npm i
-   ```
-
-7. Now, to start the bot use this command in the terminal.
-   ```cmd
-   node .
-   ```
-
-# Additional Steps
-
-To enable the Economy Commands, you need to Setup a MongoDB Database. You can also watch a video guide [here](https://youtu.be/dQw4w9WgXcQ).
-
-1. Create a Free [MongoDB Account](https://www.mongodb.com/cloud/atlas/register)
-2. Click on the `Create a New Database`.
-3. Selct the `CREATE` option in the **Shared** Teir.
-4. Select a `Cloud Provider & Region` that is geographically closer to the average user that will use the bot. _This will effect the responce time of the bot._
-5. Then you can Name your Cluster, after that click on `Create Cluster`. _This will take a couple of minutes._
-6. Then click on `Database Access` from the sidebar & then click on `Add New Database User`.
-7. Under the `Password - Authentication Method`. Enter a username & password. then click on `Add User`.
-8. After that, click on `Network Access` from the sidebar & then click on `Add IP Address`. & click on the `Add Current IP Address` Then click on `Confirm`.
-9. now, Click on `Database` from the sidebar & then click on `Connect`.
-10. Then on click on `Connect your Application`. & Copy the link.
-11. The paste that link in the `MONGODB` feild in the `.env` file.
-12. Now you need to modify that link,
-    - Replace `<password>` with the password for the user that you created in **Step 7**.
-    - Replace `myFirstDatabase` with the name of the Database that you named in **Step 5**.
-13. That's it!
+<details>
+  <summary>Github Stats</summary>
+  
+  ![Lines of code](https://img.shields.io/tokei/lines/github/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
+  ![GitHub Discussions](https://img.shields.io/github/discussions/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
+  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
+  [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe) 
+  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe) -->
+  
+</details>
 
 # Support, Feature Request & Bug Reports
 
@@ -113,3 +83,12 @@ To Request new features contact us on Discord using the support server.
 You can report bugs or issues by opening a issue in this repository. Alternatevely you can also contact us on Discord using the support server.
 
 [![Support Server](https://img.shields.io/discord/718762019586572341?label=Support%20Server&logo=Discord&colorB=5865F2&style=for-the-badge&logoColor=white) ](https://discord.gg/SR7TeNJG67)
+
+<h1 align="center"> Contributors </h1> 
+
+Contributions are always welcomed, but make sure to read [Contributing.md](/CONTRIBUTING.md) first.
+
+![Contributors](https://badges.pufler.dev/contributors/night0721/cath.exe?bots=false)
+
+
+<!-- <img src="https://socialify.git.ci/night0721/cath.exe/image?description=1&descriptionEditable=A%20Discord.js%20v13%20Template%20based%20on%20cath.exe&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark"> -->
