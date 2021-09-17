@@ -38,8 +38,8 @@
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "jshint": "^2.13.0",
-    "node": "^16.6.1",
-    "prettier": "^2.3.2"
+    "node": "^16.9.1",
+    "prettier": "^2.4.1"
   },
   "dependencies": {
     "axios": "^0.21.4",
