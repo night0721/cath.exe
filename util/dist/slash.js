@@ -189,6 +189,12 @@ module.exports = async (interaction, dir, file, err) => {
     case 506:
       err = "This server is already premium";
       break;
+    case 507:
+      err = "This server isn't premium yet";
+      break;
+    case 508:
+      err = "You didn't make the server premium";
+      break;
     case 999:
       err = "An unexpected error occured. Please try again.";
       break;

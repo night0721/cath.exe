@@ -1,4 +1,4 @@
-const client = require("../bot");
+const client = require("../../bot");
 const Schema = require("../models/reaction");
 
 client.on("messageReactionAdd", async (reaction, user) => {

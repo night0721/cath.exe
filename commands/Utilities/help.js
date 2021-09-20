@@ -1,6 +1,4 @@
 const Discord = require("discord.js");
-const { readdirSync } = require("fs");
-
 module.exports = {
   name: "help",
   aliases: ["h"],

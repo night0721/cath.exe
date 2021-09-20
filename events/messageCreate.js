@@ -1,5 +1,5 @@
 const client = require("../bot");
-const codmclient = require("../client/codmclient");
+const codmclient = require("../client/CODMClient");
 const leven = require("leven");
 const { MessageEmbed } = require("discord.js");
 const cooldown = require("../models/cooldown");
@@ -107,9 +107,6 @@ client.on("messageCreate", async message => {
       return message.reply({
         content: `You can't use this command. I need to have ${command.BotPerm} permission to use this command.`,
       });
-    client.channels.cache.get(client.CMDLog).send({
-      content: `\`${message.author.tag}(${message.author.id})\`\n has used \n**${command.name}**\n command in \n\`${message.guild.name}(${message.guild.id})\``,
-    });
     if (data.Guild) {
       if (data.Guild.Category) {
         if (data.Guild.Category.includes(command.directory)) return;

@@ -19,6 +19,22 @@ module.exports = mongoose.model(
     Log: { type: String, default: "null" },
     LogWebhookID: { type: String, default: "null" },
     LogWebhookToken: { type: String, default: "null" },
+    Starboard: {
+      type: String,
+      default: "null",
+    },
+    StarCount: {
+      type: Number,
+      default: 0,
+    },
+    Muterole: {
+      type: String,
+      default: "null",
+    },
+    Chatbot: {
+      type: String,
+      default: "null",
+    },
     Premium: {
       type: Boolean,
       default: false,

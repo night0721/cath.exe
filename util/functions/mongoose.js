@@ -33,6 +33,10 @@ module.exports = {
         Welcome,
         Goodbye,
         Log,
+        Starboard,
+        StarCount,
+        Muterole,
+        Chatbot,
         Premium,
         Category,
         Commands,
@@ -45,6 +49,10 @@ module.exports = {
         Welcome,
         Goodbye,
         Log,
+        Starboard,
+        StarCount,
+        Muterole,
+        Chatbot,
         Premium,
         Category,
         Commands,
@@ -56,6 +64,10 @@ module.exports = {
       const Welcome = guild.Welcome;
       const Goodbye = guild.Goodbye;
       const Log = guild.Log;
+      const Starboard = guild.Starboard;
+      const StarCount = guild.StarCount;
+      const Muterole = guild.Muterole;
+      const Chatbot = guild.Chatbot;
       const Premium = guild.Premium;
       const Category = guild.Category;
       const Commands = guild.Commands;
@@ -66,6 +78,10 @@ module.exports = {
         Welcome,
         Goodbye,
         Log,
+        Starboard,
+        StarCount,
+        Muterole,
+        Chatbot,
         Premium,
         Category,
         Commands,
@@ -204,12 +220,12 @@ module.exports = {
    */
   async BK(ID, Toggle, Reason) {
     if (!ID) throw new Error("User ID?");
-    if (!Toggle) throw new Error("Blacklist Toggle?");
+    //if (!Toggle) throw new Error("Blacklist Toggle?");
     if (!Reason) throw new Error("Blacklist Feason?");
     const user = await u.findOne({ User: ID });
     if (!user) {
       const sus = new u({ User: ID });
-      if (Toggle == "true") {
+      if (Toggle == true) {
         user.Blacklist = true;
         user.Blacklist_Reason = Reason;
       } else {
@@ -220,7 +236,7 @@ module.exports = {
       cachegoose.clearCache();
       return { Reason };
     } else {
-      if (Toggle == "true") {
+      if (Toggle == true) {
         user.Blacklist = true;
         user.Blacklist_Reason = Reason;
       } else {
@@ -365,6 +381,63 @@ module.exports = {
     guild.Log = Channel;
     guild.LogWebhookID = WID;
     guild.LogWebhookToken = WToken;
+    await guild.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return { Channel };
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Role = Role ID
+   */ async setMuterole(ID, Role) {
+    if (!ID) throw new Error("Guild ID?");
+    if (!Role) throw new Error("Role?");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
+      newU.Muterole = Role;
+      await newU.save().catch(error => console.log(error));
+      return { Role };
+    }
+    guild.Muterole = Role;
+    await guild.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return { Role };
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Channel = Channel ID
+   * @param {Number} Count - StarCount
+   */ async setStarboard(ID, Channel, Count) {
+    if (!ID) throw new Error("Guild ID?");
+    if (!Channel) throw new Error("Channel?");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
+      newU.Starboard = Channel;
+      newU.StarCount = Count;
+      await newU.save().catch(error => console.log(error));
+      return { Channel };
+    }
+    guild.Starboard = Channel;
+    guild.StarCount = Count;
+    await guild.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return { Channel };
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Channel = Channel ID
+   */ async setChatbot(ID, Channel) {
+    if (!ID) throw new Error("Guild ID?");
+    if (!Channel) throw new Error("Channel?");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
+      newU.Chatbot = Channel;
+      await newU.save().catch(error => console.log(error));
+      return { Channel };
+    }
+    guild.Chatbot = Channel;
     await guild.save().catch(error => console.log(error));
     cachegoose.clearCache();
     return { Channel };

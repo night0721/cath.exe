@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 const moment = require("moment");
 module.exports = {
-  name: "snipe",
-  description: "Snipes a deleted message",
+  name: "editsnipe",
+  description: "Snipes a edited message",
   category: "Utilities",
   options: [
     {
@@ -30,7 +30,7 @@ module.exports = {
       .setFooter(`Made by ${client.author}`)
       .setTimestamp()
       .setURL(client.web);
-    const snipes = client.snipes.get(args[0]) || [];
+    const snipes = client.esnipes.get(args[0]) || [];
     if (interaction.guild.channels.cache.get(args[0]).type !== "GUILD_TEXT")
       interaction.followUp({ content: "Please provide a text channel" });
     else if (args[1]) {
@@ -48,14 +48,16 @@ module.exports = {
               m.author.discriminator
             } (Deleted ${moment(m.date).fromNow()})\n**ID:** ${
               m.author.id
-            }\n**Content:** ${m.content}\n${map ? map.join("\n") : ""}`;
+            }\n**Old Content:** ${m.oldContent}\n**New Content:** ${
+              m.newContent
+            }\n${map ? map.join("\n") : ""}`;
             i++;
           } else {
             description += `\n\n**Author:** None (Deleted ${moment(
               m.date
-            ).fromNow()})\n\n**Content:** ${m.content}\n${
-              map ? map.join("\n") : ""
-            }`;
+            ).fromNow()})\n\n**Old Content:** ${
+              m.oldContent
+            }\n**New Content:** ${m.newContent}\n${map ? map.join("\n") : ""}`;
             i++;
           }
         });
@@ -73,14 +75,16 @@ module.exports = {
             msg.author.discriminator
           } (Deleted ${moment(msg.date).fromNow()})\n**ID:** ${
             msg.author.id
-          }\n**Content:** ${msg.content}\n${map ? map.join("\n") : ""}`;
+          }\n**Old Content:** ${m.oldContent}\n**New Content:** ${
+            m.newContent
+          }\n${map ? map.join("\n") : ""}`;
           i++;
         } else {
           description += `\n\n**Author:** None (Deleted ${moment(
             msg.date
-          ).fromNow()})\n\n**Content:** ${msg.content}\n${
-            map ? map.join("\n") : ""
-          }`;
+          ).fromNow()})\n\n**Old Content:** ${m.oldContent}\n**New Content:** ${
+            m.newContent
+          }\n${map ? map.join("\n") : ""}`;
           i++;
         }
         embed.setDescription(description);
@@ -104,14 +108,16 @@ module.exports = {
               m.author.discriminator
             } (Deleted ${moment(m.date).fromNow()})\n**ID:** ${
               m.author.id
-            }\n**Content:** ${m.content}\n${map ? map.join("\n") : ""}`;
+            }\n**Old Content:** ${m.oldContent}\n**New Content:** ${
+              m.newContent
+            }\n${map ? map.join("\n") : ""}`;
             i++;
           } else {
             description += `\n\n**Author:** None (Deleted ${moment(
               m.date
-            ).fromNow()})\n\n**Content:** ${m.content}\n${
-              map ? map.join("\n") : ""
-            }`;
+            ).fromNow()})\n\n**Old Content:** ${
+              m.oldContent
+            }\n**New Content:** ${m.newContent}\n${map ? map.join("\n") : ""}`;
             i++;
           }
         });

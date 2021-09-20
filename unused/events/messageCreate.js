@@ -1,5 +1,5 @@
 const client = require("../bot");
-const codmclient = require("../client/codmclient");
+const codmclient = require("../client/CODMClient");
 const leven = require("leven");
 const { MessageEmbed } = require("discord.js");
 const schema = require("../unused/models/custom-commands");

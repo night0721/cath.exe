@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports = {
   name: "slowmode",
-  UserPerm: "MANAGE_CHANNELS",
+  UserPerms: ["MANAGE_CHANNELS"],
   description: "Set slowmode at a specific channel",
   BotPerm: "MANAGE_CHANNELS",
   usage: "(Time)",

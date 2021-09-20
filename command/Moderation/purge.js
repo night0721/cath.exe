@@ -5,13 +5,13 @@ module.exports = {
   description: "Clear messages in a specific channel",
   options: [
     {
-      name: "channel",
+      name: 7,
       description: "Channel where the messages to be deleted",
       type: "CHANNEL",
       required: true,
     },
     {
-      name: "amount",
+      name: 4,
       description: "Amount of message in range of 1-100 to be deleted",
       type: "NUMBER",
       required: true,
@@ -30,7 +30,7 @@ module.exports = {
       }
       if (channel.type !== "GUILD_TEXT") {
         return interaction.followUp({
-          content: "Please provide a text channel instead of voice or category",
+          content: "Please provide a text channel",
         });
       }
       const limit = await interaction.channel.messages.fetch({

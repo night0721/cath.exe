@@ -58,6 +58,6 @@ client.prefix = async function (message) {
     .findOne({ Guild: message.guild.id })
     .catch(err => console.log(err));
   if (data) custom = data.Prefix;
-  else custom = client.configprefix;
+  else custom = client.config.prefix;
   return custom;
 };

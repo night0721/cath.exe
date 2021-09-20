@@ -129,12 +129,12 @@ module.exports = {
           content: `There isn't any command or category named "${args[0]}"`,
         });
       } else {
-        if (command.UserPerm && Array.isArray(command.UserPerm)) {
-          UserPermissions = command.UserPerm;
-        } else UserPermissions = [command.UserPerm ? command.UserPerm : ""];
-        if (command.BotPerm && Array.isArray(command.BotPerm)) {
-          BotPermissions = command.BotPerm;
-        } else BotPermissions = [command.BotPerm ? command.BotPerm : ""];
+        if (command.UserPerms && Array.isArray(command.UserPerms)) {
+          UserPermissions = command.UserPerms;
+        } else UserPermissions = [command.UserPerms ? command.UserPerms : ""];
+        if (command.BotPerms && Array.isArray(command.BotPerms)) {
+          BotPermissions = command.BotPerms;
+        } else BotPermissions = [command.BotPerms ? command.BotPerms : ""];
         const BotPerms = BotPermissions.map(x =>
           x
             .split("_")
@@ -164,7 +164,7 @@ module.exports = {
         if (command.timeout) {
           embed.addField("**Cooldown**:", utils.timer(command.timeout));
         }
-        if (command.UserPerm) {
+        if (command.UserPerms) {
           embed.addField("**Required User Permission**:", UserPerms);
         }
         if (command.BotPerm) {

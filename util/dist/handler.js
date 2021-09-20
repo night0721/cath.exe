@@ -75,8 +75,9 @@ module.exports = async client => {
         return [...accumulator, { id: v.id, permissions }];
       }, []);
       client.guilds.cache.forEach(g =>
-        g.commands.permissions.set({ fullPermissions })
+        g.commands.permissions.set({ fullPermissions }).catch(e => null)
       );
     });
+    //.catch(e => null);
   });
 };

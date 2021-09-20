@@ -1,69 +1,28 @@
 const client = require("../bot");
-client.on("messageUpdate", (message, newMessage) => {
-  function getAllTextFromEmbed(embed) {
-    let text = "";
-    function getTime(now) {
-      const date = new Date(now);
-      const escape = value => `0${value}`.slice(-2);
-      const ampm = date.getHours() >= 12 ? "PM" : "AM";
-
-      return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()} at ${escape(
-        date.getHours()
-      )}:${escape(date.getMinutes())}:${escape(date.getSeconds())}${ampm}`;
+client.on("messageUpdate", async (message, newMessage) => {
+  let all = [];
+  if (message.attachments) {
+    const files = message.attachments.map(e => e);
+    for (var i = 0; i < files.length; i++) {
+      const file = files[i];
+      all.push(file.url);
     }
-
-    if (embed.title)
-      text += `**${embed.title
-        .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
-        .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}**`;
-    if (embed.description)
-      text += `\n${embed.description
-        .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
-        .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}`;
-    if (embed.fields) {
-      text += "\n";
-      for (const field of embed.fields)
-        text += `\n**${field.name
-          .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
-          .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}**\n ${field.value
-          .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
-          .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}`;
-    }
-    if (embed.footer) {
-      let field = `\n\n**${embed.footer.text
-        .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
-        .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}`;
-
-      if (embed.timestamp) {
-        const time =
-          embed.timestamp instanceof Date
-            ? getTime(embed.timestamp.getTime())
-            : embed.timestamp;
-        field += `at ${time}`;
-      }
-
-      text += `${field}**`;
-    }
-
-    return text;
   }
-  let snipes = client.esnipes.get(message.channel.id) || [];
-  snipes.unshift({
-    content:
-      message.embeds.length > 0
-        ? getAllTextFromEmbed(message.embeds[0])
-        : message.content,
-    newContent:
-      newMessage.embeds.length > 0
-        ? getAllTextFromEmbed(newMessage.embeds[0])
-        : newMessage.content,
-    author: message.author ? message.author.id : "No author found??",
-    image: message.attachments.first()
-      ? message.attachments.first().proxyURL
-      : message.embeds.length > 0 && message.embeds[0].image
-      ? message.embeds[0].image.url
-      : "",
-    date: Date.now(),
+  if (message.embeds) {
+    for (var i = 0; i < message.embeds.length; i++) {
+      const files = message.embeds.map(e => e.image?.url);
+      all.push(files);
+    }
+  }
+  const esnipes = client.esnipes.get(message.channel.id) || [];
+  esnipes.push({
+    channel: message.channel,
+    oldContent: message.content ? message.content : "None",
+    newContent: newMessage.content ? newMessage.content : "None",
+    author: message.author ? message.author : "No Author",
+    attachment: message.attachments ? all : null,
+    date: new Date(),
   });
-  client.esnipes.set(message.channel.id, snipes);
+  esnipes.splice(10);
+  client.esnipes.set(message.channel.id, esnipes);
 });

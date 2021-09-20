@@ -35,7 +35,7 @@ module.exports = class Util {
           ((currPage % contents.length) + contents.length) % contents.length;
         const embed = msg.embeds[0]
           .setDescription(contents[currPage])
-          .setFooter(`Page ${currPage + 1} of ${contents.length}.`);
+          .setFooter(`Page ${currPage + 1} of ${contents.length}`);
         msg.edit({ embeds: [embed] });
         this.pagination(msg, author, contents, false, currPage);
       })
