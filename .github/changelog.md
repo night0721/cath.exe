@@ -1,5 +1,15 @@
 <h1 align="center">Changelog</h1>
 
+# Release v3.2.0
+In this version we made the starboard to be globalized, means that you can configure the settings for the starboard per server.
+## Added
+drop
+announce
+emojiadd
+
+snipe&editsnipe fix
+To stay up-to-date with our progress, check out our discord server & the Trello page.
+
 # Release v3.0.0
 In this version we implement Discord.js v13, which introduces slash commands.
 we have not implemented all of the commands yet, the moderation commands especially.
