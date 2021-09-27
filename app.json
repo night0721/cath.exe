@@ -1,6 +1,6 @@
 {
   "name": "cath.exe - CODM Bot",
-  "description": "Host cath.exe through Heroku",
+  "description": "Host cath.exe through Herokunuts",
   "keywords": ["cat", "cath", "codm", "discord", "discord bot"],
   "repository": "https://github.com/night0721/cath.exe",
   "env": {
