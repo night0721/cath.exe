@@ -42,7 +42,7 @@
     "prettier": "^2.4.1"
   },
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^0.22.0",
     "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "cath": "^1.2.2",
