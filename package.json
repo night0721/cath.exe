@@ -38,7 +38,7 @@
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "jshint": "^2.13.0",
-    "node": "^16.9.1",
+    "node": "^17.0.1",
     "prettier": "^2.4.1"
   },
   "dependencies": {
