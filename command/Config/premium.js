@@ -12,21 +12,23 @@ module.exports = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
+  run: async (client, interaction) => {
     try {
-      console.log(interaction.options.getBoolean("choice"));
       const user = await client.data.getUser(interaction.user.id);
       const guild = await client.data.getGuild(interaction.guild.id);
       if (interaction.options.getBoolean("choice") == true) {
         if (guild.Premium == true) {
-          return client.serr(interaction, "Config", "premium", 506);
+          interaction.followUp({ content: "This server is already premium" });
         }
         if (
           (user.Tier == 1 && user.PremiumServers.length >= 5) ||
           (user.Tier == 2 && user.PremiumServers.length >= 2) ||
           (user.Tier == 3 && user.PremiumServers.length >= 0)
         ) {
-          return client.serr(interaction, "Config", "premium", 505);
+          interaction.followUp({
+            content:
+              "You have already reached the maximum amount of premium servers",
+          });
         } else {
           await client.data.setPremium(interaction.guild.id, "true");
           await client.data.pushGuild(
@@ -50,7 +52,7 @@ module.exports = {
                 ),
             ],
           });
-          client.channels.cache.get(client.ServerLog).send({
+          client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
               new MessageEmbed()
                 .setTitle("New Premium Server")
@@ -68,11 +70,14 @@ module.exports = {
         }
       } else {
         if (guild.Premium == false) {
-          return client.serr(interaction, "Config", "premium", 507);
+          interaction.followUp({ content: "This server isn't premium yet" });
         }
-        if (!user.PremiumServers.includes(interaction.guild.id))
-          return client.serr(interaction, "Config", "premium", 509);
-        else {
+        if (!user.PremiumServers.includes(interaction.guild.id)) {
+          interaction.followUp({
+            content:
+              "You can't remove due to you aren't the person who made the server premium",
+          });
+        } else {
           await client.data.setPremium(interaction.guild.id, "false");
           await client.data.pushGuild(
             interaction.user.id,
@@ -94,7 +99,7 @@ module.exports = {
                 ),
             ],
           });
-          client.channels.cache.get(client.ServerLog).send({
+          client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
               new MessageEmbed()
                 .setTitle("Premium Server Removed")
@@ -113,7 +118,7 @@ module.exports = {
       }
     } catch (e) {
       console.log(e);
-      return client.serr(interaction, "Config", "premium", 999);
+      interaction.followUp({ content: `**Error**: ${e.message}` });
     }
   },
 };

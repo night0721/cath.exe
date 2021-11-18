@@ -1,15 +1,14 @@
-const client = require("../bot");
+const client = require("../");
 client.on("messageDelete", async message => {
-  let all = [];
+  const all = [];
   if (message.attachments) {
     const files = message.attachments.map(e => e);
-    for (var i = 0; i < files.length; i++) {
-      const file = files[i];
-      all.push(file.url);
+    for (let i = 0; i < files.length; i++) {
+      all.push(files[i].url);
     }
   }
   if (message.embeds) {
-    for (var i = 0; i < message.embeds.length; i++) {
+    for (let i = 0; i < message.embeds.length; i++) {
       const files = message.embeds.map(e => e.image?.url);
       all.push(files);
     }

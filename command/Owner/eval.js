@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 module.exports = {
   name: "eval",
   category: "Owner",
-  aliases: ["e"],
   usage: "(Code)",
   Owner: true,
   description: "Eval something",
@@ -15,12 +14,12 @@ module.exports = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
-    let code = args[0];
+  run: async (client, interaction, args, utils) => {
+    const code = args[0];
     function CheckFilter(object) {
       if (typeof object === "string") {
         object = object.replace(
-          new RegExp(client.token || process.env.TOKEN, "gi"),
+          new RegExp(`${client.token || process.env.TOKEN}`, "gi"),
           "Cannot eval Token"
         );
       } else if (typeof object === "object") {
@@ -29,14 +28,14 @@ module.exports = {
             object[i] = CheckFilter(object[i]);
           }
         } else {
-          for (let key in object) {
+          for (const key in object) {
             object[key] = CheckFilter(object[key]);
           }
         }
       }
       return object;
     }
-    let oldSend = Discord.TextChannel.prototype.send;
+    const oldSend = Discord.TextChannel.prototype.send;
     Discord.TextChannel.prototype.send = async function send(content, options) {
       return oldSend.bind(this)(CheckFilter(content), CheckFilter(options));
     };
@@ -48,7 +47,7 @@ module.exports = {
       evaled = err;
     }
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
-    evaled = new (require("string-toolkit"))().toChunks(evaled, 750);
+    evaled = utils.chunk(evaled, 750);
     let reactions = ["❌", "⏪", "◀️", "⏹️", "▶️", "⏩"],
       page = 0,
       evaledEmbed = new Discord.MessageEmbed()
@@ -60,27 +59,26 @@ module.exports = {
           interaction.user.displayAvatarURL({ dynamic: true })
         )
         .addField(`Type of`, `\`\`\`js\n${typeof evaled[0]}\n\`\`\``);
-    let mainMessage = await interaction.channel.send({ embeds: [evaledEmbed] });
+    const mainMessage = await interaction.channel.send({ embeds: [evaledEmbed] });
     Discord.TextChannel.prototype.send = oldSend;
     await Promise.all(
       (evaled.length === 1 ? ["❌", "⏹️"] : reactions).map(r =>
         mainMessage.react(r)
       )
     );
-    let filter = (reaction, user) =>
+    const filter = (reaction, user) =>
       (evaled.length === 1 ? ["❌", "⏹️"] : reactions).some(
         e => e === reaction.emoji.name
       ) && user.id === interaction.user.id;
-    let collector = mainMessage.createReactionCollector({
+    const collector = mainMessage.createReactionCollector({
       filter,
-      time: 300000,
+      time: 999999,
     });
-    collector.on("collect", async (reaction, user) => {
+    collector.on("collect", async reaction => {
       switch (reaction.emoji.name) {
         case "❌":
           await collector.stop();
           return mainMessage.delete();
-          break;
         case "⏪":
           if (evaled.length === 1 || page === 0) return;
           page = 0;
@@ -95,11 +93,10 @@ module.exports = {
           break;
         case "⏹️":
           await collector.stop();
-          for (let reaction of mainMessage.reactions.cache.map(e => e)) {
+          for (const reaction of mainMessage.reactions.cache.map(e => e)) {
             await reaction.users.remove(client.user.id);
           }
           return;
-          break;
         case "▶️":
           if (evaled.length === 1) return;
           if (page === evaled.length - 1) {

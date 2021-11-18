@@ -13,8 +13,8 @@ module.exports = {
     },
   ],
   type: "CHAT_INPUT",
-  run: async (client, interaction, args) => {
-    let answers = [
+  run: async (client, interaction, args, utils) => {
+    const answers = [
       "@yousuck.noob",
       "@hesnoob.haha",
       "@thisguy.suck",
@@ -33,7 +33,7 @@ module.exports = {
       "@gmail.com",
       "@yahoo.com",
     ];
-    let passwords = [
+    const passwords = [
       "Disb****",
       "disc******",
       "pass**********",
@@ -50,7 +50,7 @@ module.exports = {
       "egghunt2***",
       "secr*****",
     ];
-    let ips = [
+    const ips = [
       "10.313.523.502.00.1",
       "25.537.753.462.29.2",
       "21.175.866.974.07.08",
@@ -69,69 +69,69 @@ module.exports = {
     interaction.channel
       .send(`Hacking  ${taggedUser.user.username}...`)
       .then(async msg => {
-        client.function.sleep(100);
+        utils.sleep(100);
         msg.edit("Status: ■□□□□□□□□□□ 0%");
-        client.function.sleep(100);
+        utils.sleep(100);
         msg.edit("Status: ■■□□□□□□□□□ 7%: Hacking Email...");
-        client.function.sleep(600);
+        utils.sleep(600);
         msg.edit(
           `Status: ■■■□□□□□□□□ 8%:\n \`Email: ${taggedUser.user.username}@yousuck.noob\`\n \`Password: ${passwrd}\` `
         );
-        client.function.sleep(600);
+        utils.sleep(600);
         msg.edit("Status: ■■□□□□□□□□□ 9%: Logging in to the Email...");
-        client.function.sleep(2000);
+        utils.sleep(2000);
         msg.edit("Status: ■■■□□□□□□□□ 12%: Turning off the antivirus");
-        client.function.sleep(1000);
+        utils.sleep(1000);
         msg.edit("Status: ■■■■□□□□□□ 14%: Downloading SYNAPSE X");
-        client.function.sleep(100);
+        utils.sleep(100);
         msg.edit("Status: ■■■□□□□□□□□ 17%: Deleting Captcha...");
-        client.function.sleep(100);
+        utils.sleep(100);
         msg.edit("Status: ■■□□□□□□□□□ 20%: Deleting Paypal account...");
-        client.function.sleep(10);
+        utils.sleep(10);
         msg.edit("Status: ■■■□□□□□□□□ 21%");
-        client.function.sleep(12);
+        utils.sleep(12);
         msg.edit("Status: ■■■■□□□□□□□ 22%");
-        client.function.sleep(100);
+        utils.sleep(100);
         msg.edit("Status: ■■■■■□□□□□□ 24%: Paypal account deleted");
-        client.function.sleep(1000);
+        utils.sleep(1000);
         msg.edit("Status: ■■■■□□□□□□ 29%: Hacking is almost ready...");
-        client.function.sleep(80);
+        utils.sleep(80);
         msg.edit("Status: ■■■□□□□□□□□ 31%");
-        client.function.sleep(80);
+        utils.sleep(80);
         msg.edit("Status: ■■■■□□□□□□□ 36%");
-        client.function.sleep(40);
+        utils.sleep(40);
         msg.edit("Status: ■■■■■□□□□□□ 41%");
-        client.function.sleep(60);
+        utils.sleep(60);
         msg.edit("Status: ■■■■□□□□□□□ 47%");
-        client.function.sleep(50);
+        utils.sleep(50);
         msg.edit("Status: ■■■■■■□□□□□ 53%");
-        client.function.sleep(3000);
+        utils.sleep(3000);
         msg.edit(
           `Status: ■■■■■■■□□□□ 58%: Email password changed so ${taggedUser.user.username} can not login`
         );
-        client.function.sleep(500);
+        utils.sleep(500);
         msg.edit("Status: ■■■■■■□□□□□ 66%");
-        client.function.sleep(60);
+        utils.sleep(60);
         msg.edit("Status: ■■■■■□□□□□□ 74%");
-        client.function.sleep(20);
+        utils.sleep(20);
         msg.edit(`Status: ■■■■■□□□□□□ 79%: IP address found: ${ip}`);
-        client.function.sleep(83);
+        utils.sleep(83);
         msg.edit("Status: ■■■■■■□□□□ 80%");
-        client.function.sleep(50);
+        utils.sleep(50);
         msg.edit("Status: ■■■■■■■□□□ 85%");
-        client.function.sleep(14);
+        utils.sleep(14);
         msg.edit("Status: ■■■■■■■■■□□ 93%");
-        client.function.sleep(70);
+        utils.sleep(70);
         msg.edit("Status: ■■■■■■■■■■□ 97%");
-        client.function.sleep(90);
+        utils.sleep(90);
         msg.edit("Status: ■■■■■■■■■■■ 100%");
         const embed = new MessageEmbed()
           .setDescription(`${taggedUser} has been hacked!`)
           .addField("Email", `${taggedUser.user.username}${answer}`)
           .addField("Password", `${passwrd}`)
           .addField("IP address", `${ip}`)
-          .setFooter(`Made by ${client.author}`)
-          .setColor("02023a");
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setColor(client.color);
         await msg.edit({ embeds: [embed] });
       });
   },

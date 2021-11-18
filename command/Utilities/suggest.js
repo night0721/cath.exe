@@ -7,12 +7,12 @@ module.exports = {
   run: async (client, interaction, args) => {
     const questions = [
       "Describe the suggestion",
-      //"question 2"
+      // "question 2"
     ];
     let collectCounter = 0;
     let endCounter = 0;
     const filter = m => m.author.id === interaction.user.id;
-    await interaction.followUp("Check your dm.");
+    interaction.followUp("Check your dm.");
     const appStart = await interaction.user.send({
       embeds: [
         new MessageEmbed()
@@ -21,12 +21,12 @@ module.exports = {
             interaction.user.displayAvatarURL()
           )
           .setDescription(questions[collectCounter++])
-          .setFooter(client.user.username)
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
           .setTimestamp(),
       ],
     });
     const channel = appStart.channel;
-    const collector = channel.createMessageCollector(filter);
+    const collector = channel.createMessageCollector({ filter });
     collector.on("collect", () => {
       if (collectCounter < questions.length) {
         channel.send({
@@ -37,7 +37,10 @@ module.exports = {
                 interaction.user.displayAvatarURL()
               )
               .setDescription(questions[collectCounter++])
-              .setFooter(client.user.username)
+              .setFooter(
+                `Made by ${client.author}`,
+                client.user.displayAvatarURL()
+              )
               .setTimestamp(),
           ],
         });
@@ -50,17 +53,19 @@ module.exports = {
                 "You have sent a suggestion.\nPlease wait for us to review it"
               )
               .setColor("GREEN")
-              .setFooter(`Made by ${client.author}`)
+              .setFooter(
+                `Made by ${client.author}`,
+                client.user.displayAvatarURL()
+              )
               .setTimestamp(),
           ],
         });
         collector.stop("fulfilled");
       }
     });
-    const appsChannel = client.channels.cache.get(client.ReportLog);
+    const appsChannel = client.channels.cache.get(client.config.Config);
     collector.on("end", (collected, reason) => {
       if (reason === "fulfilled") {
-        let index = 1;
         const mapedResponses = collected
           .map(msg => {
             return `${questions[endCounter++]}**\n->** ${msg.content}`;
@@ -71,7 +76,7 @@ module.exports = {
           embeds: [
             new MessageEmbed()
               .setAuthor(
-                interaction.member.user.tag,
+                interaction.user.tag,
                 interaction.user.displayAvatarURL({ dynamic: true })
               )
               .setTitle("New Suggestion")

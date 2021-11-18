@@ -30,21 +30,20 @@ module.exports = {
         })}) | [jpg](${member.user.displayAvatarURL({
           format: "jpg",
           size: 2048,
-        })}) | [gif](${member.user.displayAvatarURL({
-          format: "gif",
-          size: 2048,
-          dynamic: true,
         })}) | [webp](${member.user.displayAvatarURL({
           format: "webp",
+          size: 2048,
+        })}) | [gif](${member.user.displayAvatarURL({
+          format: "gif",
           size: 2048,
         })})**`
       )
       .setImage(
         member.user.avatarURL({ size: 2048, dynamic: true, format: "png" })
       )
-      .setFooter(`Made by ${client.author}`)
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setURL(client.web)
       .setTimestamp();
-    await interaction.followUp({ embeds: [embed] });
+    interaction.followUp({ embeds: [embed] });
   },
 };

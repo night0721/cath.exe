@@ -67,7 +67,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    let choices = args[Math.floor(Math.random() * args.length)];
-    await interaction.followUp(`I will choose - \`${choices}\``);
+    const choices = args[Math.floor(Math.random() * args.length)];
+    interaction.followUp(`I will choose - \`${choices}\``);
   },
 };

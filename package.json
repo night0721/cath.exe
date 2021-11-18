@@ -1,67 +1,54 @@
 {
   "name": "cath.exe",
-  "version": "3.0.0",
-  "description": "cath.exe bot created by Night",
+  "version": "3.4.0",
+  "description": "NYX bot created by Team NYX",
   "engines": {
     "node": "*",
     "npm": "*"
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon .",
     "start": "node .",
+    "lint": "eslint .",
     "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
     "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
-    "node-update-then-clean": "npm run node-update && npm run node-clean-cache",
-    "canvas": "npm uninstall canvas && npm i canvas",
-    "all": "npm run node-update && npm run node-clean && npm uninstall canvas && npm i canvas && node ."
+    "all": "npm run node-update && npm run node-clean"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/night0721/cath.git"
+    "url": "git+https://github.com/night0721/cath.exe.git"
   },
   "keywords": [
-    "cat",
-    "cath",
+    "bot",
+    "nyx",
     "codm",
     "discord",
-    "discord bot"
+    "gunsmith"
   ],
   "author": "Ń1ght#0001",
-  "license": "Apache-2.0",
+  "license": "CC-BY-NC-SA-4.0",
   "bugs": {
-    "url": "https://github.com/night0721/cath/issues"
+    "url": "https://github.com/night0721/cath.exe/issues"
   },
-  "homepage": "https://github.com/night0721/cath#readme",
+  "homepage": "https://github.com/night0721/cath.exe#readme",
+  "funding": {
+    "type": "individual",
+    "url": "https://ko-fi.com/cathteam"
+  },
   "devDependencies": {
-    "eslint": "^7.30.0",
-    "eslint-config-google": "^0.14.0",
-    "jshint": "^2.13.0",
-    "node": "^16.9.1",
-    "prettier": "^2.4.1"
+    "node": "^17.1.0"
   },
   "dependencies": {
-    "axios": "^0.21.4",
-    "canvacord": "^5.2.3",
-    "canvas": "^2.8.0",
-    "cath": "^1.2.2",
-    "discord-giveaways": "^5.0.1",
-    "discord-xp": "^1.1.16",
-    "discord.js": "^13.1.0",
+    "axios": "^0.24.0",
+    "cath": "^1.4.6",
+    "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
-    "figlet": "^1.5.2",
     "goosecache": "^9.0.14",
-    "leven": "^3.1.0",
-    "lyrics-finder": "^21.7.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.9",
-    "quickchart-js": "^1.4.2",
-    "reconlx": "^2.4.3",
-    "soundcloud-downloader": "^1.0.0",
-    "string-toolkit": "^1.5.0",
-    "weky": "^3.1.8"
+    "mongoose": "^5.13.13",
+    "quickchart-js": "^1.4.2"
   }
 }

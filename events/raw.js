@@ -1,2 +1,2 @@
-const client = require("../bot");
-client.on("raw", d => client.manager.updateVoiceState(d));
+const client = require("..");
+client.on("raw", c => client.manager.updateVoiceState(c));

@@ -1,0 +1,48 @@
+{
+    "attachmentTypes": [
+        "Optics",
+        "Underbarrel",
+        "Rear Grip",
+        "Laser",
+        "Muzzle",
+        "Barrel",
+        "Stock",
+        "Ammunition",
+        "Perk",
+        "Trigger Action",
+        "Guard",
+        "Bolt",
+        "Bowstring",
+        "Limb",
+        "Smoothbore"
+    ],
+    "weaponTypes": [
+        "AR",
+        "Sniper",
+        "LMG",
+        "SMG",
+        "Shotgun",
+        "Marksman",
+        "Pistol"
+    ],
+    "firingModes": [
+        "Full Auto",
+        "Semi Auto",
+        "Burst",
+        "Break Action",
+        "Pump Action",
+        "Lever Action",
+        "Bolt Action"
+    ],
+    "penetrationLevels": [
+        "Zero",
+        "Low",
+        "Medium",
+        "High"
+    ],
+    "reloadTypes": [
+        "Magazine",
+        "Single",
+        "Belt"
+    ]
+}

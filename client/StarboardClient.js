@@ -1,6 +1,6 @@
 const { StarboardClient } = require("cath");
-const client = require("../bot");
+const client = require("..");
 module.exports = new StarboardClient({
   client,
-  color: "02023a",
+  color: client.color,
 });

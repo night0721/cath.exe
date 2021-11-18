@@ -1,10 +1,6 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 function rndint(max, min) {
   return Math.floor(Math.random() * (max - (min ? min : 0))) + (min ? min : 0);
-}
-function toBool() {
-  const num = Math.floor(Math.random() * 2);
-  return num === 1;
 }
 function timer(timestamp) {
   const timeLeft = timestamp;
@@ -17,25 +13,23 @@ function timer(timestamp) {
   let string = "";
   if (days) string = string + `${days} ${days == 1 ? "day " : "days "}`;
   if (hours) string = string + `${hours} ${hours == 1 ? "hour " : "hours "}`;
-  if (minutes)
+  if (minutes) {
     string = string + `${minutes} ${minutes == 1 ? "minute " : "minutes "}`;
-  if (seconds)
+  }
+  if (seconds) {
     string = string + `${seconds} ${seconds == 1 ? "second " : "seconds "}`;
+  }
   if (!string.length) string = `${mseconds.toFixed(1)} second`;
   return string;
 }
 function sleep(ms) {
-  let start = new Date().getTime();
-  let end = start;
-  while (end < start + ms) {
-    end = new Date().getTime();
-  }
+  new Promise(resolve => setTimeout(resolve, ms));
 }
 function toHHMMSS(str) {
-  var sec_num = parseInt(str, 10);
-  var hours = Math.floor(sec_num / 3600);
-  var minutes = Math.floor((sec_num - hours * 3600) / 60);
-  var seconds = sec_num - hours * 3600 - minutes * 60;
+  const sec_num = parseInt(str, 10);
+  let hours = Math.floor(sec_num / 3600);
+  let minutes = Math.floor((sec_num - hours * 3600) / 60);
+  let seconds = sec_num - hours * 3600 - minutes * 60;
   if (hours < 10) {
     hours = "0" + hours;
   }
@@ -111,9 +105,9 @@ function trimArray(arr = []) {
   return arr.join(" **|** ");
 }
 function checkDays(date) {
-  let now = new Date();
-  let diff = now.getTime() - date.getTime();
-  let days = Math.floor(diff / 86400000);
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+  const days = Math.floor(diff / 86400000);
   return days + (days == 1 ? " day" : " days") + " ago";
 }
 function format(str) {
@@ -155,12 +149,12 @@ function cooldown(dbtime, defaults, msg) {
   const slow = [
     "Keep it slow...",
     "Calm down",
-    "Stop it get some help",
+    "Stop it. Get some help.",
     "Too fast",
     "Slow down little bit",
   ];
   const slowed = slow[Math.floor(Math.random() * slow.length)];
-  return msg.channel.send({
+  return msg.followUp({
     embeds: [
       new MessageEmbed()
         .setColor("RANDOM")
@@ -176,13 +170,13 @@ function cooldown(dbtime, defaults, msg) {
     ],
   });
 }
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var mn = d * 30;
-var w = d * 7;
-var y = d * 365.25;
+const s = 1000;
+const m = s * 60;
+const h = m * 60;
+const d = h * 24;
+const mn = d * 30;
+const w = d * 7;
+const y = d * 365.25;
 
 /**
  * @param {String|Number} val
@@ -193,7 +187,7 @@ var y = d * 365.25;
 
 function ms(val, options) {
   options = options || {};
-  var type = typeof val;
+  const type = typeof val;
   if (type === "string" && val.length > 0) {
     return parse(val);
   } else if (type === "number" && isFinite(val)) {
@@ -215,15 +209,15 @@ function parse(str) {
   if (str.length > 100) {
     return;
   }
-  var match =
+  const match =
     /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|months?|mths|mn|years?|yrs?|y)?$/i.exec(
       str
     );
   if (!match) {
     return;
   }
-  var n = parseFloat(match[1]);
-  var type = (match[2] || "ms").toLowerCase();
+  const n = parseFloat(match[1]);
+  const type = (match[2] || "ms").toLowerCase();
   switch (type) {
     case "years":
     case "year":
@@ -282,7 +276,7 @@ function parse(str) {
  */
 
 function fmtShort(ms) {
-  var msAbs = Math.abs(ms);
+  const msAbs = Math.abs(ms);
   if (msAbs >= mn) {
     return Math.round(ms / mn) + "mo";
   }
@@ -310,7 +304,7 @@ function fmtShort(ms) {
  */
 
 function fmtLong(ms) {
-  var msAbs = Math.abs(ms);
+  const msAbs = Math.abs(ms);
   if (msAbs >= mn) {
     return plural(ms, msAbs, mn, "month");
   }
@@ -331,9 +325,9 @@ function fmtLong(ms) {
   }
   return ms + " ms";
 }
-function plural(ms, msAbs, n, name) {
-  var isPlural = msAbs >= n * 1.5;
-  return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
+function plural(ms, msAbs, nz, name) {
+  const isPlural = msAbs >= nz * 1.5;
+  return Math.round(ms / nz) + " " + name + (isPlural ? "s" : "");
 }
 async function confirmation(message, author, validReactions, time = 60000) {
   try {
@@ -363,22 +357,25 @@ function getAllTextFromEmbed(embed) {
     )}:${escape(date.getMinutes())}:${escape(date.getSeconds())}${ampm}`;
   }
 
-  if (embed.title)
+  if (embed.title) {
     text += `**${embed.title
       .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
       .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}**`;
-  if (embed.description)
+  }
+  if (embed.description) {
     text += `\n${embed.description
       .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
       .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}`;
+  }
   if (embed.fields) {
     text += "\n";
-    for (const field of embed.fields)
+    for (const field of embed.fields) {
       text += `\n**${field.name
         .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
         .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}**\n ${field.value
         .replace(/(https?:\/\/)?discord\.gg\/(\w+)/g, "Invite")
         .replace(/\[(.*)\]\((.*)\)/g, "Hyper link")}`;
+    }
   }
   if (embed.footer) {
     let field = `\n\n**${embed.footer.text
@@ -398,9 +395,358 @@ function getAllTextFromEmbed(embed) {
 
   return text;
 }
+function clean(text) {
+  if (typeof text === "string") {
+    return text
+      .replace(/`/g, "`" + String.fromCharCode(8203))
+      .replace(/@/g, "@" + String.fromCharCode(8203));
+  } else {
+    return text;
+  }
+}
+function tips(interaction, client) {
+  const all = [
+    "You can report bugs by using `/report` and send a suggestion by `/suggest` !",
+    "If a gun isn't there, please be paitent and wait for the us to get the stats",
+    "We all recruiting for bot developers (Total: 4) Please DM the bot for more info",
+  ];
+  const ran = Math.floor(Math.random() * 50) + 2;
+  const rTip = all[Math.floor(Math.random() * all.length)];
+  if (ran <= 11) {
+    interaction.channel.send({
+      embeds: [
+        new MessageEmbed()
+          .setTitle("Tips")
+          .setColor(client.color)
+          .setDescription(`**💡 Did you know**\n${rTip}`)
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setTimestamp()
+          .setURL(client.web),
+      ],
+    });
+  }
+}
+function buttons(client) {
+  const invite = new MessageButton()
+    .setLabel("Invite the bot!")
+    .setStyle("LINK")
+    .setEmoji("896527406100283462")
+    .setURL(
+      `https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands`
+    );
+  const support = new MessageButton()
+    .setLabel("Support Server")
+    .setStyle("LINK")
+    .setEmoji("867093614403256350")
+    .setURL("https://discord.gg/SbQHChmGcp");
+  const website = new MessageButton()
+    .setLabel("Website")
+    .setStyle("LINK")
+    .setEmoji("🖥")
+    .setURL("https://cath.gq/");
+  const youtube = new MessageButton()
+    .setLabel("YouTube")
+    .setStyle("LINK")
+    .setEmoji("841186450497339412")
+    .setURL("https://youtube.com/Kirito01");
+  const kofi = new MessageButton()
+    .setLabel("Ko-fi")
+    .setStyle("LINK")
+    .setEmoji("900590344364757013")
+    .setURL("https://ko-fi.com/cathteam");
+  const row = new MessageActionRow().addComponents(
+    invite,
+    support,
+    website,
+    youtube,
+    kofi
+  );
+  return [row];
+}
+const colorize = (...args) => ({
+  black: `\x1b[30m${args.join(" ")}`,
+  red: `\x1b[31m${args.join(" ")}`,
+  green: `\x1b[32m${args.join(" ")}`,
+  yellow: `\x1b[33m${args.join(" ")}`,
+  blue: `\x1b[34m${args.join(" ")}`,
+  magenta: `\x1b[35m${args.join(" ")}`,
+  cyan: `\x1b[36m${args.join(" ")}`,
+  white: `\x1b[37m${args.join(" ")}`,
+  bgBlack: `\x1b[40m${args.join(" ")}\x1b[0m`,
+  bgRed: `\x1b[41m${args.join(" ")}\x1b[0m`,
+  bgGreen: `\x1b[42m${args.join(" ")}\x1b[0m`,
+  bgYellow: `\x1b[43m${args.join(" ")}\x1b[0m`,
+  bgBlue: `\x1b[44m${args.join(" ")}\x1b[0m`,
+  bgMagenta: `\x1b[45m${args.join(" ")}\x1b[0m`,
+  bgCyan: `\x1b[46m${args.join(" ")}\x1b[0m`,
+  bgWhite: `\x1b[47m${args.join(" ")}\x1b[0m`,
+});
+const leven = (te, t) => {
+  if (!te.length) return t.length;
+  if (!t.length) return te.length;
+  const arr = [];
+  for (let i = 0; i <= t.length; i++) {
+    arr[i] = [i];
+    for (let j = 1; j <= te.length; j++) {
+      arr[i][j] =
+        i === 0
+          ? j
+          : Math.min(
+              arr[i - 1][j] + 1,
+              arr[i][j - 1] + 1,
+              arr[i - 1][j - 1] + (te[j - 1] === t[i - 1] ? 0 : 1)
+            );
+    }
+  }
+  return arr[t.length][te.length];
+};
+function chunk(arr, size) {
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => {
+    arr.slice(i * size, i * size + size);
+  });
+}
+function progressBar(value, maxValue, size) {
+  const percentage = value / maxValue;
+  const progress = Math.round(size * percentage);
+  const emptyProgress = size - progress;
+  const progressText = "▇".repeat(progress);
+  const emptyProgressText = "—".repeat(emptyProgress);
+  const percentageText = Math.round(percentage * 100) + "%";
+
+  const Bar = progressText + emptyProgressText;
+  return { Bar, percentageText };
+}
+function prettyMs(milliseconds, options = {}) {
+  const pluralize = (word, count) => (count === 1 ? word : `${word}s`);
+  const SECOND_ROUNDING_EPSILON = 0.0000001;
+  if (!Number.isFinite(milliseconds)) {
+    throw new TypeError("Expected a finite number");
+  }
+
+  if (options.colonNotation) {
+    options.compact = false;
+    options.formatSubMilliseconds = false;
+    options.separateMilliseconds = false;
+    options.verbose = false;
+  }
+
+  if (options.compact) {
+    options.secondsDecimalDigits = 0;
+    options.millisecondsDecimalDigits = 0;
+  }
+
+  const result = [];
+
+  const floorDecimals = (value, decimalDigits) => {
+    const flooredInterimValue = Math.floor(
+      value * 10 ** decimalDigits + SECOND_ROUNDING_EPSILON
+    );
+    const flooredValue = Math.round(flooredInterimValue) / 10 ** decimalDigits;
+    return flooredValue.toFixed(decimalDigits);
+  };
+
+  const add = (value, long, short, valueString) => {
+    if (
+      (result.length === 0 || !options.colonNotation) &&
+      value === 0 &&
+      !(options.colonNotation && short === "m")
+    ) {
+      return;
+    }
+
+    valueString = (valueString || value || "0").toString();
+    let prefix;
+    let suffix;
+    if (options.colonNotation) {
+      prefix = result.length > 0 ? ":" : "";
+      suffix = "";
+      const wholeDigits = valueString.includes(".")
+        ? valueString.split(".")[0].length
+        : valueString.length;
+      const minLength = result.length > 0 ? 2 : 1;
+      valueString =
+        "0".repeat(Math.max(0, minLength - wholeDigits)) + valueString;
+    } else {
+      prefix = "";
+      suffix = options.verbose ? " " + pluralize(long, value) : short;
+    }
+
+    result.push(prefix + valueString + suffix);
+  };
+
+  const parsed = parseMilliseconds(milliseconds);
+
+  add(Math.trunc(parsed.days / 365), "year", "y");
+  add(parsed.days % 365, "day", "d");
+  add(parsed.hours, "hour", "h");
+  add(parsed.minutes, "minute", "m");
+
+  if (
+    options.separateMilliseconds ||
+    options.formatSubMilliseconds ||
+    (!options.colonNotation && milliseconds < 1000)
+  ) {
+    add(parsed.seconds, "second", "s");
+    if (options.formatSubMilliseconds) {
+      add(parsed.milliseconds, "millisecond", "ms");
+      add(parsed.microseconds, "microsecond", "µs");
+      add(parsed.nanoseconds, "nanosecond", "ns");
+    } else {
+      const millisecondsAndBelow =
+        parsed.milliseconds +
+        parsed.microseconds / 1000 +
+        parsed.nanoseconds / 1e6;
+
+      const millisecondsDecimalDigits =
+        typeof options.millisecondsDecimalDigits === "number"
+          ? options.millisecondsDecimalDigits
+          : 0;
+
+      const roundedMiliseconds =
+        millisecondsAndBelow >= 1
+          ? Math.round(millisecondsAndBelow)
+          : Math.ceil(millisecondsAndBelow);
+
+      const millisecondsString = millisecondsDecimalDigits
+        ? millisecondsAndBelow.toFixed(millisecondsDecimalDigits)
+        : roundedMiliseconds;
+
+      add(
+        Number.parseFloat(millisecondsString, 10),
+        "millisecond",
+        "ms",
+        millisecondsString
+      );
+    }
+  } else {
+    const seconds = (milliseconds / 1000) % 60;
+    const secondsDecimalDigits =
+      typeof options.secondsDecimalDigits === "number"
+        ? options.secondsDecimalDigits
+        : 1;
+    const secondsFixed = floorDecimals(seconds, secondsDecimalDigits);
+    const secondsString = options.keepDecimalsOnWholeSeconds
+      ? secondsFixed
+      : secondsFixed.replace(/\.0+$/, "");
+    add(Number.parseFloat(secondsString, 10), "second", "s", secondsString);
+  }
+
+  if (result.length === 0) {
+    return "0" + (options.verbose ? " milliseconds" : "ms");
+  }
+
+  if (options.compact) {
+    return result[0];
+  }
+
+  if (typeof options.unitCount === "number") {
+    const separator = options.colonNotation ? "" : " ";
+    return result.slice(0, Math.max(options.unitCount, 1)).join(separator);
+  }
+
+  return options.colonNotation ? result.join("") : result.join(" ");
+}
+function parseMilliseconds(milliseconds) {
+  if (typeof milliseconds !== "number") {
+    throw new TypeError("Expected a number");
+  }
+
+  return {
+    days: Math.trunc(milliseconds / 86400000),
+    hours: Math.trunc(milliseconds / 3600000) % 24,
+    minutes: Math.trunc(milliseconds / 60000) % 60,
+    seconds: Math.trunc(milliseconds / 1000) % 60,
+    milliseconds: Math.trunc(milliseconds) % 1000,
+    microseconds: Math.trunc(milliseconds * 1000) % 1000,
+    nanoseconds: Math.trunc(milliseconds * 1e6) % 1000,
+  };
+}
+const default_opts = {
+  hoursPerDay: 24,
+  daysPerWeek: 7,
+  weeksPerMonth: 4,
+  monthsPerYear: 12,
+  daysPerYear: 365.25,
+};
+const UNIT_MAP = {
+  ms: ["ms", "milli", "millisecond", "milliseconds"],
+  s: ["s", "sec", "secs", "second", "seconds"],
+  m: ["m", "min", "mins", "minute", "minutes"],
+  h: ["h", "hr", "hrs", "hour", "hours"],
+  d: ["d", "day", "days"],
+  w: ["w", "week", "weeks"],
+  mth: ["mon", "mth", "mths", "month", "months"],
+  y: ["y", "yr", "yrs", "year", "years"],
+};
+
+/**
+ * Parse a timestring
+ *
+ * @param   {string} string
+ * @param   {string} returnUnit
+ * @param   {Object} opts
+ * @returns {number}
+ */
+
+function parseTimestring(string, returnUnit, opts) {
+  opts = Object.assign({}, default_opts, opts || {});
+
+  let totalSeconds = 0;
+  const unitValues = getUnitValues(opts);
+  const groups = string
+    .toLowerCase()
+    .replace(/[^.\w+-]+/g, "")
+    .match(/[-+]?[0-9.]+[a-z]+/g);
+
+  if (groups === null) {
+    throw new Error(`The string [${string}] could not be parsed by timestring`);
+  }
+
+  groups.forEach(group => {
+    const value = group.match(/[0-9.]+/g)[0];
+    const unit = group.match(/[a-z]+/g)[0];
+
+    totalSeconds += getSeconds(value, unit, unitValues);
+  });
+
+  if (returnUnit) {
+    return convert(totalSeconds, returnUnit, unitValues);
+  }
+
+  return totalSeconds;
+}
+function getUnitValues(opts) {
+  const unitValues = {
+    ms: 0.001,
+    s: 1,
+    m: 60,
+    h: 3600,
+  };
+
+  unitValues.d = opts.hoursPerDay * unitValues.h;
+  unitValues.w = opts.daysPerWeek * unitValues.d;
+  unitValues.mth = (opts.daysPerYear / opts.monthsPerYear) * unitValues.d;
+  unitValues.y = opts.daysPerYear * unitValues.d;
+
+  return unitValues;
+}
+function getUnitKey(unit) {
+  for (const key of Object.keys(UNIT_MAP)) {
+    if (UNIT_MAP[key].indexOf(unit) > -1) {
+      return key;
+    }
+  }
+  throw new Error(`The unit [${unit}] is not supported by timestring`);
+}
+function getSeconds(value, unit, unitValues) {
+  return value * unitValues[getUnitKey(unit)];
+}
+function convert(value, unit, unitValues) {
+  return value / unitValues[getUnitKey(unit)];
+}
+
 module.exports = {
   rndint,
-  toBool,
   timer,
   sleep,
   toHHMMSS,
@@ -415,4 +761,13 @@ module.exports = {
   confirmation,
   selectRandom,
   getAllTextFromEmbed,
+  clean,
+  tips,
+  buttons,
+  colorize,
+  leven,
+  chunk,
+  progressBar,
+  parseTimestring,
+  prettyMs,
 };

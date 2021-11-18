@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const prefix = require("../config.json").prefix;
+const prefix = require("../config").prefix;
 module.exports = mongoose.model(
   "guild",
   new mongoose.Schema({
@@ -50,6 +50,14 @@ module.exports = mongoose.model(
     Level: {
       type: Boolean,
       default: false,
+    },
+    NSFW: {
+      type: Boolean,
+      default: false,
+    },
+    Tips: {
+      type: Boolean,
+      default: true,
     },
   })
 );

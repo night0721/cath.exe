@@ -1,4 +1,4 @@
-const client = require("../bot");
+const client = require("..");
 const version = require("../package.json").version;
 const starboardClient = require("../client/StarboardClient");
 const g = require("../models/guilds");

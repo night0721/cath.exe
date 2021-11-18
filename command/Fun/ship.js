@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-block = "⬛";
-heart = "🟥";
+const block = "⬛";
+const heart = "🟥";
 
 module.exports = {
   name: "ship",
@@ -25,13 +25,13 @@ module.exports = {
   run: async (client, interaction, args) => {
     const user1 = interaction.guild.members.cache.get(args[0]).user.username;
     const user2 = interaction.guild.members.cache.get(args[1]).user.username;
-    let loveEmbed = new MessageEmbed()
+    const loveEmbed = new MessageEmbed()
       .setColor("dd2e44")
-      .setFooter(`Shipped by ${interaction.member.user.tag}`)
+      .setFooter(`Shipped by ${interaction.user.tag}`)
       .setTimestamp()
       .setTitle(`💘 | Shipping ${user1} and ${user2} | 💘`)
       .setDescription(`🔻 | ${user1} \n${ship()}\n🔺 | ${user2}`);
-    await interaction.followUp({ embeds: [loveEmbed] });
+    interaction.followUp({ embeds: [loveEmbed] });
   },
 };
 function ship() {

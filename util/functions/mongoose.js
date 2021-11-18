@@ -41,6 +41,8 @@ module.exports = {
         Category,
         Commands,
         Level,
+        NSFW,
+        Tips,
       } = gg;
       await gg.save().catch(error => console.log(error));
       return {
@@ -57,6 +59,8 @@ module.exports = {
         Category,
         Commands,
         Level,
+        NSFW,
+        Tips,
       };
     } else {
       const Guild = guild.Guild;
@@ -72,6 +76,8 @@ module.exports = {
       const Category = guild.Category;
       const Commands = guild.Commands;
       const Level = guild.Level;
+      const NSFW = guild.NSFW;
+      const Tips = guild.Tips;
       return {
         Guild,
         Prefix,
@@ -86,6 +92,8 @@ module.exports = {
         Category,
         Commands,
         Level,
+        NSFW,
+        Tips,
       };
     }
   },
@@ -148,10 +156,10 @@ module.exports = {
    */
   async getUserEcon(ID) {
     if (!ID) throw new Error("User ID?");
-    const user = await u.findOne({ User: ID }).lean().cache(120);
+    const user = await e.findOne({ User: ID }).lean().cache(120);
     if (!user) {
-      const ss = new u({ User: ID });
-      const { User, CP, BJWins, SlotsWins, BetWins } = ss;
+      const ss = new e({ User: ID });
+      const { User, CP, BJWins, SlotsWins, BetWins, Inventory, Gun } = ss;
       await ss.save().catch(error => console.log(error));
       return {
         User,
@@ -159,6 +167,8 @@ module.exports = {
         BJWins,
         SlotsWins,
         BetWins,
+        Inventory,
+        Gun,
       };
     } else {
       const User = user.User;
@@ -166,12 +176,16 @@ module.exports = {
       const BJWins = user.BJWins;
       const SlotsWins = user.SlotsWins;
       const BetWins = user.BetWins;
+      const Inventory = user.Inventory;
+      const Gun = user.Gun;
       return {
         User,
         CP,
         BJWins,
         SlotsWins,
         BetWins,
+        Inventory,
+        Gun,
       };
     }
   },
@@ -186,7 +200,7 @@ module.exports = {
     if (!user) {
       const sss = new u({ User: ID });
       await sss.save().catch(error => console.log(error));
-      return { Reason, Time };
+      return { Reason };
     } else {
       user.User = ID;
       user.AFK = Reason;
@@ -220,7 +234,7 @@ module.exports = {
    */
   async BK(ID, Toggle, Reason) {
     if (!ID) throw new Error("User ID?");
-    //if (!Toggle) throw new Error("Blacklist Toggle?");
+    // if (!Toggle) throw new Error("Blacklist Toggle?");
     if (!Reason) throw new Error("Blacklist Feason?");
     const user = await u.findOne({ User: ID });
     if (!user) {
@@ -388,7 +402,8 @@ module.exports = {
   /**
    * @param {String} ID - Guild ID
    * @param {String} Role = Role ID
-   */ async setMuterole(ID, Role) {
+   */
+  async setMuterole(ID, Role) {
     if (!ID) throw new Error("Guild ID?");
     if (!Role) throw new Error("Role?");
     const guild = await g.findOne({ Guild: ID });
@@ -407,7 +422,8 @@ module.exports = {
    * @param {String} ID - Guild ID
    * @param {String} Channel = Channel ID
    * @param {Number} Count - StarCount
-   */ async setStarboard(ID, Channel, Count) {
+   */
+  async setStarboard(ID, Channel, Count) {
     if (!ID) throw new Error("Guild ID?");
     if (!Channel) throw new Error("Channel?");
     const guild = await g.findOne({ Guild: ID });
@@ -427,7 +443,8 @@ module.exports = {
   /**
    * @param {String} ID - Guild ID
    * @param {String} Channel = Channel ID
-   */ async setChatbot(ID, Channel) {
+   */
+  async setChatbot(ID, Channel) {
     if (!ID) throw new Error("Guild ID?");
     if (!Channel) throw new Error("Channel?");
     const guild = await g.findOne({ Guild: ID });
@@ -459,12 +476,10 @@ module.exports = {
       }
       await newU.save().catch(error => console.log(error));
       return;
+    } else if (Toggle == "true") {
+      guild.Premium = true;
     } else {
-      if (Toggle == "true") {
-        guild.Premium = true;
-      } else {
-        guild.Premium = false;
-      }
+      guild.Premium = false;
     }
     await guild.save().catch(error => console.log(error));
     cachegoose.clearCache();
@@ -571,12 +586,10 @@ module.exports = {
       }
       await newdb.save().catch(error => console.log(error));
       return;
+    } else if (Toggle === "true") {
+      idk.Status = "true";
     } else {
-      if (Toggle === "true") {
-        idk.Status = "true";
-      } else {
-        idk.Status = "false";
-      }
+      idk.Status = "false";
     }
     await idk.save().catch(error => console.log(error));
     cachegoose.clearCache();
@@ -599,12 +612,62 @@ module.exports = {
       }
       await newU.save().catch(error => console.log(error));
       return;
+    } else if (Toggle == "true") {
+      guild.Level = true;
     } else {
+      guild.Level = false;
+    }
+    await guild.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Toggle - Level Toggle
+   */
+  async setNSFW(ID, Toggle) {
+    if (!ID) throw new Error("Please Provide a Guild ID");
+    if (!Toggle) throw new Error("Please Provide a Toggle!");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
       if (Toggle == "true") {
-        guild.Level = true;
+        guild.NSFW = true;
       } else {
-        guild.Level = false;
+        guild.NSFW = false;
       }
+      await newU.save().catch(error => console.log(error));
+      return;
+    } else if (Toggle == "true") {
+      guild.NSFW = true;
+    } else {
+      guild.NSFW = false;
+    }
+    await guild.save().catch(error => console.log(error));
+    cachegoose.clearCache();
+    return;
+  },
+  /**
+   * @param {String} ID - Guild ID
+   * @param {String} Toggle - Level Toggle
+   */
+  async setTips(ID, Toggle) {
+    if (!ID) throw new Error("Please Provide a Guild ID");
+    if (!Toggle) throw new Error("Please Provide a Toggle!");
+    const guild = await g.findOne({ Guild: ID });
+    if (!guild) {
+      const newU = new g({ Guild: ID });
+      if (Toggle == "true") {
+        guild.Tips = true;
+      } else {
+        guild.Tips = false;
+      }
+      await newU.save().catch(error => console.log(error));
+      return;
+    } else if (Toggle == "true") {
+      guild.Tips = true;
+    } else {
+      guild.Tips = false;
     }
     await guild.save().catch(error => console.log(error));
     cachegoose.clearCache();

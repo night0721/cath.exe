@@ -1,4 +1,4 @@
-const client = require("../bot");
+const client = require("..");
 client.on("typingStart", async typing => {
   if (!typing.user) return;
   if (typing.user.bot) return;

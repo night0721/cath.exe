@@ -14,22 +14,22 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    let uuser = interaction.guild.members.cache.get(interaction.user.id);
+    const uuser = interaction.guild.members.cache.get(interaction.user.id);
     const content = args[0] || "No status provided.";
-    uuser.setNickname(`[AFK]${interaction.user.username}`);
+    uuser.setNickname(`[AFK] ${interaction.user.username}`).catch();
     await client.data.AFK(interaction.user.id, content);
     const embed = new MessageEmbed()
       .setDescription(
         `${interaction.user.username} is set into AFK.\nStatus : ${content}`
       )
       .setTimestamp()
-      .setFooter(`Made by ${client.author}`)
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setColor(client.color)
       .setAuthor(
         interaction.user.username,
         interaction.user.displayAvatarURL({ dynamic: true })
       )
       .setURL(client.web);
-    await interaction.followUp({ embeds: [embed] });
+    interaction.followUp({ embeds: [embed] });
   },
 };

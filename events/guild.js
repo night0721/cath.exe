@@ -1,9 +1,8 @@
-const client = require("../bot");
+const client = require("../");
 const { MessageEmbed } = require("discord.js");
 const db = require("../models/guilds");
-const config = require("../config.json");
 client.on("guildCreate", guild => {
-  client.channels.cache.get(client.ServerLog).send({
+  client.channels.cache.get(client.config.ServerLog).send({
     embeds: [
       new MessageEmbed()
         .setTitle("New Server")
@@ -24,14 +23,14 @@ client.on("guildCreate", guild => {
   });
   const newdb = new db({
     Guild: guild.id,
-    Prefix: config.prefix,
+    Prefix: client.config.prefix,
   });
   newdb.save();
 });
 
 client.on("guildDelete", async guild => {
   client.data.DelGuild(guild.id);
-  client.channels.cache.get(client.ServerLog).send({
+  client.channels.cache.get(client.config.ServerLog).send({
     embeds: [
       new MessageEmbed()
         .setTitle("Deleted Server")

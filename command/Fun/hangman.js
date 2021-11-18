@@ -5,12 +5,13 @@ module.exports = {
   name: "hangman",
   description: "Play a hangman game",
   category: "Fun",
-  run: async (client, interaction, args) => {
+  run: async (client, interaction) => {
     await interaction.deleteReply();
-    if (playing.has(interaction.channel.id))
+    if (playing.has(interaction.channel.id)) {
       return interaction.followUp({
         content: "Only one game may be occurring per channel.",
       });
+    }
     playing.add(interaction.channel.id);
     try {
       const data = await axios
@@ -26,10 +27,7 @@ module.exports = {
       while (word.length !== confirmation.length && points < 6) {
         const embed = new MessageEmbed()
           .setColor(client.color)
-          .setFooter(
-            interaction.user.tag,
-            interaction.user.displayAvatarURL({ dynamic: true })
-          )
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
           .setTimestamp()
           .setTitle("Hangman game").setDescription(`
 					${displayText === null ? "Here we go!" : displayText ? "Good job!" : "Nope!"}
@@ -46,7 +44,7 @@ module.exports = {
 				  =============
 					\`\`\`
 				`);
-        let m = await interaction.channel.send({ embeds: [embed] });
+        await interaction.channel.send({ embeds: [embed] });
         const filter = res => {
           const choice = res.content.toLowerCase();
           return (
@@ -60,7 +58,6 @@ module.exports = {
           max: 1,
           time: 30000,
         });
-        //m.delete();
         if (!guess.size) {
           await interaction.channel.send({ content: "Sorry, time is up!" });
           break;
@@ -84,10 +81,11 @@ module.exports = {
         }
       }
       playing.delete(interaction.channel.id);
-      if (word.length === confirmation.length || guessed)
+      if (word.length === confirmation.length || guessed) {
         return interaction.channel.send({
           content: `You won. The word is **${word}**!`,
         });
+      }
       return interaction.channel.send({
         content: `You lost. The word is **${word}**.`,
       });

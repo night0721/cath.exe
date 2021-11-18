@@ -8,21 +8,22 @@ module.exports = {
     {
       type: 6,
       name: "user",
-      description: "The user you want to hack",
-      required: true,
+      description: "The user you want to see",
+      required: false,
     },
   ],
   type: "CHAT_INPUT",
   run: async (client, interaction, args) => {
-    const user = interaction.guild.members.cache.get(args[0]);
+    const user =
+      interaction.guild.members.cache.get(args[0]) || interaction.member;
     const bal = await client.bal(user.id);
-    let embed = new MessageEmbed()
-      .addField(`${client.currency} Balance`, `**${bal}**`)
+    const embed = new MessageEmbed()
+      .setTitle(`${user.displayName}'s Balance`)
+      .setDescription(`**${bal}** ${client.currency}`)
       .setColor(client.color)
       .setURL(client.web)
-      .setTitle(`${user.displayName}'s Balance`)
       .setTimestamp()
-      .setFooter(`Requested by ${client.author}`);
-    await interaction.followUp({ embeds: [embed] });
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+    interaction.followUp({ embeds: [embed] });
   },
 };

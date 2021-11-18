@@ -24,10 +24,10 @@ module.exports = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
-    let user = interaction.options.getUser("user");
-    toggle = interaction.options.getBoolean("yesno");
-    reason = interaction.options.getString("reason");
+  run: async (client, interaction) => {
+    const user = interaction.options.getUser("user");
+    const toggle = interaction.options.getBoolean("yesno");
+    const reason = interaction.options.getString("reason");
     if (toggle === true) {
       await client.data.BK(user.id, toggle, reason);
       interaction.followUp({

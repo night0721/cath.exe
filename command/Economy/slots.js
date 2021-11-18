@@ -7,14 +7,14 @@ module.exports = {
   category: "Economy",
   options: [
     {
-      type: 10,
+      type: 4,
       name: "cp",
-      description: "The number of CP you want to bet",
+      description: "The number of CP you want to slots",
       required: true,
     },
   ],
   run: async (client, interaction, args) => {
-    const max = 1000000;
+    const max = 100000;
     const slots = [
       "<:blushca:852174555513618502>",
       "<:abusecat:853501068074942464>",
@@ -29,22 +29,28 @@ module.exports = {
     const slotseven = slots[Math.floor(Math.random() * slots.length)];
     const sloteight = slots[Math.floor(Math.random() * slots.length)];
     const slotnine = slots[Math.floor(Math.random() * slots.length)];
-    const amt = args[0];
-    if (amt > max) return client.serr(interaction, "Economy", "bet", 101);
-    if ((await client.bal(interaction.user.id)) < amt) {
-      return client.serr(interaction, "Economy", "bet", 20);
-    }
-    if (
+    const ar = [1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5];
+    const r = ar[Math.floor(Math.random() * ar.length)];
+    let amt = args[0];
+    if (amt > max) amt = max;
+    if (amt < 100) {
+      interaction.followUp({
+        content: `You need to slot at least 100${client.currency}`,
+      });
+    } else if ((await client.bal(interaction.user.id)) < amt) {
+      interaction.followUp({ content: "You don't have enough balance" });
+    } else if (
       (slotOne === slotTwo && slotOne === slotThree) ||
       (slotfour === slotfive && slotfour === slotsix) ||
       (slotseven === sloteight && slotseven === slotnine)
     ) {
-      const winamt = Math.floor(Math.random() * 2 * amt);
+      const winamt = Math.round(r * amt);
+      const multi = (await client.multi(interaction)) / 10 + 1;
       await client.add(interaction.user.id, winamt, interaction);
       await client.ADDSWin(interaction.user.id);
       const won = new MessageEmbed()
         .setColor("GREEN")
-        .setFooter(`Made by ${client.author}`)
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
         .setTimestamp()
         .addField(
           "|-----|-----|----|",
@@ -59,17 +65,31 @@ module.exports = {
           `|  ${slotseven} | ${sloteight} | ${slotnine}  |`
         )
         .setTitle(`${interaction.user.username} wins a slots game`)
-        .setDescription(
-          `You win\n**${winamt + amt}**${client.currency}\nYou now have **${
-            parseInt(await client.bal(interaction.user.id)) - amt
-          }**${client.currency}`
+        .addFields(
+          {
+            name: "Won",
+            value: `**${Math.round(winamt * multi)}**${client.currency}`,
+            inline: true,
+          },
+          {
+            name: "New Balance",
+            value: `**${Math.round(
+              (await client.bal(interaction.user.id)) + winamt * multi
+            )}**${client.currency}`,
+            inline: true,
+          },
+          {
+            name: "Multiplier",
+            value: `x${r + multi}`,
+            inline: true,
+          }
         );
       interaction.followUp({ embeds: [won] });
     } else {
       await client.rmv(interaction.user.id, amt);
       const lost = new MessageEmbed()
         .setColor("RED")
-        .setFooter(`Made by ${client.author}`)
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
         .setTimestamp()
         .addField(
           "|-----|-----|----|",
@@ -84,10 +104,19 @@ module.exports = {
           `|  ${slotseven} | ${sloteight} | ${slotnine}  |`
         )
         .setTitle(`${interaction.user.username} loses a slots game`)
-        .setDescription(
-          `You lost\n**${amt}**${client.currency}\nYou now have **${
-            parseInt(await client.bal(interaction.user.id)) - amt
-          }**${client.currency}`
+        .addFields(
+          {
+            name: "Lost",
+            value: `**${amt}**${client.currency}`,
+            inline: true,
+          },
+          {
+            name: "New Balance",
+            value: `**${
+              parseInt(await client.bal(interaction.user.id)) - amt
+            }**${client.currency}`,
+            inline: true,
+          }
         );
       interaction.followUp({ embeds: [lost] });
     }

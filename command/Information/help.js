@@ -16,15 +16,16 @@ module.exports = {
     if (!args[0]) {
       await interaction.deleteReply();
       const emoji = {
-        CODM: "<a:AA99_codm_logo:840231960441257995>",
-        Config: "<:staff:840231971526803467>",
+        CODM: "<a:codm:897030768793104385>",
+        Config: "<a:config:896990033561669762>",
         Economy: client.currency,
-        Fun: "<a:lollll:804325253265621012>",
-        Moderation: "🔨",
-        Utilities: "⚙",
-        Music: "<a:music:840231980692144130>",
-        Giveaway: "<a:DankCat:798963811902160896>",
-        Information: "ℹ",
+        Fun: "<a:fun:896889821816053790>",
+        Moderation: "<:discordmod:897364105730617364>",
+        Information: "<a:information:894962394932064346>",
+        Utilities: "<a:utilites:897233087941988392>",
+        Music: "<a:music:897017864085712936>",
+        Giveaway: "<a:confetti:896763534682226758>",
+        NSFW: "🍑",
       };
       const directories = [
         ...new Set(client.slashCommands.map(cmd => cmd.directory)),
@@ -44,27 +45,41 @@ module.exports = {
         };
       });
       const embed = new Discord.MessageEmbed()
-        .setTitle(`**${client.user.username} commands**`)
+        .setTitle(`**NYX's Commands**`)
         .setDescription(`Please choose a category in the dropdown menu`)
         .setColor(client.color)
         .setTimestamp()
-        .setAuthor(
-          `Requested by ${interaction.user.tag}`,
-          interaction.user.displayAvatarURL({ dynamic: true })
+        .addFields(
+          {
+            name: ":link: **Invite Me**",
+            value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+            inline: true,
+          },
+          {
+            name: "<:support1:867093614403256350> **Need Help ?**",
+            value: `[Support Server](https://discord.gg/SbQHChmGcp)`,
+            inline: true,
+          },
+          {
+            name: "<:YouTube:841186450497339412> **Video Guide**",
+            value: `[How to use Slash Coammands](https://youtu.be/YSKDu1gKntY)`,
+            inline: true,
+          },
+          {
+            name: `<:nyx_description:897379659665264650> Documentation`,
+            value: `[Click here](${client.docs})`,
+            inline: true,
+          },
+          {
+            name: "<a:booster:896527475063025704> **Premium**",
+            value: `You can either boost support server or subscribe to developer's team [Ko-Fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team.`,
+            inline: false,
+          }
         )
-        .addField(
-          "**Invite Link**",
-          `**Invite me to your server by clicking [here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)**`
+        .setURL(client.docs)
+        .setThumbnail(
+          "https://media.discordapp.net/attachments/896078559293104128/896392631565828146/nyx_logo_transparent.webp"
         )
-        .addField(
-          "**Support Server Invite**",
-          "**Join the support server by clicking [here](https://discord.gg/SbQHChmGcp)**"
-        )
-        .addField(
-          "**Premium**",
-          "**You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team **"
-        )
-        .setURL(client.web)
         .setFooter(
           `Requested by ${interaction.user.tag}`,
           interaction.user.displayAvatarURL({ dynamic: true })
@@ -103,11 +118,7 @@ module.exports = {
         const category = categories.find(u => u.directory === directory);
         const newembed = new Discord.MessageEmbed()
           .setTitle(
-            `${emoji[directory]}${directory} Commands${emoji[directory]}`
-          )
-          .setAuthor(
-            `Requested by ${interaction.user.tag}`,
-            interaction.user.displayAvatarURL({ dynamic: true })
+            `${emoji[directory]} ${directory} Commands ${emoji[directory]}`
           )
           .setTimestamp()
           .setColor(client.color)
@@ -125,16 +136,20 @@ module.exports = {
     } else {
       const command = client.slashCommands.get(args[0].toLowerCase());
       if (!command) {
-        await interaction.followUp({
+        interaction.followUp({
           content: `There isn't any command or category named "${args[0]}"`,
         });
       } else {
         if (command.UserPerms && Array.isArray(command.UserPerms)) {
           UserPermissions = command.UserPerms;
-        } else UserPermissions = [command.UserPerms ? command.UserPerms : ""];
+        } else {
+          UserPermissions = [command.UserPerms ? command.UserPerms : ""];
+        }
         if (command.BotPerms && Array.isArray(command.BotPerms)) {
           BotPermissions = command.BotPerms;
-        } else BotPermissions = [command.BotPerms ? command.BotPerms : ""];
+        } else {
+          BotPermissions = [command.BotPerms ? command.BotPerms : ""];
+        }
         const BotPerms = BotPermissions.map(x =>
           x
             .split("_")
@@ -167,7 +182,7 @@ module.exports = {
         if (command.UserPerms) {
           embed.addField("**Required User Permission**:", UserPerms);
         }
-        if (command.BotPerm) {
+        if (command.BotPerms) {
           embed.addField("**Required Bot Permission**:", BotPerms);
         }
         embed
@@ -178,7 +193,7 @@ module.exports = {
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color);
-        await interaction.followUp({ embeds: [embed] });
+        interaction.followUp({ embeds: [embed] });
       }
     }
   },

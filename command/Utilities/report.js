@@ -15,24 +15,24 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     const bug = args[0];
-    await interaction.followUp({
+    interaction.followUp({
       embeds: [
         new MessageEmbed()
           .setTitle("SUCCESS!")
           .setDescription(
             "You have reported a bug.\nPlease wait for us to solve it"
           )
-          .setFooter(`Made by ${client.author}`)
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
           .setTimestamp()
           .setColor("GREEN"),
       ],
     });
-    const ch = client.channels.cache.get(client.ReportLog);
+    const ch = client.channels.cache.get(client.config.Report);
     ch.send({
       embeds: [
         new MessageEmbed()
           .setAuthor(
-            interaction.member.user.tag,
+            interaction.user.tag,
             interaction.user.displayAvatarURL({ dynamic: true })
           )
           .setTitle("New Bug")

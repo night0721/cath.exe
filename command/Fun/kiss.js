@@ -23,7 +23,7 @@ module.exports = {
     const user = interaction.guild.members.cache.get(args[0]);
     words = args[1];
     if (user.id === interaction.user.id) {
-      return await interaction.followUp("You can't kiss yourself");
+      return interaction.followUp("You can't kiss yourself");
     }
     const embed = new MessageEmbed()
       .setDescription(`${interaction.user} **kisses** ${user}`)
@@ -32,9 +32,9 @@ module.exports = {
       )
       .setColor(client.color)
       .setTimestamp()
-      .setFooter(`Made by ${client.author}`);
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
     if (words) {
-      embed.addField("Words:", reason);
+      embed.addField("Words:", words);
     }
     await interaction
       .followUp({ embeds: [embed] })

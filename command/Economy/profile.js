@@ -12,7 +12,7 @@ module.exports = {
       required: false,
     },
   ],
-  run: async (client, interaction, args, data, utils) => {
+  run: async (client, interaction, args) => {
     const user =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
     const bjwin = await client.bjWin(user.user.id);
@@ -22,25 +22,28 @@ module.exports = {
     const bal = await client.bal(user.user.id);
     const multi = await client.multi(interaction);
     const game = new MessageEmbed()
-      .setFooter(
-        `Requested by ${user.user.tag}`,
-        user.user.displayAvatarURL({ dynamic: true, size: 4096 })
-      )
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setColor("7196ef")
       .setTitle(`${user.displayName}'s profile`)
-      .addField(
-        "**Stats**\n",
-        `🃏 Blackjack wins: \`${bjwin}\`\n` +
-          `🎰 Slots wins: \`${swin}\`\n` +
-          `🕹 Bet wins: \`${bwin}\`\n` +
-          `⌨️Commands used: \`${cmdused}\`\n` +
-          `Totalwins: \`${bjwin + swin + bwin}\``,
-        true
-      )
-      .addField(
-        "**Balance**\n",
-        `💲CP: \`${bal}\`\n` + `➕Multiplier: \`${`1.${multi}x`}\``
+      .setDescription(`Current Balance ${bal} ${client.currency}`)
+      .setURL(client.web)
+      .addFields(
+        {
+          name: "Basic",
+          value: `
+          Total Commands Used \`${cmdused}\`\n
+          ${client.xp} Multiplier \`${`1.${multi}x`}\``,
+          inline: true,
+        },
+        {
+          name: "🎊 Wins",
+          value: `Overall ❯ \`${bjwin + swin + bwin}\`
+          🃏 Blackjack ❯ \`${bjwin}\`\n
+          🎰 Slots ❯ \`${swin}\`\n
+          🕹 Bets ❯ \`${bwin}\`\n`,
+          inline: true,
+        }
       );
-    await interaction.followUp({ embeds: [game] });
+    interaction.followUp({ embeds: [game] });
   },
 };

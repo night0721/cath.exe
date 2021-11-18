@@ -1,212 +1,162 @@
-const client = require("../bot");
-const codmclient = require("../client/CODMClient");
-const leven = require("leven");
+const client = require("..");
 const { MessageEmbed } = require("discord.js");
-const cooldown = require("../models/cooldown");
 const utils = require("../util/functions/function");
+const scams = require("../util/Data/scam.json");
 client.on("messageCreate", async message => {
-  const p = await client.prefix(message);
   if (message.author.bot || !message.guild) return;
-  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-    const _ = new MessageEmbed()
-      .setTitle(client.user.username)
-      .addField("Links:", client.cat)
-      .addField(
-        "Prefix/Usage",
-        `My prefix in **${message.guild.name}** is **${p}**\n\nRun \`${p}help\` to start using the bot`
-      )
-      .setThumbnail(client.user.displayAvatarURL())
-      .setURL(client.web)
-      .setFooter(`Made by ${client.author}`)
-      .setTimestamp()
-      .setColor(client.color);
-    const m = await message.reply({ embeds: [_] });
-    setTimeout(() => m.delete(), 15000);
-  }
-  if (p) {
-    if (!message.content.toLowerCase().startsWith(p.toLowerCase())) return;
-  }
-  if (!message.member)
-    message.member = await message.guild.fetchMember(message);
   const data = {};
-  let guildDB = await client.data.getGuild(message.guild.id);
+  const guildDB = await client.data.getGuild(message.guild.id);
   if (!guildDB) return;
-  let userDB = await client.data.getUser(message.author.id);
+  const userDB = await client.data.getUser(message.author?.id);
   if (!userDB) return;
-  let userEconDB = await client.data.getUserEcon(message.author.id);
   data.Guild = guildDB;
   data.User = userDB;
-  data.UserEcon = userEconDB;
   if (!guildDB) await client.data.CreateGuild(message.guild.id);
-  if (!userEconDB) await client.createProfile(message.author.id);
-  if (data.User) {
-    if (data.User.Blacklist) return;
-  }
-  const [cmd, ...args] = message.content.slice(p.length).trim().split(/ +/g);
-  if (cmd.length == 0) return;
-  const command =
-    client.commands.get(cmd.toLowerCase()) ||
-    client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-  if (!command) {
-    const best = [
-      ...client.commands.map(cmd => cmd.name),
-      ...client.aliases.keys(),
-    ].filter(c => leven(cmd.toLowerCase(), c.toLowerCase()) < c.length * 0.4);
-    const dym =
-      best.length == 0
-        ? ""
-        : best.length == 1
-        ? `Do you mean this?\n**${best[0]}**`
-        : `Do you mean one of these?\n${best
-            .slice(0, 3)
-            .map(value => `**${value}**`)
-            .join("\n")}`;
-    if (dym === "") {
-      return;
-    } else {
-      const msg = await message.reply({
-        embeds: [
-          new MessageEmbed()
-            .setDescription(`Couldn't find that command.\n${dym}`)
-            .setTimestamp()
-            .setColor(client.color),
-        ],
-      });
-      setTimeout(function () {
-        msg.delete();
-      }, 10000);
-    }
-  } else {
-    if (command.Owner) {
-      if (!client.owners.includes(message.author.id)) return;
-    }
-    if (command.Premium) {
-      if (!data.User.Premium) {
-        return message.reply({
-          embeds: [
-            new MessageEmbed()
-              .setURL(client.web)
-              .setAuthor(
-                message.author.tag,
-                message.author.displayAvatarURL({ dynamic: true })
-              )
-              .setColor(client.color)
-              .setDescription(
-                `You aren't a premium user. You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team to be premium user`
-              )
-              .setTimestamp()
-              .setFooter(`Made by ${client.author}`),
-          ],
-        });
-      }
-    }
-    if (command.Level) {
-      if (!data.Guild.Level) return;
-    }
-    if (!message.guild.me.permissions.has(command.BotPerm || []))
-      return message.reply({
-        content: `You can't use this command. I need to have ${command.BotPerm} permission to use this command.`,
-      });
-    if (data.Guild) {
-      if (data.Guild.Category) {
-        if (data.Guild.Category.includes(command.directory)) return;
-      }
-      if (data.Guild.Commands) {
-        if (data.Guild.Commands.includes(command.name)) return;
-      }
-    }
-    if (command.timeout) {
-      const current_time = Date.now();
-      const cooldown_amount = command.timeout;
-      cooldown.findOne(
-        { User: message.author.id, CMD: command.name },
-        async (err, data) => {
-          if (data) {
-            const expiration_time = data.Time + cooldown_amount;
-            if (current_time < expiration_time) {
-              utils.cooldown(data.Time, cooldown_amount, message);
-            } else {
-              await cooldown.findOneAndUpdate(
-                { User: message.author.id, CMD: command.name },
-                { Time: current_time }
-              );
-              command.run(client, message, args, utils, data, codmclient);
-              client.addcmdsused(message.author.id);
-              client.channels.cache.get(client.CMDLog).send({
-                content: `\`${message.author.tag}(${message.author.id})\`\n has used \n**${command.name}**\n command in \n\`${message.guild.name}(${message.guild.id})\``,
-              });
-            }
-          } else {
-            command.run(client, message, args, utils, data, codmclient);
-            client.channels.cache.get(client.CMDLog).send({
-              content: `\`${message.author.tag}(${message.author.id})\`\n has used \n**${command.name}**\n command in \n\`${message.guild.name}(${message.guild.id})\``,
-            });
-            client.addcmdsused(message.author.id);
-            new cooldown({
-              User: message.author.id,
-              CMD: command.name,
-              Time: current_time,
-              Cooldown: command.timeout,
-            }).save();
-          }
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
+    const _ = new MessageEmbed()
+      .addFields(
+        {
+          name: "Prefix/Usage",
+          value: "Run `/help` to start using the bot",
+          inline: true,
+        },
+        {
+          name: ":link: **Invite Me**",
+          value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+          inline: true,
+        },
+        {
+          name: "<:support1:867093614403256350> **Need Help ?**",
+          value: `Join our [Support Server](https://discord.gg/SbQHChmGcp)`,
+          inline: true,
+        },
+        {
+          name: "<:YouTube:841186450497339412> **Video Guide**",
+          value: `[How to use Slash Coammands](https://youtu.be/YSKDu1gKntY)`,
+          inline: true,
+        },
+        {
+          name: `<:nyx_description:897379659665264650> Documentation`,
+          value: `[Click here](${client.docs})`,
+          inline: true,
+        },
+        {
+          name: "<a:donate:896985486260846614> **Support us**",
+          value: `[KoFi](https://ko-fi.com/cathteam)`,
+          inline: true,
+        },
+        {
+          name: "<a:booster:896527475063025704> **Premium**",
+          value: `You can either boost support server or subscribe to developer's team [Ko-Fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team.`,
+          inline: false,
         }
-      );
-    } else {
-      try {
-        command.run(client, message, args, utils, data, codmclient);
-        client.channels.cache.get(client.CMDLog).send({
-          content: `\`${message.author.tag}(${message.author.id})\`\n has used \n**${command.name}**\n command in \n\`${message.guild.name}(${message.guild.id})\``,
-        });
-        client.addcmdsused(message.author.id);
-      } catch (e) {
-        console.log(e);
-      }
-    }
+      )
+      .setTitle(client.user.username)
+
+      .setThumbnail(client.user.displayAvatarURL())
+      .setURL(client.web)
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setTimestamp()
+      .setColor(client.color);
+    const m = await message.reply({
+      embeds: [_],
+      components: utils.buttons(client),
+    });
+    setTimeout(() => m.delete(), 15000);
   }
-});
-client.on("messageCreate", async message => {
-  const p = await client.prefix(message);
-  if (message.author.bot) return;
-  if (!message.content.startsWith(p)) return;
-  if (!message.guild) return;
-  if (!message.member)
-    message.member = await message.guild.fetchMember(message);
-  const [cmd, ...args] = message.content.slice(p.length).trim().split(/ +/g);
-  if (cmd.length == 0) return;
-  let path = client.hide.get(cmd);
-  if (path) {
-    if (!client.path.includes(message.guild.id)) return;
-    try {
-      path.run(client, message, args);
-      client.addcmdsused(message.author.id);
-      client.channels.cache.get(client.CMDLog).send({
-        content: `\`${message.author.tag}(${message.author.id})\`\n has used \n**${path.name}**\n command in \n\`${message.guild.name}(${message.guild.id})\``,
-      });
-    } catch (e) {
-      console.log(e);
-    }
+  if (data.User?.Blacklist) return;
+  if (
+    scams.includes(
+      message.content
+        .toLowerCase()
+        .match(
+          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+        )?.[0]
+        .replace(/(https|http):\/\/+/g, "")
+        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+        .slice(0, -1)
+    )
+  ) {
+    message.delete();
+    message.channel.send({
+      content: `**${message.author.tag}** has sent a scam link and I have deleted it to prevent spread`,
+    });
+  }
+  if (
+    message?.content.startsWith(data.Guild.Prefix) ||
+    message?.content.startsWith("C.")
+  ) {
+    const embed = new MessageEmbed()
+      .setTitle(`Message commands are now disabled`)
+      .setDescription(
+        `Please enable **Use Application Commands** in the channel settings to get access to slash commands, we have discontinued message commands\n\nUse \`/help\` to see more info`
+      )
+      .setColor(client.color)
+      .setThumbnail(message.guild.iconURL({ dynamic: true }))
+      .addFields(
+        {
+          name: ":link: **Invite Me**",
+          value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+          inline: true,
+        },
+        {
+          name: "<:support1:867093614403256350> **Need Help ?**",
+          value: `Join our [Support Server](https://discord.gg/SbQHChmGcp)`,
+          inline: true,
+        },
+        {
+          name: "<:YouTube:841186450497339412> **Video Guide**",
+          value: `[How to use Slash Coammands](https://youtu.be/YSKDu1gKntY)`,
+          inline: true,
+        },
+        {
+          name: `<:nyx_description:897379659665264650> Documentation`,
+          value: `[Click here](${client.docs})`,
+          inline: true,
+        },
+        {
+          name: "<a:donate:896985486260846614> **Support us**",
+          value: `[KoFi](https://ko-fi.com/cathteam)`,
+          inline: true,
+        },
+        {
+          name: "<a:booster:896527475063025704> **Premium**",
+          value: `You can either boost support server or subscribe to developer's team [Ko-Fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team.`,
+          inline: false,
+        }
+      )
+      .setURL(client.web)
+      .setFooter(
+        `Requested by ${message.author.tag}`,
+        message.author.displayAvatarURL({ dynamic: true })
+      )
+      // .setThumbnail("../../util/assets/images/nyx_logo_transparent.webp")
+      .setTimestamp();
+    message.reply({
+      embeds: [embed],
+      components: utils.buttons(client),
+    });
   }
 });
 client.on("messageCreate", async message => {
   if (message.channel.type === "DM" && !message.author.bot) {
-    if (message.attachments) {
-      if (message.attachments && message.content) {
-        message.attachments.map(e =>
-          client.channels.cache.get(client.DMLog).send({
-            content: `\`${message.author.tag}(${message.author.id})\`: ${
-              message.content + e.url
-            }`,
-          })
-        );
-      } else {
-        message.attachments.map(e =>
-          client.channels.cache.get(client.DMLog).send({
-            content: `\`${message.author.tag}(${message.author.id})\`: ${e.url}`,
-          })
-        );
-      }
+    if (message.attachments && message?.content) {
+      message.attachments.map(e =>
+        client.channels.cache.get(client.config.DMLog).send({
+          content: `\`${message.author.tag}(${message.author.id})\`: ${
+            message.content + e.url
+          }`,
+        })
+      );
     } else {
-      client.channels.cache.get(client.DMLog).send({
+      message.attachments.map(e =>
+        client.channels.cache.get(client.config.DMLog).send({
+          content: `\`${message.author.tag}(${message.author.id})\`: ${e.url}`,
+        })
+      );
+    }
+    if (message.content) {
+      client.channels.cache.get(client.config.DMLog).send({
         content: `\`${message.author.tag}(${message.author.id})\`: ${message.content}`,
       });
     }

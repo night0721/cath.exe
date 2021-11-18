@@ -3,7 +3,7 @@ module.exports = {
   name: "slowmode",
   UserPerms: ["MANAGE_CHANNELS"],
   description: "Set slowmode at a specific channel",
-  BotPerm: "MANAGE_CHANNELS",
+  BotPerms: ["MANAGE_CHANNELS"],
   usage: "(Time)",
   category: "Moderation",
   run: async (client, interaction, args, utils) => {
@@ -31,7 +31,7 @@ module.exports = {
     const slowmoEmbed = new Discord.MessageEmbed()
       .setColor(client.color)
       .setTitle("Slowmode")
-      .setFooter(`Made by ${client.author}`)
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setTimestamp()
       .setAuthor(
         `Requested by ${interaction.user.tag}`,

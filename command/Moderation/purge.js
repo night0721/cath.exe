@@ -5,25 +5,25 @@ module.exports = {
   description: "Clear messages in a specific channel",
   options: [
     {
-      name: 7,
+      name: "channel",
       description: "Channel where the messages to be deleted",
-      type: "CHANNEL",
+      type: 7,
       required: true,
+      channelTypes: ["GUILD_TEXT"],
     },
     {
-      name: 4,
+      name: "amount",
       description: "Amount of message in range of 1-100 to be deleted",
-      type: "NUMBER",
+      type: 4,
       required: true,
     },
   ],
   type: "CHAT_INPUT",
   run: async (client, interaction, args) => {
     try {
-      let query = interaction.options.get("amount");
-      let ch = interaction.options.get("channel");
-      let channel = interaction.guild.channels.cache.get(ch.value);
-      if (query.value > 100) {
+      const query = args[1];
+      const channel = interaction.guild.channels.cache.get(args[0]);
+      if (query > 100) {
         return interaction.followUp({
           content: "The amount of messages must be in range of 1-100",
         });
@@ -34,7 +34,7 @@ module.exports = {
         });
       }
       const limit = await interaction.channel.messages.fetch({
-        limit: query.value,
+        limit: query,
       });
       await channel.bulkDelete(limit, true).then(async m => {
         const results = {};
@@ -57,11 +57,7 @@ module.exports = {
                 }`,
                 true
               )
-              .addField(
-                "Amount of Message Deleted",
-                `${m.size}/${query.value}`,
-                true
-              )
+              .addField("Amount of Message Deleted", `${m.size}/${query}`, true)
               .addField(
                 "Authors",
                 `${userMessageMap
@@ -69,11 +65,12 @@ module.exports = {
                   .join("\n")}`,
                 false
               )
-              .setTimestamp()
               .setFooter(
-                interaction.member.nickname
-                  ? interaction.member.nickname
-                  : interaction.user.username,
+                `Made by ${client.author}`,
+                client.user.displayAvatarURL()
+              )
+              .setTimestamp()
+              .setThumbnail(
                 interaction.user.displayAvatarURL({ dynamic: true })
               )
               .setColor(client.color),
@@ -82,6 +79,7 @@ module.exports = {
       });
     } catch (e) {
       console.log(e);
+      interaction.followUp({ content: `**Error**: ${e.message}` });
     }
   },
 };

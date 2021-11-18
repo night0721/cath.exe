@@ -1,4 +1,4 @@
-const figlet = require("figlet");
+const axios = require("axios");
 module.exports = {
   name: "ascii",
   description: "Converts text into ASCII art",
@@ -13,10 +13,11 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const msg = args[0];
-    figlet.text(msg, async (err, data) => {
-      if (err) console.log(err);
-      await interaction.followUp(`\`\`\`${data}\`\`\``);
-    });
+    const data = await axios
+      .get(
+        `https://artii.herokuapp.com/make?text=${encodeURIComponent(args[0])}`
+      )
+      .then(res => res.data);
+    interaction.followUp(`\`\`\`${data}\`\`\``);
   },
 };

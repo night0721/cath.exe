@@ -20,9 +20,8 @@ module.exports = {
           query
         )}`
       )
-      .then(res => res.json())
       .then(async data => {
-        await interaction.followUp({ embeds: [data] });
+        interaction.followUp({ embeds: [data.data] });
       });
   },
 };

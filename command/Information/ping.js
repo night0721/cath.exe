@@ -9,16 +9,17 @@ module.exports = {
     const messageping = msg.createdTimestamp - interaction.createdTimestamp;
     await msg.delete();
     const Embed = new MessageEmbed()
-      .setTitle("🏓 Pong!")
+      .setTitle("<a:pong:897383314405605436> Pong!")
       .setAuthor(
         `${interaction.user.username}`,
         interaction.user.displayAvatarURL()
       )
       .setDescription(
-        `📨 • **Message Latency** \`${Math.floor(
-          messageping
-        )}ms\`\n🛰️ • **Bot Latency** \`${Math.round(client.ws.ping)}ms\``
+        `\n 📨 • **Message Latency** \`${Math.floor(messageping)}ms\`
+        \n🛰️ • **Bot Latency** \`${Math.round(client.ws.ping)}ms\``
       )
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setTimestamp()
       .setColor(
         messageping < 350
           ? "GREEN"
@@ -26,6 +27,6 @@ module.exports = {
           ? "YELLOW"
           : "RED"
       );
-    await interaction.followUp({ embeds: [Embed] });
+    interaction.followUp({ embeds: [Embed] });
   },
 };

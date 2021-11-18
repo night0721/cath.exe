@@ -15,19 +15,19 @@ module.exports = {
   ],
   type: "CHAT_INPUT",
   run: async (client, interaction, args, utils) => {
-    let user = interaction.guild.members.cache.get(args[0]);
-    if (user.user.id == interaction.user.id)
-      return await interaction.followUp("You can't play with yourself");
-    if (user.user.bot)
-      return await interaction.followUp("You can't play with bots");
+    const user = interaction.guild.members.cache.get(args[0]);
+    if (user.user.id == interaction.user.id) {
+      return interaction.followUp("You can't play with yourself");
+    }
+    if (user.user.bot) return interaction.followUp("You can't play with bots");
 
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setDescription(`Wait for **${user.user.username}** to accept your game`)
       .setColor(client.color)
       .setTimestamp()
-      .setFooter(`Made by ${client.author}`);
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
 
-    let confirm = new Discord.MessageActionRow().addComponents(
+    const confirm = new Discord.MessageActionRow().addComponents(
       new Discord.MessageButton()
         .setLabel("Accept")
         .setStyle("SUCCESS")
@@ -46,7 +46,7 @@ module.exports = {
         components: [confirm],
       })
       .then(async m => {
-        let filter = button => button.user.id == user.user.id;
+        const filter = button => button.user.id == user.user.id;
         const collector = m.createMessageComponentCollector({
           filter,
           type: "BUTTON",
@@ -58,12 +58,12 @@ module.exports = {
             return collector.stop("decline");
           }
           button.deferUpdate();
-          let pick = new Discord.MessageEmbed()
+          const pick = new Discord.MessageEmbed()
             .setTitle(`${interaction.user.username} VS ${user.user.username}`)
             .setColor(client.color)
             .setDescription("Choose either 🪨, 📄, or ✂️")
             .setTimestamp();
-          let choices = new Discord.MessageActionRow().addComponents(
+          const choices = new Discord.MessageActionRow().addComponents(
             new Discord.MessageButton()
               .setCustomId("rock")
               .setStyle("SECONDARY")
@@ -82,11 +82,11 @@ module.exports = {
             components: [choices],
           });
           collector.stop();
-          let users = new Set();
+          const users = new Set();
           users.add(interaction.user.id);
           users.add(user.user.id);
           let ping, pong;
-          let filter = b => users.has(b.user.id);
+          const filter = b => users.has(b.user.id);
           const collect = m.createMessageComponentCollector({
             filter,
             type: "BUTTON",
@@ -112,7 +112,7 @@ module.exports = {
           });
           collect.on("end", (c, reason) => {
             if (reason == "time") {
-              let timeout = new Discord.MessageEmbed()
+              const timeout = new Discord.MessageEmbed()
                 .setTitle("Timeout")
                 .setColor("RED")
                 .setDescription(
@@ -129,10 +129,13 @@ module.exports = {
               const sit5 = ping == "paper" && pong == "rock";
               const sit6 = ping == "rock" && pong == "paper";
               if (sit1 || sit3 || sit5) {
-                let embed = new Discord.MessageEmbed()
+                const embed = new Discord.MessageEmbed()
                   .setTitle(`${user.user.username} wins!`)
                   .setColor("GREEN")
-                  .setFooter(`Made by ${client.author}`)
+                  .setFooter(
+                    `Made by ${client.author}`,
+                    client.user.displayAvatarURL()
+                  )
                   .addField(
                     `${user.user.username} choice`,
                     `${utils.format(ping)}`
@@ -147,10 +150,13 @@ module.exports = {
                   components: [],
                 });
               } else if (sit2 || sit4 || sit6) {
-                let embed = new Discord.MessageEmbed()
+                const embed = new Discord.MessageEmbed()
                   .setTitle(`${interaction.user.username} wins!`)
                   .setColor("GREEN")
-                  .setFooter(`Made by ${client.author}`)
+                  .setFooter(
+                    `Made by ${client.author}`,
+                    client.user.displayAvatarURL()
+                  )
                   .addField(
                     `${interaction.user.username} choice`,
                     `${utils.format(pong)}`
@@ -165,10 +171,13 @@ module.exports = {
                   components: [],
                 });
               } else {
-                let embed = new Discord.MessageEmbed()
+                const embed = new Discord.MessageEmbed()
                   .setTitle(`Tie!`)
                   .setColor("GREY")
-                  .setFooter(`Made by ${client.author}`)
+                  .setFooter(
+                    `Made by ${client.author}`,
+                    client.user.displayAvatarURL()
+                  )
                   .addField(
                     `${interaction.user.username} choice`,
                     `${utils.format(pong)}`
@@ -185,7 +194,7 @@ module.exports = {
         });
         collector.on("end", (collected, reason) => {
           if (reason == "time") {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
               .setTitle("Timeout")
               .setColor("RED")
               .setDescription(
@@ -197,7 +206,7 @@ module.exports = {
             });
           }
           if (reason == "decline") {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
               .setTitle("Declined")
               .setColor("RED")
               .setDescription(

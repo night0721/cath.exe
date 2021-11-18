@@ -1,83 +1,54 @@
-const { glob } = require("glob");
-const { promisify } = require("util");
-const { Client } = require("discord.js");
-const globPromise = promisify(glob);
-/**
- * @param {Client} client
- */
+const fs = require("fs");
+const cmds = [];
+const ownercmds = [];
 module.exports = async client => {
-  const commands = await globPromise(`${process.cwd()}/commands/**/*.js`);
-  commands.map(value => {
-    if (!value.includes("Owner")) {
-      const file = require(value);
-      const splitted = value.split("/");
-      const directory = splitted[splitted.length - 2];
-      if (file.name) {
-        const properties = { directory, ...file };
-        client.commands.set(file.name, properties);
-      }
+  fs.readdirSync("./events").forEach(file => {
+    require(`${process.cwd()}/events/${file}`);
+  });
+  fs.readdirSync("./command").forEach(directory => {
+    if (directory !== "Owner") {
+      const commands = fs.readdirSync(`./command/${directory}/`);
+      commands.map(value => {
+        const file = require(`${process.cwd()}/command/${directory}/${value}`);
+        if (file.name) {
+          const properties = { directory, ...file };
+          client.slashCommands.set(file.name, properties);
+        }
+        if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
+        if (file.UserPerms) file.defaultPermission = false;
+        cmds.push(file);
+      });
     }
   });
-  const events = await globPromise(`${process.cwd()}/events/*.js`);
-  events.map(value => require(value));
-  const paths = await globPromise(`${process.cwd()}/cat/*.js`);
-  paths.map(value => {
-    const file = require(value);
-    const splitted = value.split("/");
-    const directory = splitted[splitted.length - 2];
-    if (file.name) {
-      const properties = { directory, ...file };
-      client.hide.set(file.name, properties);
-    }
-  });
-  const cmds = [];
-  const scommands = await globPromise(`${process.cwd()}/command/*/*.js`);
-  scommands.map(value => {
-    if (!value.includes("Owner")) {
-      const file = require(value);
-      const splitted = value.split("/");
-      const directory = splitted[splitted.length - 2];
-      if (file.name) {
-        const properties = { directory, ...file };
-        client.slashCommands.set(file.name, properties);
-      }
-      if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
-      if (file.userPerms) file.defaultPermission = false;
-      cmds.push(file);
-    }
-  });
-  const ownercmds = [];
-  const owners = await globPromise(`${process.cwd()}/command/Owner/*.js`);
-  owners.map(value => {
-    const file = require(value);
+  fs.readdirSync("./command/Owner").forEach(f => {
+    const file = require(`${process.cwd()}/command/Owner/${f}`);
     client.hide.set(file.name, file);
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
-    if (file.userPerms) file.defaultPermission = false;
+    if (file.UserPerms) file.defaultPermission = false;
     ownercmds.push(file);
   });
   client.on("ready", async () => {
-    const g = client.guilds.cache.get("840225563193114624");
-    await g.commands.set(ownercmds);
+    const gg = client.guilds.cache.get("840225563193114624");
+    await gg.commands.set(ownercmds);
     await client.application.commands.set(cmds).then(async cmd => {
-      const getroles = name => {
-        const perms = cmds.find(n => n.name == name).userPerms;
-        if (!perms) return null;
-        return g.roles.cache.filter(
-          z => z.permissions.has(perms) && !z.managed
-        );
-      };
-      const fullPermissions = cmd.reduce((accumulator, v) => {
-        const roles = getroles(v.name);
-        if (!roles) return accumulator;
-        const permissions = roles.reduce((a, w) => {
-          return [...a, { id: w.id, type: "ROLE", permission: true }];
+      client.guilds.cache.forEach(g => {
+        const getroles = name => {
+          const perms = cmds.find(n => n.name == name).UserPerms;
+          if (!perms) return null;
+          return g.roles.cache.filter(
+            z => z.permissions.has(perms) && !z.managed
+          );
+        };
+        const fullPermissions = cmd.reduce((accumulator, v) => {
+          const roles = getroles(v.name);
+          if (!roles) return accumulator;
+          const permissions = roles.reduce((a, w) => {
+            return [...a, { id: w.id, type: "ROLE", permission: true }];
+          }, []);
+          return [...accumulator, { id: v.id, permissions }];
         }, []);
-        return [...accumulator, { id: v.id, permissions }];
-      }, []);
-      client.guilds.cache.forEach(g =>
-        g.commands.permissions.set({ fullPermissions }).catch(e => null)
-      );
+        g.commands.permissions.set({ fullPermissions });
+      });
     });
-    //.catch(e => null);
   });
 };

@@ -1,7 +1,7 @@
 {
-  "name": "cath.exe - CODM Bot",
+  "name": "NYX - CODM Bot",
   "description": "Host cath.exe through Heroku",
-  "keywords": ["cat", "cath", "codm", "discord", "discord bot"],
+  "keywords": ["bot", "nyx", "codm", "discord", "gunsmith"],
   "repository": "https://github.com/night0721/cath.exe",
   "env": {
     "TOKEN": {
@@ -11,64 +11,6 @@
     "MONGO": {
       "description": "MongoDB URI from https://mongodb.com/",
       "value": ""
-    },
-    "CLIENT_ID": {
-      "description": "Bot ID from https://discord.com/developers/applications",
-      "value": ""
-    },
-    "CLIENT_SECRET": {
-      "description": "Client Secret from https://discord.com/developers/applications",
-      "value": ""
-    },
-    "DMLogID": {
-      "description": "DM Log Webhook ID",
-      "value": ""
-    },
-    "DMLogToken": {
-      "description": "DM Log Webhook Token",
-      "value": ""
-    },
-    "CMDLogID": {
-      "description": "Command Log Webhook ID",
-      "value": ""
-    },
-    "CMDLogToken": {
-      "description": "Command Log Webhook Token",
-      "value": ""
-    },
-    "ReadyLogID": {
-      "description": "Ready Log Webhook ID",
-      "value": ""
-    },
-    "ReadyLogToken": {
-      "description": "Ready Log Webhook Token",
-      "value": ""
-    },
-    "ErrorLogID": {
-      "description": "Error Log Webhook ID",
-      "value": ""
-    },
-    "ErrorLogToken": {
-      "description": "Error Log Webhook Token",
-      "value": ""
-    },
-    "ServerLogID": {
-      "description": "Server Log Webhook ID",
-      "value": ""
-    },
-    "ServerLogToken": {
-      "description": "Server Log Webhook Token",
-      "value": ""
-    },
-    "PORT": {
-      "description": "Port for Heroku to use",
-      "value": "3000",
-      "required": false
-    },
-    "REDIRECT": {
-      "description": "REDIRECT URL",
-      "value": "",
-      "required": false
     }
   },
   "buildpacks": [

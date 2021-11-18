@@ -68,86 +68,116 @@ module.exports = {
         .setTitle("**Server Information**")
         .setAuthor(`${g.name}`, g.iconURL({ dynamic: true }))
         .setColor(client.color)
+        .setDescription(g.description || "No Description")
         .setThumbnail(g.iconURL({ dynamic: true, size: 1024 }))
-        .addField(`🎫 Name of server:`, g.name, true)
-        .addField(`🆔 ID of server`, g.id, true)
-        .addField(`🔗 Vanity Link`, `${vanityInvite}`, true)
-        .addField("👩‍💻 Owner", `${owner}`, true)
-        .addField("👩‍💻 Owner ID", `\`${owner.id}\``, true)
-        .addField(`👥 No. of Members`, g.memberCount.toString(), true)
-        .addField(
-          `🤖 No. of Bots:`,
-          members.filter(member => member.user.bot).size.toString(),
-          true
-        )
-        .addField(
-          `🚶 Humans:`,
-          members.filter(member => !member.user.bot).size.toString(),
-          true
-        )
-        .addField(
-          "🧷 Channels",
-          `#️⃣ ${textChannel} **Text** Channels\n 🔊 ${voiceChannel} **Voice** Channels\n 📁 ${categoryChannel} **Categories**`,
-          true
-        )
-        .addField(`😗 Emojis:`, g.emojis.cache.size.toString(), true)
-        .addField(
-          `👻 Animated Emoji\'s:`,
-          g.emojis.cache.filter(emoji => emoji.animated).size.toString(),
-          true
-        )
-        .addField(
-          `👔 Roles [${roles.length}]`,
-          roles.length < 10
-            ? roles.join(" **|** ")
-            : roles.length > 10
-            ? `${roles.slice(0, 10).join(" **|** ")}\n+${
-                roles.length - 10
-              } roles...`
-            : "None",
-          true
-        )
-        .addField(`📃 Description`, g.description || "No Description", true)
-        .addField(
-          `♨ Boost`,
-          `Tier: ${
+        .addFields(
+          {
+            name: `<:nyx_owner:897418259433943120> Owner Info`,
+            value: `
+          **Owner ❯** ${owner}
+          🆔 **Owner ID ❯** \`${owner.id}\`
+          `,
+            inline: true,
+          },
+          {
+            name: `Misc Info`,
+            value: `
+          **🆔 Server ID ❯** \`${g.id}\`
+          **🌐 Region ❯** ${regions[g.regions]}
+          **🔗 Vanity Link ❯** [${vanityCode}](${vanityInvite})
+          `,
+            inline: true,
+          },
+          {
+            name: `<a:nyx_last_update:897381474330873887> Creation Date`,
+            value: `
+          ${moment(g.createdTimestamp).format("LL")} ${moment(
+              g.createdTimestamp
+            ).format("LTS")} (${moment(g.createdTimestamp).fromNow()})`,
+            inline: true,
+          },
+          // Row 2
+          {
+            name: `<:4chanluv:836623612689121320> Emojies ${g.emojis.cache}`,
+            value: `
+          **Static ❯** ${g.emojis.cache.size.toString()}
+          **Animated ❯** ${g.emojis.cache
+            .filter(emoji => emoji.animated)
+            .size.toString()}`,
+            inline: true,
+          },
+          {
+            name: `Member Statistics`,
+            value: `
+          👥 **Total❯** ${g.memberCount.toString()}
+          🚶 **Users❯** ${members
+            .filter(member => !member.user.bot)
+            .size.toString()}
+          🤖 **Bots❯** ${members
+            .filter(member => member.user.bot)
+            .size.toString()}`,
+            inline: true,
+          },
+          {
+            name: `Channel Info`,
+            value: `
+          📁 **Categories ❯** ${categoryChannel}
+          #️⃣ **Text❯** ${textChannel}
+          🔊 **Voice❯** ${voiceChannel}`,
+            inline: true,
+          },
+          // Row 3
+          {
+            name: `Server Specification`,
+            value: `
+          **<:partner:840231939944480829> Partnered ❯** ${
+            g.partnered
+              ? "<a:nyx_checkmark:897240322411724841>"
+              : "<a:nyx_cross:897244999211696198>"
+          }
+          **<:verifiedserver:897410018234728449> Verified ❯** ${
+            g.verified
+              ? "<a:nyx_checkmark:897240322411724841>"
+              : "<a:nyx_cross:897244999211696198>"
+          }
+          **🚥 Verification Level ❯** ${verificationLevels[g.verificationLevel]}
+          **💢 Explicit Filter ❯** ${filterLevels[g.explicitContentFilter]}
+          **Tier ❯** ${
             g.premiumTier == "TIER_3"
-              ? "3"
+              ? "3 <:nyx_tier3:897406181511946261>"
               : g.premiumTier == "TIER_2"
-              ? "2"
+              ? "2 <:nyx_tier2:897406181541281792>"
               : g.premiumTier == "TIER_1"
-              ? "1"
+              ? "1 <:nyx_tier1:897406181558067210>"
               : "0"
-          }\nCount: ${g.premiumSubscriptionCount || "0"}`,
-          true
+          }
+          **Count ❯** ${g.premiumSubscriptionCount || "0"}`,
+            inline: true,
+          },
+          {
+            name: `<a:nyx_community:897419330478825512> Community Features`,
+            value: `${
+              utils.fixFeatures(g.features) || "No Community Features"
+            }`,
+            inline: true,
+          },
+          {
+            name: `👔 Role Info [${roles.length}]`,
+            value: `${
+              roles.length < 10
+                ? roles.join(" **|** ")
+                : roles.length > 10
+                ? `${roles.slice(0, 10).join(" **|** ")}\n+${
+                    roles.length - 10
+                  } roles...`
+                : "None"
+            }`,
+            inline: true,
+          }
         )
-        .addField(
-          "💢 Explicit Filter",
-          filterLevels[g.explicitContentFilter],
-          true
-        )
-        .addField(
-          `🚧 Verification Level`,
-          verificationLevels[g.verificationLevel],
-          true
-        )
-        .addField(
-          "🗺 Community Features",
-          utils.fixFeatures(g.features) || "No Community Features",
-          true
-        )
-        .addField("👨🏻‍🤝‍👨🏻 Partnered", g.partnered ? "Yes" : "No", true)
-        .addField("✅ Verified", g.verified ? "Yes" : "No", true)
-        .addField(
-          `📅 Created at`,
-          `${moment(g.createdTimestamp).format("LL")} ${moment(
-            g.createdTimestamp
-          ).format("LTS")} (${moment(g.createdTimestamp).fromNow()})`,
-          true
-        )
-        .setURL(client.web)
-        .setFooter(`Made by ${client.author}`);
-      await interaction.followUp({ embeds: [embed] });
+        .setURL(vanityCode ? vanityInvite : "https://cath.gq/")
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+      interaction.followUp({ embeds: [embed] });
     } catch (e) {
       console.log(e);
     }

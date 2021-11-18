@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const client = require("../../bot");
+const client = require("../..");
 /**
  * @param {String} message
  * @param {String} dir
@@ -197,15 +197,15 @@ module.exports = async (message, dir, file, err) => {
       break;
   }
   const pull = require(`../../commands/${dir}/${file}`);
-  let pre = await client.prefix(message);
-  let embed = new MessageEmbed()
+  const pre = await client.prefix(message);
+  const embed = new MessageEmbed()
     .setAuthor(
       `Error from ${message.author.tag}`,
       message.author.displayAvatarURL({ dynamic: true })
     )
     .setColor("RED")
     .setDescription(
-      `${require("../../config.json").ca}\nUse \`${pre}help ${
+      `${require("../../config").ca}\nUse \`${pre}help ${
         pull.name
       }\` to get help\n\n `
     )
@@ -216,7 +216,7 @@ module.exports = async (message, dir, file, err) => {
     .setTimestamp()
     .setThumbnail(client.user.displayAvatarURL({ dynamic: false }))
     .setURL(client.web)
-    .setFooter(`Made by ${client.author}`);
+    .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
   const msg = await message.reply({ embeds: [embed] });
   setTimeout(function () {
     msg.delete();

@@ -3,7 +3,8 @@ module.exports = {
   name: "rich",
   description: "Displaying top 10 richest users.",
   category: "Economy",
-  run: async (client, interaction, args) => {
+  timeout: 4000,
+  run: async (client, interaction) => {
     const collection = new Collection();
     await Promise.all(
       interaction.guild.members.cache.map(async member => {
@@ -18,25 +19,26 @@ module.exports = {
           : null;
       })
     );
-    if (!collection)
-      return await interaction.followUp({
+    if (!collection) {
+      return interaction.followUp({
         content: `None of the members got ${client.currency}!`,
       });
+    }
     const ata = collection.sort((a, b) => b.bal - a.bal).first(10);
-    await interaction.followUp({
+    interaction.followUp({
       embeds: [
         new MessageEmbed()
           .setTitle(`Richest users in ${interaction.guild.name}`)
           .setDescription(
             ata
               .map((v, i) => {
-                return `${i + 1}: ${
+                return `**${i + 1}❯** ${
                   interaction.guild.members.cache.get(v.id).user.tag
-                } => **${v.bal}${client.currency}**`;
+                } =❯ **${v.bal} ${client.currency}**`;
               })
               .join("\n")
           )
-          .setFooter(`Made by ${client.author}`)
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
           .setTimestamp()
           .setColor(client.color),
       ],

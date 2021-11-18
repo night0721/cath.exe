@@ -36,27 +36,27 @@ module.exports = {
         "Early Verified Bot Developer<:discord_bot_dev:840231906200387666>",
       DISCORD_CERTIFIED_MODERATOR: "Discord Certified Moderator",
     };
-    let status;
-    switch (member.presence.status) {
-      case "online":
-        status = "<:online:840231921123721237>Online";
-        break;
-      case "dnd":
-        status = "<:do_not_disturb:840231907715448842>Do Not Disturb";
-        break;
-      case "idle":
-        status = "<:idle:840231935485149184>Idle";
-        break;
-      case "offline":
-        status = "<:offline:840231954897305620>Offline";
-        break;
-    }
-    let x = Date.now() - member.user.createdAt;
-    let y =
+    // let status;
+    // switch (member.presence.status) {
+    //   case "online":
+    //     status = "<:online:840231921123721237>Online";
+    //     break;
+    //   case "dnd":
+    //     status = "<:do_not_disturb:840231907715448842>Do Not Disturb";
+    //     break;
+    //   case "idle":
+    //     status = "<:idle:840231935485149184>Idle";
+    //     break;
+    //   case "offline":
+    //     status = "<:offline:840231954897305620>Offline";
+    //     break;
+    // }
+    const x = Date.now() - member.user.createdAt;
+    const y =
       Date.now() - interaction.guild.members.cache.get(member.id).joinedAt;
-    let created = Math.floor(x / 86400000);
-    let joined = Math.floor(y / 86400000);
-    let nickname =
+    const created = Math.floor(x / 86400000);
+    const joined = Math.floor(y / 86400000);
+    const nickname =
       member.nickname !== undefined && member.nickname !== null
         ? member.nickname
         : "None";
@@ -66,39 +66,39 @@ module.exports = {
       .map(role => role.toString())
       .slice(0, -1);
     const userFlags = member.user.flags.toArray();
-    let createdate = moment(member.user.createdAt).format(
+    const createdate = moment(member.user.createdAt).format(
       "dddd, MMMM Do YYYY, HH:mm:ss"
     );
-    let joindate = moment(member.joinedAt).format(
+    const joindate = moment(member.joinedAt).format(
       "dddd, MMMM Do YYYY, HH:mm:ss"
     );
-    let activities;
-    if (member.presence.activities[0] && member.presence.activities[1]) {
-      activities = member.presence.activities[1].name;
-    } else if (
-      member.presence.activities[0] &&
-      !member.presence.activities[1]
-    ) {
-      activities = "None";
-    } else activities = "None";
+    // let activities;
+    // if (member.presence.activities[0] && member.presence.activities[1]) {
+    //   activities = member.presence.activities[1].name;
+    // } else if (
+    //   member.presence.activities[0] &&
+    //   !member.presence.activities[1]
+    // ) {
+    //   activities = "None";
+    // } else activities = "None";
     const embed = new MessageEmbed()
       .setAuthor(
         member.user.tag,
         member.user.displayAvatarURL({ dynamic: true, size: 2048 })
       )
       .setTimestamp()
-      .setColor(client.color)
+      .setColor(member.displayHexColor || client.color)
       .setURL(client.web)
-      .setFooter(`Made by ${client.author}`)
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
-      .setColor(member.displayHexColor || "02023a")
+      .setColor(member.displayHexColor || client.color)
       .addField(
         "User",
         `**❯ Username:** ${member.user.username}
         **❯ Discriminator:** ${member.user.discriminator}
         **❯ Nickname:** ${nickname}
-        **❯ ID:** ${member.id}
-        **❯ Flags:** ${
+        **❯ User ID:** ${member.id}
+        **❯ Badge:** ${
           userFlags.length
             ? userFlags.map(flag => flags[flag]).join(" **|** ")
             : "None"
@@ -108,10 +108,8 @@ module.exports = {
           size: 2048,
         })})
         **❯ Time Created:** ${createdate} \nSince ${created} day(s) ago
-        **❯ Status:** ${status}
-        **❯ Game:** ${activities}
         \u200b`
-      )
+      ) //* *❯ Status:** ${status}* *❯ Game:** ${activities}
       .addField(
         "Member",
         `**❯ Highest Role:** ${
@@ -129,6 +127,6 @@ module.exports = {
         }
           \u200b`
       );
-    await interaction.followUp({ embeds: [embed] });
+    interaction.followUp({ embeds: [embed] });
   },
 };

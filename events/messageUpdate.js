@@ -1,6 +1,6 @@
-const client = require("../bot");
+const client = require("..");
 client.on("messageUpdate", async (message, newMessage) => {
-  let all = [];
+  const all = [];
   if (message.attachments) {
     const files = message.attachments.map(e => e);
     for (var i = 0; i < files.length; i++) {

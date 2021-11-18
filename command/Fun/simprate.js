@@ -14,20 +14,16 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    let simp = Math.floor(Math.random() * 100);
-    let user = interaction.guild.members.cache.get(args[0]);
+    const simp = Math.floor(Math.random() * 100);
+    const user = interaction.guild.members.cache.get(args[0]);
     interaction.followUp({
       embeds: [
         new MessageEmbed()
           .setTitle(`${user.user.username}'s simp rate`)
           .setDescription(`${user.user.username} is a ${simp}% simp`)
           .setColor(client.color)
-          .setFooter(`Made by ${client.author}`)
-          .setTimestamp()
-          .setAuthor(
-            `Requested by ${interaction.user.tag}`,
-            interaction.user.displayAvatarURL({ dynamic: true })
-          ),
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setTimestamp(),
       ],
     });
   },

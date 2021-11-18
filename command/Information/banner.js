@@ -1,6 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const axios = require("axios");
-
 module.exports = {
   name: "banner",
   description: "Show user's banner",
@@ -18,40 +16,37 @@ module.exports = {
   run: async (client, interaction, args) => {
     const { user } =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
-    axios
-      .get(`https://discord.com/api/v9/users/${user.id}`, {
-        headers: {
-          Authorization: `Bot ${client.token}`,
-        },
-      })
-      .then(async res => {
-        const { banner, accent_color } = res.data;
+    const data = await user.fetch();
+    if (data?.banner) {
+      const extension = data.banner.startsWith("a_") ? ".gif" : ".png";
+      const url = `https://cdn.discordapp.com/banners/${user.id}/${data.banner}${extension}?size=2048`;
 
-        if (banner) {
-          const extension = banner.startsWith("a_") ? ".gif" : ".png";
-          const url = `https://cdn.discordapp.com/banners/${user.id}/${banner}${extension}?size=2048`;
-
-          const embed = new MessageEmbed()
-            .setTitle(`${user.tag}'s Banner`)
-            .setImage(url)
-            .setColor(accent_color || "BLUE");
-
-          await interaction.followUp({ embeds: [embed] });
-        } else {
-          if (accent_color) {
-            const embed = new MessageEmbed()
-              .setDescription(
-                `**${user.tag}** does not have a banner but they have an accent color`
-              )
-              .setColor(accent_color);
-
-            await interaction.followUp({ embeds: [embed] });
-          } else {
-            await interaction.followUp({
-              content: `**${user.tag}** does not have a banner nor do they have an accent color.`,
-            });
-          }
-        }
-      });
+      const embed = new MessageEmbed()
+        .setDescription(`[Link to Banner](${url})`)
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setTimestamp()
+        .setTitle(`${user.tag}'s Banner`)
+        .setImage(url)
+        .setColor(data?.hexAccentColor || client.color);
+      interaction.followUp({ embeds: [embed] });
+    } else if (data?.hexAccentColor) {
+      const embed = new MessageEmbed()
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setTimestamp()
+        .setDescription(
+          `**${user.tag}** does not have a banner but they have an accent color`
+        )
+        .setColor(data?.hexAccentColor);
+      interaction.followUp({ embeds: [embed] });
+    } else {
+      const embed = new MessageEmbed()
+        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setTimestamp()
+        .setDescription(
+          `Seems like **${user.username}** doesn't have a banner or an accent color.`
+        )
+        .setColor(client.color);
+      interaction.followUp({ embeds: [embed] });
+    }
   },
 };
