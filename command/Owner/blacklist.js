@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       type: 5,
-      name: "blacklist",
+      name: "yesno",
       description: "Whether to blacklist or whitelist",
       required: true,
     },
@@ -25,9 +25,9 @@ module.exports = {
     },
   ],
   run: async (client, interaction) => {
-    const user = interaction.options.getUser("User");
-    const toggle = interaction.options.getBoolean("Blacklist");
-    const reason = interaction.options.getString("Reason");
+    const user = interaction.options.getUser("user");
+    const toggle = interaction.options.getBoolean("yesno");
+    const reason = interaction.options.getString("reason");
     if (toggle === true) {
       await client.data.BK(user.id, toggle, reason);
       const embed = new MessageEmbed()
