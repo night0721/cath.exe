@@ -45,13 +45,12 @@ class NYX extends Client {
       "556808365574193194", // chunchunmaru
       "746753527338238115", // mightyful
     ];
-    this.currency = "<:cp:840231933933387797>"; // <a:pumpkin:898975476863877170>
+    this.currency = "<:nyx_currency:918584872333893703>";
     this.xp = "<:nyx_xp:900309007472926720>";
     this.path = [
       "614423108388126731", // Camper on Duty
       "767173194943168542", // Dark Bonker
       "718762019586572341", // NYX Nation
-      "869583978108157972", // Lighthouse Community
       "840225563193114624", // Command Test
     ];
     const client = this;
