@@ -748,15 +748,15 @@ module.exports = {
           },
         }
       )
-      .then(res => res.data)
+      .then((res) => res.data)
       .catch();
-    const unavaliable = new MessageEmbed()
-      .setDescription(
-        `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
-      )
-      .setColor(client.color);
     if (!data) {
-      interaction.followUp({ embeds: [unavaliable] });
+      const embed = new MessageEmbed()
+        .setDescription(
+          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
+        )
+        .setColor(client.color);
+      interaction.followUp({ embeds: [embed] });
     } else {
       const arr = [];
       data.attachments.map((e, i) => {
@@ -767,7 +767,7 @@ module.exports = {
           `${data.weaponName}(${data.weaponType})'s ${all[tag]} build from ${data.author}`
         )
         .setDescription(
-          `<:nyx_description:897379659665264650> Description \`\`\`\n${data.notes}\n\`\`\``
+          `<:nyx_description:897379659665264650> **Description** \`\`\`\n ${data.notes}\n\`\`\``
         )
         .setColor(16580400)
         .setImage(data.imageUrl)

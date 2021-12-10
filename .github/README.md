@@ -1,4 +1,4 @@
-<h1 align="center"> NYX </h1> 
+<h1 align="center"> NYX [Cath.exe] </h1> 
 <!-- header -->
 <p align="center">
     <a href="https://rebrand.ly/cathSupport" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
@@ -43,9 +43,11 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 
 ## <img height="18px" src="../util/assets/images/cod_logo.svg"> **Call of Duty Mobile**
 
-- **Weapon Statistics** courtesy of **Round Table** by Cygnoux Familia.
+- **Weapon Statistics** courtesy of **Lighthouse v2.1**
+> Will soon be using stats provided by **Round Table** of Cygnoux Familia.
 - **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe and more comming soon.
 - **Perks** detailed info about the perks.
+- **Scorestreak** detailed info about scorestreak with preview videos.
 - **Randomly Generated Class** Wanna try something challenging? try our Randomly Generated Gunsmith builds.
 
 > We also provide access to our database that includes In-depth Weapon statistics & Gunsmith Builds from various Content Creators, & other Call of duty related info, please [contact us](https://rebrand.ly/cathSupport) for more info.
@@ -67,15 +69,6 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
    [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
    [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
    <img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122"><br>
-</details>
-
-<details>
-  <summary>Issues & PRs</summary>
-  
-  [![Open issues](https://img.shields.io/github/issues-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
-  [![Closed issues](https://img.shields.io/github/issues-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
-  [![Open PRs](https://img.shields.io/github/issues-pr-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
-  [![Closed PRs](https://img.shields.io/github/issues-pr-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
 </details>
 
 <details>
