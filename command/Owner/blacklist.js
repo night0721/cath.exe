@@ -2,7 +2,7 @@ module.exports = {
   name: "blacklist",
   category: "Owner",
   usage: "(User) (Toggle) (Reason)",
-  description: "Manage the User Blacklist of the bot",
+  description: "Manage Blacklisted Users",
   Owner: true,
   options: [
     {
@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       type: 5,
-      name: "yesno",
+      name: "blacklist",
       description: "Whether to blacklist or whitelist",
       required: true,
     },
@@ -26,7 +26,7 @@ module.exports = {
   ],
   run: async (client, interaction) => {
     const user = interaction.options.getUser("user");
-    const toggle = interaction.options.getBoolean("yesno");
+    const toggle = interaction.options.getBoolean("blacklist");
     const reason = interaction.options.getString("reason");
     if (toggle === true) {
       await client.data.BK(user.id, toggle, reason);

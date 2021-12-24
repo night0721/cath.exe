@@ -18,6 +18,18 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle("Guilds")
       .setDescription(description)
+      .addFields(
+        {
+          name: `Total Guilds`,
+          value: client.guilds.cache.size,
+          inline: true
+        },
+        {
+          name: `Total Members`,
+          value: client.users.cache.size,
+          inline: true
+        }
+      )
       .setColor(client.color)
       .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setTimestamp();
