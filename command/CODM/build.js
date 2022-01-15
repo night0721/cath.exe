@@ -213,6 +213,10 @@ module.exports = {
               name: "MX9",
               value: "mx9",
             },
+            {
+              name: "CBR4",
+              value: "cbr4",
+            },
           ],
         },
         {
@@ -299,6 +303,10 @@ module.exports = {
             {
               name: "Rytec AMR",
               value: "rytecamr",
+            },
+            {
+              name: "SVD",
+              value: "svd",
             },
           ],
         },
@@ -681,6 +689,7 @@ module.exports = {
       locus: "Locus",
       outlaw: "Outlaw",
       rytecamr: "Rytec AMR",
+      svd: "SVD",
 
       hs2126: "HS2126",
       by15: "BY15",
@@ -705,6 +714,7 @@ module.exports = {
       qxr: "QXR",
       pp19bizon: "PP19 Bizon",
       mx9: "MX9",
+      cbr4: "CBR4",
     };
     const all = {
       assault_rifle: "Assault Rifle",
@@ -740,24 +750,24 @@ module.exports = {
       )
       .then(res => res.data)
       .catch();
-    const unavaliable = new MessageEmbed()
-      .setDescription(
-        `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
-      )
-      .setColor(client.color);
     if (!data) {
-      interaction.followUp({ embeds: [unavaliable] });
+      const embed = new MessageEmbed()
+        .setDescription(
+          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
+        )
+        .setColor(client.color);
+      interaction.followUp({ embeds: [embed] });
     } else {
       const arr = [];
       data.attachments.map((e, i) => {
-        return arr.push(`**${i + 1}: ${e}**`);
+        return arr.push(`**${i + 1}:** ${e}`);
       });
       const embed = new MessageEmbed()
         .setTitle(
           `${data.weaponName}(${data.weaponType})'s ${all[tag]} build from ${data.author}`
         )
         .setDescription(
-          `<:nyx_description:897379659665264650> Description \`\`\`\n${data.notes}\n\`\`\``
+          `<:nyx_description:897379659665264650> **Description** \`\`\`\n ${data.notes}\n\`\`\``
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
@@ -800,29 +810,3 @@ module.exports = {
     }
   },
 };
-
-// ENABLE AFTER Holloween
-
-// run: async (client, interaction, args) => {
-//   const embed = new MessageEmbed()
-//     .setTitle(`Prefix commands are now disabled`)
-//     .setDescription(`Please enable **Application commands** in the channel settings to get access to slash commands, we have discontinued prefix commands.`)
-//     .setColor(client.color)
-//     .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-//     .addFields(
-//       {
-//         name: "Need help ?",
-//         value: `Join our **[Support Server](https://discord.gg/SR7TeNJG67)**`,
-//         inline: true,
-//       },
-//       {
-//         name: "Support us <a:donate:896985486260846614>",
-//         value: `[KoFi](https://ko-fi.com/cathteam)`,
-//         inline: true,
-//       }
-//       )
-//       .setThumbnail("../../util/assets/images/nyx_logo_transparent.webp")
-//       .setTimestamp();
-//       interaction.followUp({ embeds: [embed] });
-//     },
-//   };
