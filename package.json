@@ -42,7 +42,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cath": "^1.4.6",
-    "discord.js": "^13.5.1",
+    "discord.js": "^13.6.0",
     "dotenv": "^11.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
