@@ -1,14 +1,14 @@
 const { MessageEmbed, version: djsversion } = require("discord.js");
 const version = require("../../../package.json").version;
 const { utc } = require("moment");
-const os = require("os");
+// const os = require("os");
 module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Information",
   type: "CHAT_INPUT",
   run: async (client, interaction, args, utils) => {
-    const core = os.cpus()[0];
+    // const core = os.cpus()[0];
     const embed = new MessageEmbed()
       .setTitle(`NYX - CODM Gunsmith Bot`)
       .setURL(
@@ -51,18 +51,20 @@ module.exports = {
           Discord.js ❯ \`v${djsversion}\`
           Node.js ❯ \`${process.version}\``,
         },
-        {
-          name: `Hardware`,
-          value: `
-          Uptime:** ${utils.timer(os.uptime() * 1000, { long: true })}
-          Platform:** ${process.platform}
-          CPU:**
-          \u3000 Cores: ${os.cpus().length}
-          \u3000 Model: ${core.model}
-          \u3000 Speed: ${core.speed}MHz
-          **`,
-          inline: true,
-        }
+        // Removed OS Info for troubleshooting.
+        //
+        // {
+        //   name: `Hardware`,
+        //   value: `
+        //   Uptime:** ${utils.timer(os.uptime() * 1000, { long: true })}
+        //   Platform:** ${process.platform}
+        //   CPU:**
+        //   \u3000 Cores: ${os.cpus().length}
+        //   \u3000 Model: ${core.model}
+        //   \u3000 Speed: ${core.speed}MHz
+        //   **`,
+        //   inline: true,
+        // }
       )
       .addFields({
         name: `**${client.author}**`,
