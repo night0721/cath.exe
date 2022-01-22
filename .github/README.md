@@ -44,7 +44,7 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 ## <img height="18px" src="../util/assets/images/cod_logo.svg"> **Call of Duty Mobile**
 
 - **Weapon Statistics** courtesy of **Lighthouse v2.1**
-> Will soon be using stats provided by **Round Table** of Cygnoux Familia.
+> Will soon be using stats provided by **Stats On Duty**.
 - **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe and more comming soon.
 - **Perks** detailed info about the perks.
 - **Scorestreak** detailed info about scorestreak with preview videos.
@@ -61,7 +61,7 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cath-bot/deployment).
 
 
-<details>
+<!-- <details>
   <summary>Made With</summary>
   
    [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -78,9 +78,9 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
   ![GitHub Discussions](https://img.shields.io/github/discussions/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe) 
-  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe) -->
+  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe)
   
-</details>
+</details> -->
 
 <h1 align = "center"> Support, Feature Request & Bug Reports </h1>
 
