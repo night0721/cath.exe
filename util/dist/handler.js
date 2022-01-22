@@ -30,7 +30,7 @@ module.exports = async client => {
   client.on("ready", async () => {
     const gg = client.guilds.cache.get("840225563193114624");
     await gg.commands.set(ownercmds);
-    await client.application.commands.then(async cmd => {
+    await client.application.commands.set(cmds).then(async cmd => {
       client.guilds.cache.forEach(g => {
         const getroles = name => {
           const perms = cmds.find(n => n.name == name).UserPerms;
