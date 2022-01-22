@@ -11,7 +11,7 @@
     "dev": "nodemon .",
     "start": "node .",
     "lint": "eslint .",
-    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
+    "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
     "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
     "all": "npm run node-update && npm run node-clean"
   },
@@ -49,7 +49,6 @@
     "goosecache": "^9.0.14",
     "moment": "^2.29.1",
     "mongoose": "^5.13.14",
-    "node-fetch": "^3.2.0",
     "quickchart-js": "^2.0.3"
   }
 }
