@@ -116,7 +116,7 @@ module.exports = {
             },
             {
               name: "Jokesta",
-              value: "jokesta",D
+              value: "jokesta",
             },
             // {
             //   name: "Stats On Duty",
