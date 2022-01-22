@@ -98,6 +98,10 @@ module.exports = {
               name: "Swordfish",
               value: "swordfish",
             },
+            // {
+            //   name: "Kilo 141",
+            //   value: "kilo",
+            // },
           ],
         },
         {
@@ -114,6 +118,10 @@ module.exports = {
               name: "Jokesta",
               value: "jokesta",
             },
+            // {
+            //   name: "Stats On Duty",
+            //   value: "sod",
+            // },
           ],
         },
         {
@@ -216,6 +224,10 @@ module.exports = {
             {
               name: "CBR4",
               value: "cbr4",
+            },
+            {
+              name: "PPSh 41",
+              value: "ppsh",
             },
           ],
         },
@@ -390,6 +402,10 @@ module.exports = {
             {
               name: "Hades",
               value: "hades",
+            },
+            {
+              name: "PKM",
+              value: "pkm",
             },
           ],
         },
@@ -659,6 +675,7 @@ module.exports = {
       cr56amax: "CR-56 AMAX",
       m13: "M13",
       swordfish: "Swordfish",
+      // kilo: "Kilo 141",
 
       j358: "J358",
       gs50: ".50 GS",
@@ -670,7 +687,7 @@ module.exports = {
       kiloboltaction: "Kilo Bolt-Action",
       sks: "SKS",
       spr208: "SP-R 208",
-      mk2: "mk2",
+      mk2: "MK2",
 
       s36: "S36",
       ul736: "UL736",
@@ -679,6 +696,7 @@ module.exports = {
       chopper: "Chopper",
       holger26: "Holger 26",
       hades: "Hades",
+      pkm: "PKM",
 
       arctic50: "Arctic .50",
       m21ebr: "M21 EBR",
@@ -715,6 +733,7 @@ module.exports = {
       pp19bizon: "PP19 Bizon",
       mx9: "MX9",
       cbr4: "CBR4",
+      ppsh: "PPSh-41",
     };
     const all = {
       assault_rifle: "Assault Rifle",
@@ -727,6 +746,7 @@ module.exports = {
       path: "Path.exe",
       dhitman: "dHitman",
       jokesta: "Jokesta",
+      sod: "Stats On Duty",
       // littleb:"Little B",
 
       aggressive: "Aggressive",
