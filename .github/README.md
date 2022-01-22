@@ -18,18 +18,18 @@
     <a href="https://rebrand.ly/cathSupport"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner2" alt="Support Server" /></a>
 </p>
 
-
 <!-- description -->
 
-**NYX** *(previously known as Cath)* is a first and only **COD Mobile Statistics & Gunsmith** Bot which also doubles as a multipurpose discord bot with many features that include but are not limited to Moderation, Music and Economy. <br>
+**NYX** _(previously known as Cath)_ is a first and only **COD Mobile Statistics & Gunsmith** Bot which also doubles as a multipurpose discord bot with many features that include but are not limited to Moderation, Music and Economy. <br>
 The Call of Duty Stats are courtesy of **Round Table** by Cygnoux Familia.<br><br>
 If you like this bot, feel free to :star: **Star** this repository.<br>
 
 > ⚠ The Verifed bot instance is current called Cath.exe, we are working on getting it changed
-<br>
+> <br>
 
-# Features 
-> *This is a Non-Exhaustive list for commands. To access the full list of commands, check out our [Documentation](https://thunder75.gitbook.io/cath-bot/core/commands).*
+# Features
+
+> _This is a Non-Exhaustive list for commands. To access the full list of commands, check out our [Documentation](https://thunder75.gitbook.io/cath-bot/core/commands)._
 
 <a href="https://thunder75.gitbook.io/cath-bot/core/commands" ><img src="https://img.shields.io/static/v1?label=List %20OF&message=Commands&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
@@ -59,7 +59,6 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 <a href="https://thunder75.gitbook.io/cath-bot/deployment" target="_blank"><img src="https://img.shields.io/static/v1?label=Deployment&message=Guide&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
 A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cath-bot/deployment).
-
 
 <!-- <details>
   <summary>Made With</summary>
@@ -97,7 +96,7 @@ You can report bugs or issues by opening a issue in this repository. Alternateve
   <a href="https://rebrand.ly/cathSupport" target="_blank"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner1"></a>
 </p>
 
-<h1 align="center"> Contributors </h1> 
+<h1 align="center"> Contributors </h1>
 
 Contributions are always welcomed, but make sure to read [Contributing.md](/CONTRIBUTING.md) first.
 
@@ -108,5 +107,7 @@ Contributions are always welcomed, but make sure to read [Contributing.md](/CONT
 <p align = "center">
   <a href="https://discord.gg/mjVwkCsWY7" target="_blank"><img src="https://discordapp.com/api/guilds/756525751594909797/widget.png?style=banner1"></a>
 </p> -->
+
 ⠀
+
 <!-- <img src="https://socialify.git.ci/night0721/cath.exe/image?description=1&descriptionEditable=A%20Discord.js%20v13%20Template%20based%20on%20cath.exe&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark"> -->

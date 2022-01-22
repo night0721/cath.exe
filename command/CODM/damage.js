@@ -15,7 +15,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: 7,
+      type: 3,
       name: "gun",
       description: "Gun name",
       required: true,

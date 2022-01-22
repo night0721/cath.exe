@@ -14,7 +14,7 @@ class NYX extends Client {
       presence: {
         activities: [
           {
-            name: `v${require("../package.json").version} | /help`,
+            name: `/help`,
             type: "STREAMING",
             url: "https://www.youtube.com/watch?v=YSKDu1gKntY",
           },

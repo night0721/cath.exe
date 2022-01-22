@@ -31,6 +31,18 @@ module.exports = {
         }
       )
       .setColor(client.color)
+      .addFields(
+        {
+          name: `Total Guilds`,
+          value: client.guilds.cache.size,
+          inline: true,
+        },
+        {
+          name: `Total Members`,
+          value: client.users.cache.size,
+          inline: true,
+        }
+      )
       .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });

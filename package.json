@@ -1,6 +1,6 @@
 {
   "name": "cath.exe",
-  "version": "3.4.0",
+  "version": "0.0.1",
   "description": "NYX bot created by Team NYX",
   "engines": {
     "node": "*",
@@ -37,18 +37,18 @@
     "url": "https://ko-fi.com/cathteam"
   },
   "devDependencies": {
-    "node": "^17.1.0"
+    "node": "^17.3.0"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "cath": "^1.4.6",
-    "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0",
+    "discord.js": "^13.5.1",
+    "dotenv": "^11.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
     "goosecache": "^9.0.14",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.13",
-    "quickchart-js": "^1.4.2"
+    "mongoose": "^5.13.14",
+    "quickchart-js": "^2.0.3"
   }
 }

@@ -116,7 +116,7 @@ module.exports = {
             },
             {
               name: "Jokesta",
-              value: "jokesta",
+              value: "jokesta",D
             },
             // {
             //   name: "Stats On Duty",
@@ -768,9 +768,9 @@ module.exports = {
           },
         }
       )
-      .then((res) => res.data)
-      .catch();
-    if (!data) {
+      .then(res => res.data)
+      .catch(e => null);
+    if (!data?.ID) {
       const embed = new MessageEmbed()
         .setDescription(
           `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
