@@ -10,7 +10,6 @@ module.exports = {
       description: "Link of photo",
       required: true,
     },
-
     {
       type: 3,
       name: "position",
@@ -26,6 +25,13 @@ module.exports = {
           value: "buttomright",
         },
       ],
+    },
+    {
+      type: 3,
+      type: "opacity",
+      description:
+        "Opacity of watermark(50 - 100) Lower or higher will be ignored",
+      required: true,
     },
     {
       type: 3,
@@ -81,7 +87,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     const data = await axios
       .get(
-        `${process.env.api}/api/v1/codm/watermark?photo=${args[0]}&position=${args[1]}&logo=${args[2]}&password=${args[3]}`
+        `${process.env.api}/api/v1/codm/watermark?photo=${args[0]}&position=${args[1]}&opacity=${args[2]}&logo=${args[3]}&password=${args[4]}`
       )
       .then(res => res.data)
       .catch();
@@ -91,7 +97,7 @@ module.exports = {
       });
     } else {
       const ima = new MessageAttachment(
-        `${process.env.api}/api/v1/codm/watermark?photo=${args[0]}&position=${args[1]}&logo=${args[2]}&password=${args[3]}`,
+        `${process.env.api}/api/v1/codm/watermark?photo=${args[0]}&position=${args[1]}&opacity=${args[2]}&logo=${args[3]}&password=${args[4]}`,
         `${args[2]}.png`
       );
       interaction.followUp({ files: [ima] });
