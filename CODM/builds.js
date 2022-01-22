@@ -83,28 +83,3 @@ function weaponIdentifier(inpWeaponName) {
   }
   return "Couldn't identify the weapon: `" + '"' + inpWeaponName + '"`';
 }
-// ENABLE AFTER Holloween
-
-// run: async (client, interaction, args) => {
-//   const embed = new MessageEmbed()
-//     .setTitle(`Prefix commands are now disabled`)
-//     .setDescription(`Please enable **Application commands** in the channel settings to get access to slash commands, we have discontinued prefix commands.`)
-//     .setColor(client.color)
-//     .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-//     .addFields(
-//       {
-//         name: "Need help ?",
-//         value: `Join our **[Support Server](https://discord.gg/SR7TeNJG67)**`,
-//         inline: true,
-//       },
-//       {
-//         name: "Support us <a:donate:896985486260846614>",
-//         value: `[KoFi](https://ko-fi.com/cathteam)`,
-//         inline: true,
-//       }
-//       )
-//       .setThumbnail("https://github.com/night0721/cath.js/blob/master/util/assets/images/nyx_logo_transparent.webp")
-//       .setTimestamp();
-//       interaction.followUp({ embeds: [embed] });
-//     },
-//   };

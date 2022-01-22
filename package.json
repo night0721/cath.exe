@@ -40,10 +40,10 @@
     "node": "^17.3.0"
   },
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "cath": "^1.4.6",
     "discord.js": "^13.6.0",
-    "dotenv": "^11.0.0",
+    "dotenv": "^14.2.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
     "goosecache": "^9.0.14",

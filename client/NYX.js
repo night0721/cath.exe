@@ -51,7 +51,6 @@ class NYX extends Client {
       "614423108388126731", // Camper on Duty
       "767173194943168542", // Dark Bonker
       "718762019586572341", // NYX Nation
-      "869583978108157972", // Lighthouse Community
       "840225563193114624", // Command Test
     ];
     const client = this;

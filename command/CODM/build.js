@@ -97,7 +97,8 @@ module.exports = {
             {
               name: "Swordfish",
               value: "swordfish",
-            }, // {
+            },
+            // {
             //   name: "Kilo 141",
             //   value: "kilo",
             // },
@@ -116,7 +117,8 @@ module.exports = {
             {
               name: "Jokesta",
               value: "jokesta",
-            }, // {
+            },
+            // {
             //   name: "Stats On Duty",
             //   value: "sod",
             // },
