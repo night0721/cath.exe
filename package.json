@@ -1,0 +1,55 @@
+{
+  "name": "cath.exe",
+  "version": "0.0.1",
+  "description": "NYX bot created by Team NYX",
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "start": "node .",
+    "lint": "eslint .",
+    "node-update": "npm i --save-dev node@16 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
+    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
+    "all": "npm run node-update && npm run node-clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/night0721/cath.exe.git"
+  },
+  "keywords": [
+    "bot",
+    "nyx",
+    "codm",
+    "discord",
+    "gunsmith"
+  ],
+  "author": "Ń1ght#0001",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/night0721/cath.exe/issues"
+  },
+  "homepage": "https://github.com/night0721/cath.exe#readme",
+  "funding": {
+    "type": "individual",
+    "url": "https://ko-fi.com/cathteam"
+  },
+  "devDependencies": {
+    "node": "^17.3.0"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "cath": "^1.4.6",
+    "discord.js": "^13.6.0",
+    "dotenv": "^14.2.0",
+    "erela.js": "^2.3.3",
+    "erela.js-spotify": "^1.2.0",
+    "goosecache": "^9.0.14",
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.14",
+    "node-fetch": "^3.2.0",
+    "quickchart-js": "^2.0.3"
+  }
+}
