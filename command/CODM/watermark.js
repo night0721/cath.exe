@@ -28,7 +28,7 @@ module.exports = {
     },
     {
       type: 3,
-      type: "opacity",
+      name: "opacity",
       description:
         "Opacity of watermark(50 - 100) Lower or higher will be ignored",
       required: true,
