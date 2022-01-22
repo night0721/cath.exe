@@ -1780,6 +1780,54 @@
       ]
     }
   ],
+  "PKM": [
+    {
+      "muzzle": [
+        "OWC Light Suppressor",
+        "Agency Suppressor",
+        "Infantry Compensator",
+        "MIP Flashguard",
+        "OWC Eliminator",
+        "RTC Muzzle Brake"
+      ],
+      "barrel": [
+        "Rapid Fire Barrel",
+        "Long-Range Barrel",
+        "MIP Extended Light Barrel"
+      ],
+      "optic": [
+        "Red Dot Sight",
+        "Holographic Sight",
+        "3x Tactical Scope",
+        "4x Tactical Scope",
+        "4.4x Tactical Scope"
+      ],
+      "stock": [
+        "Light Weight Stock",
+        "Marathon Stock",
+        "No Stock",
+        "Agile Stock"
+      ],
+      "perk": [
+        "FMJ",
+        "Sleight of Hand",
+        "Wounding",
+        "Full Ammo",
+        "Disable",
+        "Headshot XP",
+        "Empty Reload"
+      ],
+      "laser": ["1mW Steady Aim Laser", "5mW Combat Laser", "Aim Assist Laser"],
+      "underbarrel": ["Crossbar"],
+      "ammo": ["84 Round Hybrid Mag"],
+      "rear_grip": [
+        "Sturdy Grip Tape",
+        "Rustle Grip Tape",
+        "Firm Grip Tape",
+        "Non-Slip Foregrip"
+      ]
+    }
+  ],
   "RUS_79U": [
     {
       "muzzle": [
@@ -2547,6 +2595,57 @@
         "Granulated Grip Tape",
         "Ruberized Grip Tape",
         "Stippled Grip Tape"
+      ]
+    }
+  ],
+  "PPSh_41": [
+    {
+      "muzzle": [
+        "Tactical Suppressor",
+        "OWC Light Suppressor",
+        "Monolithic Suppressor",
+        "OWC Light Compensator",
+        "MIP Light FLash Guard",
+        "RTC Light Muzzle Brake"
+      ],
+      "barrel": [
+        "Gurrilla Light Short",
+        "Last Stand Light",
+        "Banner Heavy"
+      ],
+      "optic": [
+        "Red Dot Sight",
+        "Holographic Sight",
+        "Tactical Scope",
+        "3x Tactical Scope"
+      ],
+      "stock": ["No Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
+      "perk": [
+        "FMJ",
+        "Sleight of Hand",
+        "Wounding",
+        "Full Ammo",
+        "Disable",
+        "Wild Hip Fire",
+        "Double Kill",
+        "Fast Reload Kill"
+      ],
+      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
+      "underbarrel": [
+        "Focused Foregrip",
+        "Tough Foregrip",
+        "Resilient Foregrip",
+        "Tactical Foregrip A",
+        "Operator Foregrip"
+      ],
+      "ammo": [
+        "35 Round Fast Reload",
+        "55 Round Light Reload"
+      ],
+      "rear_grip": [
+        "Sturdy Grip Tape",
+        "Ruberized Grip Tape",
+        "Rustle Grip Tape"
       ]
     }
   ],
