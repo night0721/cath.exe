@@ -10,9 +10,9 @@ client.on("messageCreate", async message => {
     nothahaa.setNickname(`${message.author.username}`).catch();
     await client.data.DelAFK(message.author.id);
   }
-  if (message.mentions.users.first()) {
+  if (message.mentions.users.first()?.id) {
     const data1 = await client.data.getUser(
-      message.mentions.members.first().id
+      message.mentions.members.first()?.id
     );
     if (data1?.AFK) {
       message.reply({
