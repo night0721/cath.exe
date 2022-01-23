@@ -1,6 +1,6 @@
 const common = require("../../util/functions/common");
 const data = require("../../util/Data/data.json");
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 let currGun,
   currStats,
@@ -52,12 +52,15 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
+    repEmb = null;
     recoilAvailable = false;
     hasError = false;
-    console.log(args);
-    const repEmb = statsHandler(args.join(" ").replace("\n", " "));
+    if (args.length == 1)
+      repEmb = statsHandler(args.join(" ").replace("\n", " "));
+    else repEmb = statsHandler(args.join(" + ").replace("\n", " "));
+
     if (hasError) {
-      interaction.followUp({ embeds: [repEmb] });
+      interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
     }
     if (recoilAvailable) {
       repEmb.fields.push({
@@ -68,7 +71,7 @@ module.exports = {
       const recoilImageLink = await chart.getShortUrl();
       repEmb.image = { url: recoilImageLink };
     }
-    interaction.followUp({ embeds: [repEmb] });
+    interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
   },
 };
 
