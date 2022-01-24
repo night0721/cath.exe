@@ -52,10 +52,13 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
+    repEmb = null;
     recoilAvailable = false;
     hasError = false;
-    console.log(args, args.join("+"));
-    const repEmb = statsHandler(args.join(" ").replace("\n", " "));
+    if (args.length == 1)
+      repEmb = statsHandler(args.join(" ").replace("\n", " "));
+    else repEmb = statsHandler(args.join(" + ").replace("\n", " "));
+
     if (hasError) {
       interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
     }
