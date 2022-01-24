@@ -166,7 +166,7 @@ module.exports = {
           inline: false,
         }
       )
-      .setThumbnail(`${d.preview}`)
+      .setThumbnail(d.preview)
       .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setColor(
         d.type == "lethal"
