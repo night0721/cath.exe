@@ -4,6 +4,7 @@ const nmDt = require("../Data/aliases.json");
 const weaponActualName = nmDt.weaponActualName;
 const weaponAlliasName = nmDt.weaponAlliasName;
 Object.defineProperty(String.prototype, "Simplify", {
+  // Function to remove all characters except 0-9 and a-z
   value: function Simplify() {
     return this.toLowerCase().replace(/[^0-9a-z]/g, "");
   },
@@ -12,33 +13,30 @@ Object.defineProperty(String.prototype, "Simplify", {
 });
 
 Object.defineProperty(Number.prototype, "IsPositive", {
+  // Function to check the number is positive or not
   value: function IsPositive() {
-    if (this > 0) {
-      return true;
-    }
-    return false;
+    if (this > 0) return true;
+    else return false;
   },
   writable: true,
   configurable: true,
 });
 
 Object.defineProperty(Number.prototype, "IsNegative", {
+  // Function to check the number is negative or not
   value: function IsNegative() {
-    if (this < 0) {
-      return true;
-    }
-    return false;
+    if (this < 0) return true;
+    else return false;
   },
   writable: true,
   configurable: true,
 });
 
 Object.defineProperty(Number.prototype, "ToBool", {
+  // Function to check the number is one or not
   value: function ToBool() {
-    if (this == 1) {
-      return true;
-    }
-    return false;
+    if (this == 1) return true;
+    else return false;
   },
   writable: true,
   configurable: true,
@@ -49,15 +47,19 @@ Object.defineProperty(Number.prototype, "PlusHL", {
     if (this.toString()[0] == "-") {
       return parseFloat(this.toFixed(2)).toString();
     }
-    return "+" + parseFloat(this.toFixed(2)).toString();
+    return `+${parseFloat(this.toFixed(2)).toString()}`;
   },
   writable: true,
   configurable: true,
 });
 
+/* Function to fix the input statement */
 function inpFixer(inpmsg) {
   const parts = partExtracter(inpmsg);
+  // parts will be an array
+  //eg: ["fennec", "akimbo, mono"]
   nmDt.attachmentAlliasName[0].map((x, i) =>
+    // x is the content of each index, i is the number of each index
     x.map(y => {
       if (parts[0].startsWith(y + " ") || parts[0].endsWith(" " + y)) {
         inpmsg =
@@ -67,22 +69,28 @@ function inpFixer(inpmsg) {
       }
     })
   );
+  // so it fking only fix akimbo and stopping power wtf
   return inpmsg;
 }
-
+// Function to extract the attachments from the input statement
 function partExtracter(inpmsg) {
   if (inpmsg.includes(" + ")) {
+    // If the input statement has multiple attachments joined by "+", split them and output them as an array of strings [0] is the weapon name, [1] is the attachments
+    // Eg: "M4A1 + Silencer + Flashlight" -> ["M4A1", "Silencer + Flashlight"]
     const out = inpmsg
       .split(" + ")
       .map(x => x.split("+"))
       .flat();
     return [out.shift(), out.join(", ")];
   }
+  // If there is only one attachment, output it as an array of strings [0] is the weapon name, [1] is the attachment
+  // Eg: "M4A1 with Flashlight" -> ["M4A1", "Flashlight"]
   return inpmsg.split(" with ");
 }
 
 function hasAttachments(inpmsg) {
   inpmsg = inpFixer(inpmsg);
+  // If
   if (
     inpmsg.split(" with ").filter(x => x.Simplify()).length > 1 ||
     inpmsg.split(" + ").filter(x => x.Simplify()).length > 1
@@ -100,8 +108,8 @@ function weaponIdentifier(inpmsg) {
   const inpWeaponName = isolator(inpmsg)[0];
   if (inpWeaponName.length < 2) {
     return inpmsg.trim().length
-      ? "The name `" + inpmsg.trim() + "` is too short."
-      : "Empty weapon name";
+      ? `The name ${inpmsg.trim()} is too short.`
+      : "There isn't any weapon name.";
   }
   let probableWeapons = [];
   for (let i = 0; i < data.cguns.length; i++) {
@@ -136,17 +144,14 @@ function weaponIdentifier(inpmsg) {
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
   }
   if (probableWeapons.length > 1) {
-    return (
-      "Did you mean `" +
-      probableWeapons
-        .map(x => data.cguns[x].gunname)
-        .reduce((out, x, i) =>
-          [out, x].join(i === probableWeapons.length - 1 ? "` or `" : "`, `")
-        ) +
-      "`?"
-    );
+    return `Did you mean ${probableWeapons
+      .map(x => data.cguns[x].gunname)
+      .reduce((out, x, i) =>
+        [out, x].join(i === probableWeapons.length - 1 ? "` or `" : "`, `")
+      )}
+      ?`;
   }
-  return "Couldn't identify the weapon: `" + '"' + inpWeaponName + '"`';
+  return `Couldn't identify the weapon: "${inpWeaponName}"`;
 }
 
 function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
@@ -163,12 +168,10 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
     errors = [],
     unidentifined = [];
 
-  if (inputAttachmentsNames.length == 00) {
+  if (inputAttachmentsNames.length == 0)
     errorMsgs += "\nAttachments are missing!\n";
-  }
-  if (inputAttachmentsNames.length >= 10) {
-    return "Cocaineeeeee";
-  }
+
+  if (inputAttachmentsNames.length >= 10) return "Cocaineeeeee";
 
   // Can directly use args[] to return, no need for isolator, partExtractor, inpFixer
   const splitAttachmentsDataName = [],
@@ -346,15 +349,11 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
           [out, x].join(i === a.length - 1 ? " and " : ", ")
         )
     : "";
-  errorMsgs += errors.length
-    ? "\nDid you mean " + errors.join(";\n") + "?\n"
-    : "";
+  errorMsgs += errors.length ? `\nDid you mean ${errors.join(";\n")}?\n` : "";
   errorMsgs += unidentifined.length
-    ? "\nCouldn't identify the attachment" +
-      (unidentifined.length === 1 ? "" : "s") +
-      ': `"' +
-      unidentifined.join('"`, `"') +
-      '"`\n'
+    ? `\nCouldn't identify the attachment(${
+        unidentifined.length === 1 ? "" : "s"
+      }): \`"${unidentifined.join('"`, `"')}"\`\n`
     : "";
   errorMsgs +=
     outAttachments.length > 5 ? "\nCan't equip more than 5 attachments!\n" : "";
@@ -703,7 +702,7 @@ function attachmentHandler(currEffects, currStats) {
   } else if (currEffects[44] == -1) {
     atr.push("Lower Penetraion Damage");
   }
-  posGood2(45, "Round" + (currEffects[45] - 1 ? "s" : "") + " in Reserve");
+  posGood2(45, `Round ${currEffects[45] - 1 ? "s" : ""} in Reserve`);
 
   function posGood1(i, ext) {
     if (currEffects[i].IsPositive()) {
@@ -742,26 +741,26 @@ function attachmentHandler(currEffects, currStats) {
       atr.push(ext);
     }
   }
-
+  // Return the attributes when there is and use algorithms to join them
   return [
     pos.length
       ? {
           name: "**Positives:**",
-          value: "```ini\n[" + pos.join("]\n[") + "]\n```",
+          value: `\`\`\`ini\n[${pos.join("]\n[")}]\n\`\`\``,
           inline: true,
         }
       : 0,
     neg.length
       ? {
           name: "**Negatives:**",
-          value: "```css\n[" + neg.join("]\n[") + "]\n```",
+          value: `\`\`\`css\n[${neg.join("]\n[")}]\n\`\`\``,
           inline: true,
         }
       : 0,
     atr.length
       ? {
           name: "**Attributes:**",
-          value: "```fix\n[" + atr.join("]\n[") + "]\n```",
+          value: `\`\`\`fix\n[${atr.join("]\n[")}]\n\`\`\``,
         }
       : 0,
   ].filter(x => x);
@@ -784,8 +783,7 @@ function totaler(inpAttachments) {
 }
 
 function makeError() {
-  let m;
-  m.split("L");
+  undefined.split("L");
 }
 
 module.exports = {
