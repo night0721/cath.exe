@@ -787,7 +787,7 @@ module.exports = {
           `${data.weaponName}(${data.weaponType})'s ${all[tag]} build from ${data.author}`
         )
         .setDescription(
-          `<:nyx_description:897379659665264650> **Description** \`\`\`\n ${data.notes}\n\`\`\``
+          `<:nyx_description:897379659665264650> **Description** \`\`\` \n${data.notes} \n\`\`\``
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
