@@ -764,7 +764,7 @@ module.exports = {
         `${process.env.api}/api/v1/codm/builds?name=${gun}&cc=${cc}&tag=${tag}`,
         {
           headers: {
-            Authorization: "Gae",
+            Authorization: process.env.CODM_API_KEY,
           },
         }
       )

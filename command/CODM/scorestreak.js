@@ -1,6 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { CODMClient } = require("cath");
-const c = new CODMClient("Gae");
+const c = require("../../client/CODMClient");
 module.exports = {
   name: "scorestreak",
   description: "Get Scorestreak stats",
@@ -58,10 +57,6 @@ module.exports = {
             {
               name: "Cluster Strike",
               value: "clusterstrike",
-            },
-            {
-              name: "XS1 Goliath",
-              value: "xs1goliath",
             },
             {
               name: "Stealth Chopper",
@@ -131,43 +126,40 @@ module.exports = {
     const val = args[1];
     const d = await c.getscorestreak(val);
     const embed = new MessageEmbed()
-      .setTitle(d.scorestreak)
+      .setTitle(d.name)
       .setURL(d.preview_video)
       .setDescription(`\`\`\`${d.description}\`\`\``)
       .addFields(
         {
           name: "Cost",
           value: `\`\`\`${d.cost}\`\`\``,
-          inline: true
-        },
-        {
-          name: "Lethal",
-          value: `
-          ${d.lethal == true 
-            ? "<a:nyx_checkmark:897240322411724841> Yes"
-            : "<a:nyx_cross:897244999211696198> No"}`,
-          inline: true
+          inline: true,
         },
         {
           name: "AI-Assisted",
           value: `
-          ${d.manual == false 
-            ? "<a:nyx_checkmark:897240322411724841> Yes"
-            : "<a:nyx_cross:897244999211696198> No"}`,
-          inline: true
+          ${
+            d.manual
+              ? "<a:nyx_checkmark:897240322411724841> Yes"
+              : "<a:nyx_cross:897244999211696198> No"
+          }`,
+          inline: true,
         },
         {
           name: "More Info",
-          value: `\`\`\`${d.special}\`\`\``,
-          inline: false
+          value: `\`\`\`${d.special ? d.special : "** **"}\`\`\``,
+          inline: false,
         }
       )
-      .setThumbnail(`${d.preview}`)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setThumbnail(d.preview)
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setColor(
         d.type == "lethal"
           ? "FF2222"
-          : d.type == "support"
+          : d.type == "assist"
           ? "22FF4A"
           : client.color
       )

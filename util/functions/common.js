@@ -5,6 +5,7 @@ const weaponActualName = nmDt.weaponActualName;
 const weaponAlliasName = nmDt.weaponAlliasName;
 Object.defineProperty(String.prototype, "Simplify", {
   // Function to remove all characters except 0-9 and a-z
+  // Eg "AK-47" -> "ak47"
   value: function Simplify() {
     return this.toLowerCase().replace(/[^0-9a-z]/g, "");
   },
@@ -112,6 +113,8 @@ function weaponIdentifier(inpmsg) {
       : "There isn't any weapon name.";
   }
   let probableWeapons = [];
+  // Loop through all the weapons to find the probable weapons
+  // Eg: "ak"
   for (let i = 0; i < data.cguns.length; i++) {
     if (inpWeaponName.Simplify() == data.cguns[i].gunname.Simplify()) {
       return JSON.parse(JSON.stringify(data.cguns[i]));
