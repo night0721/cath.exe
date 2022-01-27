@@ -136,7 +136,7 @@ module.exports = {
       .addFields(
         {
           name: "Cost",
-          value: `\`\`\`${d.cost}\`\`\``,
+          value: `${d.cost}`,
           inline: true,
         },
         {
@@ -151,7 +151,13 @@ module.exports = {
         },
         {
           name: "More Info",
-          value: `\`\`\`${d.special ? d.special : "** **"}\`\`\``,
+          value: `\`\`\`
+          ${
+            d.special 
+              ? d.special 
+              : ""
+          }
+          \`\`\``,
           inline: false,
         }
       )
