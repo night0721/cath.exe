@@ -59,6 +59,10 @@ module.exports = {
               value: "clusterstrike",
             },
             {
+              name: "Chopper Gunner",
+              value: "choppergunner",
+            },
+            {
               name: "Stealth Chopper",
               value: "stealthchopper",
             },
