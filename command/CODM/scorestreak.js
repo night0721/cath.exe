@@ -147,7 +147,7 @@ module.exports = {
         },
         {
           name: "More Info",
-          value: `\`\`\`${d.special ? d.special : "** **"}\`\`\``,
+          value: `\`\`\`${d.special ? d.special : "None"}\`\`\``,
           inline: false,
         }
       )
