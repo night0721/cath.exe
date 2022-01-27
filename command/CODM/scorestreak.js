@@ -59,6 +59,10 @@ module.exports = {
               value: "clusterstrike",
             },
             {
+              name: "Chopper Gunner",
+              value: "choppergunner",
+            },
+            {
               name: "Stealth Chopper",
               value: "stealthchopper",
             },
@@ -132,7 +136,7 @@ module.exports = {
       .addFields(
         {
           name: "Cost",
-          value: `\`\`\`${d.cost}\`\`\``,
+          value: `${d.cost}`,
           inline: true,
         },
         {
