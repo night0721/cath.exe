@@ -104,9 +104,11 @@ function hasAttachments(inpmsg) {
 function isolator(inpmsg) {
   return partExtracter(inpFixer(inpmsg));
 }
-
+// identifying the weapon
 function weaponIdentifier(inpmsg) {
   const inpWeaponName = isolator(inpmsg)[0];
+  // ["ak", "mono"] -> inpWeaponName: "ak"
+  // if weapon name is too short, return the error
   if (inpWeaponName.length < 2) {
     return inpmsg.trim().length
       ? `The name ${inpmsg.trim()} is too short.`
@@ -117,36 +119,48 @@ function weaponIdentifier(inpmsg) {
   // Eg: "ak"
   for (let i = 0; i < data.cguns.length; i++) {
     if (inpWeaponName.Simplify() == data.cguns[i].gunname.Simplify()) {
+      // if the simplified name of the weapon is the same as the weapon name in the database, return the only one stats object
       return JSON.parse(JSON.stringify(data.cguns[i]));
     } else if (
       data.cguns[i].gunname.Simplify().includes(inpWeaponName.Simplify())
     ) {
+      // If the weapon name is included in the actual name of the weapon
+      // push the weapon to the probableWeapons array
       probableWeapons.push(i);
     }
   }
 
   if (probableWeapons.length == 1) {
+    // if there is only one probable weapon, return the only one stats object
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
   }
-
+  // detecting aliases
+  // getting total number of weapons that had added aliases
   for (let i = 0; i < weaponAlliasName.length; i++) {
+    // getting the number of aliases of each weapon
     for (let j = 0; j < weaponAlliasName[i].length; j++) {
+      // weaponAliases[i][j] is the each alias of each weapon
+      // finding if simplified alias is same as input weapon name
       if (weaponAlliasName[i][j].Simplify() == inpWeaponName.Simplify()) {
+        // if simplified alias is same as input weapon name
+        // eg "mow" == "mow", run the loop
         for (let i2 = 0; i2 < data.cguns.length; i2++) {
-          if (
-            weaponActualName[i].Simplify() == data.cguns[i2].gunname.Simplify()
-          ) {
+          if (weaponActualName[i] == data.cguns[i2].gunname) {
+            // use the actual name of the weapon to find the weapon
             return JSON.parse(JSON.stringify(data.cguns[i2]));
           }
         }
       }
     }
   }
+  // removing duplicates in the array
   probableWeapons = [...new Set(probableWeapons)];
   if (probableWeapons.length == 1) {
+    // if there is only one probable weapon, return the only one stats object
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
   }
   if (probableWeapons.length > 1) {
+    // reply with the question of probable weapons
     return `Did you mean ${probableWeapons
       .map(x => data.cguns[x].gunname)
       .reduce((out, x, i) =>
