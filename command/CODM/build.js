@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const c = new CODMClient("Gae");
+const { CODMClient } = require("cath");
 const moment = require("moment");
 const axios = require("axios");
 module.exports = {
