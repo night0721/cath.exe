@@ -21,7 +21,7 @@ module.exports = {
           choices: [
             {
               name: "Type 25",
-              value: "A03",
+              value: "A01",
             },
             {
               name: "M16",
