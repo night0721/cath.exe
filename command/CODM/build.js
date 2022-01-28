@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { CODMClient } = require("cath");
 const moment = require("moment");
 const axios = require("axios");
 module.exports = {
@@ -653,16 +652,16 @@ module.exports = {
     const data = await axios
       .get(
         `${process.env.api}/api/v1/codm/builds?cwts=${cwts}&cc=${cc}&tag=${tag}`,
-        { //Use the new auth methord 
+        {
           headers: {
-            Authorization: "Gae",
+            Authorization: process.env.CODM_API_KEY,
           },
         }
       )
       .then(res => res.data)
       .catch(e => null);
 
-    if (!data?.ID) {  //x what does ?. do
+    if (!data?.ID) {
       const embed = new MessageEmbed()
         .setDescription(
           `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
@@ -676,7 +675,7 @@ module.exports = {
       });
       const embed = new MessageEmbed()
         .setTitle(
-          `${all[tag]} for ${data.weaponName} from ${data.author}`
+          `${all[tag]} build for ${data.weaponName} from ${data.author}`
         )
         .setDescription(
           `<:nyx_description:897379659665264650> **Description** \`\`\` \n${data.notes} \n\`\`\``
