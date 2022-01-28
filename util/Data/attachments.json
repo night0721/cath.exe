@@ -1062,7 +1062,7 @@
         "RTC Light Muzzle Brake"
       ],
       "barrel": [
-        "RTC Silencer Barrel", 
+        "YKM Integral Suppressor Light",
         "MIP Light Extended Barrel", 
         "OWC Marksman"
       ],
@@ -1095,7 +1095,8 @@
         "Merc Foregrip",
         "Operator Foregrip",
         "Ranger Foregrip",
-        "Tactical Foregrip A"
+        "Tactical Foregrip A",
+        "Bipod"
       ],
       "ammo": [
         "Extended Mag A",
