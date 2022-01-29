@@ -56,7 +56,7 @@ Object.defineProperty(Number.prototype, "PlusHL", {
 
 /* Function to fix the input statement */
 function inpFixer(inpmsg) {
-  const parts = partExtracter(inpmsg);
+  const parts = PartSpliter(inpmsg);
   // parts will be an array
   //eg: ["fennec", "akimbo, mono"]
   nmDt.attachmentAlliasName[0].map((x, i) =>
@@ -73,8 +73,8 @@ function inpFixer(inpmsg) {
   // so it fking only fix akimbo and stopping power wtf
   return inpmsg;
 }
-// Function to extract the attachments from the input statement
-function partExtracter(inpmsg) {
+// Function to split weapon name and the attachments from the input statement
+function PartSpliter(inpmsg) {
   if (inpmsg.includes(" + ")) {
     // If the input statement has multiple attachments joined by "+", split them and output them as an array of strings [0] is the weapon name, [1] is the attachments
     // Eg: "M4A1 + Silencer + Flashlight" -> ["M4A1", "Silencer + Flashlight"]
@@ -91,7 +91,7 @@ function partExtracter(inpmsg) {
 
 function hasAttachments(inpmsg) {
   inpmsg = inpFixer(inpmsg);
-  // If
+  // If the input statement has multiple attachments joined by "+" or "with", split them and output them as an array of strings [0] is the weapon name, [1] is the attachments
   if (
     inpmsg.split(" with ").filter(x => x.Simplify()).length > 1 ||
     inpmsg.split(" + ").filter(x => x.Simplify()).length > 1
@@ -102,7 +102,7 @@ function hasAttachments(inpmsg) {
 }
 
 function isolator(inpmsg) {
-  return partExtracter(inpFixer(inpmsg));
+  return PartSpliter(inpFixer(inpmsg));
 }
 // identifying the weapon
 function weaponIdentifier(inpmsg) {
@@ -129,11 +129,12 @@ function weaponIdentifier(inpmsg) {
       probableWeapons.push(i);
     }
   }
-
+  // if there is only one probable weapon, mean the gun has already been identified
   if (probableWeapons.length == 1) {
     // if there is only one probable weapon, return the only one stats object
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
   }
+  // continue loop when there is no identified weapons or there are more than one identfied weaponds
   // detecting aliases
   // getting total number of weapons that had added aliases
   for (let i = 0; i < weaponAlliasName.length; i++) {
@@ -155,11 +156,10 @@ function weaponIdentifier(inpmsg) {
   }
   // removing duplicates in the array
   probableWeapons = [...new Set(probableWeapons)];
-  if (probableWeapons.length == 1) {
-    // if there is only one probable weapon, return the only one stats object
+  // if there is only one probable weapon, return the only one stats object
+  if (probableWeapons.length == 1)
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
-  }
-  if (probableWeapons.length > 1) {
+  else if (probableWeapons.length > 1) {
     // reply with the question of probable weapons
     return `Did you mean ${probableWeapons
       .map(x => data.cguns[x].gunname)
@@ -167,14 +167,11 @@ function weaponIdentifier(inpmsg) {
         [out, x].join(i === probableWeapons.length - 1 ? "` or `" : "`, `")
       )}
       ?`;
-  }
-  return `Couldn't identify the weapon: "${inpWeaponName}"`;
+  } else return `Couldn't identify the weapon: "${inpWeaponName}"`;
 }
-
+// identifying attachments and return array or error
 function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
-  if (!hasAttachments(inpmsg)) {
-    return [];
-  }
+  if (!hasAttachments(inpmsg)) return [];
   // no need for isolator because using slash commands, we get individual attachment
   let inputAttachmentsNames = isolator(inpmsg)[1]
     .split(/ & |, |,| and /)
@@ -396,7 +393,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
   return errorMsgs ? errorMsgs.trim() : outAttachments;
 }
 // console.log(attachmentsIdentifier("chopper with heavy handle, red sight, granulated", data.cguns[38].aments)); makeError();
-// console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); //makeError();
+// console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
 
