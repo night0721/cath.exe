@@ -111,8 +111,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "Jokesta",
@@ -238,8 +238,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "Jokesta",
@@ -329,8 +329,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -412,8 +412,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -491,8 +491,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "dHitman",
@@ -554,8 +554,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -625,8 +625,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -651,7 +651,7 @@ module.exports = {
     const tag = args[3];
     const data = await axios
       .get(
-        `${process.env.api}/api/v1/codm/builds?cwts=${cwts}&cc=${cc}&tag=${tag}`,
+        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
         {
           headers: {
             Authorization: process.env.CODM_API_KEY,
@@ -661,7 +661,7 @@ module.exports = {
       .then(res => res.data)
       .catch(e => null);
     var all = {
-      path: "Path.exe",
+      "path.exe": "path.exe",
       dhitman: "dHitman",
       jokesta: "Jokesta",
       // littleb:"Little B",
@@ -672,91 +672,12 @@ module.exports = {
       respawn: "Respawn",
       ads: "ADS",
       hipfire: "Hipfire",
-    }; const allguns = {
-      ak117: "AK117",
-      m16: "M16",
-      type25: "Type 25",
-      ak47: "AK-47",
-      asm10: "ASM10",
-      m4: "M4",
-      bk57: "BK57",
-      lk24: "LK24",
-      manowar: "Man-O-War",
-      icr1: "ICR-1",
-      kn44: "KN-44",
-      hbra3: "HBRa3",
-      hvk30: "HVK-30",
-      drh: "DR-H",
-      peacekeepermk2: "Peacekeeper MK2",
-      fr556: "FR .556",
-      asval: "AS VAL",
-      cr56amax: "CR-56 AMAX",
-      m13: "M13",
-      swordfish: "Swordfish",
-      // kilo: "Kilo 141",
-
-      j358: "J358",
-      gs50: ".50 GS",
-      mw11: "MW11",
-      renetti: "Renetti",
-      shorty: "Shorty",
-      crossbow: "Crossbow",
-
-      kiloboltaction: "Kilo Bolt-Action",
-      sks: "SKS",
-      spr208: "SP-R 208",
-      mk2: "MK2",
-
-      s36: "S36",
-      ul736: "UL736",
-      rpd: "RPD",
-      m4lmg: "M4LMG",
-      chopper: "Chopper",
-      holger26: "Holger 26",
-      hades: "Hades",
-      pkm: "PKM",
-
-      arctic50: "Arctic .50",
-      m21ebr: "M21 EBR",
-      dlq33: "DL Q33",
-      locus: "Locus",
-      // na45: "NA 45",
-      // xpr50: "XPR-50",
-      locus: "Locus",
-      outlaw: "Outlaw",
-      rytecamr: "Rytec AMR",
-      svd: "SVD",
-
-      hs2126: "HS2126",
-      by15: "BY15",
-      striker: "Striker",
-      krm262: "KRM 262",
-      echo: "Echo",
-      hs0405: "HS0405",
-      r90: "R9-0",
-
-      rus79u: "RUS-79U",
-      hg40: "HG-40",
-      pdw57: "PDW-57",
-      chicom: "Chicom",
-      razorback: "Razorback",
-      msmc: "MSMC",
-      pharo: "Pharo",
-      gks: "GKS",
-      cordite: "Cordite",
-      qq9: "QQ9",
-      fennec: "Fennec",
-      agr556: "AGR 556",
-      qxr: "QXR",
-      pp19bizon: "PP19 Bizon",
-      mx9: "MX9",
-      cbr4: "CBR4",
-      ppsh: "PPSh-41",
     };
-    if (!data ?.ID) {
+
+    if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
@@ -774,10 +695,10 @@ module.exports = {
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter(
-          `Builds Aggregated by ${client.author}`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({
+          text: `Builds Aggregated by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .addFields(
           {

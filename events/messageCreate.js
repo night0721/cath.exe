@@ -77,6 +77,11 @@ client.on("messageCreate", async message => {
         .slice(0, -1)
     )
   ) {
+    client.channels.cache
+      .get("936986641585799178")
+      .send({
+        content: `User: ${message.author.tag}\nContent: ${message.content}`,
+      });
     message.delete();
     message.channel.send({
       content: `**${message.author.tag}** has sent a scam link and I have deleted it to prevent spread`,
