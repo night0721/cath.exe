@@ -77,11 +77,39 @@ client.on("messageCreate", async message => {
         .slice(0, -1)
     )
   ) {
-    client.channels.cache
-      .get("936986641585799178")
-      .send({
-        content: `User: ${message.author.tag}\nContent: ${message.content}`,
-      });
+    const _ = new MessageEmbed().setTitle(`Scam detected`).addFields(
+      {
+        name: "Guild",
+        value: message.guild ? message.guild.name : "None",
+        inline: true,
+      },
+      {
+        name: "User",
+        value: message.author.tag,
+        inline: true,
+      },
+      {
+        name: "Message",
+        value: message.content,
+        inline: true,
+      },
+      {
+        name: "Scam link",
+        value: message.content
+
+          .toLowerCase()
+          .match(
+            /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+          )?.[0]
+          .replace(/(https|http):\/\/+/g, "")
+          .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+          .slice(0, -1),
+        inline: true,
+      }
+    );
+    client.channels.cache.get("936986641585799178").send({
+      embeds: [_],
+    });
     message.delete();
     message.channel.send({
       content: `**${message.author.tag}** has sent a scam link and I have deleted it to prevent spread`,
