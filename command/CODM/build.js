@@ -5,6 +5,7 @@ module.exports = {
   name: "build",
   description: "Get gunsmith builds",
   type: "CHAT_INPUT",
+  usage: "[Weapon Name] [Author] [Tag]",
   category: "CODM",
   options: [
     {
@@ -106,7 +107,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -233,7 +234,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -324,7 +325,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -407,7 +408,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -486,7 +487,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -549,7 +550,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -620,7 +621,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
