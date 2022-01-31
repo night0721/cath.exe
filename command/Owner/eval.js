@@ -47,19 +47,22 @@ module.exports = {
       evaled = err;
     }
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
-    evaled = utils.chunk(evaled, 750);
+    console.log(evaled);
+    evaled = chunk([evaled], 750);
+    console.log(evaled);
     let reactions = ["❌", "⏪", "◀️", "⏹️", "▶️", "⏩"],
       page = 0,
       evaledEmbed = new Discord.MessageEmbed()
         .setColor(client.color)
         .setDescription(`\`\`\`js\n${evaled[0]}\n\`\`\``)
         .setTimestamp()
-        .setAuthor(
-          `Evaled by ${interaction.user.tag}`,
-          interaction.user.displayAvatarURL({ dynamic: true })
-        )
-        .addField(`Type of`, `\`\`\`js\n${typeof evaled[0]}\n\`\`\``);
-    const mainMessage = await interaction.channel.send({ embeds: [evaledEmbed] });
+        .setAuthor({
+          name: `Evaled by ${interaction.user.tag}`,
+          iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+        });
+    const mainMessage = await interaction.channel.send({
+      embeds: [evaledEmbed],
+    });
     Discord.TextChannel.prototype.send = oldSend;
     await Promise.all(
       (evaled.length === 1 ? ["❌", "⏹️"] : reactions).map(r =>
@@ -112,12 +115,17 @@ module.exports = {
       }
       evaledEmbed = new Discord.MessageEmbed()
         .setColor(interaction.guild.me.displayColor)
-        .setDescription(`\`\`\`js\n${evaled[page]}\n\`\`\``)
-        .addField(`Type of`, `\`\`\`js\n${typeof evaled[page]}\n\`\`\``);
-
+        .setDescription(`\`\`\`js\n${evaled[page]}\n\`\`\``);
       await mainMessage.edit({
         embeds: [evaledEmbed],
       });
     });
   },
 };
+function chunk(arr, size) {
+  let c;
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => {
+    c = arr.slice(i * size, i * size + size);
+  });
+  return c;
+}
