@@ -132,7 +132,9 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(d.name)
       .setURL(d.preview_video)
-      .setDescription(`\`\`\`${d.description}\`\`\``)
+      .setDescription(
+        `<:nyx_description:897379659665264650> **Description** \`\`\`\n${d.description}\`\`\``
+      )
       .addFields(
         {
           name: "Cost",
@@ -148,11 +150,6 @@ module.exports = {
               : "<a:nyx_checkmark:897240322411724841> Yes"
           }`,
           inline: true,
-        },
-        {
-          name: "More Info",
-          value: `\`\`\`${d.special ? d.special : "None"}\`\`\``,
-          inline: false,
         }
       )
       .setThumbnail(d.preview)

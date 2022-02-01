@@ -4,6 +4,7 @@ const axios = require("axios");
 module.exports = {
   name: "build",
   description: "Get gunsmith builds",
+  usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
   category: "CODM",
   options: [
@@ -106,7 +107,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -233,7 +234,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -324,7 +325,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -407,7 +408,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -471,7 +472,7 @@ module.exports = {
               value: "E04",
             },
             {
-              name: "KRM_262",
+              name: "KRM 262",
               value: "E05",
             },
             {
@@ -486,7 +487,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -549,7 +550,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -557,6 +558,10 @@ module.exports = {
               name: "path.exe",
               value: "path.exe",
             },
+            // {
+            //   name: "Stats On Duty",
+            //   value: "sod",
+            // },
           ],
         },
         {
@@ -620,7 +625,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "youtuber",
+          name: "Author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -628,6 +633,10 @@ module.exports = {
               name: "path.exe",
               value: "path.exe",
             },
+            // {
+            //   name: "Stats On Duty",
+            //   value: "sod",
+            // },
           ],
         },
         {
