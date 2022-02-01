@@ -114,11 +114,7 @@ function attachments(inpmsg) {
   hasAttachments = common.hasAttachments(inpmsg);
   currAttachments = [];
   if (hasAttachments) {
-    currAttachments = common.attachmentsIdentifier(
-      inpmsg,
-      currGun.aments,
-      currGun.stats
-    );
+    currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
     if (typeof currAttachments == "string") {
       hasError = true;
       return currAttachments;

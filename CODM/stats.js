@@ -97,11 +97,7 @@ function statsHandler(inpmsg) {
   currStats = currGun.stats;
   currDRM = currGun.drm[0];
   currAttachments = [];
-  currAttachments = common.attachmentsIdentifier(
-    inpmsg,
-    currGun.aments,
-    currStats
-  );
+  currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
   if (typeof currAttachments == "string") {
     hasError = true;
     return currAttachments;

@@ -170,13 +170,15 @@ function weaponIdentifier(inpmsg) {
   } else return `Couldn't identify the weapon: "${inpWeaponName}"`;
 }
 // identifying attachments and return array or error
-function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
+function attachmentsIdentifier(inpmsg, gun) {
   if (!hasAttachments(inpmsg)) return [];
   // no need for isolator because using slash commands, we get individual attachment
   let inputAttachmentsNames = isolator(inpmsg)[1]
     .split(/ & |, |,| and /)
     .filter(x => x);
+
   const tooSmall = inputAttachmentsNames.filter(x => x.length < 3);
+  // filter all elements thats shorter than 2 characters
   inputAttachmentsNames = inputAttachmentsNames.filter(x => !(x.length < 3));
   let errorMsgs = "",
     errors = [],
@@ -184,25 +186,24 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
 
   if (inputAttachmentsNames.length == 0)
     errorMsgs += "\nAttachments are missing!\n";
-
-  if (inputAttachmentsNames.length >= 10) return "Cocaineeeeee";
+  // if (inputAttachmentsNames.length >= 10) return "Cocaineeeeee"; ?????????
 
   // Can directly use args[] to return, no need for isolator, partExtractor, inpFixer
   const splitAttachmentsDataName = [],
     outAttachments = [];
 
-  for (let i = 0; i < attachmentsData.length; i++) {
+  for (let i = 0; i < gun.aments.length; i++) {
     splitAttachmentsDataName.push([
       ...new Set(
-        attachmentsData[i].name
+        gun.aments[i].name
           .split(" ")
           .filter(x => x)
           .map(x => x.trim())
       ),
     ]);
-    if (Math.max(...splitAttachmentsDataName.map(x => x.length)) > 6) {
-      return "Cocaineeeeee";
-    }
+    // if (Math.max(...splitAttachmentsDataName.map(x => x.length)) > 6) {
+    //   return "Cocaineeeeee";
+    // } ??????????????????? Thats not gonna happen right?
     for (let j = 0; j < splitAttachmentsDataName[i].length; j++) {
       splitAttachmentsDataName[i][j] =
         splitAttachmentsDataName[i][j].Simplify();
@@ -249,9 +250,9 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
       )
     ) {
       var tmp1 = parseInt(inputAttachmentsNames[i]);
-      const tmp2 = attachmentsData.filter(
+      const tmp2 = gun.aments.filter(
         x =>
-          x.type === 8 && x.effects[27] + x.effects[28] + inpStats[17] === tmp1
+          x.type === 8 && x.effects[27] + x.effects[28] + gun.stats[17] === tmp1
       );
       if (tmp2.length === 1) {
         outAttachments.push(tmp2[0]);
@@ -298,9 +299,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
 
     var curr = probables[probables.length - 1];
     const temp1 = probables[probables.length - 1].filter(
-      x =>
-        attachmentsData[x].name.Simplify() ==
-        inputAttachmentsNames[i].Simplify()
+      x => gun.aments[x].name.Simplify() == inputAttachmentsNames[i].Simplify()
     );
     const temp2 = probables[probables.length - 1].filter(
       x =>
@@ -324,7 +323,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
       errors.push(
         "`" +
           curr
-            .map(x => attachmentsData[x].name)
+            .map(x => gun.aments[x].name)
             .reduce((out, x, i) =>
               [out, x].join(i === curr.length - 1 ? "` or `" : "`, `")
             ) +
@@ -333,7 +332,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
           '"`'
       );
     }
-    outAttachments.push(attachmentsData[probables[probables.length - 1][0]]);
+    outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
   }
   const outAttachmentsTypes = outAttachments.map(x => x.type - 1),
     t1 = outAttachments

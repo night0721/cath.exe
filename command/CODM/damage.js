@@ -39,11 +39,7 @@ function dmg(inpmsg) {
   }
   currDRM = currGun.drm[0];
   currStats = currGun.stats;
-  currAttachments = common.attachmentsIdentifier(
-    inpmsg,
-    currGun.aments,
-    currStats
-  );
+  currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
   if (typeof currAttachments == "string") {
     hasError = true;
     return currAttachments;
