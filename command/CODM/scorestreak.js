@@ -133,7 +133,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(d.scorestreak)
       .setURL(d.preview_video)
-      .setDescription(`\`\`\`${d.description}\`\`\``)
+      .setDescription(`<:nyx_description:897379659665264650> **Description** \`\`\`\n${d.description}\`\`\``)
       .addFields(
         {
           name: "Cost",
@@ -151,16 +151,16 @@ module.exports = {
         {
           name: "AI-Assisted",
           value: `
-          ${d.manual == false 
+          ${d.manual != false 
             ? "<a:nyx_checkmark:897240322411724841> Yes"
             : "<a:nyx_cross:897244999211696198> No"}`,
           inline: true
-        },
-        {
-          name: "More Info",
-          value: `\`\`\`${d.special}\`\`\``,
-          inline: false
         }
+        // {
+        //   name: "More Info",
+        //   value: `\`\`\`${d.special}\`\`\``,
+        //   inline: false
+        // }
       )
       .setThumbnail(`${d.preview}`)
       .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
