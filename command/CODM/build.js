@@ -4,6 +4,7 @@ const axios = require("axios");
 module.exports = {
   name: "build",
   description: "Get gunsmith builds",
+  usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
   usage: "[Weapon Name] [Author] [Tag]",
   category: "CODM",
@@ -112,8 +113,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "Jokesta",
@@ -239,8 +240,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "Jokesta",
@@ -330,8 +331,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -413,8 +414,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
           ],
         },
@@ -492,8 +493,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             {
               name: "dHitman",
@@ -555,8 +556,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             // {
             //   name: "Stats On Duty",
@@ -630,8 +631,8 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
-              value: "path",
+              name: "path.exe",
+              value: "path.exe",
             },
             // {
             //   name: "Stats On Duty",
@@ -660,7 +661,7 @@ module.exports = {
     const tag = args[3];
     const data = await axios
       .get(
-        `${process.env.api}/api/v1/codm/builds?cwts=${cwts}&cc=${cc}&tag=${tag}`,
+        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
         {
           headers: {
             Authorization: process.env.CODM_API_KEY,
@@ -669,11 +670,24 @@ module.exports = {
       )
       .then(res => res.data)
       .catch(e => null);
+    var all = {
+      "path.exe": "path.exe",
+      dhitman: "dHitman",
+      jokesta: "Jokesta",
+      // littleb:"Little B",
 
-    if (!data?.ID) {
+      aggressive: "Aggressive",
+      passive: "Passive",
+      snd: "Search And Destroy",
+      respawn: "Respawn",
+      ads: "ADS",
+      hipfire: "Hipfire",
+    };
+
+    if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
@@ -691,10 +705,10 @@ module.exports = {
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter(
-          `Builds Aggregated by ${client.author}`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({
+          text: `Builds Aggregated by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .addFields(
           {

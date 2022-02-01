@@ -1,18 +1,20 @@
 const { MessageEmbed } = require("discord.js");
-const truth = require("../../util/Data/truth.json");
-
+const tnd = require("../../util/Data/tnd.json");
 module.exports = {
   name: "truth",
   description: "Gives a random question that has to be answered truthfully",
   run: async (client, interaction, args) => {
     const embed = new MessageEmbed()
-      .setAuthor(
-        interaction.user.tag,
-        interaction.user.displayAvatarURL({ dyamic: true })
-      )
-      .setTitle(truth[Math.round(Math.random() * truth.length)])
+      .setAuthor({
+        name: interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL({ dyamic: true }),
+      })
+      .setTitle(truth[Math.round(Math.random() * tnd.truth.length)])
       .setColor(client.color)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });
   },

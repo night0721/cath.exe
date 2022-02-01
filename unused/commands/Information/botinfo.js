@@ -50,7 +50,7 @@ module.exports = {
           NYX ❯ \`v${version}\`
           Discord.js ❯ \`v${djsversion}\`
           Node.js ❯ \`${process.version}\``,
-        },
+        }
         // Removed OS Info for troubleshooting.
         //
         // {

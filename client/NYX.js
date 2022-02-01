@@ -22,6 +22,7 @@ class NYX extends Client {
       },
       shard: "auto",
       restTimeOffset: 0,
+      restRequestTimeout: 99999,
       partials: ["MESSAGE", "CHANNEL", "REACTION", "GUILD_MEMBER"],
       intents: 24207,
     }

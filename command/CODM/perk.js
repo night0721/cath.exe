@@ -1,6 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { CODMClient } = require("cath");
-const c = new CODMClient("Gae");
+const c = require("../../client/CODMClient");
 module.exports = {
   name: "perk",
   description: "Get perk stats",

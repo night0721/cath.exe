@@ -1015,11 +1015,7 @@
         "4x Tactical Scope",
         "4.4x Tactical Scope"
       ],
-      "stock": [
-        "YKM Light Stock",
-        "OWC Skeleton Stock",
-        "RTC Steady Stock"
-      ],
+      "stock": ["YKM Light Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
       "perk": [
         "FMJ",
         "Sleight of Hand",
@@ -1039,11 +1035,7 @@
         "Tactical Foregrip A",
         "Bipod"
       ],
-      "ammo": [
-        "Extended Mag A",
-        "Fast Reload",
-        "Halberd Mag"
-      ],
+      "ammo": ["Extended Mag A", "Fast Reload", "Halberd Mag"],
       "rear_grip": [
         "Granulated Grip Tape",
         "Ruberized Grip Tape",
@@ -2667,11 +2659,7 @@
         "MIP Light FLash Guard",
         "RTC Light Muzzle Brake"
       ],
-      "barrel": [
-        "Gurrilla Light Short",
-        "Last Stand Light",
-        "Banner Heavy"
-      ],
+      "barrel": ["Gurrilla Light Short", "Last Stand Light", "Banner Heavy"],
       "optic": [
         "Red Dot Sight",
         "Holographic Sight",
@@ -2697,10 +2685,7 @@
         "Tactical Foregrip A",
         "Operator Foregrip"
       ],
-      "ammo": [
-        "35 Round Fast Reload",
-        "55 Round Light Reload"
-      ],
+      "ammo": ["35 Round Fast Reload", "55 Round Light Reload"],
       "rear_grip": [
         "Sturdy Grip Tape",
         "Ruberized Grip Tape",

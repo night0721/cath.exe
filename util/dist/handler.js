@@ -1,3 +1,4 @@
+const { DiscordAPIError, HTTPError } = require("discord.js");
 const fs = require("fs");
 const cmds = [];
 const ownercmds = [];
@@ -30,25 +31,28 @@ module.exports = async client => {
   client.on("ready", async () => {
     const gg = client.guilds.cache.get("840225563193114624");
     await gg.commands.set(ownercmds);
-    await client.application.commands.set(cmds).then(async cmd => {
-      client.guilds.cache.forEach(g => {
-        const getroles = name => {
-          const perms = cmds.find(n => n.name == name).UserPerms;
-          if (!perms) return null;
-          return g.roles.cache.filter(
-            z => z.permissions.has(perms) && !z.managed
-          );
-        };
-        const fullPermissions = cmd.reduce((accumulator, v) => {
-          const roles = getroles(v.name);
-          if (!roles) return accumulator;
-          const permissions = roles.reduce((a, w) => {
-            return [...a, { id: w.id, type: "ROLE", permission: true }];
+    await client.application.commands
+      .set(cmds)
+      .then(async cmd => {
+        client.guilds.cache.forEach(g => {
+          const getroles = name => {
+            const perms = cmds.find(n => n.name == name).UserPerms;
+            if (!perms) return null;
+            return g.roles.cache.filter(
+              z => z.permissions.has(perms) && !z.managed
+            );
+          };
+          const fullPermissions = cmd.reduce((accumulator, v) => {
+            const roles = getroles(v.name);
+            if (!roles) return accumulator;
+            const permissions = roles.reduce((a, w) => {
+              return [...a, { id: w.id, type: "ROLE", permission: true }];
+            }, []);
+            return [...accumulator, { id: v.id, permissions }];
           }, []);
-          return [...accumulator, { id: v.id, permissions }];
-        }, []);
-        g.commands.permissions.set({ fullPermissions });
-      });
-    });
+          g.commands.permissions.set({ fullPermissions }).catch(null);
+        });
+      })
+      .catch(null);
   });
 };
