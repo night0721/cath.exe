@@ -558,6 +558,10 @@ module.exports = {
               name: "Path.exe",
               value: "path",
             },
+            // {
+            //   name: "Stats On Duty",
+            //   value: "sod",
+            // },
           ],
         },
         {
@@ -629,6 +633,10 @@ module.exports = {
               name: "Path.exe",
               value: "path",
             },
+            // {
+            //   name: "Stats On Duty",
+            //   value: "sod",
+            // },
           ],
         },
         {

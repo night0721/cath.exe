@@ -27,7 +27,7 @@ module.exports = {
       .setURL(client.web)
       .setTitle(`🎲 A Randomly Generated Loadout 🎲`)
       .setDescription(
-        `This loadout is a randomly generated, Also try, \`\`\`\`/gun\`\`\`\` to get a randomally generated primary weapon gunsmith build`
+        `This loadout is a randomly generated, Also try, \`\`\`\`/class\`\`\`\` to get a randomally generated primary weapon gunsmith build`
       )
       .addFields(
         {
@@ -41,7 +41,7 @@ module.exports = {
           inline: true,
         },
         {
-          name: `Scorestreak`, // 3 perks
+          name: `Scorestreak`, // 3 Scorestreaks
           value: ``,
           inline: true,
         },
