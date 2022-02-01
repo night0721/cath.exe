@@ -141,8 +141,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "snd",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -264,8 +264,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "snd",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -351,8 +351,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "snd",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -434,8 +434,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "snd",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -678,7 +678,7 @@ module.exports = {
 
       aggressive: "Aggressive",
       passive: "Passive",
-      snd: "Search And Destroy",
+      "Search And Destroy": "Search And Destroy",
       respawn: "Respawn",
       ads: "ADS",
       hipfire: "Hipfire",
