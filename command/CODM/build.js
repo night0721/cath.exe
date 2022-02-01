@@ -6,6 +6,7 @@ module.exports = {
   description: "Get gunsmith builds",
   usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
+  usage: "[Weapon Name] [Author] [Tag]",
   category: "CODM",
   options: [
     {
