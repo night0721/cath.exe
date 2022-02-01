@@ -144,8 +144,8 @@ module.exports = {
           value: `
           ${
             d.manual
-              ? "<a:nyx_checkmark:897240322411724841> Yes"
-              : "<a:nyx_cross:897244999211696198> No"
+              ? "<a:nyx_cross:897244999211696198> NO"
+              : "<a:nyx_checkmark:897240322411724841> Yes"
           }`,
           inline: true,
         },
