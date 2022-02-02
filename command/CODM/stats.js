@@ -129,11 +129,7 @@ function statsHandler(inpmsg) {
   currStats = currGun.stats;
   currDRM = currGun.drm[0];
   currAttachments = [];
-  currAttachments = common.attachmentsIdentifier(
-    inpmsg,
-    currGun.aments,
-    currStats
-  );
+  currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
   if (typeof currAttachments == "string") {
     hasError = true;
     return currAttachments;
@@ -299,7 +295,7 @@ function statsHandler(inpmsg) {
     footer: {
       text: "[OUTDATED] All data courtesy of Project Lighthouse 2.0 and CoDM Research Crew",
       icon_url:
-        "https://media.discordapp.net/attachments/735590814662656102/806960573753327657/cc.png?width=638&height=638",
+        "https://media.discordapp.net/attachments/735590814662656102/806960573753327657/cc.png",
     },
   };
 }

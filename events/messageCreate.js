@@ -1,7 +1,7 @@
 const client = require("..");
 const { MessageEmbed } = require("discord.js");
 const utils = require("../util/functions/function");
-const scams = require("../util/Data/scam.json");
+const domains = require("../util/Data/domains.json");
 client.on("messageCreate", async message => {
   if (message.author.bot || !message.guild) return;
   const data = {};
@@ -66,7 +66,17 @@ client.on("messageCreate", async message => {
   }
   if (data.User?.Blacklist) return;
   if (
-    scams.includes(
+    domains.iplogger.includes(
+      message.content
+        .toLowerCase()
+        .match(
+          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+        )?.[0]
+        .replace(/(https|http):\/\/+/g, "")
+        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+        .slice(0, -1)
+    ) ||
+    domains.scam.includes(
       message.content
         .toLowerCase()
         .match(
@@ -77,14 +87,59 @@ client.on("messageCreate", async message => {
         .slice(0, -1)
     )
   ) {
-    message.delete();
+    const _ = new MessageEmbed()
+      .setTitle(`Scam/IP Grabber detected`)
+      .setTimestamp()
+      .setColor(client.color)
+      .addFields(
+        {
+          name: "User",
+          value: `${message.author.tag} (${message.author.id})`,
+          inline: true,
+        },
+        {
+          name: "Scam/IP Logger URL",
+          value: `||https://${message.content
+            .toLowerCase()
+            .match(
+              /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+            )?.[0]
+            .replace(/(https|http):\/\/+/g, "")
+            .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+            .slice(0, -1)}||`,
+          inline: true,
+        }
+      )
+      .setFooter({
+        text: `Tactical Protection by ${client.author}`,
+        icon_url: client.user.displayAvatarURL(),
+      });
     message.channel.send({
-      content: `**${message.author.tag}** has sent a scam link and I have deleted it to prevent spread`,
+      embeds: [_],
     });
+    client.channels.cache.get("936986641585799178").send({
+      embeds: [
+        _.addFields(
+          {
+            name: "Message",
+            value: message.content,
+            inline: false,
+          },
+          {
+            name: "Guild",
+            value: message.guild ? message.guild.name : "None",
+            inline: true,
+          }
+        ),
+      ],
+    });
+    message.delete().catch(() => {});
   }
+
   if (
     message?.content.startsWith(data.Guild.Prefix) ||
-    message?.content.startsWith("C.")
+    message?.content.startsWith("C.") ||
+    message?.content.startsWith("c.")
   ) {
     const embed = new MessageEmbed()
       .setTitle(`Message commands are now disabled`)
@@ -157,7 +212,15 @@ client.on("messageCreate", async message => {
     }
     if (message.content) {
       client.channels.cache.get(client.config.DMLog).send({
-        content: `\`${message.author.tag}(${message.author.id})\`: ${message.content}`,
+        embeds: [
+          new MessageEmbed()
+            .setDescription(message.content)
+            .setColor(client.color)
+            .setAuthor({
+              name: message.author.tag,
+              iconURL: message.author.displayAvatarURL({ dynamic: true }),
+            }),
+        ],
       });
     }
   }

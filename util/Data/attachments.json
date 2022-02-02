@@ -1043,6 +1043,65 @@
       ]
     }
   ],
+  "Kilo_141": [
+    {
+      "muzzle": [
+        "Tactical Suppressor",
+        "OWC Light Suppressor",
+        "OWC Light Compensator",
+        "Monolithic Suppressor",
+        "MIP Light FLash Guard",
+        "RTC Light Muzzle Brake"
+      ],
+      "barrel": [
+        "YKM Integral Suppressor Light",
+        "MIP Light Extended Barrel", 
+        "OWC Marksman"
+      ],
+      "optic": [
+        "Red Dot Sight",
+        "Holographic Sight",
+        "3x Tactical Scope",
+        "4x Tactical Scope",
+        "4.4x Tactical Scope"
+      ],
+      "stock": [
+        "No Stock",
+        "YKM Combat Stock",
+        "OWC Skeleton Stock",
+        "RTC Steady Stock"
+      ],
+      "perk": [
+        "FMJ",
+        "Sleight of Hand",
+        "Wounding",
+        "Full Ammo",
+        "Disable",
+        "Tough",
+        "Long Shot",
+        "Melee Master"
+      ],
+      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
+      "underbarrel": [
+        "Strike Foregrip",
+        "Merc Foregrip",
+        "Operator Foregrip",
+        "Ranger Foregrip",
+        "Tactical Foregrip A",
+        "Bipod"
+      ],
+      "ammo": [
+        "Extended Mag A",
+        "Large Extended Mag B",
+        "100 round LMG Drum Mag"
+      ],
+      "rear_grip": [
+        "Granulated Grip Tape",
+        "Ruberized Grip Tape",
+        "Stippled Grip Tape"
+      ]
+    }
+  ],
   "XPR_50": [
     {
       "muzzle": [

@@ -5,6 +5,7 @@ const weaponActualName = nmDt.weaponActualName;
 const weaponAlliasName = nmDt.weaponAlliasName;
 Object.defineProperty(String.prototype, "Simplify", {
   // Function to remove all characters except 0-9 and a-z
+  // Eg "AK-47" -> "ak47"
   value: function Simplify() {
     return this.toLowerCase().replace(/[^0-9a-z]/g, "");
   },
@@ -55,7 +56,7 @@ Object.defineProperty(Number.prototype, "PlusHL", {
 
 /* Function to fix the input statement */
 function inpFixer(inpmsg) {
-  const parts = partExtracter(inpmsg);
+  const parts = PartSpliter(inpmsg);
   // parts will be an array
   //eg: ["fennec", "akimbo, mono"]
   nmDt.attachmentAlliasName[0].map((x, i) =>
@@ -72,8 +73,8 @@ function inpFixer(inpmsg) {
   // so it fking only fix akimbo and stopping power wtf
   return inpmsg;
 }
-// Function to extract the attachments from the input statement
-function partExtracter(inpmsg) {
+// Function to split weapon name and the attachments from the input statement
+function PartSpliter(inpmsg) {
   if (inpmsg.includes(" + ")) {
     // If the input statement has multiple attachments joined by "+", split them and output them as an array of strings [0] is the weapon name, [1] is the attachments
     // Eg: "M4A1 + Silencer + Flashlight" -> ["M4A1", "Silencer + Flashlight"]
@@ -90,7 +91,7 @@ function partExtracter(inpmsg) {
 
 function hasAttachments(inpmsg) {
   inpmsg = inpFixer(inpmsg);
-  // If
+  // If the input statement has multiple attachments joined by "+" or "with", split them and output them as an array of strings [0] is the weapon name, [1] is the attachments
   if (
     inpmsg.split(" with ").filter(x => x.Simplify()).length > 1 ||
     inpmsg.split(" + ").filter(x => x.Simplify()).length > 1
@@ -101,68 +102,83 @@ function hasAttachments(inpmsg) {
 }
 
 function isolator(inpmsg) {
-  return partExtracter(inpFixer(inpmsg));
+  return PartSpliter(inpFixer(inpmsg));
 }
-
+// identifying the weapon
 function weaponIdentifier(inpmsg) {
   const inpWeaponName = isolator(inpmsg)[0];
+  // ["ak", "mono"] -> inpWeaponName: "ak"
+  // if weapon name is too short, return the error
   if (inpWeaponName.length < 2) {
     return inpmsg.trim().length
       ? `The name ${inpmsg.trim()} is too short.`
       : "There isn't any weapon name.";
   }
   let probableWeapons = [];
+  // Loop through all the weapons to find the probable weapons
+  // Eg: "ak"
   for (let i = 0; i < data.cguns.length; i++) {
     if (inpWeaponName.Simplify() == data.cguns[i].gunname.Simplify()) {
+      // if the simplified name of the weapon is the same as the weapon name in the database, return the only one stats object
       return JSON.parse(JSON.stringify(data.cguns[i]));
     } else if (
       data.cguns[i].gunname.Simplify().includes(inpWeaponName.Simplify())
     ) {
+      // If the weapon name is included in the actual name of the weapon
+      // push the weapon to the probableWeapons array
       probableWeapons.push(i);
     }
   }
-
+  // if there is only one probable weapon, mean the gun has already been identified
   if (probableWeapons.length == 1) {
+    // if there is only one probable weapon, return the only one stats object
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
   }
-
+  // continue loop when there is no identified weapons or there are more than one identfied weaponds
+  // detecting aliases
+  // getting total number of weapons that had added aliases
   for (let i = 0; i < weaponAlliasName.length; i++) {
+    // getting the number of aliases of each weapon
     for (let j = 0; j < weaponAlliasName[i].length; j++) {
+      // weaponAliases[i][j] is the each alias of each weapon
+      // finding if simplified alias is same as input weapon name
       if (weaponAlliasName[i][j].Simplify() == inpWeaponName.Simplify()) {
+        // if simplified alias is same as input weapon name
+        // eg "mow" == "mow", run the loop
         for (let i2 = 0; i2 < data.cguns.length; i2++) {
-          if (
-            weaponActualName[i].Simplify() == data.cguns[i2].gunname.Simplify()
-          ) {
+          if (weaponActualName[i] == data.cguns[i2].gunname) {
+            // use the actual name of the weapon to find the weapon
             return JSON.parse(JSON.stringify(data.cguns[i2]));
           }
         }
       }
     }
   }
+  // removing duplicates in the array
   probableWeapons = [...new Set(probableWeapons)];
-  if (probableWeapons.length == 1) {
+  // if there is only one probable weapon, return the only one stats object
+  if (probableWeapons.length == 1)
     return JSON.parse(JSON.stringify(data.cguns[probableWeapons[0]]));
-  }
-  if (probableWeapons.length > 1) {
+  else if (probableWeapons.length > 1) {
+    // reply with the question of probable weapons
     return `Did you mean ${probableWeapons
       .map(x => data.cguns[x].gunname)
       .reduce((out, x, i) =>
         [out, x].join(i === probableWeapons.length - 1 ? "` or `" : "`, `")
       )}
       ?`;
-  }
-  return `Couldn't identify the weapon: "${inpWeaponName}"`;
+  } else return `Couldn't identify the weapon: "${inpWeaponName}"`;
 }
-
-function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
-  if (!hasAttachments(inpmsg)) {
-    return [];
-  }
+// identifying attachments and return array or error
+function attachmentsIdentifier(inpmsg, gun) {
+  if (!hasAttachments(inpmsg)) return [];
   // no need for isolator because using slash commands, we get individual attachment
   let inputAttachmentsNames = isolator(inpmsg)[1]
     .split(/ & |, |,| and /)
     .filter(x => x);
+
   const tooSmall = inputAttachmentsNames.filter(x => x.length < 3);
+  // filter all elements thats shorter than 2 characters
   inputAttachmentsNames = inputAttachmentsNames.filter(x => !(x.length < 3));
   let errorMsgs = "",
     errors = [],
@@ -170,25 +186,21 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
 
   if (inputAttachmentsNames.length == 0)
     errorMsgs += "\nAttachments are missing!\n";
-
-  if (inputAttachmentsNames.length >= 10) return "Cocaineeeeee";
+  // if (inputAttachmentsNames.length >= 10) return "Cocaineeeeee"; ?????????
 
   // Can directly use args[] to return, no need for isolator, partExtractor, inpFixer
   const splitAttachmentsDataName = [],
     outAttachments = [];
 
-  for (let i = 0; i < attachmentsData.length; i++) {
+  for (let i = 0; i < gun.aments.length; i++) {
     splitAttachmentsDataName.push([
       ...new Set(
-        attachmentsData[i].name
+        gun.aments[i].name
           .split(" ")
           .filter(x => x)
           .map(x => x.trim())
       ),
     ]);
-    if (Math.max(...splitAttachmentsDataName.map(x => x.length)) > 6) {
-      return "Cocaineeeeee";
-    }
     for (let j = 0; j < splitAttachmentsDataName[i].length; j++) {
       splitAttachmentsDataName[i][j] =
         splitAttachmentsDataName[i][j].Simplify();
@@ -235,9 +247,9 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
       )
     ) {
       var tmp1 = parseInt(inputAttachmentsNames[i]);
-      const tmp2 = attachmentsData.filter(
+      const tmp2 = gun.aments.filter(
         x =>
-          x.type === 8 && x.effects[27] + x.effects[28] + inpStats[17] === tmp1
+          x.type === 8 && x.effects[27] + x.effects[28] + gun.stats[17] === tmp1
       );
       if (tmp2.length === 1) {
         outAttachments.push(tmp2[0]);
@@ -284,9 +296,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
 
     var curr = probables[probables.length - 1];
     const temp1 = probables[probables.length - 1].filter(
-      x =>
-        attachmentsData[x].name.Simplify() ==
-        inputAttachmentsNames[i].Simplify()
+      x => gun.aments[x].name.Simplify() == inputAttachmentsNames[i].Simplify()
     );
     const temp2 = probables[probables.length - 1].filter(
       x =>
@@ -310,7 +320,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
       errors.push(
         "`" +
           curr
-            .map(x => attachmentsData[x].name)
+            .map(x => gun.aments[x].name)
             .reduce((out, x, i) =>
               [out, x].join(i === curr.length - 1 ? "` or `" : "`, `")
             ) +
@@ -319,7 +329,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
           '"`'
       );
     }
-    outAttachments.push(attachmentsData[probables[probables.length - 1][0]]);
+    outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
   }
   const outAttachmentsTypes = outAttachments.map(x => x.type - 1),
     t1 = outAttachments
@@ -379,7 +389,7 @@ function attachmentsIdentifier(inpmsg, attachmentsData, inpStats) {
   return errorMsgs ? errorMsgs.trim() : outAttachments;
 }
 // console.log(attachmentsIdentifier("chopper with heavy handle, red sight, granulated", data.cguns[38].aments)); makeError();
-// console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); //makeError();
+// console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
 
