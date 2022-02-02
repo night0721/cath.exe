@@ -4104,7 +4104,24 @@
     "staemporewed.xyz"
   ],
   "iplogger": [
-    "dlscord.org/nitro-gift",
+    "iplogger.org",
+    "2no.co",
+    "iplogger.com",
+    "iplogger.ru",
+    "yip.su",
+    "iplogger.co",
+    "iplogger.info",
+    "ipgrabber.ru",
+    "ipgraber.ru",
+    "iplis.ru",
+    "02ip.ru",
+    "ezstat.ru",
+    "ps3cfw.com",
+    "ythingy.com",
+    "blasze.tk",
+    "fuekos.com",
+    "myiptest.com",
+    "dlscord.org",
     "lovebird.guru",
     "trulove.guru",
     "dateing.club",
@@ -4127,5 +4144,15 @@
     "sportshub.bar",
     "herald.sbs",
     "locations.quest"
+  ],
+  "ngrok": [
+    "localhost:8888",
+    "localhost:8000",
+    "localhost:8080",
+    "localhost:3000",
+    "127.0.0.1:4040",
+    "127.0.0.1:8000",
+    "127.0.0.1:8080",
+    "ngrok.io"
   ]
 }

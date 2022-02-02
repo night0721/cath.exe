@@ -85,6 +85,16 @@ client.on("messageCreate", async message => {
         .replace(/(https|http):\/\/+/g, "")
         .match(/\s*([^)]+?)\s*\/+/g, "")[0]
         .slice(0, -1)
+    ) ||
+    domains.ngrok.includes(
+      message.content
+        .toLowerCase()
+        .match(
+          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+        )?.[0]
+        .replace(/(https|http):\/\/+/g, "")
+        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+        .slice(0, -1)
     )
   ) {
     const _ = new MessageEmbed()
