@@ -1,0 +1,38 @@
+//domains.json updated by Tac Shadow#5920
+//also night gae
+
+{
+"ipgrabber": [
+"iplogger.org",
+"2no.co",
+"iplogger.com",
+"iplogger.ru",
+"yip.su",
+"iplogger.co",
+"iplogger.info",
+"ipgrabber.ru",
+"ipgraber.ru",
+"iplis.ru",
+"02ip.ru",
+"ezstat.ru"
+],
+
+"ngrok": [
+"localhost:8888",
+"localhost:8000",
+"localhost:8080",
+"localhost:3000",
+"127.0.0.1:4040",
+"127.0.0.1:8000",
+"127.0.0.1:8080",
+"ngrok.io"
+],
+
+"other": [
+"www.ps3cfw.com/cool",
+"www.ythingy.com",
+"blasze.tk",
+"www.fuekos.com",
+"www.myiptest.com"
+]
+}
