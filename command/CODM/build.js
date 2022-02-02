@@ -676,10 +676,10 @@ module.exports = {
       jokesta: "Jokesta",
       // littleb:"Little B",
 
-      aggressive: "Aggressive",
-      passive: "Passive",
+      aggressive: "aggressive",
+      passive: "passive",
       "Search And Destroy": "Search And Destroy",
-      respawn: "Respawn",
+      respawn: "respawn",
       ads: "ADS",
       hipfire: "Hipfire",
     };
@@ -687,7 +687,7 @@ module.exports = {
     if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a **${all[tag]}**  gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
