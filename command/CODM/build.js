@@ -113,7 +113,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -142,7 +142,7 @@ module.exports = {
             },
             {
               name: "Search & Destroy",
-              value: "snd",
+              value: "SearchAndDestroy",
             },
             {
               name: "Respawn",
@@ -240,7 +240,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -265,7 +265,7 @@ module.exports = {
             },
             {
               name: "Search & Destroy",
-              value: "snd",
+              value: "SearchAndDestroy",
             },
             {
               name: "Respawn",
@@ -331,7 +331,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
           ],
@@ -352,7 +352,7 @@ module.exports = {
             },
             {
               name: "Search & Destroy",
-              value: "snd",
+              value: "SearchAndDestroy",
             },
             {
               name: "Respawn",
@@ -414,7 +414,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
           ],
@@ -435,7 +435,7 @@ module.exports = {
             },
             {
               name: "Search & Destroy",
-              value: "snd",
+              value: "SearchAndDestroy",
             },
             {
               name: "Respawn",
@@ -493,7 +493,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -556,13 +556,13 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
-            // {
-            //   name: "Stats On Duty",
-            //   value: "sod",
-            // },
+            {
+              name: "Stats On Duty",
+              value: "sod",
+            },
           ],
         },
         {
@@ -631,7 +631,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             // {
@@ -671,14 +671,14 @@ module.exports = {
       .then(res => res.data)
       .catch(e => null);
     var all = {
-      "path.exe": "path.exe",
+      "path.exe": "Path.exe",
       dhitman: "dHitman",
       jokesta: "Jokesta",
-      // littleb:"Little B",
+      sod: "Stats On Duty",
 
       aggressive: "Aggressive",
       passive: "Passive",
-      snd: "Search And Destroy",
+      SearchAndDestroy: "Search And Destroy",
       respawn: "Respawn",
       ads: "ADS",
       hipfire: "Hipfire",
@@ -687,7 +687,7 @@ module.exports = {
     if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
