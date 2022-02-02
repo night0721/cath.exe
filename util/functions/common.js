@@ -201,9 +201,6 @@ function attachmentsIdentifier(inpmsg, gun) {
           .map(x => x.trim())
       ),
     ]);
-    // if (Math.max(...splitAttachmentsDataName.map(x => x.length)) > 6) {
-    //   return "Cocaineeeeee";
-    // } ??????????????????? Thats not gonna happen right?
     for (let j = 0; j < splitAttachmentsDataName[i].length; j++) {
       splitAttachmentsDataName[i][j] =
         splitAttachmentsDataName[i][j].Simplify();
