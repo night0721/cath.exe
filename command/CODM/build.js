@@ -6,7 +6,6 @@ module.exports = {
   description: "Get gunsmith builds",
   usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
-  usage: "[Weapon Name] [Author] [Tag]",
   category: "CODM",
   options: [
     {
@@ -108,7 +107,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -164,7 +163,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "RUS-79u",
+              name: "RUS-79U",
               value: "D01",
             },
             {
@@ -235,7 +234,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -326,7 +325,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -409,7 +408,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -488,7 +487,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -551,7 +550,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -626,7 +625,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -676,8 +675,8 @@ module.exports = {
       jokesta: "Jokesta",
       // littleb:"Little B",
 
-      aggressive: "aggressive",
-      passive: "passive",
+      aggressive: "Aggressive",
+      passive: "Passive",
       "Search And Destroy": "Search And Destroy",
       respawn: "respawn",
       ads: "ADS",
