@@ -211,9 +211,9 @@ function attachmentsIdentifier(inpmsg, gun) {
         splitAttachmentsDataName[i][j].Simplify();
     }
   }
-  // after loop: ["stippled", "grip", "tape"]
+  // inputAttachmentsNames = [["stippled", "grip", "tape"]
   for (let i = 0; i < inputAttachmentsNames.length; i++) {
-    const probables = [];
+    let probables = [];
     // loop through all the input attachments and split them into words
     var splitInputAttachmentsName = inputAttachmentsNames[i]
       .split(" ")
@@ -279,22 +279,25 @@ function attachmentsIdentifier(inpmsg, gun) {
       probables[probables.length - 1].length !== 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
+      // empty probables as can't indentify the attachment
       probables = [];
       // the splitInputAttachmentsName isn't simplified pls rmb
-      splitInputAttachmentsName.map((x, i5) =>
+      splitInputAttachmentsName.map((x, i5) => {
         // finding aliases
-        nmDt.attachmentAlliasName[1].map((y, i6) =>
+        nmDt.attachmentAlliasName[1].map((y, i6) => {
           y.map(z => {
-            if (x.Simplify() === z.Simplify()) {
+            if (z.Simplify().includes(x.Simplify())) {
               splitInputAttachmentsName[i5] = nmDt.attachmentActualName[1][i6];
             }
-          })
-        )
-      );
+          });
+        });
+      });
+      // simple iteration to make the array again
       splitInputAttachmentsName = splitInputAttachmentsName
         .join(" ")
         .split(" ")
         .filter(x => x);
+      // find one more time as we do aliases already
       finder();
       if (
         probables.length === 0 ||
@@ -308,12 +311,12 @@ function attachmentsIdentifier(inpmsg, gun) {
         finder();
       }
     }
-
     if (probables.length === 0) {
+      // push to unidentifined list as can't be identified after serveral times
       unidentifined.push(inputAttachmentsNames[i]);
       continue;
     }
-
+    // curr is the most probable attachment
     var curr = probables[probables.length - 1];
     const temp1 = probables[probables.length - 1].filter(
       x => gun.aments[x].name.Simplify() == inputAttachmentsNames[i].Simplify()
@@ -412,12 +415,7 @@ function attachmentsIdentifier(inpmsg, gun) {
 // console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
-console.log(
-  attachmentsIdentifier(
-    "47 + 40 round mag + marksman + stippled + red dot",
-    data.cguns[0]
-  )
-);
+console.log(attachmentsIdentifier("47 + dsfasdfaz", data.cguns[0]));
 makeError();
 function damageHandler(
   currDmgs,
