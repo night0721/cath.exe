@@ -6,7 +6,6 @@ module.exports = {
   description: "Get gunsmith builds",
   usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
-  usage: "[Weapon Name] [Author] [Tag]",
   category: "CODM",
   options: [
     {
@@ -108,7 +107,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -141,8 +140,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "SearchAndDestroy",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -164,7 +163,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "RUS-79u",
+              name: "RUS-79U",
               value: "D01",
             },
             {
@@ -235,7 +234,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -264,8 +263,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "SearchAndDestroy",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -326,7 +325,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -351,8 +350,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "SearchAndDestroy",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -409,7 +408,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -434,8 +433,8 @@ module.exports = {
               value: "passive",
             },
             {
-              name: "Search & Destroy",
-              value: "SearchAndDestroy",
+              name: "Search And Destroy",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
@@ -488,7 +487,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -551,7 +550,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -626,7 +625,7 @@ module.exports = {
         },
         {
           type: 3,
-          name: "Author",
+          name: "author",
           description: "Select a Content Creator",
           required: true,
           choices: [
@@ -678,8 +677,8 @@ module.exports = {
 
       aggressive: "Aggressive",
       passive: "Passive",
-      SearchAndDestroy: "Search And Destroy",
       respawn: "Respawn",
+      "Search And Destroy": "Search And Destroy",
       ads: "ADS",
       hipfire: "Hipfire",
     };

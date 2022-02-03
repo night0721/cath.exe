@@ -193,6 +193,7 @@ function attachmentsIdentifier(inpmsg, gun) {
     outAttachments = [];
 
   for (let i = 0; i < gun.aments.length; i++) {
+    // Eg: "Stippled Grip Tape" -> ["Stippled", "Grip", "Tape"]
     splitAttachmentsDataName.push([
       ...new Set(
         gun.aments[i].name
@@ -201,30 +202,35 @@ function attachmentsIdentifier(inpmsg, gun) {
           .map(x => x.trim())
       ),
     ]);
-    // if (Math.max(...splitAttachmentsDataName.map(x => x.length)) > 6) {
-    //   return "Cocaineeeeee";
-    // } ??????????????????? Thats not gonna happen right?
+
+    // splitAttachmentsDataName[i] = ["Stippled", "Grip", "Tape"]
     for (let j = 0; j < splitAttachmentsDataName[i].length; j++) {
+      // simplify the attachments name
+      // Eg: ["Stippled", "Grip", "Tape"] -> ["stippled", "grip", "tape"]
       splitAttachmentsDataName[i][j] =
         splitAttachmentsDataName[i][j].Simplify();
     }
   }
-
+  // after loop: ["stippled", "grip", "tape"]
   for (let i = 0; i < inputAttachmentsNames.length; i++) {
-    var probables = [];
+    const probables = [];
+    // loop through all the input attachments and split them into words
     var splitInputAttachmentsName = inputAttachmentsNames[i]
       .split(" ")
       .filter(x => x);
 
     function finder() {
+      //splitInputAttachmentsName = [["stippled", "grip", "tape"], ["545", "ammo"], ["owc","lazer", "tactical"]]
       for (let j = 0; j < splitAttachmentsDataName.length; j++) {
         for (let i2 = 0; i2 < splitAttachmentsDataName[j].length; i2++) {
           for (let i3 = 0; i3 < splitInputAttachmentsName.length; i3++) {
+            // if simplified input attachment name is included in the real attachments name
             if (
               splitAttachmentsDataName[j][i2].includes(
                 splitInputAttachmentsName[i3].Simplify()
               )
             ) {
+              // if probables list doesn't include the attachment, push
               let probablePushed = false;
               for (let i4 = 0; i4 < probables.length; i4++) {
                 if (!probables[i4].includes(j)) {
@@ -233,15 +239,15 @@ function attachmentsIdentifier(inpmsg, gun) {
                   break;
                 }
               }
-              if (!probablePushed) {
-                probables.push([j]);
-              }
+              // for the first loop as the probables array is emrpty
+              if (!probablePushed) probables.push([j]);
             }
           }
         }
       }
     }
     finder();
+    // finding magazines attachments
     if (
       (inputAttachmentsNames[i].includes(" rounds mag") ||
         inputAttachmentsNames[i].includes(" round mag")) &&

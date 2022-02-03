@@ -85,6 +85,16 @@ client.on("messageCreate", async message => {
         .replace(/(https|http):\/\/+/g, "")
         .match(/\s*([^)]+?)\s*\/+/g, "")[0]
         .slice(0, -1)
+    ) ||
+    domains.ngrok.includes(
+      message.content
+        .toLowerCase()
+        .match(
+          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+        )?.[0]
+        .replace(/(https|http):\/\/+/g, "")
+        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+        .slice(0, -1)
     )
   ) {
     const _ = new MessageEmbed()
@@ -114,31 +124,26 @@ client.on("messageCreate", async message => {
         text: `Tactical Protection by ${client.author}`,
         icon_url: client.user.displayAvatarURL(),
       });
-
-    message
-      .delete()
-      .catch(() => {})
-      .then(() => {
-        message.channel.send({
-          embeds: [_],
-        });
-        client.channels.cache.get("936986641585799178").send({
-          embeds: [
-            _.addFields(
-              {
-                name: "Message",
-                value: message.content,
-                inline: false,
-              },
-              {
-                name: "Guild",
-                value: message.guild ? message.guild.name : "None",
-                inline: true,
-              }
-            ),
-          ],
-        });
-      });
+    message.channel.send({
+      embeds: [_],
+    });
+    client.channels.cache.get("936986641585799178").send({
+      embeds: [
+        _.addFields(
+          {
+            name: "Message",
+            value: message.content,
+            inline: false,
+          },
+          {
+            name: "Guild",
+            value: message.guild ? message.guild.name : "None",
+            inline: true,
+          }
+        ),
+      ],
+    });
+    message.delete().catch(() => {});
   }
 
   if (
