@@ -321,11 +321,16 @@ function attachmentsIdentifier(inpmsg, gun) {
     const temp1 = probables[probables.length - 1].filter(
       x => gun.aments[x].name.Simplify() == inputAttachmentsNames[i].Simplify()
     );
+    // see if the length of the array is the same or not
+    // Eg: splitAttachmentsDataName[x] = ["stippled", "grip", "tape"] and splitInputAttachmentsName = ["stippled", "grip", "tape"]
+    // then it it equal
     const temp2 = probables[probables.length - 1].filter(
       x =>
         splitAttachmentsDataName[x].length == splitInputAttachmentsName.length
     );
-    /**/ if (temp1.length === 1 && temp2.length !== 1) {
+
+    // if found probable, push it
+    if (temp1.length === 1 && temp2.length !== 1) {
       probables.push([temp1]);
     } else if (temp1.length !== 1 && temp2.length === 1) {
       probables.push([temp2]);
@@ -336,20 +341,22 @@ function attachmentsIdentifier(inpmsg, gun) {
     ) {
       probables.push([temp1]);
     }
+    console.log(proba);
     if (
       probables[probables.length - 1].length != 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
+      // ask the user if he/she means xxx = which attachment
       errors.push(
-        "`" +
-          curr
+        `\`
+          ${curr
             .map(x => gun.aments[x].name)
             .reduce((out, x, i) =>
               [out, x].join(i === curr.length - 1 ? "` or `" : "`, `")
-            ) +
-          '` by `"' +
-          inputAttachmentsNames[i] +
-          '"`'
+            )} +
+          \` by \`"
+          ${inputAttachmentsNames[i]}
+          "\``
       );
     }
     outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
@@ -415,7 +422,7 @@ function attachmentsIdentifier(inpmsg, gun) {
 // console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
-console.log(attachmentsIdentifier("47 + dsfasdfaz", data.cguns[0]));
+console.log(attachmentsIdentifier("47 + stipplied grip tape", data.cguns[0]));
 makeError();
 function damageHandler(
   currDmgs,

@@ -655,20 +655,6 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const cwts = args[1];
-    const cc = args[2];
-    const tag = args[3];
-    const data = await axios
-      .get(
-        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
-        {
-          headers: {
-            Authorization: process.env.CODM_API_KEY,
-          },
-        }
-      )
-      .then(res => res.data)
-      .catch(e => null);
     var all = {
       "path.exe": "path.exe",
       dhitman: "dHitman",
@@ -681,6 +667,20 @@ module.exports = {
       ads: "ADS",
       hipfire: "Hipfire",
     };
+    const cwts = args[1];
+    const cc = args[2];
+    const tag = args[3];
+    const data = await axios
+      .get(
+        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${all[cc]}&tag=${all[tag]}`,
+        {
+          headers: {
+            Authorization: process.env.CODM_API_KEY,
+          },
+        }
+      )
+      .then(res => res.data)
+      .catch(e => null);
 
     if (!data?.cwts) {
       const embed = new MessageEmbed()
