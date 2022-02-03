@@ -112,7 +112,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -239,7 +239,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -330,7 +330,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
           ],
@@ -413,7 +413,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
           ],
@@ -492,7 +492,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             {
@@ -555,13 +555,13 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
-            // {
-            //   name: "Stats On Duty",
-            //   value: "sod",
-            // },
+            {
+              name: "Stats On Duty",
+              value: "sod",
+            },
           ],
         },
         {
@@ -630,7 +630,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "path.exe",
+              name: "Path.exe",
               value: "path.exe",
             },
             // {
@@ -670,15 +670,15 @@ module.exports = {
       .then(res => res.data)
       .catch(e => null);
     var all = {
-      "path.exe": "path.exe",
+      "path.exe": "Path.exe",
       dhitman: "dHitman",
       jokesta: "Jokesta",
-      // littleb:"Little B",
+      sod: "Stats On Duty",
 
       aggressive: "Aggressive",
       passive: "Passive",
+      respawn: "Respawn",
       "Search And Destroy": "Search And Destroy",
-      respawn: "respawn",
       ads: "ADS",
       hipfire: "Hipfire",
     };
@@ -686,7 +686,7 @@ module.exports = {
     if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a **${all[tag]}**  gunsmith build for the gun with **CWTS ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a **${all[tag]}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
@@ -700,7 +700,7 @@ module.exports = {
           `${all[tag]} build for ${data.weaponName} from ${data.author}`
         )
         .setDescription(
-          `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes} \n\`\`\``
+          `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes}\n \`\`\``
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
