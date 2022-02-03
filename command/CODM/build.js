@@ -9,7 +9,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "assault_rifle",
       description: "Get a gunsmith build for a Assault Rifle",
       options: [
@@ -112,7 +112,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
             {
@@ -152,7 +152,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sub_machine_gun",
       description: "Get a gunsmith build for a Sub Machine Gun",
       options: [
@@ -239,7 +239,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
             {
@@ -275,7 +275,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sniper_rifle",
       description: "Get a gunsmith build for a Sniper Rifle",
       options: [
@@ -330,7 +330,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
           ],
@@ -362,7 +362,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "light_machine_gun",
       description: "Get a gunsmith build for a Light Machine Gun",
       options: [
@@ -413,7 +413,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
           ],
@@ -445,7 +445,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "shotgun",
       description: "Get a gunsmith build for a Shotgun",
       options: [
@@ -492,7 +492,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
             {
@@ -520,7 +520,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "marksman_rifle",
       description: "Get a gunsmith build for a Marksman Rifle",
       options: [
@@ -555,7 +555,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
             {
@@ -587,7 +587,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "pistol",
       description: "Get a gunsmith build for a Pistol",
       options: [
@@ -630,7 +630,7 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Path.exe",
+              name: "path.exe",
               value: "path.exe",
             },
             // {
@@ -670,11 +670,10 @@ module.exports = {
       .then(res => res.data)
       .catch(e => null);
     var all = {
-      "path.exe": "Path.exe",
+      "path.exe": "path.exe",
       dhitman: "dHitman",
       jokesta: "Jokesta",
       sod: "Stats On Duty",
-
       aggressive: "Aggressive",
       passive: "Passive",
       respawn: "Respawn",

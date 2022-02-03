@@ -58,20 +58,20 @@ module.exports = {
     if (args.length == 1)
       repEmb = statsHandler(args.join(" ").replace("\n", " "));
     else repEmb = statsHandler(args.join(" + ").replace("\n", " "));
-
     if (hasError) {
+      interaction.followUp({ content: `**${repEmb}**` });
+    } else {
+      if (recoilAvailable) {
+        repEmb.fields.push({
+          name: "**Recoil Graph**",
+          value:
+            "```\nThe Recoil graph below is dynamic (change based on attachment equipped)```",
+        });
+        const recoilImageLink = await chart.getShortUrl();
+        repEmb.image = { url: recoilImageLink };
+      }
       interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
     }
-    if (recoilAvailable) {
-      repEmb.fields.push({
-        name: "**Recoil Graph**",
-        value:
-          "```\nThe Recoil graph below is dynamic (change based on attachment equipped)```",
-      });
-      const recoilImageLink = await chart.getShortUrl();
-      repEmb.image = { url: recoilImageLink };
-    }
-    interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
   },
 };
 

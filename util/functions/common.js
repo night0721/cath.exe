@@ -233,13 +233,17 @@ function attachmentsIdentifier(inpmsg, gun) {
               // if probables list doesn't include the attachment, push
               let probablePushed = false;
               for (let i4 = 0; i4 < probables.length; i4++) {
+                // push another attachment that also probable to the probables list to the same array that identified last loop
+                // Eg: probables = [ [32]] // as user input mag and first loop it identfified extended mag
+                // then as it got more possible, it will push large extended mag to the same array -> [ [32,33] ]
                 if (!probables[i4].includes(j)) {
                   probables[i4].push(j);
+                  // make it true so that it doesn't push again in the next condition
                   probablePushed = true;
                   break;
                 }
               }
-              // for the first loop as the probables array is emrpty
+              // push if the attachment isn't been identified yet
               if (!probablePushed) probables.push([j]);
             }
           }
@@ -250,28 +254,35 @@ function attachmentsIdentifier(inpmsg, gun) {
     // finding magazines attachments
     if (
       (inputAttachmentsNames[i].includes(" rounds mag") ||
-        inputAttachmentsNames[i].includes(" round mag")) &&
+        inputAttachmentsNames[i].includes(" round mag") ||
+        inputAttachmentsNames[i].includes(" round") ||
+        inputAttachmentsNames[i].includes(" rounds")) &&
       inputAttachmentsNames[i].startsWith(
         inputAttachmentsNames[i].replace(/\D/g, "")
       )
     ) {
       var tmp1 = parseInt(inputAttachmentsNames[i]);
+      // calculating the sum of number of rounds and see if it matches the input number of rounds
       const tmp2 = gun.aments.filter(
         x =>
           x.type === 8 && x.effects[27] + x.effects[28] + gun.stats[17] === tmp1
       );
+      // push if the magazine is found
       if (tmp2.length === 1) {
         outAttachments.push(tmp2[0]);
         continue;
       }
     }
+    // if probables is empty or there is more than one identified attachment
     if (
       probables.length === 0 ||
       probables[probables.length - 1].length !== 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
       probables = [];
+      // the splitInputAttachmentsName isn't simplified pls rmb
       splitInputAttachmentsName.map((x, i5) =>
+        // finding aliases
         nmDt.attachmentAlliasName[1].map((y, i6) =>
           y.map(z => {
             if (x.Simplify() === z.Simplify()) {
@@ -401,7 +412,13 @@ function attachmentsIdentifier(inpmsg, gun) {
 // console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
-
+console.log(
+  attachmentsIdentifier(
+    "47 + 40 round mag + marksman + stippled + red dot",
+    data.cguns[0]
+  )
+);
+makeError();
 function damageHandler(
   currDmgs,
   currRngs,

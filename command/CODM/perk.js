@@ -8,7 +8,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "red",
       description: "Red Perk",
       options: [
@@ -67,7 +67,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "green",
       description: "Green Perk",
       options: [
@@ -122,7 +122,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "blue",
       description: "Blue Perk",
       options: [

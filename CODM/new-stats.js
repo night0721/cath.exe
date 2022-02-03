@@ -8,7 +8,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "assault_rifle",
       description: "Get a Stats for Assault Rifle",
       options: [
@@ -107,7 +107,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sub_machine_gun",
       description: "Get a Stats for Sub Machine Gun",
       options: [
@@ -190,7 +190,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sniper_rifle",
       description: "Get a Stats for Sniper Rifle",
       options: [
@@ -241,7 +241,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "light_machine_gun",
       description: "Get a Stats for Light Machine Gun",
       options: [
@@ -288,7 +288,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "shotgun",
       description: "Get a Stats for Shotgun",
       options: [
@@ -331,7 +331,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "marksman_rifle",
       description: "Get a Stats for Marksman Rifle",
       options: [
@@ -362,7 +362,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "pistol",
       description: "Get a Stats for Pistol",
       options: [
@@ -410,8 +410,8 @@ module.exports = {
           Authorization: process.env.CODM_API_KEY,
         },
       })
-      .then((res) => res.data)
-      .catch((e) => null);
+      .then(res => res.data)
+      .catch(e => null);
 
     if (!data?.ID) {
       const embed = new MessageEmbed()
@@ -422,14 +422,10 @@ module.exports = {
       interaction.followUp({ embeds: [embed] });
     } else {
       const embed = new MessageEmbed()
-        .setTitle(
-          `${data.author} Statistical Breakdown`
-        )
+        .setTitle(`${data.author} Statistical Breakdown`)
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter(
-          `Stats Curtosy of Round Table`,
-        )
+        .setFooter(`Stats Curtosy of Round Table`)
         // .setFooter(
         //   `Stats Curtosy of Stats on Duty`,
         // )
@@ -448,7 +444,7 @@ module.exports = {
               "MMMM Do YYYY"
             )}\n\`\`\``,
             inline: true,
-          }, 
+          },
           {
             name: "Basic Stats",
             value: `\`\`\`\n
@@ -473,7 +469,7 @@ module.exports = {
             inline: false,
           },
           {
-            name: "Ammunation Stats", 
+            name: "Ammunation Stats",
             value: `\`\`\`\n
             Magazine                :  30
             Reserve                 :  120
@@ -499,9 +495,7 @@ module.exports = {
   },
 };
 
-// @night0721 Damage profile will be avalable by different command 
-
-
+// @night0721 Damage profile will be avalable by different command
 
 //     recoilAvailable = false;
 //     hasError = false;
@@ -522,7 +516,6 @@ module.exports = {
 //     interaction.followUp({ embeds: [repEmb] });
 //   },
 // }
-
 
 // run: async (client, interaction, args) => {
 //   recoilAvailable = false;
