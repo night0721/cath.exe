@@ -8,7 +8,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "lethal",
       description: "Lethal Scorestreak",
       options: [
@@ -83,7 +83,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "support",
       description: "Support Scorestreak",
       options: [

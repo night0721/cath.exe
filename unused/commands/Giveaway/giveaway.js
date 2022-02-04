@@ -5,7 +5,7 @@ module.exports = {
   UserPerms: ["MANAGE_MESSAGES"],
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "start",
       description: "Start a giveaway",
       options: [
@@ -53,7 +53,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "reroll",
       description: "Reroll a giveaway",
       options: [
@@ -67,7 +67,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "end",
       description: "End a giveaway",
       options: [

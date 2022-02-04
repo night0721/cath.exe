@@ -8,7 +8,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "assault_rifle",
       description: "Get a Stats for Assault Rifle",
       options: [
@@ -107,7 +107,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "sub_machine_gun",
       description: "Get a Stats for Sub Machine Gun",
       options: [
@@ -190,7 +190,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "sniper_rifle",
       description: "Get a Stats for Sniper Rifle",
       options: [
@@ -241,7 +241,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "light_machine_gun",
       description: "Get a Stats for Light Machine Gun",
       options: [
@@ -288,7 +288,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "shotgun",
       description: "Get a Stats for Shotgun",
       options: [
@@ -331,7 +331,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "marksman_rifle",
       description: "Get a Stats for Marksman Rifle",
       options: [
@@ -362,7 +362,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "pistol",
       description: "Get a Stats for Pistol",
       options: [

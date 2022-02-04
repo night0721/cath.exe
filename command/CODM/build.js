@@ -9,7 +9,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "assault_rifle",
       description: "Get a gunsmith build for a Assault Rifle",
       options: [
@@ -152,7 +152,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "sub_machine_gun",
       description: "Get a gunsmith build for a Sub Machine Gun",
       options: [
@@ -275,7 +275,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "sniper_rifle",
       description: "Get a gunsmith build for a Sniper Rifle",
       options: [
@@ -362,7 +362,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "light_machine_gun",
       description: "Get a gunsmith build for a Light Machine Gun",
       options: [
@@ -445,7 +445,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "shotgun",
       description: "Get a gunsmith build for a Shotgun",
       options: [
@@ -520,7 +520,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "marksman_rifle",
       description: "Get a gunsmith build for a Marksman Rifle",
       options: [
@@ -587,7 +587,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "pistol",
       description: "Get a gunsmith build for a Pistol",
       options: [
