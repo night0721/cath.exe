@@ -23,7 +23,7 @@ client.on("interactionCreate", async interaction => {
           if (x.value) args.push(x.value);
         });
       }
-      if (option.type === 1) {
+      if (option.type === "SUB_COMMAND") {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
           if (x.value) args.push(x.value);
