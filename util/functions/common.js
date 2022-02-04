@@ -341,7 +341,6 @@ function attachmentsIdentifier(inpmsg, gun) {
     ) {
       probables.push([temp1]);
     }
-    console.log(proba);
     if (
       probables[probables.length - 1].length != 1 ||
       probables.length < splitInputAttachmentsName.length
@@ -361,6 +360,7 @@ function attachmentsIdentifier(inpmsg, gun) {
     }
     outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
   }
+
   const outAttachmentsTypes = outAttachments.map(x => x.type - 1),
     t1 = outAttachments
       .map(x => x.effects[35])

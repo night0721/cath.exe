@@ -117,11 +117,11 @@ module.exports = {
             },
             {
               name: "Jokesta",
-              value: "jokesta",
+              value: "Jokesta",
             },
             // {
             //   name: "Stats On Duty",
-            //   value: "sod",
+            //   value: "Stats On Duty",
             // },
           ],
         },
@@ -133,19 +133,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "aggressive",
+              value: "Aggressive",
             },
             {
               name: "Passive",
-              value: "passive",
+              value: "Passive",
             },
             {
               name: "Search And Destroy",
-              value: "snd",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -244,7 +244,7 @@ module.exports = {
             },
             {
               name: "Jokesta",
-              value: "jokesta",
+              value: "Jokesta",
             },
           ],
         },
@@ -256,19 +256,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "aggressive",
+              value: "Aggressive",
             },
             {
               name: "Passive",
-              value: "passive",
+              value: "Passive",
             },
             {
               name: "Search And Destroy",
-              value: "snd",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -343,19 +343,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "aggressive",
+              value: "Aggressive",
             },
             {
               name: "Passive",
-              value: "passive",
+              value: "Passive",
             },
             {
               name: "Search And Destroy",
-              value: "snd",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -426,19 +426,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "aggressive",
+              value: "Aggressive",
             },
             {
               name: "Passive",
-              value: "passive",
+              value: "Passive",
             },
             {
               name: "Search And Destroy",
-              value: "snd",
+              value: "Search And Destroy",
             },
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -509,11 +509,11 @@ module.exports = {
           choices: [
             {
               name: "ADS",
-              value: "ads",
+              value: "ADS",
             },
             {
               name: "Hipfire",
-              value: "hipfire",
+              value: "Hipfire",
             },
           ],
         },
@@ -560,7 +560,7 @@ module.exports = {
             },
             {
               name: "Stats On Duty",
-              value: "sod",
+              value: "Stats On Duty",
             },
           ],
         },
@@ -572,15 +572,15 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "aggressive",
+              value: "Aggressive",
             },
             {
               name: "Passive",
-              value: "passive",
+              value: "Passive",
             },
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -635,7 +635,7 @@ module.exports = {
             },
             // {
             //   name: "Stats On Duty",
-            //   value: "sod",
+            //   value: "Stats On Duty",
             // },
           ],
         },
@@ -647,7 +647,7 @@ module.exports = {
           choices: [
             {
               name: "Respawn",
-              value: "respawn",
+              value: "Respawn",
             },
           ],
         },
@@ -655,24 +655,12 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    var all = {
-      "path.exe": "path.exe",
-      dhitman: "dHitman",
-      jokesta: "Jokesta",
-      sod: "Stats On Duty",
-      aggressive: "Aggressive",
-      passive: "Passive",
-      respawn: "Respawn",
-      snd: "Search And Destroy",
-      ads: "ADS",
-      hipfire: "Hipfire",
-    };
     const cwts = args[1];
     const cc = args[2];
     const tag = args[3];
     const data = await axios
       .get(
-        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${all[cc]}&tag=${all[tag]}`,
+        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
         {
           headers: {
             Authorization: process.env.CODM_API_KEY,
@@ -685,7 +673,7 @@ module.exports = {
     if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a **${all[tag]}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${all[cc]}**, Please try another tag or a differnt content creator`
+          `<:nyx_not_available:897378400031879188> We don't have a **${tag}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${cc}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
