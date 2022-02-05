@@ -669,7 +669,6 @@ module.exports = {
       )
       .then(res => res.data)
       .catch(e => null);
-
     if (!data?.cwts) {
       const embed = new MessageEmbed()
         .setDescription(
@@ -683,9 +682,7 @@ module.exports = {
         return arr.push(`**${i + 1}:** ${e}`);
       });
       const embed = new MessageEmbed()
-        .setTitle(
-          `${all[tag]} build for ${data.weaponName} from ${data.author}`
-        )
+        .setTitle(`${tag} build for ${data.weaponName} from ${data.author}`)
         .setDescription(
           `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes}\n \`\`\``
         )

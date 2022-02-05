@@ -422,8 +422,8 @@ function attachmentsIdentifier(inpmsg, gun) {
 // console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
-console.log(attachmentsIdentifier("47 + stipplied grip tape", data.cguns[0]));
-makeError();
+// console.log(attachmentsIdentifier("47 + stipplied grip tape", data.cguns[0]));
+// makeError();
 function damageHandler(
   currDmgs,
   currRngs,
