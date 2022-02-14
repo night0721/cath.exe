@@ -49,6 +49,6 @@
     "goosecache": "^9.0.14",
     "moment": "^2.29.1",
     "mongoose": "^5.13.14",
-    "quickchart-js": "^2.0.3"
+    "quickchart-js": "^3.0.0"
   }
 }
