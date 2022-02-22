@@ -2,7 +2,7 @@ const { getreddit } = require("cath");
 const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "nsfw",
-  description: "nsfw command",
+  description: "NSFW command",
   run: async (client, interaction) => {
     const msg = await interaction.channel.send({ content: "Getting images" });
     async function embed() {
@@ -14,11 +14,17 @@ module.exports = {
             "https://media.discordapp.net/attachments/851761493815853060/893777701599584266/warning.gif"
           )
           .setColor(client.color)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp();
         interaction.followUp({ embeds: [embed] });
       }
       let subreddits = [
+        "GodPussy",
+        "peachlips",
+        "vagina",
         "GoneWild",
         "WorkGoneWild",
         "GoneWild30Plus",
@@ -42,9 +48,16 @@ module.exports = {
         "thighs",
         "PerfectThighs",
         "thickthighs",
+        "PushHerHead",
+        "ThroatFuck",
       ];
       const reddit = subreddits[Math.round(Math.random() * subreddits.length)];
-      const data = await getreddit(reddit);
+      let data = await getreddit(reddit);
+      while (data.length === 0) {
+        while (data.image.length === 0) {
+          data = await getreddit(reddit);
+        }
+      }
       let embed1 = null;
       embed1 = new MessageEmbed({
         title: data.title,

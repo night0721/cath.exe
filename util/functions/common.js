@@ -345,7 +345,7 @@ function attachmentsIdentifier(inpmsg, gun) {
       probables[probables.length - 1].length != 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
-      // ask the user if he/she means xxx = which attachment
+      // ask the user if he means xxx = which attachment
       errors.push(
         `\`
           ${curr
@@ -358,6 +358,7 @@ function attachmentsIdentifier(inpmsg, gun) {
           "\``
       );
     }
+    // push the attachment to the output list
     outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
   }
 
