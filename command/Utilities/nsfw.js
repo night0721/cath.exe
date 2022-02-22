@@ -2,7 +2,7 @@ const { getreddit } = require("cath");
 const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 module.exports = {
   name: "nsfw",
-  description: "nsfw command",
+  description: "NSFW command",
   run: async (client, interaction) => {
     const msg = await interaction.channel.send({ content: "Getting images" });
     async function embed() {
