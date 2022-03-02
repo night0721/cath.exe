@@ -326,6 +326,10 @@ module.exports = {
               name: "R9-0",
               value: "E07",
             },
+            {
+              name: "JAK-12",
+              value: "E08",
+            },
           ],
         },
       ],
