@@ -607,7 +607,8 @@
         "YKM Light Stock",
         "RTC Steady Stock",
         "OWC Skeleton Stock",
-        "No Stock"
+        "No Stock",
+        "Thunderbolt Sling"
       ],
       "perk": [
         "Tough",
@@ -3002,6 +3003,58 @@
         "MFT Heavy Smoothbore",
         "MFT Ultra Light Smoothbore",
         "MFT Urban Combat"
+      ],
+      "rear_grip": [
+        "Stippled Grip Tape",
+        "Granulated Grip Tape",
+        "Ruberized Grip Tape"
+      ]
+    }
+  ],
+  "JAK_12": [
+    {
+      "muzzle": [
+        "Tactical Suppressor",
+        "Monolithic Suppressor",
+        "OWC Light Compensator",
+        "Choke",
+        "RTC Light Muzzle Brake",
+        "Flash Guard",
+        "Marauder Suppressor"
+      ],
+      "barrel": ["MIP Extended Light Barrel", "MIP Light Barrel (Short)", "OWC Marksman"],
+      "optic": [
+        "Red Dot Sight",
+        "Holographic Sight",
+        "Tactical Scope",
+        "3x Tactical Scope"
+      ],
+      "stock": [
+        "YKM Light Stock",
+        "YKM Combat Stock",
+        "MIP Stalker Stock"
+      ],
+      "ammo": [
+        "FRAG-12 Explosive Mag",
+        "Extended Mag C",
+        "Large Extended Mag D",
+        "Slug Reload"
+      ],
+      "perk": [
+        "Sleight of Hand",
+        "Speed Up Kill",
+        "Slide Flak Jacket",
+        "Wounding",
+        "Full Ammo",
+        "Disable"
+      ],
+      "laser": ["RTC Laser 1mW", "OWC Laser - Tactical", "MIP Laser 5mW"],
+      "underbarrel": [
+        "Ranger Foregrip", 
+        "Operator Foregrip", 
+        "Merc Foregrip",
+        "Strike Foregrip",
+        "Tactical Foregrip A"
       ],
       "rear_grip": [
         "Stippled Grip Tape",

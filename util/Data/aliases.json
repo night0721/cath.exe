@@ -27,7 +27,9 @@
     "Shorty",
     "Crossbow",
     "R9-0",
-    "PPSh-41"
+    "PPSh-41",
+    "CBR4",
+    "SVD"
   ],
   "weaponAlliasName": [
     ["MoW"],
@@ -57,7 +59,9 @@
     ["725"],
     ["cb", "bow"],
     ["r9", "R9-O"],
-    ["ppsh", "pp41"]
+    ["ppsh", "pp41"],
+    ["p90"],
+    ["Dragonov"]
   ],
   "attachmentActualName": [
     ["akimbo", "Stopping Power"],
