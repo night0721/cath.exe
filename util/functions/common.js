@@ -347,15 +347,15 @@ function attachmentsIdentifier(inpmsg, gun) {
     ) {
       // ask the user if he means xxx = which attachment
       errors.push(
-        `\`
-          ${curr
+        "`" +
+          curr
             .map(x => gun.aments[x].name)
             .reduce((out, x, i) =>
               [out, x].join(i === curr.length - 1 ? "` or `" : "`, `")
-            )} +
-          \` by \`"
-          ${inputAttachmentsNames[i]}
-          "\``
+            ) +
+          '` by `"' +
+          inputAttachmentsNames[i] +
+          '"`'
       );
     }
     // push the attachment to the output list

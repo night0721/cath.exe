@@ -10,10 +10,10 @@ module.exports = {
       .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setColor(client.color)
       .setTimestamp()
-      .setAuthor(
-        interaction.user.tag,
-        interaction.user.displayAvatarURL({ dynamic: true })
-      )
+      .setAuthor({
+        text: interaction.user.tag,
+        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+      })
       .setTitle(`Support/Invite`)
       .setThumbnail(
         "https://github.com/night0721/cath.js/blob/master/util/assets/images/nyx_logo_transparent.webp"

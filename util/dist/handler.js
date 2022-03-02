@@ -1,5 +1,6 @@
 const fs = require("fs");
-const cmds = []ownercmds = [];
+const cmds = [];
+const ownercmds = [];
 module.exports = async client => {
   fs.readdirSync("./events").forEach(file => {
     require(`${process.cwd()}/events/${file}`);
