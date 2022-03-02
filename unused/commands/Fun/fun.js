@@ -5,7 +5,7 @@ module.exports = {
   description: "Fun commands",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "8ball",
       description: "8ball an answer",
       options: [
@@ -18,12 +18,12 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "rickroll",
       description: "Rickroll?",
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "emojify",
       description: "Emojify a sentence",
       options: [
@@ -36,7 +36,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "pp",
       description: "Check how long is the user",
       options: [

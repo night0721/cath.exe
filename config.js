@@ -7,7 +7,7 @@ module.exports = {
   Welcome: "837913442228371456",
   DMLog: "900549765534736394",
   CMDLog: "848613827226239046",
-  ErrorLog: "900509758786773022",
+  ErrorLog: "938538311537012796",
   ServerLog: "848613714537873518",
   Lavalink: {
     Host: "lavalink-repl.thunderemperor.repl.co",

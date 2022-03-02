@@ -6,7 +6,7 @@ module.exports = {
   description: "Configure Weapon Master System settings",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "select",
       description: "Select the gun for the game",
       options: [
@@ -29,13 +29,13 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "list",
       description: "See the information for the guns",
       options: [],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "info",
       description: "See the stats of your gun",
     },

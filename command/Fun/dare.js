@@ -9,7 +9,7 @@ module.exports = {
         name: interaction.user.tag,
         iconURL: interaction.user.displayAvatarURL({ dyamic: true }),
       })
-      .setTitle(dares[Math.round(Math.random() * tnd.dare.length - 1)])
+      .setTitle(tnd.dare[Math.round(Math.random() * tnd.dare.length - 1)])
       .setColor(client.color)
       .setFooter({
         text: `Made by ${client.author}`,

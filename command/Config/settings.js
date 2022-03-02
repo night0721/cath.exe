@@ -8,7 +8,7 @@ module.exports = {
   category: "Config",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "muterole",
       description: "Configure mute role settings for the server",
       options: [
@@ -21,7 +21,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "prefix",
       description: "Configure prefix settings for the server",
       options: [
@@ -35,7 +35,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "welcome",
       description: "Configure welcome channel settings for the server",
       options: [
@@ -49,7 +49,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "goodbye",
       description: "Configure goodbye channel settings for the server",
       options: [
@@ -63,7 +63,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "starboard",
       description: "Configure starboard channel settings for the server",
       options: [
@@ -83,7 +83,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "chatbot",
       description: "Configure chatbot channel settings for the server",
       options: [
@@ -97,7 +97,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "log",
       description: "Configure log channel settings for the server",
       options: [
@@ -116,7 +116,7 @@ module.exports = {
       description: "Enable commands/category for the server",
       options: [
         {
-          type: 1,
+          type: "SUB_COMMAND",
           name: "command",
           description: "To enable commands",
           options: [
@@ -129,7 +129,7 @@ module.exports = {
           ],
         },
         {
-          type: 1,
+          type: "SUB_COMMAND",
           name: "category",
           description: "To enable categories",
           options: [
@@ -179,7 +179,7 @@ module.exports = {
       description: "Disable commands/category for the server",
       options: [
         {
-          type: 1,
+          type: "SUB_COMMAND",
           name: "command",
           description: "To disable commands",
           options: [
@@ -192,7 +192,7 @@ module.exports = {
           ],
         },
         {
-          type: 1,
+          type: "SUB_COMMAND",
           name: "category",
           description: "To disable categories",
           options: [
@@ -237,7 +237,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "level",
       description: "Configure level settings for the server",
       options: [
@@ -250,7 +250,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "nsfw",
       description: "Configure nsfw settings for the server",
       options: [
@@ -263,7 +263,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "tips",
       description: "Configure tips settings for the server",
       options: [
@@ -276,7 +276,7 @@ module.exports = {
       ],
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "overall",
       description: "See overall settings for the server",
       options: [],
