@@ -1,5 +1,6 @@
 {
   "secondary": [
+    "None",
     "Knife / Base Melee",
     "Axe",
     "Shovel",
@@ -16,6 +17,7 @@
     "Thumper"
   ],
   "perk_1": [
+    "None",
     "Fast Recover",
     "Persistence",
     "Flak Jacket",
@@ -29,6 +31,7 @@
     "Iron Lungs"
   ],
   "perk_2": [
+    "None",
     "Vulture",
     "Toughness",
     "Tracker",
@@ -41,6 +44,7 @@
     "Gung-Ho"
   ],
   "perk_3": [
+    "None",
     "Hard Line",
     "Demo Expert",
     "Tactical Mask",
@@ -51,7 +55,8 @@
     "Hard Alert",
     "Launcher Plus"
   ],
-  "scorestreak": [
+  "scorestreek": [
+    "None",
     "Shield Turret",
     "UAV",
     "Shock RC",
@@ -76,6 +81,7 @@
     "VTOL"
   ],
   "operator_skill": [
+    "None",
     "Purifier",
     "War Machine",
     "Death Machine",
@@ -94,5 +100,28 @@
     "Kinetic Armor",
     "TAK-5",
     "Munitions Box"
+  ],
+  "lethal": [
+    "None",
+    "Frag Grenade",
+    "Sticky Grenade",
+    "Tripmine",
+    "Combat Axe",
+    "Thermite",
+    "Molotov Cocktail"
+  ],
+  "tactical": [
+    "None",
+    "Flashbang Grenade",
+    "Smoke Grenade",
+    "Concussion Grenade",
+    "EMP",
+    "Trophy System",
+    "Cryo Bomb",
+    "Heartbeat Sensor",
+    "Gas Grenade",
+    "Storm Ball",
+    "Flash Drone",
+    "Decoy Grenade"
   ]
 }
