@@ -458,22 +458,15 @@ function damageHandler(
   }
   function stk(dmg) {
     let out;
-    if (!pellets) {
-      out = Math.ceil(hp / dmg);
-    } else {
-      out = Math.ceil(hp / (dmg * pellets));
-    }
-    out = out == Infinity ? "∞" : out;
-    return out;
+    if (!pellets) out = Math.ceil(hp / dmg);
+    else out = Math.ceil(hp / (dmg * pellets));
+    return out == Infinity ? "∞" : out;
   }
   function ttk(dmg) {
     const stkVal = stk(dmg);
-    if (stkVal == "∞") {
-      return stkVal;
-    }
-    if (!bib) {
-      return Math.round((stkVal - 1) * tbs);
-    }
+    if (stkVal == "∞") return stkVal;
+    if (!bib) return Math.round((stkVal - 1) * tbs);
+
     let out = 0;
     if (dmg > 0) {
       if (stkVal % bib == 0) {
@@ -526,13 +519,11 @@ function recoilHandler(
   yMultiplier,
   bulletCount
 ) {
-  if (xRecoil.length != yRecoil.length) {
-    return "err";
-  }
+  if (xRecoil.length != yRecoil.length) return "err";
+
   const recoilLength = xRecoil.length;
-  if (recoilLength == 0) {
-    return "none";
-  }
+  if (recoilLength == 0) return "none";
+
   const recoilPattern = [
     {
       x: 0,
