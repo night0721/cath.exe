@@ -21,7 +21,9 @@
 <!-- description -->
 
 **NYX** _(previously known as Cath)_ is a first and only **COD Mobile Statistics & Gunsmith** Bot which also doubles as a multipurpose discord bot with many features that include but are not limited to Moderation, Music and Economy. <br>
-The Call of Duty Stats are courtesy of **Round Table** by Cygnoux Familia.<br><br>
+The Call of Duty Stats are courtesy of **Stats on Duty** & **Round Table**<br>
+🔺 **Apex Legends Commands** will be added soon, the player stats command will be added after the global launch when the API supports it.
+<br><br>
 If you like this bot, feel free to :star: **Star** this repository.<br>
 
 > ⚠ The Verifed bot instance is current called Cath.exe, we are working on getting it changed
@@ -43,14 +45,22 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 
 ## <img height="18px" src="../util/assets/images/cod_logo.svg"> **Call of Duty Mobile**
 
-- **Weapon Statistics** courtesy of **Lighthouse v2.1**
-> Will soon be using stats provided by **Stats On Duty**.
-- **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe and more comming soon.
+- **Weapon Statistics** courtesy of **Round Table** & **Stats On Duty**
+- **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe, Stats On Duty and more comming soon.
 - **Perks** detailed info about the perks.
 - **Scorestreak** detailed info about scorestreak with preview videos.
 - **Randomly Generated Class** Wanna try something challenging? try our Randomly Generated Gunsmith builds.
 
 > We also provide access to our database that includes In-depth Weapon statistics & Gunsmith Builds from various Content Creators, & other Call of duty related info, please [contact us](https://rebrand.ly/cathSupport) for more info.
+
+## <img height="16px" src="../util/assets/images/apex/apex-legends-logo-white.svg"> **Apex Legends Mobile**
+> ⚠ *Coming Soon™*  
+
+- **Player Stats** view your in-game stats. <!-- if they support mobile for the stats api -->
+- **Legends** detailed info about legends & their abilities.
+- **Guns** detailed info about guns.
+- **Random Combos** Wanna try something challenging? try to win a game with a random selected legend & Gun combination
+- *& many more, coming soon!*
 
 ## More Info
 
