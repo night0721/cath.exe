@@ -12,7 +12,7 @@ client.on("interactionCreate", async interaction => {
       if (option.type === "SUB_COMMAND_GROUP") {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
-          if (x.type === "SUB_COMMAND") {
+          if (x.type === 1) {
             if (x.name) args.push(x.name);
             x.options?.forEach(y => {
               if (y.value) args.push(y.value);
@@ -183,7 +183,7 @@ client.on("interactionCreate", async interaction => {
     if (!ownercmd) return;
     const args = [];
     for (const option of interaction.options.data) {
-      if (option.type === "SUB_COMMAND") {
+      if (option.type === 1) {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
           if (x.value) args.push(x.value);

@@ -1,4 +1,3 @@
-const { DiscordAPIError, HTTPError } = require("discord.js");
 const fs = require("fs");
 const cmds = [];
 const ownercmds = [];
@@ -29,8 +28,7 @@ module.exports = async client => {
     ownercmds.push(file);
   });
   client.on("ready", async () => {
-    const gg = client.guilds.cache.get("840225563193114624");
-    await gg.commands.set(ownercmds);
+    await client.guilds.cache.get("840225563193114624").commands.set(ownercmds);
     await client.application.commands
       .set(cmds)
       .then(async cmd => {

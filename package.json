@@ -40,15 +40,15 @@
     "node": "^17.3.0"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "cath": "^1.4.7",
     "discord.js": "^13.6.0",
-    "dotenv": "^15.0.0",
+    "dotenv": "^16.0.0",
     "erela.js": "^2.3.3",
     "erela.js-spotify": "^1.2.0",
     "goosecache": "^9.0.14",
     "moment": "^2.29.1",
     "mongoose": "^5.13.14",
-    "quickchart-js": "^2.0.3"
+    "quickchart-js": "^3.0.0"
   }
 }

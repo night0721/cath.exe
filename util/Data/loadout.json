@@ -1,6 +1,5 @@
 {
   "secondary": [
-    // Doesn't have Pistols becuase it will require Gunsmith Build
     "None",
     "Knife / Base Melee",
     "Axe",
@@ -102,7 +101,7 @@
     "TAK-5",
     "Munitions Box"
   ],
-  "lethal":[
+  "lethal": [
     "None",
     "Frag Grenade",
     "Sticky Grenade",
@@ -111,7 +110,7 @@
     "Thermite",
     "Molotov Cocktail"
   ],
-  "tactical":[
+  "tactical": [
     "None",
     "Flashbang Grenade",
     "Smoke Grenade",

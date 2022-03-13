@@ -5,12 +5,12 @@ module.exports = {
   description: "Generate images",
   options: [
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "meme",
       description: "Get a meme from reddit",
     },
     {
-      type: 1,
+      type: "SUB_COMMAND",
       name: "cat",
       description: "Get a cat from reddit",
     },

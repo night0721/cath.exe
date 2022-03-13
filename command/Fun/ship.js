@@ -27,7 +27,7 @@ module.exports = {
     const user2 = interaction.guild.members.cache.get(args[1]).user.username;
     const loveEmbed = new MessageEmbed()
       .setColor("dd2e44")
-      .setFooter(`Shipped by ${interaction.user.tag}`)
+      .setFooter({ text: `Shipped by ${interaction.user.tag}` })
       .setTimestamp()
       .setTitle(`💘 | Shipping ${user1} and ${user2} | 💘`)
       .setDescription(`🔻 | ${user1} \n${ship()}\n🔺 | ${user2}`);

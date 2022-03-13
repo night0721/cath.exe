@@ -211,9 +211,9 @@ function attachmentsIdentifier(inpmsg, gun) {
         splitAttachmentsDataName[i][j].Simplify();
     }
   }
-  // after loop: ["stippled", "grip", "tape"]
+  // inputAttachmentsNames = [["stippled", "grip", "tape"]
   for (let i = 0; i < inputAttachmentsNames.length; i++) {
-    const probables = [];
+    let probables = [];
     // loop through all the input attachments and split them into words
     var splitInputAttachmentsName = inputAttachmentsNames[i]
       .split(" ")
@@ -233,13 +233,17 @@ function attachmentsIdentifier(inpmsg, gun) {
               // if probables list doesn't include the attachment, push
               let probablePushed = false;
               for (let i4 = 0; i4 < probables.length; i4++) {
+                // push another attachment that also probable to the probables list to the same array that identified last loop
+                // Eg: probables = [ [32]] // as user input mag and first loop it identfified extended mag
+                // then as it got more possible, it will push large extended mag to the same array -> [ [32,33] ]
                 if (!probables[i4].includes(j)) {
                   probables[i4].push(j);
+                  // make it true so that it doesn't push again in the next condition
                   probablePushed = true;
                   break;
                 }
               }
-              // for the first loop as the probables array is emrpty
+              // push if the attachment isn't been identified yet
               if (!probablePushed) probables.push([j]);
             }
           }
@@ -250,40 +254,50 @@ function attachmentsIdentifier(inpmsg, gun) {
     // finding magazines attachments
     if (
       (inputAttachmentsNames[i].includes(" rounds mag") ||
-        inputAttachmentsNames[i].includes(" round mag")) &&
+        inputAttachmentsNames[i].includes(" round mag") ||
+        inputAttachmentsNames[i].includes(" round") ||
+        inputAttachmentsNames[i].includes(" rounds")) &&
       inputAttachmentsNames[i].startsWith(
         inputAttachmentsNames[i].replace(/\D/g, "")
       )
     ) {
       var tmp1 = parseInt(inputAttachmentsNames[i]);
+      // calculating the sum of number of rounds and see if it matches the input number of rounds
       const tmp2 = gun.aments.filter(
         x =>
           x.type === 8 && x.effects[27] + x.effects[28] + gun.stats[17] === tmp1
       );
+      // push if the magazine is found
       if (tmp2.length === 1) {
         outAttachments.push(tmp2[0]);
         continue;
       }
     }
+    // if probables is empty or there is more than one identified attachment
     if (
       probables.length === 0 ||
       probables[probables.length - 1].length !== 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
+      // empty probables as can't indentify the attachment
       probables = [];
-      splitInputAttachmentsName.map((x, i5) =>
-        nmDt.attachmentAlliasName[1].map((y, i6) =>
+      // the splitInputAttachmentsName isn't simplified pls rmb
+      splitInputAttachmentsName.map((x, i5) => {
+        // finding aliases
+        nmDt.attachmentAlliasName[1].map((y, i6) => {
           y.map(z => {
-            if (x.Simplify() === z.Simplify()) {
+            if (z.Simplify().includes(x.Simplify())) {
               splitInputAttachmentsName[i5] = nmDt.attachmentActualName[1][i6];
             }
-          })
-        )
-      );
+          });
+        });
+      });
+      // simple iteration to make the array again
       splitInputAttachmentsName = splitInputAttachmentsName
         .join(" ")
         .split(" ")
         .filter(x => x);
+      // find one more time as we do aliases already
       finder();
       if (
         probables.length === 0 ||
@@ -297,21 +311,26 @@ function attachmentsIdentifier(inpmsg, gun) {
         finder();
       }
     }
-
     if (probables.length === 0) {
+      // push to unidentifined list as can't be identified after serveral times
       unidentifined.push(inputAttachmentsNames[i]);
       continue;
     }
-
+    // curr is the most probable attachment
     var curr = probables[probables.length - 1];
     const temp1 = probables[probables.length - 1].filter(
       x => gun.aments[x].name.Simplify() == inputAttachmentsNames[i].Simplify()
     );
+    // see if the length of the array is the same or not
+    // Eg: splitAttachmentsDataName[x] = ["stippled", "grip", "tape"] and splitInputAttachmentsName = ["stippled", "grip", "tape"]
+    // then it it equal
     const temp2 = probables[probables.length - 1].filter(
       x =>
         splitAttachmentsDataName[x].length == splitInputAttachmentsName.length
     );
-    /**/ if (temp1.length === 1 && temp2.length !== 1) {
+
+    // if found probable, push it
+    if (temp1.length === 1 && temp2.length !== 1) {
       probables.push([temp1]);
     } else if (temp1.length !== 1 && temp2.length === 1) {
       probables.push([temp2]);
@@ -326,6 +345,7 @@ function attachmentsIdentifier(inpmsg, gun) {
       probables[probables.length - 1].length != 1 ||
       probables.length < splitInputAttachmentsName.length
     ) {
+      // ask the user if he means xxx = which attachment
       errors.push(
         "`" +
           curr
@@ -338,8 +358,10 @@ function attachmentsIdentifier(inpmsg, gun) {
           '"`'
       );
     }
+    // push the attachment to the output list
     outAttachments.push(gun.aments[probables[probables.length - 1][0]]);
   }
+
   const outAttachmentsTypes = outAttachments.map(x => x.type - 1),
     t1 = outAttachments
       .map(x => x.effects[35])
@@ -401,7 +423,8 @@ function attachmentsIdentifier(inpmsg, gun) {
 // console.log(attachmentsIdentifier("ak + 5mw lazer", data.cguns[0].aments)); makeError();
 // console.log(attachmentsIdentifier("117 + 40 round mag", data.cguns[0].aments, data.cguns[0].stats)); makeError();
 // console.log(attachmentsIdentifier("117 + rtc muzzle brake, rubberized griptape, tac lazer sight, 40 round mag, no stock", data.cguns[1].aments)); makeError();
-
+// console.log(attachmentsIdentifier("47 + stipplied grip tape", data.cguns[0]));
+// makeError();
 function damageHandler(
   currDmgs,
   currRngs,
@@ -435,22 +458,15 @@ function damageHandler(
   }
   function stk(dmg) {
     let out;
-    if (!pellets) {
-      out = Math.ceil(hp / dmg);
-    } else {
-      out = Math.ceil(hp / (dmg * pellets));
-    }
-    out = out == Infinity ? "∞" : out;
-    return out;
+    if (!pellets) out = Math.ceil(hp / dmg);
+    else out = Math.ceil(hp / (dmg * pellets));
+    return out == Infinity ? "∞" : out;
   }
   function ttk(dmg) {
     const stkVal = stk(dmg);
-    if (stkVal == "∞") {
-      return stkVal;
-    }
-    if (!bib) {
-      return Math.round((stkVal - 1) * tbs);
-    }
+    if (stkVal == "∞") return stkVal;
+    if (!bib) return Math.round((stkVal - 1) * tbs);
+
     let out = 0;
     if (dmg > 0) {
       if (stkVal % bib == 0) {
@@ -503,13 +519,11 @@ function recoilHandler(
   yMultiplier,
   bulletCount
 ) {
-  if (xRecoil.length != yRecoil.length) {
-    return "err";
-  }
+  if (xRecoil.length != yRecoil.length) return "err";
+
   const recoilLength = xRecoil.length;
-  if (recoilLength == 0) {
-    return "none";
-  }
+  if (recoilLength == 0) return "none";
+
   const recoilPattern = [
     {
       x: 0,

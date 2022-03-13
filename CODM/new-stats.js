@@ -414,8 +414,8 @@ module.exports = {
           Authorization: process.env.CODM_API_KEY,
         },
       })
-      .then((res) => res.data)
-      .catch((e) => null);
+      .then(res => res.data)
+      .catch(e => null);
 
     if (!data?.ID) {
       const embed = new MessageEmbed()
@@ -426,14 +426,10 @@ module.exports = {
       interaction.followUp({ embeds: [embed] });
     } else {
       const embed = new MessageEmbed()
-        .setTitle(
-          `${data.author} Statistical Breakdown`
-        )
+        .setTitle(`${data.author} Statistical Breakdown`)
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter(
-          `Stats Curtosy of Round Table`,
-        )
+        .setFooter(`Stats Curtosy of Round Table`)
         // .setFooter(
         //   `Stats Curtosy of Stats on Duty`,
         // )
@@ -452,7 +448,7 @@ module.exports = {
               "MMMM Do YYYY"
             )}\n\`\`\``,
             inline: true,
-          }, 
+          },
           {
             name: "Basic Stats",
             value: `\`\`\`\n
@@ -477,7 +473,7 @@ module.exports = {
             inline: false,
           },
           {
-            name: "Ammunation Stats", 
+            name: "Ammunation Stats",
             value: `\`\`\`\n
             Magazine                :  30
             Reserve                 :  120
@@ -503,9 +499,7 @@ module.exports = {
   },
 };
 
-// @night0721 Damage profile will be avalable by different command 
-
-
+// @night0721 Damage profile will be avalable by different command
 
 //     recoilAvailable = false;
 //     hasError = false;
@@ -526,7 +520,6 @@ module.exports = {
 //     interaction.followUp({ embeds: [repEmb] });
 //   },
 // }
-
 
 // run: async (client, interaction, args) => {
 //   recoilAvailable = false;
