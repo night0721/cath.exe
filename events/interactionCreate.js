@@ -63,19 +63,19 @@ client.on("interactionCreate", async interaction => {
           embeds: [
             new MessageEmbed()
               .setURL(client.web)
-              .setAuthor(
-                interaction.user.tag,
-                interaction.user.displayAvatarURL({ dynamic: true })
-              )
+              .setAuthor({
+                name: interaction.user.tag,
+                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+              })
               .setColor(client.color)
               .setDescription(
                 `You aren't a premium user. You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team to be premium user`
               )
               .setTimestamp()
-              .setFooter(
-                `Made by ${client.author}`,
-                client.user.displayAvatarURL()
-              ),
+              .setFooter({
+                text: `Made by ${client.author}`,
+                iconURL: client.user.displayAvatarURL(),
+              }),
           ],
         });
       }
@@ -209,5 +209,6 @@ function sendE(e) {
     .setTimestamp()
     .setColor(client.color)
     .setFooter({ text: client.user.username });
+  interaction.channel.send({ embeds: [embed] });
   client.channels.cache.get(client.config.ErrorLog).send({ embeds: [embed] });
 }

@@ -18,7 +18,7 @@ module.exports = {
       interaction.guild.members.cache.get(args[0]) || interaction.member;
     const embed = new MessageEmbed()
       .setAuthor({
-        text: member.user.tag,
+        name: member.user.tag,
         iconURL: member.user.displayAvatarURL({ dynamic: true, size: 1024 }),
       })
       .setColor(client.color)

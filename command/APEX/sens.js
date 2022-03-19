@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 module.exports = {
-  name: "class",
+  name: "sensitivity",
   description: "Get the perfect sensitivity for APEXM",
   category: "APEX",
-  usage: "[Ironsight Sensitivity ]",
+  usage: "[Ironsight Sensitivity]",
   type: "CHAT_INPUT",
   options: [
     {
@@ -18,7 +18,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(`The base sensitivity (ironsight or 1x Scope): ${args[0]}`)
         .setDescription(
-            `<:nyx_description:897379659665264650> [Video guide](https://rebrand.ly/apexm-sens) by HawksNest on how to set your sensitivity.
+          `<:nyx_description:897379659665264650> [Video guide](https://rebrand.ly/apexm-sens) by HawksNest on how to set your sensitivity.
             \n**Basic Sensitivity** \`\`\`
             \nTPP without ADS ${args[0] * 2.09}
             \nFPP without ADS ${args[0] * 1.29}

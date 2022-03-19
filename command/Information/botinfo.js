@@ -1,5 +1,5 @@
 const { MessageEmbed, version: djsversion } = require("discord.js");
-const version = require("../../../package.json").version;
+const version = require("../../package.json").version;
 const { utc } = require("moment");
 module.exports = {
   name: "botinfo",
@@ -36,7 +36,7 @@ module.exports = {
             .reduce((a, b) => a + b.memberCount, 0)
             .toLocaleString()}
           Channels ❯ \`${client.channels.cache.size.toLocaleString()}\`
-          Commands ❯ \`${client.commands.size}\`
+          Commands ❯ \`${client.slashCommands.size}\`
           `,
           inline: true,
         }
