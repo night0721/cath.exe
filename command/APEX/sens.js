@@ -14,62 +14,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    if (args[0] > 0 && args[0] < 151) {
-      const embed = new MessageEmbed()
-        .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
-        .setDescription(
-            `<:nyx_description:897379659665264650> [Video guide](https://rebrand.ly/apexm-sens) by HawksNest on how to set your sensitivity.
-            \n**Basic Sensitivity** \`\`\`
-            For Base Sensitivity (ironsight or 1x Scope): ${args[0]}\n
-            TPP without ADS ${args[0] * 2.09}
-            FPP without ADS ${args[0] * 1.29}
-            \`\`\`
-            **Scope Sensitivity**`
-        )
-        .setColor(13703714) // hex: #d11a22
-        .setFooter({
-          text: `Data by Hawksnest`,
-          iconURL:
-            "https://media.discordapp.net/attachments/851764525623672854/951532817647542342/more_hawksnest.jpg",
-        })
-        .setTimestamp()
-        .addFields(
-          {
-            name: "2x Scope ADS",
-            value: `\`\`\`\n${args[0] * 0.5}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "3x Scope ADS",
-            value: `\`\`\`\n${args[0] * 0.33}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "4x Scope ADS",
-            value: `\`\`\`${args[0] * 0.25}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "6x Scope ADS",
-            value: `\`\`\`${args[0] * 0.16}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "8x Scope ADS",
-            value: `\`\`\`${args[0] * 0.12}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "10x Scope ADS",
-            value: `\`\`\`${args[0] * 0.10}\`\`\``,
-            inline: true,
-          }
-        )
-        .setURL("https://hawksnestgg.wixsite.com/apexsens/apexsenscalc");
-      interaction.followUp({
-        embeds: [embed],
-      });
-    } else if (args[0] > 150 && args[0] < 301) {
+    if (args[0] > 0 && args[0] < 301) {
       const embed = new MessageEmbed()
         .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
         .setDescription(
@@ -93,12 +38,12 @@ module.exports = {
           {
             name: "Scope Sensitivity",
             value: `
-            2x Scope ADS  - \`\`\`${args[0] * 0.5 }\`\`\`
-            3x Scope ADS  - \`\`\`${args[0] * 0.33}\`\`\`            
-            4x Scope ADS  - \`\`\`${args[0] * 0.25}\`\`\`
-            6x Scope ADS  - \`\`\`${args[0] * 0.16}\`\`\`
-            8x Scope ADS  - \`\`\`${args[0] * 0.12}\`\`\`
-            10x Scope ADS - \`\`\`${args[0] * 0.10}\`\`\``,
+            2x Scope ADS  - \`${args[0] * 0.5 }\`
+            3x Scope ADS  - \`${args[0] * 0.33}\`            
+            4x Scope ADS  - \`${args[0] * 0.25}\`
+            6x Scope ADS  - \`${args[0] * 0.16}\`
+            8x Scope ADS  - \`${args[0] * 0.12}\`
+            10x Scope ADS - \`${args[0] * 0.10}\``,
             inline: false,
           }
         )
