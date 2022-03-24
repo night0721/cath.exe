@@ -18,7 +18,8 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
         .setDescription(
-            `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`)
+          `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
+        )
         .setColor(13703714) // hex: #d11a22
         .setFooter({
           text: `Data by Hawksnest`,
@@ -26,7 +27,7 @@ module.exports = {
             "https://media.discordapp.net/attachments/851764525623672854/951532817647542342/more_hawksnest.jpg",
         })
         .setTimestamp()
-        .addFields(
+        .addField(
           {
             name: "Basic Sensitivity",
             value: `
@@ -38,12 +39,12 @@ module.exports = {
           {
             name: "Scope Sensitivity",
             value: `
-            2x Scope ADS  - \`${args[0] * 0.5 }\`
+            2x Scope ADS  - \`${args[0] * 0.5}\`
             3x Scope ADS  - \`${args[0] * 0.33}\`            
             4x Scope ADS  - \`${args[0] * 0.25}\`
             6x Scope ADS  - \`${args[0] * 0.16}\`
             8x Scope ADS  - \`${args[0] * 0.12}\`
-            10x Scope ADS - \`${args[0] * 0.10}\``,
+            10x Scope ADS - \`${args[0] * 0.1}\``,
             inline: false,
           }
         )
