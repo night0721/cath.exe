@@ -14,16 +14,11 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    if (args[0] > 0 && args[0] < 300) {
+    if (args[0] > 0 && args[0] < 301) {
       const embed = new MessageEmbed()
-        .setTitle(`The base sensitivity (ironsight or 1x Scope): ${args[0]}`)
+        .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
         .setDescription(
-          `<:nyx_description:897379659665264650> [Video guide](https://rebrand.ly/apexm-sens) by HawksNest on how to set your sensitivity.
-            \n**Basic Sensitivity** \`\`\`
-            \nTPP without ADS ${args[0] * 2.09}
-            \nFPP without ADS ${args[0] * 1.29}
-            \`\`\`\n
-            **Scope Sensitivity**`
+          `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
         )
         .setColor(13703714) // hex: #d11a22
         .setFooter({
@@ -32,36 +27,25 @@ module.exports = {
             "https://media.discordapp.net/attachments/851764525623672854/951532817647542342/more_hawksnest.jpg",
         })
         .setTimestamp()
-        .addFields(
+        .addField(
           {
-            name: "2x Scope ADS",
-            value: `\`\`\`\n${args[0] * 0.5}\`\`\``,
-            inline: true,
+            name: "Basic Sensitivity",
+            value: `
+            For Base Sensitivity (ironsight or 1x Scope): ${args[0]}\n
+            TPP without ADS ${args[0] * 2.09}
+            FPP without ADS ${args[0] * 1.29}`,
+            inline: false,
           },
           {
-            name: "3x Scope ADS",
-            value: `\`\`\`\n${args[0] * 0.33}\`\`\``,
-            inline: true,
-          },
-          {
-            name: "4x Scope ADS",
-            value: `${args[0] * 0.25}`,
-            inline: true,
-          },
-          {
-            name: "6x Scope ADS",
-            value: `${args[0] * 0.16}`,
-            inline: true,
-          },
-          {
-            name: "8x Scope ADS",
-            value: `${args[0] * 0.12}`,
-            inline: true,
-          },
-          {
-            name: "10x Scope ADS",
-            value: `${args[0] * 0.1}`,
-            inline: true,
+            name: "Scope Sensitivity",
+            value: `
+            2x Scope ADS  - \`${args[0] * 0.5}\`
+            3x Scope ADS  - \`${args[0] * 0.33}\`            
+            4x Scope ADS  - \`${args[0] * 0.25}\`
+            6x Scope ADS  - \`${args[0] * 0.16}\`
+            8x Scope ADS  - \`${args[0] * 0.12}\`
+            10x Scope ADS - \`${args[0] * 0.1}\``,
+            inline: false,
           }
         )
         .setURL("https://hawksnestgg.wixsite.com/apexsens/apexsenscalc");
