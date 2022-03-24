@@ -18,8 +18,8 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
         .setDescription(
-          `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
-        )
+            `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
+            )
         .setColor(13703714) // hex: #d11a22
         .setFooter({
           text: `Data by Hawksnest`,
@@ -31,20 +31,20 @@ module.exports = {
           {
             name: "Basic Sensitivity",
             value: `
-            For Base Sensitivity (ironsight or 1x Scope): ${args[0]}\n
-            TPP without ADS ${args[0] * 2.09}
-            FPP without ADS ${args[0] * 1.29}`,
+            For Base Sensitivity (ironsight or 1x Scope): \`${args[0]}\`\n
+            TPP without ADS \`${args[0] * 2.09}\`
+            FPP without ADS \`${args[0] * 1.29}\``,
             inline: false,
           },
           {
             name: "Scope Sensitivity",
             value: `
-            2x Scope ADS  - \`${args[0] * 0.5}\`
+            2x Scope ADS  - \`${args[0] * 0.5 }\`
             3x Scope ADS  - \`${args[0] * 0.33}\`            
             4x Scope ADS  - \`${args[0] * 0.25}\`
             6x Scope ADS  - \`${args[0] * 0.16}\`
             8x Scope ADS  - \`${args[0] * 0.12}\`
-            10x Scope ADS - \`${args[0] * 0.1}\``,
+            10x Scope ADS - \`${args[0] * 0.10}\``,
             inline: false,
           }
         )

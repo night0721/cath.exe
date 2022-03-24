@@ -179,7 +179,8 @@
         "MIP Light Barrel (Short)",
         "MIP Extended Light Barrel",
         "OWC Ranger",
-        "OWC Marksman"
+        "OWC Marksman",
+        "GRU Combo Grip"
       ],
       "optic": [
         "Red Dot Sight",
@@ -2692,6 +2693,62 @@
         "Ruberized Grip Tape",
         "Rustle Grip Tape"
       ]
+    }
+  ],
+  "MAC_10": [
+    {
+      "muzzle": [
+        "RTC Muzzle Brake",
+        "MIP Flashguard",
+        "OWC Light Suppressor",
+        "Infantry Compensator",
+        "OWC Eliminator",
+        "Agency Suppressor"
+      ],
+      "barrel": [
+        "6.5\" Rifling Barrel", 
+        "6.1\" Reinforced Heavy",
+        "Taskforce Barrel",
+        "5.5\" Extended Barrel",
+        "6.2\" Cavalry Barrel"
+      ],
+      "optic": [
+        "Red Dot Sight",
+        "Holographic Sight",
+        "3x Tactical Scope",
+        "4x Tactical Scope"
+      ],
+      "stock": [
+        "Steel Stock",
+        "Swift Stock",
+        "No Stock",
+        "SAS Combat Stock"
+      ],
+      "perk": [
+        "Sleight of Hand",
+        "Wild Hip Fire",
+        "Double Kill",
+        "Fast Reload Kill",
+        "Wounding",
+        "Full Ammo",
+        "Disable"
+      ],
+      "laser": ["1mW Steady Aim Laser", "5mW Combat Laser", "Aim Assist Laser"],
+      "underbarrel": [
+        "BD Foregrip",
+        "Red Cell Foregrip",
+        "Striker Foregrip",
+        "Patrol Foregrip",
+        "Field Agent Foregrip",
+        "SFDD Fast Foregrip"
+      ],
+      "ammo": [
+        "Fast Reload",
+        "43 Round Fast Reload",
+        "43 Fast Reload",
+        "STANAG 53 Round Extended Reload"
+      ],
+      "rear_grip": ["Rustle Grip Tape", "Sturdy Grip Tape", "Firm Grip Tape"]
     }
   ],
   "HS2126": [
