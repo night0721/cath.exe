@@ -47,7 +47,7 @@ client.on("messageCreate", async message => {
         },
         {
           name: "<a:booster:896527475063025704> **Premium**",
-          value: `You can either boost support server or subscribe to developer's team [Ko-Fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team.`,
+          value: `You can either boost the support server or subscribe to developer's team [Ko-Fi](https://ko-fi.com/cathteam).\n Another option would be to gift a nitro subscription to one of the developers.`,
           inline: false,
         }
       )

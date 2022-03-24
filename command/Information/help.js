@@ -80,10 +80,10 @@ module.exports = {
         .setThumbnail(
           "https://media.discordapp.net/attachments/896078559293104128/896392631565828146/nyx_logo_transparent.webp"
         )
-        .setFooter(
-          `Requested by ${interaction.user.tag}`,
-          interaction.user.displayAvatarURL({ dynamic: true })
-        );
+        .setFooter({
+          text: `Requested by ${interaction.user.tag}`,
+          iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+        });
       const components = state => [
         new Discord.MessageActionRow().addComponents(
           new Discord.MessageSelectMenu()

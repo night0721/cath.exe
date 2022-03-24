@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 module.exports = {
-  name: "class",
+  name: "sensitivity",
   description: "Get the perfect sensitivity for APEXM",
   category: "APEX",
-  usage: "[Ironsight Sensitivity ]",
+  usage: "[Ironsight Sensitivity]",
   type: "CHAT_INPUT",
   options: [
     {
