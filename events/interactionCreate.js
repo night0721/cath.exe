@@ -83,11 +83,7 @@ client.on("interactionCreate", async interaction => {
     if (cmd.Level) {
       if (!data.Guild.Level) return;
     }
-    if (cmd.name == "nsfw" && !data.Guild?.NSFW) {
-      interaction.followUp({
-        content: "NSFW commands have been disabled in this server",
-      });
-    }
+
     if (!interaction.guild.me.permissions.has(cmd.BotPerms || [])) {
       return interaction.followUp({
         content: `You can't use this command. I need to have ${cmd.BotPerms} permission to use this command.`,
@@ -115,6 +111,12 @@ client.on("interactionCreate", async interaction => {
       }
     }
     const random = utils.rndint(3, 6);
+    if (cmd.name == "nsfw" && !data.Guild?.NSFW) {
+      interaction.followUp({
+        content: "NSFW commands have been disabled in this server",
+      });
+      return;
+    }
     if (cmd.timeout) {
       const current_time = Date.now();
       const cooldown_amount = cmd.timeout;
