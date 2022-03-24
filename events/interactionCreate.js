@@ -83,7 +83,7 @@ client.on("interactionCreate", async interaction => {
     if (cmd.Level) {
       if (!data.Guild.Level) return;
     }
-    if (cmd.directory == "NSFW" && !data.Guild?.NSFW) {
+    if (cmd.name == "nsfw" && !data.Guild?.NSFW) {
       interaction.followUp({
         content: "NSFW commands have been disabled in this server",
       });
