@@ -3,23 +3,15 @@
       "Bangalore",
       "Bloodhound",
       "Caustic",
-      "Crypto",
-      "Fuse",
       "Gibraltar",
-      "Horizon",
       "LIfeline",
-      "Loba",
       "Mirage",
       "Octane",
       "Pathfinder",
-      "Rampart",
-      "Revenant",
-      "Valkyrie",
-      "Watton",
-      "Wraith"
+      "Wraith",
+      "Fade"
    ],
    "guns": [
-      "Bocek Bow",
       "EVA-8",
       "Kraber",
       "Peacekeeper",
@@ -42,7 +34,6 @@
       "Longbow",
       "L-Star",
       "RE-45",
-      "30-30 Repeater",
       "Mozambique",
       "P2020"
    ]

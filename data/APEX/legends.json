@@ -1,0 +1,25 @@
+{
+    "bloodhound": [
+        {
+            "legend": "Bloodhound",
+            "intro": "https://youtu.be/euWTbVdRGv0",
+            "wiki": "https://apexlegends.fandom.com/wiki/Bloodhound/",
+            "codename": "Technological Tracker",
+            "type": "Recon",
+            "tactical": "Eye of the Allfather",
+            "tactical_description": "",
+            "tactical_cooldown": "",
+            "tactical_link": "https://apexlegends.fandom.com/wiki/Bloodhound#Eye_of_the_Allfather",
+            "tactical_img": "",
+            "passive": "Tracker",
+            "passive_description": "",
+            "passive_link": "",
+            "passive_img": "",
+            "ultimate": "Beast of the Hunt",
+            "ultimate_description": "",
+            "ultimate_charge_time": "",
+            "ultimate_link": "",
+            "ultimate_img": ""
+        }
+    ]
+}
