@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const client = require("../..");
+const client = require("..");
 /**
  * @param {String} message
  * @param {String} dir
@@ -205,7 +205,7 @@ module.exports = async (message, dir, file, err) => {
     )
     .setColor("RED")
     .setDescription(
-      `${require("../../config").ca}\nUse \`${pre}help ${
+      `${require("../config").ca}\nUse \`${pre}help ${
         pull.name
       }\` to get help\n\n `
     )
