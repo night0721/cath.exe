@@ -1,4 +1,4 @@
-const URLClient = require("../../../client/URLClient");
+const URLClient = require("../../client/URLClient");
 module.exports = {
   name: "shorten-url",
   description: "Shorten a URL",

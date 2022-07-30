@@ -40,12 +40,12 @@ client.on("interactionCreate", async interaction => {
     if (!guildDB) return;
     const userDB = await client.data.getUser(interaction.user.id);
     if (!userDB) return;
-    const userEconDB = await client.data.getUserEcon(interaction.user.id);
+    // const userEconDB = await client.data.getUserEcon(interaction.user.id);
     data.Guild = guildDB;
     data.User = userDB;
-    data.UserEcon = userEconDB;
+    // data.UserEcon = userEconDB;
     if (!guildDB) await client.data.CreateGuild(interaction.guild.id);
-    if (!userEconDB) await client.createProfile(interaction.user.id);
+    //if (!userEconDB) await client.createProfile(interaction.user.id);
     if (data.User) {
       if (data.User.Blacklist) {
         return interaction.followUp({

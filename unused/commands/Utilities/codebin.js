@@ -1,4 +1,4 @@
-const CodeClient = require("../../../client/CodeClient");
+const CodeClient = require("../../client/CodeClient");
 module.exports = {
   name: "Create Code Bin",
   type: "MESSAGE",

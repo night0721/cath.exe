@@ -30,8 +30,8 @@ class NYX extends Client {
     super(options);
     this.slashCommands = new Collection();
     this.hide = new Collection();
-    this.esnipes = new Collection();
-    this.snipes = new Collection();
+    // this.esnipes = new Collection();
+    // this.snipes = new Collection();
     this.config = config;
     this.data = require("../util/functions/mongoose");
     this.color = config.color;
@@ -55,71 +55,72 @@ class NYX extends Client {
       "840225563193114624", // Command Test
     ];
     const client = this;
-    require("../util/functions/economy")(client);
-    this.manager = new Manager({
-      plugins: [
-        new Spotify({
-          clientID: process.env.SPOTIFY_ID,
-          clientSecret: process.env.SPOTIFY_SECRET,
-        }),
-      ],
-      nodes: [
-        {
-          host: config.Lavalink.Host,
-          port: config.Lavalink.Port,
-          password: config.Lavalink.Password,
-          retryDelay: 5000,
-        },
-      ],
-      autoPlay: true,
-      send: (id, payload) => {
-        const guild = client.guilds.cache.get(id);
-        if (guild) guild.shard.send(payload);
-      },
-    })
-      .on("nodeConnect", node =>
-        console.log(`Node "${node.options.identifier}" has connected`)
-      )
-      .on("nodeError", (node, error) =>
-        console.log(
-          `Node "${node.options.identifier}" encountered an error: ${error.message}`
-        )
-      )
-      .on("trackStart", (player, track) => {
-        const channel = client.channels.cache.get(player.textChannel);
-        const embed = new MessageEmbed()
-          .setColor(config.color)
-          .setAuthor(
-            `Now Playing`,
-            "https://cdn.discordapp.com/emojis/897017864085712936.gif"
-          )
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
-          .setTimestamp()
-          .setThumbnail(player.queue.current.displayThumbnail())
-          .setDescription(`[${track.title}](${track.uri})`)
-          .addField(
-            "Duration",
-            `\`${utils.prettyMs(track.duration, {
-              colonNotation: true,
-            })}\``,
-            true
-          );
-        channel.send({ embeds: [embed] });
-      })
-      .on("queueEnd", player => {
-        const channel = client.channels.cache.get(player.textChannel);
-        const embed2 = new MessageEmbed()
-          .setColor(config.color)
-          .setAuthor(
-            `Queue has ended`,
-            "https://cdn.discordapp.com/emojis/897017864085712936.gif"
-          )
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
-          .setTimestamp();
-        channel.send({ embeds: [embed2] });
-        // player.destroy(); Remove if 24/7
-      });
   }
+  //   require("../util/functions/economy")(client);
+  //   this.manager = new Manager({
+  //     plugins: [
+  //       new Spotify({
+  //         clientID: process.env.SPOTIFY_ID,
+  //         clientSecret: process.env.SPOTIFY_SECRET,
+  //       }),
+  //     ],
+  //     nodes: [
+  //       {
+  //         host: config.Lavalink.Host,
+  //         port: config.Lavalink.Port,
+  //         password: config.Lavalink.Password,
+  //         retryDelay: 5000,
+  //       },
+  //     ],
+  //     autoPlay: true,
+  //     send: (id, payload) => {
+  //       const guild = client.guilds.cache.get(id);
+  //       if (guild) guild.shard.send(payload);
+  //     },
+  //   })
+  //     .on("nodeConnect", node =>
+  //       console.log(`Node "${node.options.identifier}" has connected`)
+  //     )
+  //     .on("nodeError", (node, error) =>
+  //       console.log(
+  //         `Node "${node.options.identifier}" encountered an error: ${error.message}`
+  //       )
+  //     )
+  //     .on("trackStart", (player, track) => {
+  //       const channel = client.channels.cache.get(player.textChannel);
+  //       const embed = new MessageEmbed()
+  //         .setColor(config.color)
+  //         .setAuthor(
+  //           `Now Playing`,
+  //           "https://cdn.discordapp.com/emojis/897017864085712936.gif"
+  //         )
+  //         .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+  //         .setTimestamp()
+  //         .setThumbnail(player.queue.current.displayThumbnail())
+  //         .setDescription(`[${track.title}](${track.uri})`)
+  //         .addField(
+  //           "Duration",
+  //           `\`${utils.prettyMs(track.duration, {
+  //             colonNotation: true,
+  //           })}\``,
+  //           true
+  //         );
+  //       channel.send({ embeds: [embed] });
+  //     })
+  //     .on("queueEnd", player => {
+  //       const channel = client.channels.cache.get(player.textChannel);
+  //       const embed2 = new MessageEmbed()
+  //         .setColor(config.color)
+  //         .setAuthor(
+  //           `Queue has ended`,
+  //           "https://cdn.discordapp.com/emojis/897017864085712936.gif"
+  //         )
+  //         .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+  //         .setTimestamp();
+  //       channel.send({ embeds: [embed2] });
+  //       // player.destroy(); Remove if 24/7
+  //     });
+  // }
   start() {
     require("../util/dist/handler")(this);
     this.data

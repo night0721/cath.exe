@@ -1,4 +1,4 @@
-const client = require("..");
+const client = require("../..");
 const starboardclient = require("../client/StarboardClient");
 client.on("messageReactionAdd", async reaction => {
   starboardclient.listener(reaction);

@@ -1,5 +1,5 @@
 const { GiveawaysClient } = require("cath");
-const client = require("..");
+const client = require("../..");
 require("dotenv").config();
 module.exports = new GiveawaysClient({
   client,

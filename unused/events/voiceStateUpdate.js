@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const client = require("..");
+const client = require("../..");
 client.on("voiceStateUpdate", async (oldState, newState) => {
   const guildId = newState.guild.id;
   const player = client.manager.get(guildId);

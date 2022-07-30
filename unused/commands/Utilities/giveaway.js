@@ -1,4 +1,4 @@
-const GiveawaysClient = require("../../../client/GiveawaysClient");
+const GiveawaysClient = require("../../client/GiveawaysClient");
 module.exports = {
   name: "giveaway",
   description: "Giveaway",

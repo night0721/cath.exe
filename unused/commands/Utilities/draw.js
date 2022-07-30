@@ -1,5 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const draws = require("./util/Data/draws.json");
+const draws = require("../../../util/Data/draws.json");
 module.exports = {
   name: "draw",
   description: "Buy a lucky draw",

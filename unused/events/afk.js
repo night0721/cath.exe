@@ -1,4 +1,4 @@
-const client = require("../");
+const client = require("../..");
 client.on("messageCreate", async message => {
   if (message.author.bot || !message.guild) return;
   const dataa = await client.data.getUser(message.author.id);
