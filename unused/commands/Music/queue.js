@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { Pagination } = require("cath");
 module.exports = {
   name: "queue",
@@ -22,7 +22,7 @@ module.exports = {
     }
     if (!player) client.err(interaction, "**Nothing is playing right now**");
     if (!player.queue || !player.queue.length || player.queue === 0) {
-      const QueueEmbed = new MessageEmbed()
+      const QueueEmbed = new EmbedBuilder()
         .setAuthor(
           "Currently playing",
           interaction.user.displayAvatarURL({ dynamic: true })
@@ -71,7 +71,7 @@ module.exports = {
     });
 
     const c = pagination.chunk(mapped, 10).map(x => x.join("\n"));
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setAuthor(
         `Queue for ${interaction.guild.name}`,
         interaction.user.displayAvatarURL({ dynamic: true })
@@ -104,7 +104,7 @@ module.exports = {
         true
       )
       .setTimestamp()
-      .setFooter(`Page 1 of ${c.length}`)
+      .setFooter({ text: `Page 1 of ${c.length}` })
       .setThumbnail(player.queue.current.displayThumbnail());
     const msg = await interaction.followUp({
       embeds: [embed],

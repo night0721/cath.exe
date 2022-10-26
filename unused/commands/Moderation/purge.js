@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "clear",
@@ -9,7 +9,7 @@ module.exports = {
       description: "Channel where the messages to be deleted",
       type: 7,
       required: true,
-      channelTypes: ["GUILD_TEXT"],
+      channelTypes: [0],
     },
     {
       name: "amount",
@@ -18,7 +18,7 @@ module.exports = {
       required: true,
     },
   ],
-  type: "CHAT_INPUT",
+
   run: async (client, interaction, args) => {
     try {
       const query = args[1];
@@ -46,7 +46,7 @@ module.exports = {
         const userMessageMap = Object.entries(results);
         channel.send({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle(`Message Cleared`)
               .addField(
                 "**Moderator**",
@@ -65,10 +65,10 @@ module.exports = {
                   .join("\n")}`,
                 false
               )
-              .setFooter(
-                `Made by ${client.author}`,
-                client.user.displayAvatarURL()
-              )
+              .setFooter({
+                text: `Made by ${client.author}`,
+                iconURL: client.user.displayAvatarURL(),
+              })
               .setTimestamp()
               .setThumbnail(
                 interaction.user.displayAvatarURL({ dynamic: true })

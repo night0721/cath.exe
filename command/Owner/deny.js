@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "deny",
   category: "Owner",
@@ -28,7 +28,7 @@ module.exports = {
       );
       const suggestEmbed = await suggestionChannel.messages.fetch(MessageID);
       const data = suggestEmbed.embeds[0];
-      const denyEmbed = new MessageEmbed()
+      const denyEmbed = new EmbedBuilder()
         .setAuthor(data.author.name, data.author.iconURL)
         .setDescription(data.description)
         .setColor("RED")

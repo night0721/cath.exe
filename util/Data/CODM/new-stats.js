@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 const axios = require("axios");
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "assault_rifle",
       description: "Get a Stats for Assault Rifle",
       options: [
@@ -107,7 +107,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sub_machine_gun",
       description: "Get a Stats for Sub Machine Gun",
       options: [
@@ -190,7 +190,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sniper_rifle",
       description: "Get a Stats for Sniper Rifle",
       options: [
@@ -241,7 +241,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "light_machine_gun",
       description: "Get a Stats for Light Machine Gun",
       options: [
@@ -288,7 +288,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "shotgun",
       description: "Get a Stats for Shotgun",
       options: [
@@ -335,7 +335,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "marksman_rifle",
       description: "Get a Stats for Marksman Rifle",
       options: [
@@ -366,7 +366,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "pistol",
       description: "Get a Stats for Pistol",
       options: [
@@ -418,18 +418,18 @@ module.exports = {
       .catch(e => null);
 
     if (!data?.ID) {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setDescription(
           `<:nyx_not_available:897378400031879188> Sorry, We currently don't have Stats for this Weapon`
         )
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(`${data.author} Statistical Breakdown`)
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter(`Stats Curtosy of Round Table`)
+        .setFooter({ text: `Stats Curtosy of Round Table` })
         // .setFooter(
         //   `Stats Curtosy of Stats on Duty`,
         // )

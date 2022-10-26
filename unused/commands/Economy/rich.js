@@ -1,4 +1,4 @@
-const { Collection, MessageEmbed } = require("discord.js");
+const { Collection, EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "rich",
   description: "Displaying top 10 richest users.",
@@ -27,7 +27,7 @@ module.exports = {
     const ata = collection.sort((a, b) => b.bal - a.bal).first(10);
     interaction.followUp({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle(`Richest users in ${interaction.guild.name}`)
           .setDescription(
             ata
@@ -38,7 +38,10 @@ module.exports = {
               })
               .join("\n")
           )
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setColor(client.color),
       ],

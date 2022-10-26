@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");     //@night0721 You need to make this
+const { EmbedBuilder } = require("discord.js"); //@night0721 You need to make this
 const items = require("../../util/Data/loadout.json");
 module.exports = {
   name: "class",
@@ -21,9 +21,9 @@ module.exports = {
     //   slot_3 = slots.next().value,
     //   slot_4 = slots.next().value,
     //   slot_5 = slots.next().value;
-    const result = new MessageEmbed()
+    const result = new EmbedBuilder()
       .setColor(client.color)
-      .setFooter(`Made by ${client.author}`)
+      .setFooter({ text: `Made by ${client.author}` })
       .setURL(client.web)
       .setTitle(`🎲 A Randomly Generated Loadout 🎲`)
       .setDescription(

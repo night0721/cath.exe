@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "unban",
   description: "Unban an user",
@@ -17,11 +17,14 @@ module.exports = {
   run: async (client, interaction, args) => {
     try {
       const user = await interaction.guild.members.unban(args[0]);
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("User Unbanned")
         .addField("**Moderator**", interaction.user.tag, true)
         .addField("**User**", user.tag, true)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
         .setColor(client.color);

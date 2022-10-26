@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const inv = require("../../models/econ");
 const { Pagination } = require("cath");
 const items = require("../../util/Data/item.json");
@@ -45,12 +45,12 @@ module.exports = {
           });
         }
         const c = util.chunk(mappedData, 5).map(x => x.join("\n"));
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTimestamp()
           .setTitle(`${user.displayName}'s inventory`)
           .setColor(client.color)
           .setDescription(c[0])
-          .setFooter(`Page 1 of ${c.length}`);
+          .setFooter({ text: `Page 1 of ${c.length}` });
         try {
           const msg = await interaction.followUp({ embeds: [embed] });
           if (mappedData.length > 5) {

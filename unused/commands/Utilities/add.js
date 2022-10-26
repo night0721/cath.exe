@@ -5,7 +5,7 @@ module.exports = {
   Owner: true,
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "add",
       description: "Remove coins from someone",
       options: [
@@ -24,7 +24,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "rmv",
       description: "Remove coins from someone",
       options: [

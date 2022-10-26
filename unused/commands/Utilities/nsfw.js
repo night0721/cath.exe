@@ -1,5 +1,5 @@
 const { getreddit } = require("cath");
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+const { MessageActionRow, MessageButton, EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "nsfw",
   description: "NSFW command",
@@ -7,7 +7,7 @@ module.exports = {
     const msg = await interaction.channel.send({ content: "Getting images" });
     async function embed() {
       if (!interaction.channel.nsfw) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle(`AYO Calm Yo Cheeks`)
           .setDescription("This command only works in NSFW Channels!")
           .setImage(
@@ -59,7 +59,7 @@ module.exports = {
         }
       }
       let embed1 = null;
-      embed1 = new MessageEmbed({
+      embed1 = new EmbedBuilder({
         title: data.title,
         url: data.url,
         image: { url: data.image },

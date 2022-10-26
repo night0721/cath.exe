@@ -1,14 +1,14 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const c = require("../../client/CODMClient");
 module.exports = {
   name: "scorestreak",
   description: "Get Scorestreak stats",
-  type: "CHAT_INPUT",
+
   usage: "{Scorestreak}",
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "lethal",
       description: "Lethal Scorestreak",
       options: [
@@ -83,7 +83,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "support",
       description: "Support Scorestreak",
       options: [
@@ -129,7 +129,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     const val = args[1];
     const d = await c.getscorestreak(val);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(d.name)
       .setURL(d.preview_video)
       .setDescription(

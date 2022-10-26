@@ -5,7 +5,7 @@ module.exports = {
   UserPerms: ["MANAGE_MESSAGES"],
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "start",
       description: "Start a giveaway",
       options: [
@@ -33,7 +33,7 @@ module.exports = {
           name: "channel",
           description: "The channel of the giveaway",
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [0],
         },
         {
           type: 8,
@@ -53,7 +53,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "reroll",
       description: "Reroll a giveaway",
       options: [
@@ -67,7 +67,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "end",
       description: "End a giveaway",
       options: [

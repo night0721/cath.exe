@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "slots",
   usage: "(Number)",
@@ -48,9 +48,12 @@ module.exports = {
       const multi = (await client.multi(interaction)) / 10 + 1;
       await client.add(interaction.user.id, winamt, interaction);
       await client.ADDSWin(interaction.user.id);
-      const won = new MessageEmbed()
+      const won = new EmbedBuilder()
         .setColor("GREEN")
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .addField(
           "|-----|-----|----|",
@@ -87,9 +90,12 @@ module.exports = {
       interaction.followUp({ embeds: [won] });
     } else {
       await client.rmv(interaction.user.id, amt);
-      const lost = new MessageEmbed()
+      const lost = new EmbedBuilder()
         .setColor("RED")
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .addField(
           "|-----|-----|----|",

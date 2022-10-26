@@ -1,9 +1,9 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "suggest",
   description: "Make a suggestion of the bot",
   category: "Utilities",
-  type: "CHAT_INPUT",
+
   run: async (client, interaction, args) => {
     const questions = [
       "Describe the suggestion",
@@ -15,13 +15,16 @@ module.exports = {
     interaction.followUp("Check your dm.");
     const appStart = await interaction.user.send({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setAuthor(
             interaction.user.username,
             interaction.user.displayAvatarURL()
           )
           .setDescription(questions[collectCounter++])
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp(),
       ],
     });
@@ -31,32 +34,32 @@ module.exports = {
       if (collectCounter < questions.length) {
         channel.send({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setAuthor(
                 interaction.user.username,
                 interaction.user.displayAvatarURL()
               )
               .setDescription(questions[collectCounter++])
-              .setFooter(
-                `Made by ${client.author}`,
-                client.user.displayAvatarURL()
-              )
+              .setFooter({
+                text: `Made by ${client.author}`,
+                iconURL: client.user.displayAvatarURL(),
+              })
               .setTimestamp(),
           ],
         });
       } else {
         channel.send({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle("SUCCESS!")
               .setDescription(
                 "You have sent a suggestion.\nPlease wait for us to review it"
               )
               .setColor("GREEN")
-              .setFooter(
-                `Made by ${client.author}`,
-                client.user.displayAvatarURL()
-              )
+              .setFooter({
+                text: `Made by ${client.author}`,
+                iconURL: client.user.displayAvatarURL(),
+              })
               .setTimestamp(),
           ],
         });
@@ -74,7 +77,7 @@ module.exports = {
 
         appsChannel.send({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setAuthor(
                 interaction.user.tag,
                 interaction.user.displayAvatarURL({ dynamic: true })

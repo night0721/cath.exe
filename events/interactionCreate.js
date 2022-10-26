@@ -1,7 +1,7 @@
 const client = require("../");
 const cooldown = require("../models/cooldown");
 const utils = require("../util/functions/function");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 client.on("interactionCreate", async interaction => {
   if (interaction.isCommand()) {
     await interaction.deferReply({ ephemeral: false }).catch(() => {});
@@ -61,7 +61,7 @@ client.on("interactionCreate", async interaction => {
       if (!data.User.Premium) {
         return interaction.followUp({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setURL(client.web)
               .setAuthor({
                 name: interaction.user.tag,
@@ -84,16 +84,16 @@ client.on("interactionCreate", async interaction => {
       if (!data.Guild.Level) return;
     }
 
-    if (!interaction.guild.me.permissions.has(cmd.BotPerms || [])) {
-      return interaction.followUp({
-        content: `You can't use this command. I need to have ${cmd.BotPerms} permission to use this command.`,
-      });
-    }
-    if (!interaction.member.permissions.has(cmd.UserPerms || [])) {
-      return interaction.followUp({
-        content: `You can't use this command. I need to have ${cmd.UserPerms} permission to use this command.`,
-      });
-    }
+    // if (!interaction.guild.me.permissions.has(cmd.BotPerms || [])) {
+    //   return interaction.followUp({
+    //     content: `You can't use this command. I need to have ${cmd.BotPerms} permission to use this command.`,
+    //   });
+    // }
+    // if (!interaction.member.permissions.has(cmd.UserPerms || [])) {
+    //   return interaction.followUp({
+    //     content: `You can't use this command. I need to have ${cmd.UserPerms} permission to use this command.`,
+    //   });
+    // }
     if (data.Guild) {
       if (data.Guild.Category) {
         if (data.Guild.Category.includes(cmd.directory)) {
@@ -136,8 +136,8 @@ client.on("interactionCreate", async interaction => {
               );
               cmd
                 .run(client, interaction, args, utils, data)
-                .catch(e => sendE(e));
-              client.addcmdsused(interaction.user.id);
+                .catch(e => sendE(e, interaction));
+              // client.addcmdsused(interaction.user.id);
               client.channels.cache.get(client.config.CMDLog).send({
                 content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
               });
@@ -147,11 +147,11 @@ client.on("interactionCreate", async interaction => {
             if (data.Guild.Tips) utils.tips(interaction, client);
             cmd
               .run(client, interaction, args, utils, data)
-              .catch(e => sendE(e));
+              .catch(e => sendE(e, interaction));
             client.channels.cache.get(client.config.CMDLog).send({
               content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
             });
-            client.addcmdsused(interaction.user.id);
+            // client.addcmdsused(interaction.user.id);
             // await client.addXP(interaction.user.id, random, interaction);
             new cooldown({
               User: interaction.user.id,
@@ -164,15 +164,17 @@ client.on("interactionCreate", async interaction => {
       );
     } else {
       if (data.Guild.Tips) utils.tips(interaction, client);
-      cmd.run(client, interaction, args, utils, data).catch(e => sendE(e));
+      cmd
+        .run(client, interaction, args, utils, data)
+        .catch(e => sendE(e, interaction));
       client.channels.cache.get(client.config.CMDLog).send({
         content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
       });
-      client.addcmdsused(interaction.user.id);
+      // client.addcmdsused(interaction.user.id);
       // await client.addXP(interaction.user.id, random, interaction);
     }
   }
-  if (interaction.isContextMenu()) {
+  if (interaction.isContextMenuCommand()) {
     await interaction.deferReply({ ephemeral: false });
     const command = client.slashCommands.get(interaction.commandName);
     if (command) command.run(client, interaction);
@@ -197,20 +199,22 @@ client.on("interactionCreate", async interaction => {
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
     );
-    ownercmd.run(client, interaction, args, utils).catch(e => sendE(e));
+    ownercmd
+      .run(client, interaction, args, utils)
+      .catch(e => sendE(e, interaction));
     client.channels.cache.get(client.config.CMDLog).send({
       content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${ownercmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
     });
-    client.addcmdsused(interaction.user.id);
+    //client.addcmdsused(interaction.user.id);
   }
 });
-function sendE(e) {
-  const embed = new MessageEmbed()
+function sendE(e, i) {
+  const embed = new EmbedBuilder()
     .setTitle("Command Error")
     .setDescription(`\`\`\`yaml\n${e.stack}\`\`\``)
     .setTimestamp()
     .setColor(client.color)
     .setFooter({ text: client.user.username });
-  interaction.channel.send({ embeds: [embed] });
+  i.channel.send({ embeds: [embed] });
   client.channels.cache.get(client.config.ErrorLog).send({ embeds: [embed] });
 }

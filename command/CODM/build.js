@@ -1,15 +1,14 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 const axios = require("axios");
 module.exports = {
   name: "build",
   description: "Get gunsmith builds",
   usage: "[Weapon Name] [Author] [Tag]",
-  type: "CHAT_INPUT",
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "assault_rifle",
       description: "Get a gunsmith build for a Assault Rifle",
       options: [
@@ -152,7 +151,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sub_machine_gun",
       description: "Get a gunsmith build for a Sub Machine Gun",
       options: [
@@ -275,7 +274,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "sniper_rifle",
       description: "Get a gunsmith build for a Sniper Rifle",
       options: [
@@ -362,7 +361,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "light_machine_gun",
       description: "Get a gunsmith build for a Light Machine Gun",
       options: [
@@ -445,7 +444,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "shotgun",
       description: "Get a gunsmith build for a Shotgun",
       options: [
@@ -524,7 +523,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "marksman_rifle",
       description: "Get a gunsmith build for a Marksman Rifle",
       options: [
@@ -591,7 +590,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "pistol",
       description: "Get a gunsmith build for a Pistol",
       options: [
@@ -674,7 +673,7 @@ module.exports = {
       .then(res => res.data)
       .catch(e => null);
     if (!data?.cwts) {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setDescription(
           `<:nyx_not_available:897378400031879188> We don't have a **${tag}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${cc}**, Please try another tag or a differnt content creator`
         )
@@ -685,7 +684,7 @@ module.exports = {
       data.attachments.map((e, i) => {
         return arr.push(`**${i + 1}:** ${e}`);
       });
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(`${tag} build for ${data.weaponName} from ${data.author}`)
         .setDescription(
           `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes}\n \`\`\``

@@ -1,6 +1,6 @@
 const db = require("../../../models/warns");
 const moment = require("moment");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "warn",
   UserPerms: ["MANAGE_MESSAGES"],
@@ -8,7 +8,7 @@ module.exports = {
   category: "Moderation",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "add",
       description: "Warn a user",
       options: [
@@ -27,7 +27,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "list",
       description: "Show a list of warnings of an user",
       options: [
@@ -40,7 +40,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "remove",
       description: "Remove a latest warn for an user",
       options: [
@@ -59,7 +59,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "clear",
       description: "Clear an user's warns",
       options: [
@@ -125,12 +125,15 @@ module.exports = {
             content: `You have been warned in **${interaction.guild.name}** for **${reason}**`,
           })
           .catch(e => {});
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle("User Warned")
           .addField("**Moderator**", interaction.user.tag, true)
           .addField("**User**", user.user.tag, true)
           .addField("**Reason**", reason, true)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
           .setColor(client.color);
@@ -143,7 +146,7 @@ module.exports = {
             if (data.Warns.map(e => e).length > 0) {
               interaction.followUp({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setTitle(`${user.user.tag}'s warns`)
                     .setDescription(
                       data.Warns.map(
@@ -194,7 +197,7 @@ module.exports = {
             if (data) {
               const number = args[2] - 1;
               data.Warns.splice(number, 1);
-              const embed = new MessageEmbed()
+              const embed = new EmbedBuilder()
                 .setTitle("Warn Removed")
                 .addField("**Moderator**", interaction.user.tag, true)
                 .addField("**User**", user.user.tag, true)
@@ -242,7 +245,7 @@ module.exports = {
               });
               interaction.followUp({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setTitle(`Warns Cleared`)
                     .addField("**Moderator**", interaction.user.tag, true)
                     .addField("**User**", user.user.tag, true)

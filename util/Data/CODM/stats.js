@@ -1,6 +1,6 @@
 const common = require("../../util/functions/common");
 const data = require("../../util/Data/data.json");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 let currGun,
   currStats,
@@ -71,7 +71,7 @@ module.exports = {
         const recoilImageLink = await chart.getShortUrl();
         repEmb.image = { url: recoilImageLink };
       }
-      interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
+      interaction.followUp({ embeds: [new EmbedBuilder(repEmb)] });
     }
   },
 };

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const client = require("..");
 /**
  * @param {String} message
@@ -198,7 +198,7 @@ module.exports = async (message, dir, file, err) => {
   }
   const pull = require(`../../commands/${dir}/${file}`);
   const pre = await client.prefix(message);
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setAuthor(
       `Error from ${message.author.tag}`,
       message.author.displayAvatarURL({ dynamic: true })
@@ -216,7 +216,10 @@ module.exports = async (message, dir, file, err) => {
     .setTimestamp()
     .setThumbnail(client.user.displayAvatarURL({ dynamic: false }))
     .setURL(client.web)
-    .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+    .setFooter({
+      text: `Made by ${client.author}`,
+      iconURL: client.user.displayAvatarURL(),
+    });
   const msg = await message.reply({ embeds: [embed] });
   setTimeout(function () {
     msg.delete();

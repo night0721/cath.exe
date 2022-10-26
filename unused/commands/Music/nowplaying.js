@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "nowplaying",
   description: "Show now playing music info",
@@ -21,7 +21,7 @@ module.exports = {
     if (!player) client.err(interaction, "**Nothing is playing right now**");
     interaction.followUp({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setAuthor(
             `Current song playing:`,
             client.user.displayAvatarURL({

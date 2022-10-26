@@ -1,10 +1,9 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "sensitivity",
   description: "Get the perfect sensitivity for APEXM",
   category: "APEX",
   usage: "[Ironsight Sensitivity]",
-  type: "CHAT_INPUT",
   options: [
     {
       type: 3,
@@ -15,11 +14,11 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     if (args[0] > 0 && args[0] < 301) {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(`Apex Legends Mobile Sensitivity Calculator`)
         .setDescription(
-            `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
-            )
+          `<:nyx_description:897379659665264650> For more info, follow this [Video guide](https://rebrand.ly/apexm-sens) by HawksNest.`
+        )
         .setColor(13703714) // hex: #d11a22
         .setFooter({
           text: `Data by Hawksnest`,
@@ -39,12 +38,12 @@ module.exports = {
           {
             name: "Scope Sensitivity",
             value: `
-            2x Scope ADS  - \`${args[0] * 0.5 }\`
+            2x Scope ADS  - \`${args[0] * 0.5}\`
             3x Scope ADS  - \`${args[0] * 0.33}\`            
             4x Scope ADS  - \`${args[0] * 0.25}\`
             6x Scope ADS  - \`${args[0] * 0.16}\`
             8x Scope ADS  - \`${args[0] * 0.12}\`
-            10x Scope ADS - \`${args[0] * 0.10}\``,
+            10x Scope ADS - \`${args[0] * 0.1}\``,
             inline: false,
           }
         )
@@ -53,7 +52,7 @@ module.exports = {
         embeds: [embed],
       });
     } else {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setDescription(`⚠ **ERROR:** The Sensitivity can be betweeen 0 & 300`)
         .setColor(client.color);
       interaction.followUp({ embeds: [embed] });

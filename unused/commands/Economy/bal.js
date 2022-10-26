@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "balance",
   description: "Show an user's balance",
@@ -12,18 +12,21 @@ module.exports = {
       required: false,
     },
   ],
-  type: "CHAT_INPUT",
+
   run: async (client, interaction, args) => {
     const user =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
     const bal = await client.bal(user.id);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(`${user.displayName}'s Balance`)
       .setDescription(`**${bal}** ${client.currency}`)
       .setColor(client.color)
       .setURL(client.web)
       .setTimestamp()
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      });
     interaction.followUp({ embeds: [embed] });
   },
 };

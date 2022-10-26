@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "unmute",
   UserPerms: ["MANAGE_MESSAGES"],
@@ -22,11 +22,14 @@ module.exports = {
         interaction.followUp({ content: "Mute role not found in database" });
       }
       await user.roles.remove(mutedrole);
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("User Unmuted")
         .addField("**Moderator**", interaction.user.tag, true)
         .addField("**User**", user.user.tag, true)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
         .setColor(client.color);

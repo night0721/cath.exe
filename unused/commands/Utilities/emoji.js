@@ -4,7 +4,7 @@ module.exports = {
   usage: "(Emoji)",
   description: "Show an emoji URL",
   category: "Utilities",
-  type: "CHAT_INPUT",
+
   options: [
     {
       type: 3,

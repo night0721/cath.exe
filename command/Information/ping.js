@@ -1,31 +1,34 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "ping",
   description: "Check bot latency to Discord API",
-  type: "CHAT_INPUT",
+
   category: "Information",
   run: async (client, interaction, args) => {
     const msg = await interaction.channel.send(`Pinging...`);
     const messageping = msg.createdTimestamp - interaction.createdTimestamp;
     await msg.delete();
-    const Embed = new MessageEmbed()
+    const Embed = new EmbedBuilder()
       .setTitle("<a:pong:897383314405605436> Pong!")
-      .setAuthor(
-        `${interaction.user.username}`,
-        interaction.user.displayAvatarURL()
-      )
+      .setAuthor({
+        name: `${interaction.user.username}`,
+        iconURL: interaction.user.displayAvatarURL(),
+      })
       .setDescription(
         `\n 📨 • **Message Latency** \`${Math.floor(messageping)}ms\`
         \n🛰️ • **Bot Latency** \`${Math.round(client.ws.ping)}ms\``
       )
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setColor(
         messageping < 350
-          ? "GREEN"
+          ? "#008000"
           : messageping < 500 && messageping > 350
-          ? "YELLOW"
-          : "RED"
+          ? "#ffff31"
+          : "#ff0000"
       );
     interaction.followUp({ embeds: [Embed] });
   },

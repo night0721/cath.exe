@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
       required: false,
     },
   ],
-  type: "CHAT_INPUT",
+
   run: async (client, interaction, args, utils) => {
     const member =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
@@ -81,7 +81,7 @@ module.exports = {
     // ) {
     //   activities = "None";
     // } else activities = "None";
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setAuthor(
         member.user.tag,
         member.user.displayAvatarURL({ dynamic: true, size: 2048 })
@@ -89,7 +89,10 @@ module.exports = {
       .setTimestamp()
       .setColor(member.displayHexColor || client.color)
       .setURL(client.web)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
       .setColor(member.displayHexColor || client.color)
       .addField(

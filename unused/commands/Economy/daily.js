@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "daily",
   description: "Earns daily money",
@@ -10,20 +10,23 @@ module.exports = {
     if (user) {
       if (user.Premium == true) {
         money = 20000;
-        const pre_embed = new MessageEmbed()
+        const pre_embed = new EmbedBuilder()
           .setTitle(`${user.username}'s profile`)
           .setDescription(
             `Here is your daily **${money}** ${client.currency}\nYou can use this again in 24hrs`
           )
           .setURL(client.web)
           .setColor(client.color)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp();
         await client.add(interaction.user.id, money, interaction);
         return interaction.followUp({ embeds: [pre_embed] });
       } else {
         money = 10000;
-        const norm_embed = new MessageEmbed()
+        const norm_embed = new EmbedBuilder()
           .setAuthor(
             interaction.user.tag,
             interaction.user.displayAvatarURL({ dyanmic: true })
@@ -33,7 +36,10 @@ module.exports = {
           )
           .setURL(client.web)
           .setColor(client.color)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp();
         await client.add(interaction.user.id, money, interaction);
         return interaction.followUp({ embeds: [norm_embed] });

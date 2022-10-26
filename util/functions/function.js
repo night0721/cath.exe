@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, MessageActionRow, MessageButton } = require("discord.js");
 function rndint(max, min) {
   return Math.floor(Math.random() * (max - (min ? min : 0))) + (min ? min : 0);
 }
@@ -156,7 +156,7 @@ function cooldown(dbtime, defaults, msg) {
   const slowed = slow[Math.floor(Math.random() * slow.length)];
   return msg.followUp({
     embeds: [
-      new MessageEmbed()
+      new EmbedBuilder()
         .setColor("RANDOM")
         .setTimestamp()
         .setTitle(slowed)
@@ -415,11 +415,14 @@ function tips(interaction, client) {
   if (ran <= 11) {
     interaction.channel.send({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle("Tips")
           .setColor(client.color)
           .setDescription(`**💡 Did you know**\n${rTip}`)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setURL(client.web),
       ],

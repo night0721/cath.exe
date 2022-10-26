@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { bool } = require("cath");
 module.exports = {
   name: "bet",
@@ -29,10 +29,13 @@ module.exports = {
       const multi = (await client.multi(interaction)) / 10 + 1;
       await client.add(interaction.user.id, winamt, interaction);
       await client.ADDBWin(interaction.user.id);
-      const abc = new MessageEmbed()
+      const abc = new EmbedBuilder()
         .setColor("GREEN")
         .setTimestamp()
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTitle(`${interaction.user.username} wins a gamble game`)
         .addFields(
           {
@@ -56,10 +59,13 @@ module.exports = {
       interaction.followUp({ embeds: [abc] });
     } else {
       await client.rmv(interaction.user.id, amt);
-      const cba = new MessageEmbed()
+      const cba = new EmbedBuilder()
         .setColor("RED")
         .setTimestamp()
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTitle(`${interaction.user.username} loses a gamble game`)
         .addFields(
           {

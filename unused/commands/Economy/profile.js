@@ -1,9 +1,9 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "profile",
   usage: "(User)",
   description: "Check an user economy profile",
-  type: "CHAT_INPUT",
+
   options: [
     {
       type: 6,
@@ -21,8 +21,11 @@ module.exports = {
     const cmdused = await client.cmdsUSED(user.user.id);
     const bal = await client.bal(user.user.id);
     const multi = await client.multi(interaction);
-    const game = new MessageEmbed()
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+    const game = new EmbedBuilder()
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setColor("7196ef")
       .setTitle(`${user.displayName}'s profile`)
       .setDescription(`Current Balance ${bal} ${client.currency}`)

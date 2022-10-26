@@ -1,12 +1,12 @@
 const client = require("../");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { Welcome } = require("../config.js");
 client.on("guildMemberAdd", async member => {
   const channel = member.guild.channels.cache.find(
     channel => channel.id === Welcome
   );
   if (!channel) return;
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle(
       `<:join:897246825122254848> Hello ${member}, Welcome to NYX's Support Server!`
     )
@@ -38,10 +38,10 @@ client.on("guildMemberAdd", async member => {
         inline: true,
       }
     )
-    .setFooter(
-      `${member.user.tag} joined the server!`,
-      member.user.displayAvatarURL({ dynamic: true })
-    )
+    .setFooter({
+      text: `${member.user.tag} joined the server!`,
+      iconURL: member.user.displayAvatarURL({ dynamic: true }),
+    })
     .setColor(client.color)
     .setTimestamp();
 
@@ -52,16 +52,16 @@ client.on("guildMemberRemove", async member => {
     channel => channel.id === Welcome
   );
   if (!channel) return;
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setTitle(
       `<:leave:897246828045680640> ${member.user.username} can't handle being cool! `
     )
     .setThumbnail(member.guild.iconURL({ dynamic: true }))
     .setDescription(`We now only have ${member.guild.memberCount} members`)
-    .setFooter(
-      `${member.user.tag} left the server!`,
-      member.user.displayAvatarURL({ dynamic: true })
-    )
+    .setFooter({
+      text: `${member.user.tag} left the server!`,
+      iconURL: member.user.displayAvatarURL({ dynamic: true }),
+    })
     .setColor(client.color)
     .setTimestamp();
 

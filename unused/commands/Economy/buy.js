@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const inventory = require("../../models/econ");
 const items = require("../../util/Data/item.json");
 module.exports = {
@@ -75,7 +75,7 @@ module.exports = {
         });
         interaction.followUp({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTimestamp()
               .setDescription(
                 `**${
@@ -90,10 +90,10 @@ module.exports = {
                 interaction.user.tag,
                 interaction.user.displayAvatarURL({ dynamic: true })
               )
-              .setFooter(
-                `Made by ${client.author}`,
-                client.user.displayAvatarURL()
-              ),
+              .setFooter({
+                text: `Made by ${client.author}`,
+                iconURL: client.user.displayAvatarURL(),
+              }),
           ],
         });
         await client.rmv(interaction.user.id, itemPrice * num);

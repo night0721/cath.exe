@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "premiumserver",
   category: "Config",
@@ -38,12 +38,12 @@ module.exports = {
           );
           interaction.followUp({
             embeds: [
-              new MessageEmbed()
+              new EmbedBuilder()
                 .setTitle("Success!")
                 .setDescription(
                   `Premium added to **${interaction.guild.name}**! \n`
                 )
-                .setFooter("Thank you for supporting Cath!")
+                .setFooter({ text: "Thank you for supporting Cath!" })
                 .setColor("GREEN")
                 .setTimestamp()
                 .setAuthor(
@@ -54,7 +54,7 @@ module.exports = {
           });
           client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
-              new MessageEmbed()
+              new EmbedBuilder()
                 .setTitle("New Premium Server")
                 .addField(
                   "Server Info",
@@ -86,7 +86,7 @@ module.exports = {
           );
           interaction.followUp({
             embeds: [
-              new MessageEmbed()
+              new EmbedBuilder()
                 .setTitle("Removed!")
                 .setDescription(
                   `Premium removed from **${interaction.guild.name}**! \n`
@@ -101,7 +101,7 @@ module.exports = {
           });
           client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
-              new MessageEmbed()
+              new EmbedBuilder()
                 .setTitle("Premium Server Removed")
                 .addField(
                   "Server Info",

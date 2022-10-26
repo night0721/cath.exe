@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "play",
   description: "Plays your favourite music from YouTube or Spotify",
@@ -49,7 +49,7 @@ module.exports = {
           if (!player.playing && !player.paused && !player.queue.length) {
             player.play();
           }
-          const SongAddedEmbed = new MessageEmbed()
+          const SongAddedEmbed = new EmbedBuilder()
             .setAuthor(`Added to queue`, client.user.displayAvatarURL())
             .setThumbnail(res.tracks[0].displayThumbnail())
             .setColor(client.color)
@@ -73,7 +73,7 @@ module.exports = {
         case "PLAYLIST_LOADED":
           player.queue.add(res.tracks);
           await player.play();
-          const SongAdded = new MessageEmbed()
+          const SongAdded = new EmbedBuilder()
             .setAuthor(
               `Playlist added to queue`,
               client.user.displayAvatarURL()
@@ -95,7 +95,7 @@ module.exports = {
           const track = res.tracks[0];
           player.queue.add(track);
           if (!player.playing && !player.paused && !player.queue.length) {
-            const SongAddedEmbed = new MessageEmbed()
+            const SongAddedEmbed = new EmbedBuilder()
               .setAuthor(`Added to queue`, client.user.displayAvatarURL())
               .setThumbnail(track.displayThumbnail())
               .setColor(client.color)
@@ -117,7 +117,7 @@ module.exports = {
             player.play();
             interaction.followUp({ embeds: [SongAddedEmbed] });
           } else {
-            const SongAddedEmbed = new MessageEmbed()
+            const SongAddedEmbed = new EmbedBuilder()
               .setAuthor(`Added to queue`, client.user.displayAvatarURL())
               .setThumbnail(track.displayThumbnail())
               .setColor(client.color)

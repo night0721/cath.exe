@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "mute",
   description: "Mute an user.",
@@ -65,15 +65,15 @@ module.exports = {
             });
         } else {
           await user.roles.add(mutedrole.id);
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setTitle("User Muted")
             .addField("**Moderator**", interaction.user.tag, true)
             .addField("**User**", user.user.tag, true)
             .addField("**Reason**", reason, true)
-            .setFooter(
-              `Made by ${client.author}`,
-              client.user.displayAvatarURL()
-            )
+            .setFooter({
+              text: `Made by ${client.author}`,
+              iconURL: client.user.displayAvatarURL(),
+            })
             .setTimestamp()
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
             .setColor(client.color);
@@ -96,13 +96,16 @@ module.exports = {
           });
       } else {
         await user.roles.add(mutedrole.id);
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle("User Muted")
           .addField("**Moderator**", interaction.user.tag, true)
           .addField("**User**", user.user.tag, true)
           .addField("**Time**", utils.ms(utils.ms(time), { long: true }), true)
           .addField("**Reason**", reason, true)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
           .setColor(client.color);

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const model = require("../../models/weapons");
 const Attachments = require("../../util/Data/attachments.json");
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
       slot_3 = slots.next().value,
       slot_4 = slots.next().value,
       slot_5 = slots.next().value;
-    const result = new MessageEmbed()
+    const result = new EmbedBuilder()
       .setColor(client.color)
       .setTitle(`🎲 A Randomly Generated Class for ${primary_weapon} 🎲`)
       .setDescription(
@@ -38,7 +38,10 @@ module.exports = {
         )}**`
       )
       .setURL(client.web)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp();
     interaction.followUp({ embeds: [result] });
     function* shuffle(array) {

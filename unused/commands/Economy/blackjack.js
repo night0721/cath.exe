@@ -144,10 +144,13 @@ module.exports = {
           dealerMsg += " > " + dealer.score.toString();
         }
 
-        const gambleEmbed = new Discord.MessageEmbed()
+        const gambleEmbed = new Discord.EmbedBuilder()
           .setColor(cl || client.color)
           .setTimestamp()
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTitle(interaction.user.username + `'s Blackjack game`)
           .addField("You", cardsMsg, true)
           .addField("NYX", dealerMsg, true)

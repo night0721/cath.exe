@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "work",
   description: "Work to earn money",
@@ -20,7 +20,7 @@ module.exports = {
     await client.add(interaction.user.id, earning, interaction);
     interaction.followUp({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setAuthor(
             interaction.user.tag,
             interaction.user.displayAvatarURL({ dynamic: true })
@@ -29,7 +29,10 @@ module.exports = {
             `Good Job! You worked as a **${job}** and earned **${earning}${client.currency}**`
           )
           .setTimestamp()
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setColor(client.color),
       ],
     });

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "multiplier",
@@ -32,13 +32,16 @@ module.exports = {
       i += "Channel Name includes NYX - 10%\n";
       e += 10;
     }
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .addField(`**Total Multiplier: ${e}%** (Maximum: 50%)`, i)
       .setColor(client.color)
       .setURL(client.web)
       .setTitle(`${user.displayName}'s Multiplier`)
       .setTimestamp()
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      });
     interaction.followUp({ embeds: [embed] });
   },
 };

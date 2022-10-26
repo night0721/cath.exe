@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "poll",
   category: "Utilities",
@@ -48,7 +48,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const pollCreateEmbed = new MessageEmbed()
+    const pollCreateEmbed = new EmbedBuilder()
       .setTitle(`📣 **${args[0]}**`)
       .setColor("RED")
       .setFooter({

@@ -1,13 +1,16 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "invite",
   description: "Get bot invite link or get support",
   category: "Utilities",
-  type: "CHAT_INPUT",
+
   run: async (client, interaction, args, utils) => {
-    const embed = new MessageEmbed()
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+    const embed = new EmbedBuilder()
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setColor(client.color)
       .setTimestamp()
       .setAuthor({

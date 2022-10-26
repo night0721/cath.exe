@@ -1,5 +1,5 @@
 const client = require("..");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const utils = require("../util/functions/function");
 const domains = require("../util/Data/domains.json");
 client.on("messageCreate", async message => {
@@ -13,7 +13,7 @@ client.on("messageCreate", async message => {
   data.User = userDB;
   if (!guildDB) await client.data.CreateGuild(message.guild.id);
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-    const _ = new MessageEmbed()
+    const _ = new EmbedBuilder()
       .addFields(
         {
           name: "Prefix/Usage",
@@ -55,7 +55,10 @@ client.on("messageCreate", async message => {
 
       .setThumbnail(client.user.displayAvatarURL())
       .setURL(client.web)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setColor(client.color);
     const m = await message.reply({
@@ -97,7 +100,7 @@ client.on("messageCreate", async message => {
         .slice(0, -1)
     )
   ) {
-    const _ = new MessageEmbed()
+    const _ = new EmbedBuilder()
       .setTitle(`Scam/IP Grabber detected`)
       .setTimestamp()
       .setColor(client.color)
@@ -151,7 +154,7 @@ client.on("messageCreate", async message => {
     message?.content.startsWith("C.") ||
     message?.content.startsWith("c.")
   ) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(`Message commands are now disabled`)
       .setDescription(
         `Please enable **Use Application Commands** in the channel settings to get access to slash commands, we have discontinued message commands\n\nUse \`/help\` to see more info`
@@ -191,10 +194,10 @@ client.on("messageCreate", async message => {
         }
       )
       .setURL(client.web)
-      .setFooter(
-        `Requested by ${message.author.tag}`,
-        message.author.displayAvatarURL({ dynamic: true })
-      )
+      .setFooter({
+        text: `Requested by ${message.author.tag}`,
+        iconURL: message.author.displayAvatarURL({ dynamic: true }),
+      })
       // .setThumbnail("../../util/assets/images/nyx_logo_transparent.webp")
       .setTimestamp();
     message.reply({
@@ -223,7 +226,7 @@ client.on("messageCreate", async message => {
     if (message.content) {
       client.channels.cache.get(client.config.DMLog).send({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setDescription(message.content)
             .setColor(client.color)
             .setAuthor({

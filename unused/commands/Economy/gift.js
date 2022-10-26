@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const inventory = require("../../models/econ");
 const items = require("../../util/Data/item.json");
 module.exports = {
@@ -72,7 +72,7 @@ module.exports = {
               data.Inventory[dbName] -= number;
               interaction.followUp({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setColor(client.color)
                     .setAuthor(
                       interaction.user.tag,

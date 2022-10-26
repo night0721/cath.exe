@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 module.exports = {
   name: "snipe",
@@ -10,7 +10,7 @@ module.exports = {
       name: "channel",
       description: "The sniped channel",
       required: true,
-      channelTypes: ["GUILD_TEXT"],
+      channelTypes: [0],
     },
     {
       type: 4,
@@ -22,13 +22,16 @@ module.exports = {
   run: async (client, interaction, args) => {
     var i = 0;
     let description = "";
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setAuthor(
         `Sniped by ${interaction.user.tag}`,
         interaction.user.displayAvatarURL({ dynamic: true })
       )
       .setColor(client.color)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setURL(client.web);
     const snipes = client.snipes.get(args[0]) || [];

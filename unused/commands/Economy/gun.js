@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const e = require("../../models/econ");
 const list = require("../../util/Data/gun.json");
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
   description: "Configure Weapon Master System settings",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "select",
       description: "Select the gun for the game",
       options: [
@@ -29,13 +29,13 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "list",
       description: "See the information for the guns",
       options: [],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "info",
       description: "See the stats of your gun",
     },
@@ -45,9 +45,12 @@ module.exports = {
       const lists = list.map(value => {
         return `**${value.emoji} ${value.name}**\n**Description**: ${value.description}`;
       });
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor(client.color)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setDescription(lists.join("\n\n"));
       interaction.followUp({ embeds: [embed] });
@@ -101,14 +104,14 @@ module.exports = {
           });
         } else {
           const link = list.find(a => a.name === data.Gun.Name).link;
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setThumbnail(link)
             .setTimestamp()
             .setColor(client.color)
-            .setFooter(
-              `Made by ${client.author}`,
-              client.user.displayAvatarURL()
-            )
+            .setFooter({
+              text: `Made by ${client.author}`,
+              iconURL: client.user.displayAvatarURL(),
+            })
             .addField("Name", data.Gun.Name, true)
             .addField("Rank", data.Gun.Rank, true)
             .addField("XP", data.Gun.XP.toString(), true);

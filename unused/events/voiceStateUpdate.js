@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const client = require("../..");
 client.on("voiceStateUpdate", async (oldState, newState) => {
   const guildId = newState.guild.id;
@@ -37,7 +37,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
   switch (stateChange.type) {
     case "JOIN":
       if (stateChange.members.size === 1 && player.paused) {
-        const emb = new MessageEmbed()
+        const emb = new EmbedBuilder()
           .setAuthor(`Resumed`, client.user.displayAvatarURL())
           .setColor(client.config.color)
           .setDescription(
@@ -50,7 +50,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
     case "LEAVE":
       if (stateChange.members.size === 0 && !player.paused && player.playing) {
         player.pause(true);
-        const emb = new MessageEmbed()
+        const emb = new EmbedBuilder()
           .setAuthor(`Paused`, client.user.displayAvatarURL())
           .setColor(client.config.color)
           .setDescription(

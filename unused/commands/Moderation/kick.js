@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "kick",
   description: "Kick an user",
@@ -39,12 +39,15 @@ module.exports = {
     }
     if (reason.length > 1024) reason = reason.slice(0, 1021) + "...";
     try {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("User Kicked")
         .addField("**Moderator**", interaction.user.tag, true)
         .addField("**User**", target.user.tag, true)
         .addField("**Reason**", reason, true)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
         .setColor(client.color);

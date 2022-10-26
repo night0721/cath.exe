@@ -1,13 +1,13 @@
-const { MessageEmbed, version: djsversion } = require("discord.js");
+const { EmbedBuilder, version: djsversion } = require("discord.js");
 const version = require("../../package.json").version;
 const { utc } = require("moment");
 module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Information",
-  type: "CHAT_INPUT",
+
   run: async (client, interaction) => {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(`NYX - CODM Gunsmith Bot`)
       .setURL(
         `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands`

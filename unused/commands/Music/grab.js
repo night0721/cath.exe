@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "grab",
   description: "Saves the current song to your Direct Messages",
@@ -19,7 +19,7 @@ module.exports = {
     }
     if (!player) client.err(interaction, "**Nothing is playing right now**");
     try {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setAuthor(
           `Song saved: `,
           "https://cdn.discordapp.com/emojis/897017864085712936.gif"
@@ -41,7 +41,10 @@ module.exports = {
         .addField(`🎵 Author: `, `\`${player.queue.current.author}\``, true)
         .addField(`▶ Play it:`, `\`${player.queue.current.uri}\``)
         .addField(`🔎 Saved in:`, `<#${interaction.channel.id}>`)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL());
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        });
       interaction.user.send({ embeds: [embed] });
     } catch (e) {
       console.log(e);

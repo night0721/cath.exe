@@ -1,10 +1,10 @@
 const client = require("../");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const db = require("../models/guilds");
 client.on("guildCreate", guild => {
   client.channels.cache.get(client.config.ServerLog).send({
     embeds: [
-      new MessageEmbed()
+      new EmbedBuilder()
         .setTitle("New Server")
         .addField(
           "Server Info",
@@ -12,10 +12,10 @@ client.on("guildCreate", guild => {
           **>Server ID**: \n${guild.id}
           **>Server Member Count**: \n${guild.memberCount}`
         )
-        .setFooter(
-          `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({
+          text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))
         .setColor("GREEN"),
@@ -32,7 +32,7 @@ client.on("guildDelete", async guild => {
   client.data.DelGuild(guild.id);
   client.channels.cache.get(client.config.ServerLog).send({
     embeds: [
-      new MessageEmbed()
+      new EmbedBuilder()
         .setTitle("Deleted Server")
         .addField(
           "Server Info",
@@ -40,10 +40,10 @@ client.on("guildDelete", async guild => {
           **>Server ID**: \n${guild.id}
           **>Server Member Count**: \n${guild.memberCount}`
         )
-        .setFooter(
-          `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({
+          text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))
         .setColor("RED"),

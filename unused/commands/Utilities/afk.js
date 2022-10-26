@@ -1,10 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "afk",
   description: "Tell someone you are AFK.",
   usage: "{Status}",
   category: "Utilities",
-  type: "CHAT_INPUT",
+
   options: [
     {
       type: 3,
@@ -18,7 +18,7 @@ module.exports = {
     const content = args[0] || "No status provided.";
     uuser.setNickname(`[AFK] ${interaction.user.username}`).catch();
     await client.data.AFK(interaction.user.id, content);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setDescription(
         `${interaction.user.username} is set into AFK.\nStatus : ${content}`
       )

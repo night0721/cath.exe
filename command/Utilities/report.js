@@ -1,10 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "report",
   description: "Report a bug of the bot",
   category: "Utilities",
-  type: "CHAT_INPUT",
+
   options: [
     {
       type: 3,
@@ -17,12 +17,15 @@ module.exports = {
     const bug = args[0];
     interaction.followUp({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle("SUCCESS!")
           .setDescription(
             "You have reported a bug.\nPlease wait for us to solve it"
           )
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setColor("GREEN"),
       ],
@@ -30,7 +33,7 @@ module.exports = {
     const ch = client.channels.cache.get(client.config.Report);
     ch.send({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setAuthor(
             interaction.user.tag,
             interaction.user.displayAvatarURL({ dynamic: true })

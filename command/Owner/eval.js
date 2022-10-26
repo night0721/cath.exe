@@ -5,7 +5,7 @@ module.exports = {
   usage: "(Code)",
   Owner: true,
   description: "Eval something",
-  type: "CHAT_INPUT",
+
   options: [
     {
       type: 3,
@@ -52,7 +52,7 @@ module.exports = {
     console.log(evaled);
     let reactions = ["❌", "⏪", "◀️", "⏹️", "▶️", "⏩"],
       page = 0,
-      evaledEmbed = new Discord.MessageEmbed()
+      evaledEmbed = new Discord.EmbedBuilder()
         .setColor(client.color)
         .setDescription(`\`\`\`js\n${evaled[0]}\n\`\`\``)
         .setTimestamp()
@@ -113,7 +113,7 @@ module.exports = {
           page = evaled.length - 1;
           break;
       }
-      evaledEmbed = new Discord.MessageEmbed()
+      evaledEmbed = new Discord.EmbedBuilder()
         .setColor(interaction.guild.me.displayColor)
         .setDescription(`\`\`\`js\n${evaled[page]}\n\`\`\``);
       await mainMessage.edit({

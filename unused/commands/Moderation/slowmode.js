@@ -28,10 +28,13 @@ module.exports = {
         { label: "6h", value: "6h" },
       ]);
     let row = new Discord.MessageActionRow().addComponents(menu);
-    const slowmoEmbed = new Discord.MessageEmbed()
+    const slowmoEmbed = new Discord.EmbedBuilder()
       .setColor(client.color)
       .setTitle("Slowmode")
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setAuthor(
         `Requested by ${interaction.user.tag}`,
@@ -56,7 +59,7 @@ module.exports = {
           menu.setPlaceholder(`Set to: ${collected.values[0]}`);
           row = new Discord.MessageActionRow().addComponents(menu);
           if (collected.values[0] !== "OFF") {
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.EmbedBuilder()
               .setColor("GREEN")
               .setTitle("Slowmode Added")
               .addField("**Moderator**", interaction.user.tag, true)
@@ -66,25 +69,27 @@ module.exports = {
                 `${utils.ms(utils.ms(collected.values[0]), { long: true })}`,
                 true
               )
-              .setFooter(
-                interaction.member.displayName || interaction.user.username,
-                interaction.user.displayAvatarURL({ dynamic: true })
-              )
+              .setFooter({
+                text:
+                  interaction.member.displayName || interaction.user.username,
+                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+              })
               .setThumbnail(client.user.displayAvatarURL());
             interaction.channel.setRateLimitPerUser(
               utils.ms(collected.values[0]) / 1e3
             );
             return sent.edit({ embeds: [embed], components: [row] });
           } else {
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.EmbedBuilder()
               .setColor("RED")
               .setTitle("Slowmode Removed")
               .addField("**Moderator**", interaction.user.tag, true)
               .addField("**Channel**", `<#${interaction.channel.id}>`, true)
-              .setFooter(
-                interaction.member.displayName || interaction.user.username,
-                interaction.user.displayAvatarURL({ dynamic: true })
-              )
+              .setFooter({
+                text:
+                  interaction.member.displayName || interaction.user.username,
+                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+              })
               .setThumbnail(client.user.displayAvatarURL())
               .setColor("RED");
             interaction.channel.setRateLimitPerUser(0);

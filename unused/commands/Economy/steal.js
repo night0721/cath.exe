@@ -1,5 +1,5 @@
 const db = require("../../models/econ");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { bool } = require("cath");
 module.exports = {
   name: "rob",
@@ -40,11 +40,11 @@ module.exports = {
                 client.createProfile(tryrob.id);
                 interaction.followUp({
                   embeds: [
-                    new MessageEmbed()
-                      .setFooter(
-                        `Made by ${client.author}`,
-                        client.user.displayAvatarURL()
-                      )
+                    new EmbedBuilder()
+                      .setFooter({
+                        text: `Made by ${client.author}`,
+                        iconURL: client.user.displayAvatarURL(),
+                      })
                       .setTimestamp()
                       .setAuthor(
                         interaction.user.tag,
@@ -60,11 +60,11 @@ module.exports = {
                 if (data1.CP <= 0 || !data1.CP) {
                   interaction.followUp({
                     embeds: [
-                      new MessageEmbed()
-                        .setFooter(
-                          `Made by ${client.author}`,
-                          client.user.displayAvatarURL()
-                        )
+                      new EmbedBuilder()
+                        .setFooter({
+                          text: `Made by ${client.author}`,
+                          iconURL: client.user.displayAvatarURL(),
+                        })
                         .setTimestamp()
                         .setAuthor(
                           interaction.user.tag,
@@ -97,11 +97,11 @@ module.exports = {
                     .catch(e => {});
                   interaction.followUp({
                     embeds: [
-                      new MessageEmbed()
-                        .setFooter(
-                          `Made by ${client.author}`,
-                          client.user.displayAvatarURL()
-                        )
+                      new EmbedBuilder()
+                        .setFooter({
+                          text: `Made by ${client.author}`,
+                          iconURL: client.user.displayAvatarURL(),
+                        })
                         .setTimestamp()
                         .setAuthor(
                           interaction.user.tag,
@@ -120,11 +120,11 @@ module.exports = {
                   data1.save();
                   interaction.followUp({
                     embeds: [
-                      new MessageEmbed()
-                        .setFooter(
-                          `Made by ${client.author}`,
-                          client.user.displayAvatarURL()
-                        )
+                      new EmbedBuilder()
+                        .setFooter({
+                          text: `Made by ${client.author}`,
+                          iconURL: client.user.displayAvatarURL(),
+                        })
                         .setTimestamp()
                         .setAuthor(
                           interaction.user.tag,

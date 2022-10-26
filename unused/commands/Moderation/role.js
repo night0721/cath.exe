@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "role",
   UserPerms: ["MANAGE_ROLES"],
@@ -27,11 +27,14 @@ module.exports = {
       if (role.managed) {
         interaction.followUp({ content: "You must provide a non bot role" });
       } else if (target.roles.cache.has(role.id)) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle("Role Removed")
           .addField("**Moderator**", interaction.user.tag, true)
           .addField("**User**", target.user.tag, true)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
           .setColor(client.color);
@@ -39,11 +42,14 @@ module.exports = {
           .followUp({ embeds: [embed] })
           .then(await target.roles.remove(role.id));
       } else {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle("Role Added")
           .addField("**Moderator**", interaction.user.tag, true)
           .addField("**User**", target.user.tag, true)
-          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+          .setFooter({
+            text: `Made by ${client.author}`,
+            iconURL: client.user.displayAvatarURL(),
+          })
           .setTimestamp()
           .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
           .setColor(client.color);

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 const { Pagination } = require("cath");
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
       });
     } else {
       const splittedLyrics = splitlyrics.chunk(lyricsdata.lyrics, 1024);
-      const lyricsEmbed = new MessageEmbed()
+      const lyricsEmbed = new EmbedBuilder()
         .setAuthor(`Lyrics`)
         .setColor("YELLOW")
         .addFields(
@@ -42,7 +42,7 @@ module.exports = {
           }
         )
         .setDescription(splittedLyrics[0])
-        .setFooter(`Page 1 of ${splittedLyrics.length}`)
+        .setFooter({ text: `Page 1 of ${splittedLyrics.length}` })
         .setThumbnail(lyricsdata.image)
         .setTimestamp();
       const lyricsMsg = await interaction.followUp({ embeds: [lyricsEmbed] });

@@ -1,13 +1,16 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, MessageActionRow, MessageButton } = require("discord.js");
 const draws = require("../../../util/Data/draws.json");
 module.exports = {
   name: "draw",
   description: "Buy a lucky draw",
   run: async (client, message, args, utils) => {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle("**__Daily Lucky Draw__**")
       .setColor(client.color)
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setDescription(
         "Welcome to the Lucky Draw,\nclick `Spin`, so that the draw spins and hits a random item.\nClick `Info` to find out how high the probability is\n that a particular item will be unlocked"
@@ -60,7 +63,7 @@ module.exports = {
       if (i.customId === "spininfo") {
         i.reply({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle("**__Information Table__**")
               .addFields(
                 draws[0].map(c => {

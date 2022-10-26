@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "accept",
   category: "Owner",
@@ -29,7 +29,7 @@ module.exports = {
       );
       const suggestEmbed = await suggestionChannel.messages.fetch(MessageID);
       const data = suggestEmbed.embeds[0];
-      const acceptEmbed = new MessageEmbed()
+      const acceptEmbed = new EmbedBuilder()
         .setAuthor(data.author.name, data.author.iconURL)
         .setDescription(data.description)
         .setColor("GREEN")

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "lockdown",
   description: "Lock a channel",
@@ -18,14 +18,14 @@ module.exports = {
       interaction.channel.permissionOverwrites
         .create(interaction.guild.id, { SEND_MESSAGES: false })
         .then(() => {
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setTitle("Channel Locked")
             .addField("**Moderator**", interaction.user.tag, true)
             .addField("**Channel**", `<#${interaction.channel.id}>`, true)
-            .setFooter(
-              `Made by ${client.author}`,
-              client.user.displayAvatarURL()
-            )
+            .setFooter({
+              text: `Made by ${client.author}`,
+              iconURL: client.user.displayAvatarURL(),
+            })
             .setTimestamp()
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
             .setColor(client.color);
@@ -35,14 +35,14 @@ module.exports = {
       interaction.channel.permissionOverwrites
         .create(interaction.guild.id, { SEND_MESSAGES: true })
         .then(() => {
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             .setTitle("Channel Unlocked")
             .addField("**Moderator**", interaction.user.tag, true)
             .addField("**Channel**", `<#${interaction.channel.id}>`, true)
-            .setFooter(
-              `Made by ${client.author}`,
-              client.user.displayAvatarURL()
-            )
+            .setFooter({
+              text: `Made by ${client.author}`,
+              iconURL: client.user.displayAvatarURL(),
+            })
             .setTimestamp()
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
             .setColor(client.color);

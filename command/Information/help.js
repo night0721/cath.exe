@@ -44,7 +44,7 @@ module.exports = {
           commands: getCmds,
         };
       });
-      const embed = new Discord.MessageEmbed()
+      const embed = new Discord.EmbedBuilder()
         .setTitle(`**NYX's Commands**`)
         .setDescription(`Please choose a category in the dropdown menu`)
         .setColor(client.color)
@@ -116,7 +116,7 @@ module.exports = {
       collector.on("collect", async interaction => {
         const [directory] = interaction.values;
         const category = categories.find(u => u.directory === directory);
-        const newembed = new Discord.MessageEmbed()
+        const newembed = new Discord.EmbedBuilder()
           .setTitle(
             `${emoji[directory]} ${directory} Commands ${emoji[directory]}`
           )
@@ -164,7 +164,7 @@ module.exports = {
             .map(y => y[0] + y.substring(1, y.length).toLowerCase())
             .join(" ")
         ).join(", ");
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
           .setTitle(`"${command.name}" command details`)
           .addField(
             "**Command**:",

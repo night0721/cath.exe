@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { Pagination } = require("cath");
 const items = require("../../util/Data/item.json");
 module.exports = {
@@ -26,12 +26,12 @@ module.exports = {
         )}**\n\`Type:\` **${value.type}**`;
       });
       const c = util.chunk(list, 5).map(x => x.join("\n\n"));
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("**NYX Shop**")
         .setTimestamp()
         .setDescription(c[0])
         .setColor(client.color)
-        .setFooter(`Page 1 of ${c.length}`);
+        .setFooter({ text: `Page 1 of ${c.length}` });
       try {
         const msg = await interaction.followUp({ embeds: [embed] });
         if (list.length > 5) await util.pagination(msg, interaction.user, c);
@@ -50,7 +50,7 @@ module.exports = {
         });
       } else {
         const theitem = items.find(i => i.aliases.includes(itemToSearch));
-        const all = new MessageEmbed()
+        const all = new EmbedBuilder()
           .setTitle(`${theitem.emoji} ${theitem.name}`)
           .setDescription(
             `

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "guilds",
   category: "Owner",
@@ -15,7 +15,7 @@ module.exports = {
         } members`;
       })
       .join("\n");
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle("Guilds")
       .setDescription(description)
       .setColor(client.color)
@@ -31,7 +31,10 @@ module.exports = {
           inline: true,
         }
       )
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });
   },

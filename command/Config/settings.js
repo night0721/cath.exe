@@ -1,5 +1,4 @@
-const starboardClient = require("../../client/StarboardClient");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
 module.exports = {
   name: "settings",
@@ -8,7 +7,7 @@ module.exports = {
   category: "Config",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "muterole",
       description: "Configure mute role settings for the server",
       options: [
@@ -21,7 +20,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "prefix",
       description: "Configure prefix settings for the server",
       options: [
@@ -35,7 +34,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "welcome",
       description: "Configure welcome channel settings for the server",
       options: [
@@ -44,12 +43,12 @@ module.exports = {
           name: "channel",
           description: "The channel for welcome messages",
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [0],
         },
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "goodbye",
       description: "Configure goodbye channel settings for the server",
       options: [
@@ -58,32 +57,12 @@ module.exports = {
           name: "channel",
           description: "The channel for goodbye messages",
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [0],
         },
       ],
     },
     {
-      type: "SUB_COMMAND",
-      name: "starboard",
-      description: "Configure starboard channel settings for the server",
-      options: [
-        {
-          type: 7,
-          name: "channel",
-          description: "The channel for starboard messages",
-          required: true,
-          channelTypes: ["GUILD_TEXT"],
-        },
-        {
-          type: 4,
-          name: "starcount",
-          description: "The required amount of star to trigger the starboard",
-          required: true,
-        },
-      ],
-    },
-    {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "chatbot",
       description: "Configure chatbot channel settings for the server",
       options: [
@@ -92,12 +71,12 @@ module.exports = {
           name: "channel",
           description: "The channel for chatbotmessages",
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [0],
         },
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "log",
       description: "Configure log channel settings for the server",
       options: [
@@ -106,7 +85,7 @@ module.exports = {
           name: "channel",
           description: "The channel for log messages",
           required: true,
-          channelTypes: ["GUILD_TEXT"],
+          channelTypes: [0],
         },
       ],
     },
@@ -116,7 +95,7 @@ module.exports = {
       description: "Enable commands/category for the server",
       options: [
         {
-          type: "SUB_COMMAND",
+          type: 1,
           name: "command",
           description: "To enable commands",
           options: [
@@ -129,7 +108,7 @@ module.exports = {
           ],
         },
         {
-          type: "SUB_COMMAND",
+          type: 1,
           name: "category",
           description: "To enable categories",
           options: [
@@ -179,7 +158,7 @@ module.exports = {
       description: "Disable commands/category for the server",
       options: [
         {
-          type: "SUB_COMMAND",
+          type: 1,
           name: "command",
           description: "To disable commands",
           options: [
@@ -192,7 +171,7 @@ module.exports = {
           ],
         },
         {
-          type: "SUB_COMMAND",
+          type: 1,
           name: "category",
           description: "To disable categories",
           options: [
@@ -237,7 +216,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "level",
       description: "Configure level settings for the server",
       options: [
@@ -250,7 +229,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "nsfw",
       description: "Configure nsfw settings for the server",
       options: [
@@ -263,7 +242,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "tips",
       description: "Configure tips settings for the server",
       options: [
@@ -276,7 +255,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "overall",
       description: "See overall settings for the server",
       options: [],
@@ -314,23 +293,6 @@ module.exports = {
         await client.data.setGoodbye(interaction.guild.id, args[1]);
         interaction.followUp({
           content: `Saved **${channel}** as the goodbye channel`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "starboard") {
-      const channel = interaction.guild.channels.cache.get(args[1]);
-      if (channel.type !== "GUILD_TEXT") {
-        interaction.followUp({ content: "Please provide a text channel" });
-      } else {
-        starboardClient.config.guilds.add({
-          id: interaction.guild.id,
-          options: {
-            starCount: args[2],
-            starboardChannel: args[1],
-          },
-        });
-        await client.data.setStarboard(interaction.guild.id, args[1], args[2]);
-        interaction.followUp({
-          content: `Saved **${channel}** as the starboard channel`,
         });
       }
     } else if (args[0].toLowerCase() === "chatbot") {
@@ -500,11 +462,6 @@ module.exports = {
           ? interaction.guild.channels.cache.get(data.Guild.Goodbye)
           : "None"
       }
-      **Starboard Channel**:  ${
-        interaction.guild.channels.cache.get(data.Guild.Starboard)
-          ? interaction.guild.channels.cache.get(data.Guild.Starboard)
-          : "None"
-      }
       **Chatbot Channel**:  ${
         interaction.guild.channels.cache.get(data.Guild.Chatbot)
           ? interaction.guild.channels.cache.get(data.Guild.Chatbot)
@@ -525,10 +482,13 @@ module.exports = {
         data.Guild.Category.length ? data.Guilds.Category.join(",") : "None"
       }
       `;
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle(`**${interaction.guild.name}** Settings`)
         .setColor(client.color)
-        .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+        .setFooter({
+          text: `Made by ${client.author}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setTimestamp()
         .setDescription(d);
       interaction.followUp({ embeds: [embed] });

@@ -1,14 +1,14 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const c = require("../../client/CODMClient");
 module.exports = {
   name: "perk",
   description: "Get perk stats",
-  type: "CHAT_INPUT",
+
   usage: "{Perk}",
   category: "CODM",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "red",
       description: "Red Perk",
       options: [
@@ -67,7 +67,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "green",
       description: "Green Perk",
       options: [
@@ -122,7 +122,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "blue",
       description: "Blue Perk",
       options: [
@@ -176,7 +176,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     const val = args[1];
     const d = await c.getperk(val);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setColor(
         d.type == "green"
           ? "09654a"
@@ -186,7 +186,10 @@ module.exports = {
           ? "1047a4"
           : client.color
       )
-      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
+      .setFooter({
+        text: `Made by ${client.author}`,
+        iconURL: client.user.displayAvatarURL(),
+      })
       .setTimestamp()
       .setTitle(d.perk)
       .addField("Effects", d.effects);
