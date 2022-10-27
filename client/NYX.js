@@ -3,6 +3,7 @@ const {
   Collection,
   EmbedBuilder,
   GatewayIntentBits,
+  Partials,
 } = require("discord.js");
 const config = require("../config");
 require("dotenv").config();
@@ -17,16 +18,26 @@ class NYX extends Client {
         activities: [
           {
             name: `/help`,
-            type: "STREAMING",
+            type: 1,
             url: "https://www.youtube.com/watch?v=YSKDu1gKntY",
           },
         ],
       },
+      shards: "auto",
+      partials: [
+        Partials.Message,
+        Partials.Channel,
+        Partials.Reaction,
+        Partials.GuildMember,
+      ],
       intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping,
       ],
     }
   ) {
