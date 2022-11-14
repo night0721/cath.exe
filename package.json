@@ -44,7 +44,7 @@
     "cath": "^1.4.7",
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.0",
-    "goosecache": "^9.0.14",
+    "goosecache": "^10.0.0",
     "moment": "^2.29.1",
     "mongoose": "^5.13.14",
     "quickchart-js": "^3.0.0"
