@@ -46,7 +46,7 @@
     "dotenv": "^16.0.0",
     "goosecache": "^10.0.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.14",
+    "mongoose": "^6.8.3",
     "quickchart-js": "^3.0.0"
   }
 }
