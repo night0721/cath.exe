@@ -3,7 +3,6 @@ const c = require("../../client/CODMClient");
 module.exports = {
   name: "scorestreak",
   description: "Get Scorestreak stats",
-
   usage: "{Scorestreak}",
   category: "CODM",
   options: [

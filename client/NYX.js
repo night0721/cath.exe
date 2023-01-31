@@ -32,12 +32,12 @@ class NYX extends Client {
       ],
       intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildPresences,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildMessageTyping,
+        // GatewayIntentBits.GuildMembers,
+        // GatewayIntentBits.MessageContent,
+        // GatewayIntentBits.GuildPresences,
+        // GatewayIntentBits.GuildMessages,
+        // GatewayIntentBits.GuildMessageReactions,
+        // GatewayIntentBits.GuildMessageTyping,
       ],
     }
   ) {
