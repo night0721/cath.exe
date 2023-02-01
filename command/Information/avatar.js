@@ -2,7 +2,6 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "avatar",
   description: "Show user's avatar in different formats",
-
   usage: "{User}",
   category: "Information",
   options: [
@@ -39,7 +38,7 @@ module.exports = {
         })})**`
       )
       .setImage(
-        member.user.avatarURL({ size: 2048, dynamic: true, format: "png" })
+        member.user.displayAvatarURL({ size: 2048, dynamic: true, format: "png" })
       )
       .setFooter({
         text: `Made by ${client.author}`,
