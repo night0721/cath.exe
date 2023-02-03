@@ -26,7 +26,7 @@ module.exports = {
             "https://media.discordapp.net/attachments/851764525623672854/951532817647542342/more_hawksnest.jpg",
         })
         .setTimestamp()
-        .addField(
+        .addFields(
           {
             name: "Basic Sensitivity",
             value: `

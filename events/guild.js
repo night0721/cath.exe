@@ -6,12 +6,12 @@ client.on("guildCreate", guild => {
     embeds: [
       new EmbedBuilder()
         .setTitle("New Server")
-        .addField(
-          "Server Info",
-          `**>Server Name**: \n${guild.name}
-          **>Server ID**: \n${guild.id}
-          **>Server Member Count**: \n${guild.memberCount}`
-        )
+        .addFields({
+          name: "Server Info",
+          value: `**>Server Name**: \n${guild.name}
+        **>Server ID**: \n${guild.id}
+        **>Server Member Count**: \n${guild.memberCount}`,
+        })
         .setFooter({
           text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
           iconURL: client.user.displayAvatarURL(),
@@ -34,12 +34,12 @@ client.on("guildDelete", async guild => {
     embeds: [
       new EmbedBuilder()
         .setTitle("Deleted Server")
-        .addField(
-          "Server Info",
-          `**>Server Name**: \n${guild.name}
-          **>Server ID**: \n${guild.id}
-          **>Server Member Count**: \n${guild.memberCount}`
-        )
+        .addFields({
+          name: "Server Info",
+          value: `**>Server Name**: \n${guild.name}
+        **>Server ID**: \n${guild.id}
+        **>Server Member Count**: \n${guild.memberCount}`,
+        })
         .setFooter({
           text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
           iconURL: client.user.displayAvatarURL(),
