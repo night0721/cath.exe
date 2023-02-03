@@ -3,7 +3,7 @@
 <p align="center">
     <a href="https://rebrand.ly/cathSupport" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
     <br>
-    <a href="https://discord.com/oauth2/authorize?client_id=800966959268364288&permissions=4231314550&scope=bot%20applications.commands" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
+    <a href="https://discord.com/oauth2/authorize?client_id=1071021943484055563&permissions=4231314550&scope=bot%20applications.commands" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
     <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt='Licence CC BY-NC-SA 4.0' src ="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg" width="82">
     <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
     <a href="https://github.com/night0721/cath"><img alt = 'NPM Package' src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
@@ -54,13 +54,14 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 > We also provide access to our database that includes In-depth Weapon statistics & Gunsmith Builds from various Content Creators, & other Call of duty related info, please [contact us](https://rebrand.ly/cathSupport) for more info.
 
 ## <img height="16px" src="../util/assets/images/apex/apex-legends-logo-white.svg"> **Apex Legends Mobile**
-> ⚠ *Coming Soon™*  
+
+> ⚠ _Coming Soon™_
 
 - **Player Stats** view your in-game stats. <!-- if they support mobile for the stats api -->
 - **Legends** detailed info about legends & their abilities.
 - **Guns** detailed info about guns.
 - **Random Combos** Wanna try something challenging? try to win a game with a random selected legend & Gun combination
-- *& many more, coming soon!*
+- _& many more, coming soon!_
 
 ## More Info
 
@@ -72,7 +73,7 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
 
 <!-- <details>
   <summary>Made With</summary>
-  
+
    [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
    [![node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
    [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
@@ -82,13 +83,13 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
 
 <details>
   <summary>Github Stats</summary>
-  
+
   ![Lines of code](https://img.shields.io/tokei/lines/github/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub Discussions](https://img.shields.io/github/discussions/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
-  [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe) 
+  [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe)
   <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe)
-  
+
 </details> -->
 
 <h1 align = "center"> Support, Feature Request & Bug Reports </h1>
