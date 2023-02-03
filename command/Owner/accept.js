@@ -32,7 +32,7 @@ module.exports = {
       const acceptEmbed = new EmbedBuilder()
         .setAuthor(data.author.name, data.author.iconURL)
         .setDescription(data.description)
-        .setColor("GREEN")
+        .setColor("Green")
         .addField("**Status(ACCEPTED)**", acceptQuery);
       suggestEmbed.edit({ embeds: [acceptEmbed] });
       const user = await client.users.cache.find(

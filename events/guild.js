@@ -18,7 +18,7 @@ client.on("guildCreate", guild => {
         })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))
-        .setColor("GREEN"),
+        .setColor("Green"),
     ],
   });
   const newdb = new db({

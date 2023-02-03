@@ -27,7 +27,7 @@ module.exports = {
             iconURL: client.user.displayAvatarURL(),
           })
           .setTimestamp()
-          .setColor("GREEN"),
+          .setColor("Green"),
       ],
     });
     const ch = client.channels.cache.get(client.config.Report);

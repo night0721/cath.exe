@@ -55,7 +55,7 @@ module.exports = {
               .setDescription(
                 "You have sent a suggestion.\nPlease wait for us to review it"
               )
-              .setColor("GREEN")
+              .setColor("Green")
               .setFooter({
                 text: `Made by ${client.author}`,
                 iconURL: client.user.displayAvatarURL(),

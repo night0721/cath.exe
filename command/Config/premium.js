@@ -44,7 +44,7 @@ module.exports = {
                   `Premium added to **${interaction.guild.name}**! \n`
                 )
                 .setFooter({ text: "Thank you for supporting Cath!" })
-                .setColor("GREEN")
+                .setColor("Green")
                 .setTimestamp()
                 .setAuthor(
                   interaction.user.tag,
@@ -64,7 +64,7 @@ module.exports = {
                 )
                 .setTimestamp()
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-                .setColor("GREEN"),
+                .setColor("Green"),
             ],
           });
         }
