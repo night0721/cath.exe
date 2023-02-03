@@ -50,7 +50,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     const pollCreateEmbed = new EmbedBuilder()
       .setTitle(`📣 **${args[0]}**`)
-      .setColor("RED")
+      .setColor("Red")
       .setFooter({
         text: `Made by ${client.author}`,
         iconURL: client.user.displayAvatarURL(),

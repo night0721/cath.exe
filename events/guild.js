@@ -46,7 +46,7 @@ client.on("guildDelete", async guild => {
         })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))
-        .setColor("RED"),
+        .setColor("Red"),
     ],
   });
 });

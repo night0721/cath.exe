@@ -31,7 +31,7 @@ module.exports = {
       const denyEmbed = new EmbedBuilder()
         .setAuthor(data.author.name, data.author.iconURL)
         .setDescription(data.description)
-        .setColor("RED")
+        .setColor("Red")
         .addField("**Status(DENIED)**", denyQuery);
       suggestEmbed.edit({ embeds: [denyEmbed] });
       const user = await client.users.cache.find(

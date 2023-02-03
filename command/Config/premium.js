@@ -91,7 +91,7 @@ module.exports = {
                 .setDescription(
                   `Premium removed from **${interaction.guild.name}**! \n`
                 )
-                .setColor("RED")
+                .setColor("Red")
                 .setTimestamp()
                 .setAuthor(
                   interaction.user.tag,
@@ -111,7 +111,7 @@ module.exports = {
                 )
                 .setTimestamp()
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
-                .setColor("RED"),
+                .setColor("Red"),
             ],
           });
         }

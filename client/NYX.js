@@ -79,7 +79,7 @@ class NYX extends Client {
   err(c, e) {
     const embed = new EmbedBuilder()
       .setTitle("An Error Occured")
-      .setColor("RED")
+      .setColor("Red")
       .setDescription(`❌ | ${e}`)
       .setTimestamp()
       .setFooter({
