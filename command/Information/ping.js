@@ -11,7 +11,7 @@ module.exports = {
     const Embed = new EmbedBuilder()
       .setTitle("<a:pong:897383314405605436> Pong!")
       .setAuthor({
-        name: `${interaction.user.username}`,
+        name: interaction.user.username,
         iconURL: interaction.user.displayAvatarURL(),
       })
       .setDescription(

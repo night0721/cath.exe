@@ -82,10 +82,10 @@ module.exports = {
     //   activities = "None";
     // } else activities = "None";
     const embed = new EmbedBuilder()
-      .setAuthor(
-        member.user.tag,
-        member.user.displayAvatarURL({ dynamic: true, size: 2048 })
-      )
+      .setAuthor({
+        name: member.user.tag,
+        iconURL: member.user.displayAvatarURL({ dynamic: true, size: 2048 }),
+      })
       .setTimestamp()
       .setColor(member.displayHexColor || client.color)
       .setURL(client.web)

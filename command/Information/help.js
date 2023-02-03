@@ -85,7 +85,7 @@ module.exports = {
           iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
         });
       const components = state => [
-        new Discord.MessageActionRow().addComponents(
+        new Discord.ActionRowBuilder().addComponents(
           new Discord.MessageSelectMenu()
             .setCustomId("help-menu")
             .setPlaceholder(`Please select a category`)
