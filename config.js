@@ -1,6 +1,6 @@
 module.exports = {
   prefix: "C.",
-  URL: "https://cath.gq/",
+  URL: "https://night0721.me/",
   color: "ff3636",
   Suggestion: "853319776034226186",
   Report: "853319776034226186",
