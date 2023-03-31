@@ -9,9 +9,4 @@ module.exports = {
   CMDLog: "848613827226239046",
   ErrorLog: "938538311537012796",
   ServerLog: "848613714537873518",
-  Lavalink: {
-    Host: "lavalink-repl.thunderemperor.repl.co",
-    Port: 443,
-    Password: "0638xxtXRH887UQQ",
-  },
 };
