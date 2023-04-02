@@ -47,9 +47,7 @@ module.exports = {
       evaled = err;
     }
     if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
-    console.log(evaled);
     evaled = chunk([evaled], 750);
-    console.log(evaled);
     let reactions = ["❌", "⏪", "◀️", "⏹️", "▶️", "⏩"],
       page = 0,
       evaledEmbed = new Discord.EmbedBuilder()

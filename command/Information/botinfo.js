@@ -5,18 +5,15 @@ module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Information",
-
-  run: async (client, interaction) => {
+  run: async (client, interaction, args, utils) => {
     const embed = new EmbedBuilder()
       .setTitle(`NYX - CODM Gunsmith Bot`)
-      .setURL(
-        `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands`
-      )
+      .setURL(utils.inviteLink(client.user.id))
       .setThumbnail(
         "https://media.discordapp.net/attachments/896078559293104128/896392631565828146/nyx_logo_transparent.webp"
       )
       .setColor(client.color)
-      .addFields(
+      .addFields([
         {
           name: `General`,
           value: `
@@ -39,24 +36,24 @@ module.exports = {
           Commands ❯ \`${client.slashCommands.size}\`
           `,
           inline: true,
-        }
-      )
-      .addFields({
-        name: `Platform`,
-        value: `
-          NYX ❯ \`v${version}\`
-          Discord.js ❯ \`v${djsversion}\`
-          Node.js ❯ \`${process.version}\``,
-      })
-      .addFields({
-        name: `**${client.author}**`,
-        value: `**Development Management**\n\u3000Ń1ght#0001\n\u3000Cat drinking a cat#0795\n\u3000mightyful#6536\n\u3000Thunder#2128\n\u3000mobo#9277\n
-        **Research & Documentation**\n\u3000𝔔𝓻𝔦ค𝔁𝔖ค𝔦ӄø#0690\n\u3000Thunder#2128\n
-        **Website**\n\u3000Chunchunmaru#8570`,
-      })
+        },
+        {
+          name: `Platform`,
+          value: `
+            NYX ❯ \`v${version}\`
+            Discord.js ❯ \`v${djsversion}\`
+            Node.js ❯ \`${process.version}\``,
+        },
+        {
+          name: `**${client.author}**`,
+          value: `**Development Management**\n\u3000Ń1ght#0001\n\u3000Cat drinking a cat#0795\n\u3000mightyful#6536\n\u3000Thunder#2128\n\u3000mobo#9277\n
+          **Research & Documentation**\n\u3000Thunder#2128\n
+          **Website**\n\u3000Chunchunmaru#8570`,
+        },
+      ])
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });

@@ -693,7 +693,7 @@ module.exports = {
         .setImage(data.imageUrl)
         .setFooter({
           text: `Builds Aggregated by ${client.author}`,
-          iconURL: client.user.displayAvatarURL(),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
         .setTimestamp()
         .addFields(

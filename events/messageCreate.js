@@ -1,6 +1,6 @@
 const client = require("..");
 const { EmbedBuilder } = require("discord.js");
-const utils = require("../util/functions/function");
+const Utils = require("../util/functions/function");
 const domains = require("../util/Data/domains.json");
 client.on("messageCreate", async message => {
   if (message.author.bot || !message.guild) return;
@@ -22,7 +22,7 @@ client.on("messageCreate", async message => {
         },
         {
           name: ":link: **Invite Me**",
-          value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+          value: `[Click Here](${Utils.inviteLink(client)})`,
           inline: true,
         },
         {
@@ -53,11 +53,11 @@ client.on("messageCreate", async message => {
       )
       .setTitle(client.user.username)
 
-      .setThumbnail(client.user.displayAvatarURL())
+      .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
       .setURL(client.web)
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp()
       .setColor(client.color);
@@ -125,7 +125,7 @@ client.on("messageCreate", async message => {
       )
       .setFooter({
         text: `Tactical Protection by ${client.author}`,
-        icon_url: client.user.displayAvatarURL(),
+        icon_url: client.user.displayAvatarURL({ dynamic: true }),
       });
     message.channel.send({
       embeds: [_],
@@ -164,7 +164,7 @@ client.on("messageCreate", async message => {
       .addFields(
         {
           name: ":link: **Invite Me**",
-          value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+          value: `[Click Here](${Utils.inviteLink(client.user.id)})`,
           inline: true,
         },
         {

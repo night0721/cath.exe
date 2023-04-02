@@ -154,7 +154,7 @@ module.exports = {
       .setThumbnail(d.preview)
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setColor(
         d.type == "lethal"

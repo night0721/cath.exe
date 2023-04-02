@@ -19,21 +19,25 @@ module.exports = {
       .setTitle("Guilds")
       .setDescription(description)
       .setColor(client.color)
-      .addFields(
+      .addFields([
         {
           name: `Total Guilds`,
-          value: client.guilds.cache.size,
+          value: client.guilds.cache.size
+            ? client.guilds.cache.size.toString()
+            : "0",
           inline: true,
         },
         {
           name: `Total Members`,
-          value: client.users.cache.size,
+          value: client.users.cache.size
+            ? client.users.cache.size.toString()
+            : "0",
           inline: true,
-        }
-      )
+        },
+      ])
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });

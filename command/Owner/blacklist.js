@@ -41,7 +41,7 @@ module.exports = {
         .setColor(client.color)
         .setFooter({
           text: `Made by ${client.author}`,
-          iconURL: client.user.displayAvatarURL(),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
         .setTimestamp();
       interaction.followUp({ embeds: [embed] });
@@ -56,7 +56,7 @@ module.exports = {
         .setColor(client.color)
         .setFooter({
           text: `Made by ${client.author}`,
-          iconURL: client.user.displayAvatarURL(),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
         .setTimestamp();
       interaction.followUp({ embeds: [embed] });

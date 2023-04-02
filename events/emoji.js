@@ -13,7 +13,7 @@ client.on("messageCreate", async message => {
   if (message.content.startsWith(":") && message.content.endsWith(":")) {
     const EmojiName = message.content.slice(1, -1);
     if (client.path.includes(message.guild.id)) return;
-    if (Check(EmojiName) === true) {
+    if (Check(EmojiName)) {
       const channel = client.channels.cache.get(message.channel.id);
       try {
         if (message.author.bot) return;
@@ -22,7 +22,7 @@ client.on("messageCreate", async message => {
         if (webhook === undefined || null || !webhook) {
           channel
             .createWebhook(client.user.username, {
-              avatar: client.user.displayAvatarURL(),
+              avatar: client.user.displayAvatarURL({ dynamic: true }),
             })
             .then(async w => {
               const emoji =
@@ -42,7 +42,7 @@ client.on("messageCreate", async message => {
           client.emojis.cache.find(e => e.name == EmojiName).id ||
           message.guild.emojis.cache.find(e => e.name === EmojiName).id;
 
-        await webhook.send(`${client.emojis.cache.get(emoji)}`, {
+        await webhook.send(client.emojis.cache.get(emoji), {
           username: message.author.username,
           avatarURL: message.author.displayAvatarURL({ dynamic: true }),
         });
@@ -50,10 +50,6 @@ client.on("messageCreate", async message => {
       } catch (e) {
         console.log(e);
       }
-    } else {
-      return;
     }
-  } else {
-    return;
   }
 });

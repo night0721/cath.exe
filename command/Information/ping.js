@@ -12,7 +12,7 @@ module.exports = {
       .setTitle("<a:pong:897383314405605436> Pong!")
       .setAuthor({
         name: interaction.user.username,
-        iconURL: interaction.user.displayAvatarURL(),
+        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
         `\n 📨 • **Message Latency** \`${Math.floor(messageping)}ms\`
@@ -20,7 +20,7 @@ module.exports = {
       )
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp()
       .setColor(

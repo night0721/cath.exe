@@ -53,16 +53,20 @@ module.exports = {
       .setColor("Red")
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp();
+    let fields = [];
     for (let i = 0; i < args.length - 1; i++) {
-      pollCreateEmbed.addField(
-        "‎",
-        `:regional_indicator_${String.fromCharCode(97 + i)}: ${args[i + 1]}
-        `
-      );
+      fields.push({
+        name: "‎",
+        value: `:regional_indicator_${String.fromCharCode(97 + i)}: ${
+          args[i + 1]
+        }
+        `,
+      });
     }
+    pollCreateEmbed.addFields(fields);
     let embedMessage = await interaction.followUp({
       embeds: [pollCreateEmbed],
     });

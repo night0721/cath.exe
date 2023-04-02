@@ -8,11 +8,8 @@ module.exports = {
   run: async (client, interaction) => {
     const data = async () => {
       const d = await model.findOne({});
-      const weapons =
-        d.Primary[0][
-          d.Categories[Math.floor(Math.random() * d.Categories.length)]
-        ];
-      return `${weapons[Math.floor(Math.random() * weapons.length)]}`;
+      const weapons = d.Primary[0][d.Categories.random()];
+      return `${weapons.random()}`;
     };
     const primary_weapon = await data();
     const primary = primary_weapon.replace(/[ -]/g, "_").replace(/\./g, "");
@@ -40,7 +37,7 @@ module.exports = {
       .setURL(client.web)
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setTimestamp();
     interaction.followUp({ embeds: [result] });
@@ -52,7 +49,7 @@ module.exports = {
     }
     function getAttachment(gun, slot) {
       const ca = Attachments[gun][0][slot];
-      return ca[Math.floor(Math.random() * ca.length)];
+      return ca.random();
     }
   },
 };

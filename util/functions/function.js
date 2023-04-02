@@ -1,7 +1,48 @@
-const { EmbedBuilder, MessageActionRow, MessageButton } = require("discord.js");
+const {
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+} = require("discord.js");
+/**
+ * Returns a random element from an array
+ * @returns {any}
+ */
+Array.prototype.random = function () {
+  return this[~~(Math.random() * this.length)];
+};
 function rndint(max, min) {
   return Math.floor(Math.random() * (max - (min ? min : 0))) + (min ? min : 0);
 }
+function parseDate(date) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let dow = date.getDate().toString();
+  return `${date.toLocaleDateString("en-US", {
+    weekday: "long",
+  })}, ${months[date.getMonth() - 1]} ${
+    dow.endsWith("1")
+      ? `${dow}st`
+      : dow.endsWith("2")
+      ? `${dow}nd`
+      : dow.endsWith("3")
+      ? `${dow}rd`
+      : `${dow}th`
+  } ${date.getFullYear()}, ${date.toLocaleTimeString()}`;
+}
+
 function timer(timestamp) {
   const timeLeft = timestamp;
   const days = Math.floor(timeLeft / 86400000);
@@ -421,7 +462,7 @@ function tips(interaction, client) {
           .setDescription(`**💡 Did you know**\n${rTip}`)
           .setFooter({
             text: `Made by ${client.author}`,
-            iconURL: client.user.displayAvatarURL(),
+            iconURL: client.user.displayAvatarURL({ dynamic: true }),
           })
           .setTimestamp()
           .setURL(client.web),
@@ -429,35 +470,36 @@ function tips(interaction, client) {
     });
   }
 }
+function inviteLink(client_id) {
+  return `https://discord.com/oauth2/authorize?client_id=${client_id}&permissions=1512097384560&scope=bot%20applications.commands`;
+}
 function buttons(client) {
-  const invite = new MessageButton()
+  const invite = new ButtonBuilder()
     .setLabel("Invite the bot!")
-    .setStyle("LINK")
+    .setStyle(ButtonStyle.Link)
     .setEmoji("896527406100283462")
-    .setURL(
-      `https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands`
-    );
-  const support = new MessageButton()
+    .setURL(inviteLink(client.user.id));
+  const support = new ButtonBuilder()
     .setLabel("Support Server")
-    .setStyle("LINK")
+    .setStyle(ButtonStyle.Link)
     .setEmoji("867093614403256350")
-    .setURL("https://discord.gg/SbQHChmGcp");
-  const website = new MessageButton()
+    .setURL(client.invite);
+  const website = new ButtonBuilder()
     .setLabel("Website")
-    .setStyle("LINK")
+    .setStyle(ButtonStyle.Link)
     .setEmoji("🖥")
-    .setURL("https://cath.gq/");
-  const youtube = new MessageButton()
+    .setURL(client.web);
+  const youtube = new ButtonBuilder()
     .setLabel("YouTube")
-    .setStyle("LINK")
+    .setStyle(ButtonStyle.Link)
     .setEmoji("841186450497339412")
     .setURL("https://youtube.com/Kirito01");
-  const kofi = new MessageButton()
+  const kofi = new ButtonBuilder()
     .setLabel("Ko-fi")
-    .setStyle("LINK")
+    .setStyle(ButtonStyle.Link)
     .setEmoji("900590344364757013")
     .setURL("https://ko-fi.com/cathteam");
-  const row = new MessageActionRow().addComponents(
+  const row = new ActionRowBuilder().addComponents(
     invite,
     support,
     website,
@@ -751,6 +793,7 @@ function convert(value, unit, unitValues) {
 
 module.exports = {
   rndint,
+  parseDate,
   timer,
   sleep,
   toHHMMSS,
@@ -767,6 +810,7 @@ module.exports = {
   getAllTextFromEmbed,
   clean,
   tips,
+  inviteLink,
   buttons,
   colorize,
   leven,

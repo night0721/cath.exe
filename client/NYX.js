@@ -32,12 +32,11 @@ class NYX extends Client {
       ],
       intents: [
         GatewayIntentBits.Guilds,
-        // GatewayIntentBits.GuildMembers,
-        // GatewayIntentBits.MessageContent,
-        // GatewayIntentBits.GuildPresences,
-        // GatewayIntentBits.GuildMessages,
-        // GatewayIntentBits.GuildMessageReactions,
-        // GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.DirectMessages,
       ],
     }
   ) {
@@ -76,24 +75,18 @@ class NYX extends Client {
       .then(() => console.log("Connected to MongoDB ✅"))
       .catch(e => console.log(e));
   }
-  err(c, e) {
+  err(interaction, error) {
     const embed = new EmbedBuilder()
       .setTitle("An Error Occured")
       .setColor("Red")
-      .setDescription(`❌ | ${e}`)
+      .setDescription(`❌ | ${error}`)
       .setTimestamp()
       .setFooter({
         text: `Made by ${this.author}`,
-        iconURL: this.user.displayAvatarURL(),
+        iconURL: this.user.displayAvatarURL({ dynamic: true }),
       });
-    c.followUp({ embeds: [embed] });
-  }
-  se(c, e) {
-    const embed = new EmbedBuilder()
-      .setColor(this.color)
-      .setDescription(e)
-      .setTimestamp();
-    c.followUp({ embeds: [embed] });
+    interaction.channel.send({ embeds: [embed] });
+    this.channels.cache.get(this.config.ErrorLog).send({ embeds: [embed] });
   }
 }
 

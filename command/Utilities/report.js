@@ -4,7 +4,6 @@ module.exports = {
   name: "report",
   description: "Report a bug of the bot",
   category: "Utilities",
-
   options: [
     {
       type: 3,
@@ -14,7 +13,6 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const bug = args[0];
     interaction.followUp({
       embeds: [
         new EmbedBuilder()
@@ -24,23 +22,22 @@ module.exports = {
           )
           .setFooter({
             text: `Made by ${client.author}`,
-            iconURL: client.user.displayAvatarURL(),
+            iconURL: client.user.displayAvatarURL({ dynamic: true }),
           })
           .setTimestamp()
           .setColor("Green"),
       ],
     });
-    const ch = client.channels.cache.get(client.config.Report);
-    ch.send({
+    client.channels.cache.get(client.config.Report).send({
       embeds: [
         new EmbedBuilder()
-          .setAuthor(
-            interaction.user.tag,
-            interaction.user.displayAvatarURL({ dynamic: true })
-          )
+          .setAuthor({
+            name: interaction.user.tag,
+            iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+          })
           .setTitle("New Bug")
-          .setDescription(bug)
-          .setColor("ORANGE")
+          .setDescription(args[0])
+          .setColor("Orange")
           .setTimestamp(),
       ],
     });

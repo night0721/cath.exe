@@ -40,12 +40,9 @@ client.on("interactionCreate", async interaction => {
     if (!guildDB) return;
     const userDB = await client.data.getUser(interaction.user.id);
     if (!userDB) return;
-    // const userEconDB = await client.data.getUserEcon(interaction.user.id);
     data.Guild = guildDB;
     data.User = userDB;
-    // data.UserEcon = userEconDB;
     if (!guildDB) await client.data.CreateGuild(interaction.guild.id);
-    //if (!userEconDB) await client.createProfile(interaction.user.id);
     if (data.User) {
       if (data.User.Blacklist) {
         return interaction.followUp({
@@ -74,7 +71,7 @@ client.on("interactionCreate", async interaction => {
               .setTimestamp()
               .setFooter({
                 text: `Made by ${client.author}`,
-                iconURL: client.user.displayAvatarURL(),
+                iconURL: client.user.displayAvatarURL({ dynamic: true }),
               }),
           ],
         });
@@ -110,13 +107,6 @@ client.on("interactionCreate", async interaction => {
         }
       }
     }
-    const random = utils.rndint(3, 6);
-    if (cmd.name == "nsfw" && !data.Guild?.NSFW) {
-      interaction.followUp({
-        content: "NSFW commands have been disabled in this server",
-      });
-      return;
-    }
     if (cmd.timeout) {
       const current_time = Date.now();
       const cooldown_amount = cmd.timeout;
@@ -141,7 +131,6 @@ client.on("interactionCreate", async interaction => {
               client.channels.cache.get(client.config.CMDLog).send({
                 content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
               });
-              // await client.addXP(interaction.user.id, random, interaction);
             }
           } else {
             if (data.Guild.Tips) utils.tips(interaction, client);
@@ -152,7 +141,6 @@ client.on("interactionCreate", async interaction => {
               content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
             });
             // client.addcmdsused(interaction.user.id);
-            // await client.addXP(interaction.user.id, random, interaction);
             new cooldown({
               User: interaction.user.id,
               CMD: cmd.name,
@@ -170,8 +158,6 @@ client.on("interactionCreate", async interaction => {
       client.channels.cache.get(client.config.CMDLog).send({
         content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
       });
-      // client.addcmdsused(interaction.user.id);
-      // await client.addXP(interaction.user.id, random, interaction);
     }
   }
   if (interaction.isContextMenuCommand()) {
@@ -205,10 +191,10 @@ client.on("interactionCreate", async interaction => {
     client.channels.cache.get(client.config.CMDLog).send({
       content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${ownercmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
     });
-    //client.addcmdsused(interaction.user.id);
   }
 });
 function sendE(e, i) {
+  console.error(e.stack);
   const embed = new EmbedBuilder()
     .setTitle("Command Error")
     .setDescription(`\`\`\`yaml\n${e.stack}\`\`\``)

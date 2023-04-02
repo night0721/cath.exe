@@ -38,11 +38,15 @@ module.exports = {
         })})**`
       )
       .setImage(
-        member.user.displayAvatarURL({ size: 2048, dynamic: true, format: "png" })
+        member.user.displayAvatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "png",
+        })
       )
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
+        iconURL: client.user.displayAvatarURL({ dynamic: true }),
       })
       .setURL(client.web)
       .setTimestamp();

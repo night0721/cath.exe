@@ -14,7 +14,7 @@ client.on("guildCreate", guild => {
         })
         .setFooter({
           text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
-          iconURL: client.user.displayAvatarURL(),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))
@@ -42,7 +42,7 @@ client.on("guildDelete", async guild => {
         })
         .setFooter({
           text: `${client.user.username} Currently in ${client.guilds.cache.size} servers`,
-          iconURL: client.user.displayAvatarURL(),
+          iconURL: client.user.displayAvatarURL({ dynamic: true }),
         })
         .setTimestamp()
         .setThumbnail(guild.iconURL({ dynamic: true }))

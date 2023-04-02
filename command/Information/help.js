@@ -1,4 +1,12 @@
-const Discord = require("discord.js");
+const {
+  EmbedBuilder,
+  Client,
+  CommandInteraction,
+  ActionRowBuilder,
+  StringSelectMenuBuilder,
+  ComponentType,
+} = require("discord.js");
+const Utils = require("../../util/functions/function");
 module.exports = {
   name: "help",
   usage: "(Command/Category)",
@@ -12,20 +20,22 @@ module.exports = {
       required: false,
     },
   ],
+  /**
+   *
+   * @param {Client} client
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   * @param {Utils} utils
+   */
   run: async (client, interaction, args, utils) => {
     if (!args[0]) {
       await interaction.deleteReply();
       const emoji = {
         CODM: "<a:codm:897030768793104385>",
+        APEX: "🎆",
         Config: "<a:config:896990033561669762>",
-        Economy: client.currency,
-        Fun: "<a:fun:896889821816053790>",
-        Moderation: "<:discordmod:897364105730617364>",
         Information: "<a:information:894962394932064346>",
         Utilities: "<a:utilites:897233087941988392>",
-        Music: "<a:music:897017864085712936>",
-        Giveaway: "<a:confetti:896763534682226758>",
-        NSFW: "🍑",
       };
       const directories = [
         ...new Set(client.slashCommands.map(cmd => cmd.directory)),
@@ -44,7 +54,7 @@ module.exports = {
           commands: getCmds,
         };
       });
-      const embed = new Discord.EmbedBuilder()
+      const embed = new EmbedBuilder()
         .setTitle(`**NYX's Commands**`)
         .setDescription(`Please choose a category in the dropdown menu`)
         .setColor(client.color)
@@ -52,12 +62,12 @@ module.exports = {
         .addFields(
           {
             name: ":link: **Invite Me**",
-            value: `[Click Here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=4231314550&scope=bot%20applications.commands)`,
+            value: `[Click Here](${utils.inviteLink(client.user.id)})`,
             inline: true,
           },
           {
             name: "<:support1:867093614403256350> **Need Help ?**",
-            value: `[Support Server](https://discord.gg/SbQHChmGcp)`,
+            value: `[Support Server](${client.invite})`,
             inline: true,
           },
           {
@@ -85,8 +95,8 @@ module.exports = {
           iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
         });
       const components = state => [
-        new Discord.ActionRowBuilder().addComponents(
-          new Discord.MessageSelectMenu()
+        new ActionRowBuilder().addComponents(
+          new StringSelectMenuBuilder()
             .setCustomId("help-menu")
             .setPlaceholder(`Please select a category`)
             .setDisabled(state)
@@ -110,13 +120,13 @@ module.exports = {
       const filter = m => m.user.id === interaction.user.id;
       const collector = interaction.channel.createMessageComponentCollector({
         filter,
-        componentType: "SELECT_MENU",
+        componentType: ComponentType.StringSelect,
         time: 60000,
       });
       collector.on("collect", async interaction => {
         const [directory] = interaction.values;
         const category = categories.find(u => u.directory === directory);
-        const newembed = new Discord.EmbedBuilder()
+        const newembed = new EmbedBuilder()
           .setTitle(
             `${emoji[directory]} ${directory} Commands ${emoji[directory]}`
           )
@@ -138,8 +148,8 @@ module.exports = {
     } else {
       const command = client.slashCommands.get(args[0].toLowerCase());
       if (!command) {
-        interaction.followUp({
-          content: `There isn't any command or category named "${args[0]}"`,
+        interaction.editReply({
+          content: `There isn't any command named "${args[0]}"`,
         });
       } else {
         if (command.UserPerms && Array.isArray(command.UserPerms)) {
@@ -164,36 +174,59 @@ module.exports = {
             .map(y => y[0] + y.substring(1, y.length).toLowerCase())
             .join(" ")
         ).join(", ");
-        const embed = new Discord.EmbedBuilder()
+        const fields = [];
+        const embed = new EmbedBuilder()
           .setTitle(`"${command.name}" command details`)
-          .addField(
-            "**Command**:",
-            command.name ? `\`${command.name}\`` : "N/A"
-          );
+          .addFields([
+            {
+              name: "**Command**:",
+              value: command.name ? `\`${command.name}\`` : "N/A",
+            },
+          ]);
         if (command.usage)
-          embed.addField("**Usage**:", `\`/${command.name} ${command.usage}\``);
-        else embed.addField("**Usage**:", `\`/${command.name}\``);
+          fields.push({
+            name: "**Usage**:",
+            value: `\`/${command.name} ${command.usage}\``,
+          });
+        else
+          fields.push({
+            name: "**Usage**:",
+            value: `\`/${command.name}\``,
+          });
 
         if (command.description)
-          embed.addField("**Description**:", command.description);
+          fields.push({
+            name: "**Description**:",
+            value: command.description,
+          });
 
         if (command.timeout)
-          embed.addField("**Cooldown**:", utils.timer(command.timeout));
+          fields.push({
+            name: "**Cooldown**:",
+            value: utils.timer(command.timeout),
+          });
 
         if (command.UserPerms)
-          embed.addField("**Required User Permission**:", UserPerms);
+          fields.push({
+            name: "**Required User Permission**:",
+            value: UserPerms,
+          });
 
         if (command.BotPerms)
-          embed.addField("**Required Bot Permission**:", BotPerms);
+          fields.push({
+            name: "**Required Bot Permission**:",
+            value: BotPerms,
+          });
         embed
           .setFooter({
             text: `Requested by ${interaction.user.tag}`,
             iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
           })
           .setTimestamp()
+          .addFields(fields)
           .setURL(client.web)
           .setColor(client.color);
-        interaction.followUp({ embeds: [embed] });
+        interaction.editReply({ embeds: [embed] });
       }
     }
   },
