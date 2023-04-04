@@ -226,7 +226,7 @@ module.exports = {
           .addFields(fields)
           .setURL(client.web)
           .setColor(client.color);
-        interaction.editReply({ embeds: [embed] });
+        interaction.followUp({ embeds: [embed] });
       }
     }
   },
