@@ -7,7 +7,6 @@ mongoose.set("useFindAndModify", false);
 const u = require("../../models/users");
 const g = require("../../models/guilds");
 const m = require("../../models/bot");
-const e = require("../../models/econ");
 module.exports = {
   /**
    * @param {String} URI - Mongo Connection URI
