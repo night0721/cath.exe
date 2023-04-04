@@ -8,19 +8,6 @@ module.exports = {
   options: [
     {
       type: 1,
-      name: "muterole",
-      description: "Configure mute role settings for the server",
-      options: [
-        {
-          type: 8,
-          name: "role",
-          description: "The role for muted users",
-          required: true,
-        },
-      ],
-    },
-    {
-      type: 1,
       name: "prefix",
       description: "Configure prefix settings for the server",
       options: [
@@ -56,20 +43,6 @@ module.exports = {
           type: 7,
           name: "channel",
           description: "The channel for goodbye messages",
-          required: true,
-          channelTypes: [0],
-        },
-      ],
-    },
-    {
-      type: 1,
-      name: "chatbot",
-      description: "Configure chatbot channel settings for the server",
-      options: [
-        {
-          type: 7,
-          name: "channel",
-          description: "The channel for chatbotmessages",
           required: true,
           channelTypes: [0],
         },
@@ -217,32 +190,6 @@ module.exports = {
     },
     {
       type: 1,
-      name: "level",
-      description: "Configure level settings for the server",
-      options: [
-        {
-          type: 5,
-          name: "choice",
-          description: "Set whether level system is activated for the server",
-          required: true,
-        },
-      ],
-    },
-    {
-      type: 1,
-      name: "nsfw",
-      description: "Configure nsfw settings for the server",
-      options: [
-        {
-          type: 5,
-          name: "choice",
-          description: "Set whether NSFW commands are activated for the server",
-          required: true,
-        },
-      ],
-    },
-    {
-      type: 1,
       name: "tips",
       description: "Configure tips settings for the server",
       options: [
@@ -262,17 +209,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args, utils, data) => {
-    if (args[0].toLowerCase() === "muterole") {
-      const role = interaction.guild.roles.cache.get(args[1]);
-      if (role.managed) {
-        interaction.followUp({ content: "You must provide a non bot role" });
-      } else {
-        await client.data.setMuterole(interaction.guild.id, args[1]);
-        interaction.followUp({
-          content: `Saved **${role.name}** as the mute role`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "prefix") {
+    if (args[0].toLowerCase() === "prefix") {
       await client.data.setPrefix(interaction.guild.id, args[1]);
       interaction.followUp({ content: `Saved \`${args[2]}\` as the prefix` });
     } else if (args[0].toLowerCase() === "welcome") {
@@ -293,16 +230,6 @@ module.exports = {
         await client.data.setGoodbye(interaction.guild.id, args[1]);
         interaction.followUp({
           content: `Saved **${channel}** as the goodbye channel`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "chatbot") {
-      const channel = interaction.guild.channels.cache.get(args[1]);
-      if (channel.type !== "GUILD_TEXT") {
-        interaction.followUp({ content: "Please provide a text channel" });
-      } else {
-        await client.data.setChatbot(interaction.guild.id, args[1]);
-        interaction.followUp({
-          content: `Saved **${channel}** as the chatbot channel`,
         });
       }
     } else if (args[0].toLowerCase() === "log") {
@@ -328,30 +255,6 @@ module.exports = {
         );
         interaction.followUp({
           content: `Saved **${channel}** as the log channel`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "level") {
-      if (args[1]) {
-        await client.data.setGLevel(interaction.guild.id, "true");
-        interaction.followUp({
-          content: `Levelling is enabled in this server now.`,
-        });
-      } else {
-        await client.data.setGLevel(interaction.guild.id, "false");
-        interaction.followUp({
-          content: `Levelling is disabled in this server now.`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "nsfw") {
-      if (args[1]) {
-        await client.data.setNSFW(interaction.guild.id, "true");
-        interaction.followUp({
-          content: `NSFW is enabled in this server now.`,
-        });
-      } else {
-        await client.data.setNSFW(interaction.guild.id, "false");
-        interaction.followUp({
-          content: `NSFW is disabled in this server now.`,
         });
       }
     } else if (args[0].toLowerCase() === "tips") {
@@ -446,11 +349,6 @@ module.exports = {
       }
     } else {
       const d = `
-      **Mute Role**: ${
-        interaction.guild.roles.cache.get(data.Guild.Muterole)
-          ? interaction.guild.roles.cache.get(data.Guild.Muterole)
-          : "None"
-      }
       **Prefix**: ${data.Guild.Prefix ? data.Guild.Prefix : "C."}
       **Welcome Channel**:  ${
         interaction.guild.channels.cache.get(data.Guild.Welcome)
@@ -462,18 +360,11 @@ module.exports = {
           ? interaction.guild.channels.cache.get(data.Guild.Goodbye)
           : "None"
       }
-      **Chatbot Channel**:  ${
-        interaction.guild.channels.cache.get(data.Guild.Chatbot)
-          ? interaction.guild.channels.cache.get(data.Guild.Chatbot)
-          : "None"
-      }
       **Log Channel**:  ${
         interaction.guild.channels.cache.get(data.Guild.Log)
           ? interaction.guild.channels.cache.get(data.Guild.Log)
           : "None"
       }
-      **Level**: ${data.Guild.Level ? "Enable" : "Disabled"}
-      **NSFW**: ${data.Guild.NSFW ? "Enable" : "Disabled"}
       **Tips**: ${data.Guild.Tips ? "Enable" : "Disabled"}
       **Disabled Commands**: ${
         data.Guild.Commands.length ? data.Guilds.Commands.join(",") : "None"
