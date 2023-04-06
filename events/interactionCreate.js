@@ -9,7 +9,7 @@ client.on("interactionCreate", async interaction => {
     if (!cmd) return;
     const args = [];
     for (const option of interaction.options.data) {
-      if (option.type === "SUB_COMMAND_GROUP") {
+      if (option.type === 2) {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
           if (x.type === 1) {
@@ -23,7 +23,7 @@ client.on("interactionCreate", async interaction => {
           if (x.value) args.push(x.value);
         });
       }
-      if (option.type === "SUB_COMMAND") {
+      if (option.type === 1) {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
           if (x.value) args.push(x.value);

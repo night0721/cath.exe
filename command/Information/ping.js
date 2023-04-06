@@ -2,7 +2,6 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "ping",
   description: "Check bot latency to Discord API",
-
   category: "Information",
   run: async (client, interaction, args) => {
     const msg = await interaction.channel.send(`Pinging...`);

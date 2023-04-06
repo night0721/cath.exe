@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 const axios = require("axios");
 module.exports = {
@@ -657,6 +657,12 @@ module.exports = {
       ],
     },
   ],
+  /**
+   *
+   * @param {Client} client
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   */
   run: async (client, interaction, args) => {
     const cwts = args[1];
     const cc = args[2];

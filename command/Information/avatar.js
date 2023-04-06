@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder } = require("discord.js");
 module.exports = {
   name: "avatar",
   description: "Show user's avatar in different formats",
@@ -12,7 +12,12 @@ module.exports = {
       required: false,
     },
   ],
-  run: async (client, interaction, args) => {
+  /**
+   *
+   * @param {Client} client
+   * @param {CommandInteraction} interaction
+   * @param {String[]} args
+   */ run: async (client, interaction, args) => {
     const member =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
     const embed = new EmbedBuilder()
