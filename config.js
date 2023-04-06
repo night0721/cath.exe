@@ -9,4 +9,5 @@ module.exports = {
   CMDLog: "848613827226239046",
   ErrorLog: "938538311537012796",
   ServerLog: "848613714537873518",
+  ScamLinkLog: "936986641585799178",
 };

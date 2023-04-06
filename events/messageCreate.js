@@ -1,5 +1,5 @@
 const client = require("..");
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ChannelType } = require("discord.js");
 const Utils = require("../util/functions/function");
 const domains = require("../util/Data/domains.json");
 client.on("messageCreate", async message => {
@@ -11,6 +11,7 @@ client.on("messageCreate", async message => {
   if (!userDB) return;
   data.Guild = guildDB;
   data.User = userDB;
+  console.log(message.content);
   if (!guildDB) await client.data.CreateGuild(message.guild.id);
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const _ = new EmbedBuilder()
@@ -63,7 +64,7 @@ client.on("messageCreate", async message => {
       .setColor(client.color);
     const m = await message.reply({
       embeds: [_],
-      components: utils.buttons(client),
+      components: Utils.buttons(client),
     });
     setTimeout(() => m.delete(), 15000);
   }
@@ -130,7 +131,7 @@ client.on("messageCreate", async message => {
     message.channel.send({
       embeds: [_],
     });
-    client.channels.cache.get("936986641585799178").send({
+    client.channels.cache.get(client.config.ScamLinkLog).send({
       embeds: [
         _.addFields(
           {
@@ -151,8 +152,7 @@ client.on("messageCreate", async message => {
 
   if (
     message?.content.startsWith(data.Guild.Prefix) ||
-    message?.content.startsWith("C.") ||
-    message?.content.startsWith("c.")
+    message?.content.toLowerCase().startsWith("c.")
   ) {
     const embed = new EmbedBuilder()
       .setTitle(`Message commands are now disabled`)
@@ -198,16 +198,18 @@ client.on("messageCreate", async message => {
         text: `Requested by ${message.author.tag}`,
         iconURL: message.author.displayAvatarURL({ dynamic: true }),
       })
-      // .setThumbnail("../../util/assets/images/nyx_logo_transparent.webp")
+      .setThumbnail(
+        "https://github.com/night0721/cath.exe/blob/main/util/assets/images/nyx_logo_transparent.webp"
+      )
       .setTimestamp();
     message.reply({
       embeds: [embed],
-      components: utils.buttons(client),
+      components: Utils.buttons(client),
     });
   }
 });
 client.on("messageCreate", async message => {
-  if (message.channel.type === "DM" && !message.author.bot) {
+  if (message.channel.type === ChannelType.DM && !message.author.bot) {
     if (message.attachments && message?.content) {
       message.attachments.map(e =>
         client.channels.cache.get(client.config.DMLog).send({

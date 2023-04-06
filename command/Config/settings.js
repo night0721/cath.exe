@@ -21,48 +21,6 @@ module.exports = {
       ],
     },
     {
-      type: 1,
-      name: "welcome",
-      description: "Configure welcome channel settings for the server",
-      options: [
-        {
-          type: 7,
-          name: "channel",
-          description: "The channel for welcome messages",
-          required: true,
-          channelTypes: [0],
-        },
-      ],
-    },
-    {
-      type: 1,
-      name: "goodbye",
-      description: "Configure goodbye channel settings for the server",
-      options: [
-        {
-          type: 7,
-          name: "channel",
-          description: "The channel for goodbye messages",
-          required: true,
-          channelTypes: [0],
-        },
-      ],
-    },
-    {
-      type: 1,
-      name: "log",
-      description: "Configure log channel settings for the server",
-      options: [
-        {
-          type: 7,
-          name: "channel",
-          description: "The channel for log messages",
-          required: true,
-          channelTypes: [0],
-        },
-      ],
-    },
-    {
       type: 2,
       name: "enable",
       description: "Enable commands/category for the server",
@@ -212,51 +170,6 @@ module.exports = {
     if (args[0].toLowerCase() === "prefix") {
       await client.data.setPrefix(interaction.guild.id, args[1]);
       interaction.followUp({ content: `Saved \`${args[2]}\` as the prefix` });
-    } else if (args[0].toLowerCase() === "welcome") {
-      const channel = interaction.guild.channels.cache.get(args[1]);
-      if (channel.type !== "GUILD_TEXT") {
-        interaction.followUp({ content: "Please provide a text channel" });
-      } else {
-        await client.data.setWelcome(interaction.guild.id, args[1]);
-        interaction.followUp({
-          content: `Saved **${channel}** as the welcome channel`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "goodbye") {
-      const channel = interaction.guild.channels.cache.get(args[1]);
-      if (channel.type !== "GUILD_TEXT") {
-        interaction.followUp({ content: "Please provide a text channel" });
-      } else {
-        await client.data.setGoodbye(interaction.guild.id, args[1]);
-        interaction.followUp({
-          content: `Saved **${channel}** as the goodbye channel`,
-        });
-      }
-    } else if (args[0].toLowerCase() === "log") {
-      const channel = interaction.guild.channels.cache.get(args[1]);
-      if (channel.type !== "GUILD_TEXT") {
-        interaction.followUp({ content: "Please provide a text channel" });
-      } else {
-        let webhookid;
-        let webhooktoken;
-        await channel
-          .createWebhook(interaction.guild.name, {
-            avatar: interaction.guild.iconURL({ format: "png" }),
-          })
-          .then(webhook => {
-            webhookid = webhook.id;
-            webhooktoken = webhook.token;
-          });
-        await client.data.setLog(
-          interaction.guild.id,
-          channel.id,
-          webhookid,
-          webhooktoken
-        );
-        interaction.followUp({
-          content: `Saved **${channel}** as the log channel`,
-        });
-      }
     } else if (args[0].toLowerCase() === "tips") {
       if (args[1]) {
         await client.data.setTips(interaction.guild.id, "true");
@@ -350,21 +263,6 @@ module.exports = {
     } else {
       const d = `
       **Prefix**: ${data.Guild.Prefix ? data.Guild.Prefix : "C."}
-      **Welcome Channel**:  ${
-        interaction.guild.channels.cache.get(data.Guild.Welcome)
-          ? interaction.guild.channels.cache.get(data.Guild.Welcome)
-          : "None"
-      }
-      **Goodbye Channel**:  ${
-        interaction.guild.channels.cache.get(data.Guild.Goodbye)
-          ? interaction.guild.channels.cache.get(data.Guild.Goodbye)
-          : "None"
-      }
-      **Log Channel**:  ${
-        interaction.guild.channels.cache.get(data.Guild.Log)
-          ? interaction.guild.channels.cache.get(data.Guild.Log)
-          : "None"
-      }
       **Tips**: ${data.Guild.Tips ? "Enable" : "Disabled"}
       **Disabled Commands**: ${
         data.Guild.Commands.length ? data.Guilds.Commands.join(",") : "None"

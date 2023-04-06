@@ -192,7 +192,7 @@ module.exports = {
       })
       .setTimestamp()
       .setTitle(d.perk)
-      .addField("Effects", d.effects);
+      .addFields({ name: "Effects", value: d.effects });
     interaction.followUp({ embeds: [embed] });
   },
 };

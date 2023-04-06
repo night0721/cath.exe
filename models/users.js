@@ -3,10 +3,6 @@ module.exports = mongoose.model(
   "user",
   new mongoose.Schema({
     User: String,
-    AFK: {
-      type: String,
-      default: null,
-    },
     Tier: {
       type: Number,
       default: 0,

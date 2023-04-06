@@ -1,6 +1,6 @@
 const client = require("../");
 const { EmbedBuilder } = require("discord.js");
-const { Welcome } = require("../config.js");
+const { Welcome } = require("../config");
 client.on("guildMemberAdd", async member => {
   const channel = member.guild.channels.cache.find(
     channel => channel.id == Welcome

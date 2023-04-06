@@ -16,9 +16,11 @@ module.exports = {
     try {
       const user = await client.data.getUser(interaction.user.id);
       const guild = await client.data.getGuild(interaction.guild.id);
-      if (interaction.options.getBoolean("choice") == true) {
-        if (guild.Premium == true) {
-          interaction.followUp({ content: "This server is already premium" });
+      if (interaction.options.getBoolean("choice")) {
+        if (guild.Premium) {
+          return interaction.followUp({
+            content: "This server is already premium",
+          });
         }
         if (
           (user.Tier == 1 && user.PremiumServers.length >= 5) ||
@@ -46,22 +48,22 @@ module.exports = {
                 .setFooter({ text: "Thank you for supporting Cath!" })
                 .setColor("Green")
                 .setTimestamp()
-                .setAuthor(
-                  interaction.user.tag,
-                  interaction.user.displayAvatarURL({ dynamic: true })
-                ),
+                .setAuthor({
+                  name: interaction.user.tag,
+                  iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+                }),
             ],
           });
           client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
               new EmbedBuilder()
                 .setTitle("New Premium Server")
-                .addField(
-                  "Server Info",
-                  `**>Server Name**: \n${interaction.guild.name}
+                .addFields({
+                  name: "Server Info",
+                  value: `**>Server Name**: \n${interaction.guild.name}
                   **>Server ID**: \n${interaction.guild.id}
-                  **>Server Member Count**: \n${interaction.guild.memberCount}`
-                )
+                  **>Server Member Count**: \n${interaction.guild.memberCount}`,
+                })
                 .setTimestamp()
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                 .setColor("Green"),
@@ -69,11 +71,13 @@ module.exports = {
           });
         }
       } else {
-        if (guild.Premium == false) {
-          interaction.followUp({ content: "This server isn't premium yet" });
+        if (!guild.Premium) {
+          return interaction.followUp({
+            content: "This server isn't premium yet",
+          });
         }
         if (!user.PremiumServers.includes(interaction.guild.id)) {
-          interaction.followUp({
+          return interaction.followUp({
             content:
               "You can't remove due to you aren't the person who made the server premium",
           });
@@ -93,22 +97,22 @@ module.exports = {
                 )
                 .setColor("Red")
                 .setTimestamp()
-                .setAuthor(
-                  interaction.user.tag,
-                  interaction.user.displayAvatarURL({ dynamic: true })
-                ),
+                .setAuthor({
+                  name: interaction.user.tag,
+                  iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+                }),
             ],
           });
           client.channels.cache.get(client.config.ServerLog).send({
             embeds: [
               new EmbedBuilder()
                 .setTitle("Premium Server Removed")
-                .addField(
-                  "Server Info",
-                  `**>Server Name**: \n${interaction.guild.name}
+                .addFields({
+                  name: "Server Info",
+                  value: `**>Server Name**: \n${interaction.guild.name}
                   **>Server ID**: \n${interaction.guild.id}
-                  **>Server Member Count**: \n${interaction.guild.memberCount}`
-                )
+                  **>Server Member Count**: \n${interaction.guild.memberCount}`,
+                })
                 .setTimestamp()
                 .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
                 .setColor("Red"),
