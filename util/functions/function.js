@@ -394,9 +394,7 @@ async function confirmation(message, author, validReactions, time = 60000) {
     return message
       .awaitReactions({ filter, max: 1, time: time })
       .then(collected => collected.first() && collected.first().emoji.name);
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (_) {}
 }
 function selectRandom(array = []) {
   return array[Math.floor(Math.random() * array.length)];
