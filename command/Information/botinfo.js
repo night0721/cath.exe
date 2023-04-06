@@ -1,6 +1,5 @@
 const { EmbedBuilder, version: djsversion } = require("discord.js");
 const version = require("../../package.json").version;
-const { utc } = require("moment");
 module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
@@ -20,8 +19,8 @@ module.exports = {
         <:nyx_owner:897418259433943120> Owner ❯ <@452076196419600394> 
         Bot ❯ ${client.user.tag}
         Bot ID ❯ \`${client.user.id}\`
-        Created on ❯ \`${utc(client.user.createdTimestamp).format(
-          "MMMM Do YYYY"
+        Created on ❯ \`${utils.botDate(
+          new Date(client.user.createdTimestamp)
         )}\``,
           inline: true,
         },

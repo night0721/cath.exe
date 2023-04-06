@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const moment = require("moment");
 const axios = require("axios");
 module.exports = {
   name: "stats",
@@ -406,7 +405,7 @@ module.exports = {
     },
   ],
   // It's not complete, Still work in progress.
-  run: async (client, interaction, args) => {
+  run: async (client, interaction, args, utils) => {
     const cwts = args[1];
     const data = await axios
       .get(`${process.env.api}/api/v1/codm/builds?cwts=${cwts}`, {
@@ -444,8 +443,8 @@ module.exports = {
           },
           {
             name: "<a:lastupdate:897381474330873887> Last Updated:",
-            value: `\`\`\`\n${moment(Date.parse(data.lastUpdate)).format(
-              "MMMM Do YYYY"
+            value: `\`\`\`\n${utils.parseShortDate(
+              new Date(data.lastUpdate)
             )}\n\`\`\``,
             inline: true,
           },

@@ -11,28 +11,31 @@ const {
 Array.prototype.random = function () {
   return this[~~(Math.random() * this.length)];
 };
+
 function rndint(max, min) {
   return Math.floor(Math.random() * (max - (min ? min : 0))) + (min ? min : 0);
 }
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 function parseDate(date) {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   let dow = date.getDate().toString();
   return `${date.toLocaleDateString("en-US", {
     weekday: "long",
-  })}, ${months[date.getMonth() - 1]} ${
+  })}, ${months[date.getMonth()]} ${
     dow.endsWith("1")
       ? `${dow}st`
       : dow.endsWith("2")
@@ -43,6 +46,18 @@ function parseDate(date) {
   } ${date.getFullYear()}, ${date.toLocaleTimeString()}`;
 }
 
+function parseShortDate(date) {
+  let dow = date.getDate().toString();
+  return `${months[date.getMonth()]} ${
+    dow.endsWith("1")
+      ? `${dow}st`
+      : dow.endsWith("2")
+      ? `${dow}nd`
+      : dow.endsWith("3")
+      ? `${dow}rd`
+      : `${dow}th`
+  } ${date.getFullYear()}`;
+}
 function timer(timestamp) {
   const timeLeft = timestamp;
   const days = Math.floor(timeLeft / 86400000);
@@ -794,6 +809,7 @@ function convert(value, unit, unitValues) {
 module.exports = {
   rndint,
   parseDate,
+  parseShortDate,
   timer,
   sleep,
   toHHMMSS,
