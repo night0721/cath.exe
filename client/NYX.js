@@ -55,7 +55,6 @@ class NYX extends Client {
       "534027706325532694", // Cat drinking a cat
       "381442059111759883", // Thunder
       "556808365574193194", // chunchunmaru
-      "746753527338238115", // mightyful
     ];
     this.currency = "<:nyx_currency:918584872333893703>";
     this.xp = "<:nyx_xp:900309007472926720>";

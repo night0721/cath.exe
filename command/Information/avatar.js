@@ -1,4 +1,9 @@
-const { Client, CommandInteraction, EmbedBuilder } = require("discord.js");
+const {
+  Client,
+  CommandInteraction,
+  EmbedBuilder,
+  ImageFormat,
+} = require("discord.js");
 module.exports = {
   name: "avatar",
   description: "Show user's avatar in different formats",
@@ -27,21 +32,6 @@ module.exports = {
       })
       .setColor(client.color)
       .setTitle(`${member.user.username}'s Avatar`)
-      .setDescription(
-        `\`Links:\` **[png](${member.user.displayAvatarURL({
-          format: "png",
-          size: 2048,
-        })}) | [jpg](${member.user.displayAvatarURL({
-          format: "jpg",
-          size: 2048,
-        })}) | [webp](${member.user.displayAvatarURL({
-          format: "webp",
-          size: 2048,
-        })}) | [gif](${member.user.displayAvatarURL({
-          format: "gif",
-          size: 2048,
-        })})**`
-      )
       .setImage(
         member.user.displayAvatarURL({
           size: 2048,
