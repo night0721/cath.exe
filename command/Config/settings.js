@@ -44,20 +44,8 @@ module.exports = {
                   value: "Config",
                 },
                 {
-                  name: "economy",
-                  value: "Economy",
-                },
-                {
-                  name: "fun",
-                  value: "Fun",
-                },
-                {
                   name: "information",
                   value: "Information",
-                },
-                {
-                  name: "moderation",
-                  value: "Moderation",
                 },
                 {
                   name: "utilities",
@@ -106,21 +94,10 @@ module.exports = {
                   name: "config",
                   value: "Config",
                 },
-                {
-                  name: "economy",
-                  value: "Economy",
-                },
-                {
-                  name: "fun",
-                  value: "Fun",
-                },
+
                 {
                   name: "information",
                   value: "Information",
-                },
-                {
-                  name: "moderation",
-                  value: "Moderation",
                 },
                 {
                   name: "utilities",

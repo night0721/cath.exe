@@ -677,6 +677,7 @@ module.exports = {
       )
       .then(res => res.data)
       .catch(e => null);
+    console.log(data);
     if (!data?.cwts) {
       const embed = new EmbedBuilder()
         .setDescription(
@@ -695,7 +696,7 @@ module.exports = {
           `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes}\n \`\`\``
         )
         .setColor(16580400)
-        .setImage(data.imageUrl)
+        .setImage(data.imageUrl ? data.imageUrl : null)
         .setFooter({
           text: `Builds Aggregated by ${client.author}`,
           iconURL: client.user.displayAvatarURL({ dynamic: true }),

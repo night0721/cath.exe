@@ -86,7 +86,6 @@ module.exports = {
       const PremiumServers = user.PremiumServers;
       return {
         User,
-        AFKDate,
         Tier,
         Premium,
         Blacklist,
