@@ -6,7 +6,6 @@ const cachegoose = new GooseCache(mongoose, {
 mongoose.set("useFindAndModify", false);
 const u = require("../../models/users");
 const g = require("../../models/guilds");
-const m = require("../../models/bot");
 module.exports = {
   /**
    * @param {String} URI - Mongo Connection URI
@@ -63,34 +62,28 @@ module.exports = {
       const ss = new u({ User: ID });
       const {
         User,
-        AFKDate,
         Tier,
         Premium,
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
-        CommandUsed,
       } = ss;
       await ss.save().catch(error => console.log(error));
       return {
         User,
-        AFKDate,
         Tier,
         Premium,
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
-        CommandUsed,
       };
     } else {
       const User = user.User;
-      const AFKDate = user.AFKDate;
       const Tier = user.Tier;
       const Premium = user.Premium;
       const Blacklist = user.Blacklist;
       const Blacklist_Reason = user.Blacklist_Reason;
       const PremiumServers = user.PremiumServers;
-      const CommandUsed = user.CommandUsed;
       return {
         User,
         AFKDate,
@@ -99,7 +92,6 @@ module.exports = {
         Blacklist,
         Blacklist_Reason,
         PremiumServers,
-        CommandUsed,
       };
     }
   },
@@ -193,24 +185,6 @@ module.exports = {
   async DelGuild(ID) {
     await g.deleteMany({ Guild: ID });
     return;
-  },
-  /**
-   * @param {String} ID - User ID
-   * @param {String} Prefix - Guild Prefix
-   */
-  async setPrefix(ID, Prefix) {
-    if (!ID) throw new Error("Guild ID?");
-    if (!Prefix) throw new Error("Prefix?");
-    const guild = await g.findOne({ Guild: ID });
-    if (!guild) {
-      const newU = new g({ Guild: ID });
-      await newU.save().catch(error => console.log(error));
-      return { Prefix };
-    }
-    guild.Prefix = Prefix;
-    await guild.save().catch(error => console.log(error));
-    cachegoose.clearCache();
-    return { Prefix };
   },
   /**
    * @param {String} ID - Guild ID
@@ -321,32 +295,6 @@ module.exports = {
     }
     cachegoose.clearCache();
     return true;
-  },
-  /**
-   * @param {String} ID - Bot ID
-   * @param {String} Toggle - Maintenance Toggle
-   */
-  async maintenance(ID, Toggle) {
-    if (!ID) throw new Error("Please Provide a ID!");
-    if (!Toggle) throw new Error("Please Provide a Toggle!");
-    const idk = await m.findOne({ Bot: ID });
-    if (!idk) {
-      const newdb = new m({ Bot: ID });
-      if (Toggle === "true") {
-        newdb.Status = "true";
-      } else {
-        newdb.Status = "false";
-      }
-      await newdb.save().catch(error => console.log(error));
-      return;
-    } else if (Toggle === "true") {
-      idk.Status = "true";
-    } else {
-      idk.Status = "false";
-    }
-    await idk.save().catch(error => console.log(error));
-    cachegoose.clearCache();
-    return;
   },
   /**
    * @param {String} ID - Guild ID

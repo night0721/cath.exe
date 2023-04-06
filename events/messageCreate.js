@@ -11,7 +11,6 @@ client.on("messageCreate", async message => {
   if (!userDB) return;
   data.Guild = guildDB;
   data.User = userDB;
-  console.log(message.content);
   if (!guildDB) await client.data.CreateGuild(message.guild.id);
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
     const _ = new EmbedBuilder()

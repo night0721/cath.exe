@@ -7,20 +7,6 @@ module.exports = {
   category: "Config",
   options: [
     {
-      type: 1,
-      name: "prefix",
-      description: "Configure prefix settings for the server",
-      options: [
-        {
-          type: 3,
-          name: "prefix",
-          description: "The prefix for the server",
-          required: true,
-          choices: [],
-        },
-      ],
-    },
-    {
       type: 2,
       name: "enable",
       description: "Enable commands/category for the server",
@@ -167,10 +153,7 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args, utils, data) => {
-    if (args[0].toLowerCase() === "prefix") {
-      await client.data.setPrefix(interaction.guild.id, args[1]);
-      interaction.followUp({ content: `Saved \`${args[2]}\` as the prefix` });
-    } else if (args[0].toLowerCase() === "tips") {
+    if (args[0].toLowerCase() === "tips") {
       if (args[1]) {
         await client.data.setTips(interaction.guild.id, "true");
         interaction.followUp({

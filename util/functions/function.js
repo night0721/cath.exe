@@ -213,7 +213,7 @@ function cooldown(dbtime, defaults, msg) {
   return msg.followUp({
     embeds: [
       new EmbedBuilder()
-        .setColor("RANDOM")
+        .setColor("Random")
         .setTimestamp()
         .setTitle(slowed)
         .setDescription(

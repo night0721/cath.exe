@@ -70,17 +70,6 @@ client.on("interactionCreate", async interaction => {
         ],
       });
     }
-
-    // if (!interaction.guild.me.permissions.has(cmd.BotPerms || [])) {
-    //   return interaction.followUp({
-    //     content: `You can't use this command. I need to have ${cmd.BotPerms} permission to use this command.`,
-    //   });
-    // }
-    // if (!interaction.member.permissions.has(cmd.UserPerms || [])) {
-    //   return interaction.followUp({
-    //     content: `You can't use this command. I need to have ${cmd.UserPerms} permission to use this command.`,
-    //   });
-    // }
     if (data.Guild?.Category) {
       if (data.Guild.Category.includes(cmd.directory)) {
         return interaction.followUp({
@@ -116,7 +105,6 @@ client.on("interactionCreate", async interaction => {
               cmd
                 .run(client, interaction, args, utils, data)
                 .catch(e => sendE(e, interaction));
-              // client.addcmdsused(interaction.user.id);
               client.channels.cache.get(client.config.CMDLog).send({
                 content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
               });
@@ -129,7 +117,6 @@ client.on("interactionCreate", async interaction => {
             client.channels.cache.get(client.config.CMDLog).send({
               content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
             });
-            // client.addcmdsused(interaction.user.id);
             new cooldown({
               User: interaction.user.id,
               CMD: cmd.name,

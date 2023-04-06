@@ -157,23 +157,6 @@ module.exports = {
         } else {
           UserPermissions = [command.UserPerms ? command.UserPerms : ""];
         }
-        if (command.BotPerms && Array.isArray(command.BotPerms)) {
-          BotPermissions = command.BotPerms;
-        } else {
-          BotPermissions = [command.BotPerms ? command.BotPerms : ""];
-        }
-        const BotPerms = BotPermissions.map(x =>
-          x
-            .split("_")
-            .map(y => y[0] + y.substring(1, y.length).toLowerCase())
-            .join(" ")
-        ).join(", ");
-        const UserPerms = UserPermissions.map(x =>
-          x
-            .split("_")
-            .map(y => y[0] + y.substring(1, y.length).toLowerCase())
-            .join(" ")
-        ).join(", ");
         const fields = [];
         const embed = new EmbedBuilder()
           .setTitle(`"${command.name}" command details`)
@@ -204,18 +187,6 @@ module.exports = {
           fields.push({
             name: "**Cooldown**:",
             value: utils.timer(command.timeout),
-          });
-
-        if (command.UserPerms)
-          fields.push({
-            name: "**Required User Permission**:",
-            value: UserPerms,
-          });
-
-        if (command.BotPerms)
-          fields.push({
-            name: "**Required Bot Permission**:",
-            value: BotPerms,
           });
         embed
           .setFooter({
