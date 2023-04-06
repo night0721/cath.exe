@@ -684,7 +684,11 @@ module.exports = {
           `<:nyx_not_available:897378400031879188> We don't have a **${tag}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${cc}**, Please try another tag or a differnt content creator`
         )
         .setColor(client.color);
-      interaction.followUp({ embeds: [embed] });
+      try {
+        interaction.followUp({ embeds: [embed] });
+      } catch (e) {
+        interaction.editReply({ embeds: [embed] });
+      }
     } else {
       const arr = [];
       data.attachments.map((e, i) => {
