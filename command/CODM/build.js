@@ -734,9 +734,13 @@ module.exports = {
           }
         )
         .setURL(client.web);
-      interaction.followUp({
-        embeds: [embed],
-      });
+      try {
+        interaction.followUp({
+          embeds: [embed],
+        });
+      } catch (e) {
+        interaction.editReply({ embeds: [embed] });
+      }
     }
   },
 };
