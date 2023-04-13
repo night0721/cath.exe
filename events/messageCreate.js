@@ -61,11 +61,13 @@ client.on("messageCreate", async message => {
       })
       .setTimestamp()
       .setColor(client.color);
-    const m = await message.reply({
-      embeds: [_],
-      components: Utils.buttons(client),
-    });
-    setTimeout(() => m.delete(), 15000);
+    try {
+      const m = await message.reply({
+        embeds: [_],
+        components: Utils.buttons(client),
+      });
+      setTimeout(() => m.delete(), 15000);
+    } catch (_) {}
   }
   if (data.User?.Blacklist) return;
   if (
