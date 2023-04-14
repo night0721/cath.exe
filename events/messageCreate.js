@@ -202,7 +202,7 @@ client.on("messageCreate", async message => {
         iconURL: message.author.displayAvatarURL({ dynamic: true }),
       })
       .setThumbnail(
-        "https://github.com/night0721/cath.exe/blob/main/util/assets/images/nyx_logo_transparent.webp"
+        "https://raw.githubusercontent.com/night0721/cath.exe/main/util/assets/images/nyx_logo_transparent.webp"
       )
       .setTimestamp();
     message.reply({
