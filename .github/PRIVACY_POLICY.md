@@ -1,0 +1,1 @@
+We provide CODM statistics and build recommendations for players. We do not allow any user to spam requests to bot which causing a disruption, any spamming action will not be tolerated and will be resulted a blacklist from the bot
