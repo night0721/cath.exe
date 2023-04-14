@@ -70,86 +70,88 @@ client.on("messageCreate", async message => {
     } catch (_) {}
   }
   if (data.User?.Blacklist) return;
-  if (
-    domains.iplogger.includes(
-      message.content
-        .toLowerCase()
-        .match(
-          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
-        )?.[0]
-        .replace(/(https|http):\/\/+/g, "")
-        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
-        .slice(0, -1)
-    ) ||
-    domains.scam.includes(
-      message.content
-        .toLowerCase()
-        .match(
-          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
-        )?.[0]
-        .replace(/(https|http):\/\/+/g, "")
-        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
-        .slice(0, -1)
-    ) ||
-    domains.ngrok.includes(
-      message.content
-        .toLowerCase()
-        .match(
-          /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
-        )?.[0]
-        .replace(/(https|http):\/\/+/g, "")
-        .match(/\s*([^)]+?)\s*\/+/g, "")[0]
-        .slice(0, -1)
-    )
-  ) {
-    const _ = new EmbedBuilder()
-      .setTitle(`Scam/IP Grabber detected`)
-      .setTimestamp()
-      .setColor(client.color)
-      .addFields(
-        {
-          name: "User",
-          value: `${message.author.tag} (${message.author.id})`,
-          inline: true,
-        },
-        {
-          name: "Scam/IP Logger URL",
-          value: `||https://${message.content
-            .toLowerCase()
-            .match(
-              /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
-            )?.[0]
-            .replace(/(https|http):\/\/+/g, "")
-            .match(/\s*([^)]+?)\s*\/+/g, "")[0]
-            .slice(0, -1)}||`,
-          inline: true,
-        }
+  try {
+    if (
+      domains.iplogger.includes(
+        message.content
+          .toLowerCase()
+          .match(
+            /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+          )?.[0]
+          .replace(/(https|http):\/\/+/g, "")
+          .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+          .slice(0, -1)
+      ) ||
+      domains.scam.includes(
+        message.content
+          .toLowerCase()
+          .match(
+            /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+          )?.[0]
+          .replace(/(https|http):\/\/+/g, "")
+          .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+          .slice(0, -1)
+      ) ||
+      domains.ngrok.includes(
+        message.content
+          .toLowerCase()
+          .match(
+            /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+          )?.[0]
+          .replace(/(https|http):\/\/+/g, "")
+          .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+          .slice(0, -1)
       )
-      .setFooter({
-        text: `Tactical Protection by ${client.author}`,
-        icon_url: client.user.displayAvatarURL({ dynamic: true }),
-      });
-    message.channel.send({
-      embeds: [_],
-    });
-    client.channels.cache.get(client.config.ScamLinkLog).send({
-      embeds: [
-        _.addFields(
+    ) {
+      const _ = new EmbedBuilder()
+        .setTitle(`Scam/IP Grabber detected`)
+        .setTimestamp()
+        .setColor(client.color)
+        .addFields(
           {
-            name: "Message",
-            value: message.content,
-            inline: false,
+            name: "User",
+            value: `${message.author.tag} (${message.author.id})`,
+            inline: true,
           },
           {
-            name: "Guild",
-            value: message.guild ? message.guild.name : "None",
+            name: "Scam/IP Logger URL",
+            value: `||https://${message.content
+              .toLowerCase()
+              .match(
+                /(https|http):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+~-]*[\w.,@?^=%&:/~+~-])+/g
+              )?.[0]
+              .replace(/(https|http):\/\/+/g, "")
+              .match(/\s*([^)]+?)\s*\/+/g, "")[0]
+              .slice(0, -1)}||`,
             inline: true,
           }
-        ),
-      ],
-    });
-    message.delete().catch(() => {});
-  }
+        )
+        .setFooter({
+          text: `Tactical Protection by ${client.author}`,
+          icon_url: client.user.displayAvatarURL({ dynamic: true }),
+        });
+      message.channel.send({
+        embeds: [_],
+      });
+      client.channels.cache.get(client.config.ScamLinkLog).send({
+        embeds: [
+          _.addFields(
+            {
+              name: "Message",
+              value: message.content,
+              inline: false,
+            },
+            {
+              name: "Guild",
+              value: message.guild ? message.guild.name : "None",
+              inline: true,
+            }
+          ),
+        ],
+      });
+      message.delete().catch(() => {});
+    }
+  } catch (_) {}
 
   if (
     message?.content.startsWith(data.Guild.Prefix) ||
