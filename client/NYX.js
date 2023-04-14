@@ -32,8 +32,8 @@ class NYX extends Client {
       ],
       intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.MessageContent,
+        // GatewayIntentBits.GuildMembers,
+        // GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.DirectMessageTyping,
         GatewayIntentBits.DirectMessages,
@@ -68,7 +68,9 @@ class NYX extends Client {
 
   start() {
     require("../util/dist/handler")(this);
-    this.login(process.env.TOKEN);
+    this.login(
+      process.argv[2] == "--dev" ? process.env.DEV : process.env.TOKEN
+    );
     this.data
       .connect(process.env.MONGO)
       .then(() => console.log("Connected to MongoDB ✅"))
