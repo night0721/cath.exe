@@ -1,5 +1,3 @@
-// Do we still need this ?
-
 const mongoose = require("mongoose");
 module.exports = mongoose.model(
   "weapons",

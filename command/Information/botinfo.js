@@ -1,12 +1,14 @@
 const { MessageEmbed, version: djsversion } = require("discord.js");
 const version = require("../../package.json").version;
 const { utc } = require("moment");
+const os = require("os");
 module.exports = {
   name: "botinfo",
   description: "Check the info of the bot",
   category: "Information",
   type: "CHAT_INPUT",
-  run: async (client, interaction) => {
+  run: async (client, interaction, args, utils) => {
+    const core = os.cpus()[0];
     const embed = new MessageEmbed()
       .setTitle(`NYX - CODM Gunsmith Bot`)
       .setURL(
@@ -36,28 +38,39 @@ module.exports = {
             .reduce((a, b) => a + b.memberCount, 0)
             .toLocaleString()}
           Channels ❯ \`${client.channels.cache.size.toLocaleString()}\`
-          Commands ❯ \`${client.slashCommands.size}\`
+          Commands ❯ \`${client.commands.size}\`
           `,
           inline: true,
         }
       )
-      .addFields({
-        name: `Platform`,
-        value: `
+      .addFields(
+        {
+          name: `Platform`,
+          value: `
           NYX ❯ \`v${version}\`
           Discord.js ❯ \`v${djsversion}\`
           Node.js ❯ \`${process.version}\``,
-      })
+        },
+        {
+          name: `Hardware`,
+          value: `
+          Uptime:** ${utils.timer(os.uptime() * 1000, { long: true })}
+          Platform:** ${process.platform}
+          CPU:**
+          \u3000 Cores: ${os.cpus().length}
+          \u3000 Model: ${core.model}
+          \u3000 Speed: ${core.speed}MHz
+          **`,
+          inline: true,
+        }
+      )
       .addFields({
         name: `**${client.author}**`,
         value: `**Development Management**\n\u3000Ń1ght#0001\n\u3000Cat drinking a cat#0795\n\u3000mightyful#6536\n\u3000Thunder#2128\n\u3000mobo#9277\n
         **Research & Documentation**\n\u3000𝔔𝓻𝔦ค𝔁𝔖ค𝔦ӄø#0690\n\u3000Thunder#2128\n
         **Website**\n\u3000Chunchunmaru#8570`,
       })
-      .setFooter({
-        text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
-      })
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });
   },

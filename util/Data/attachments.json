@@ -179,8 +179,7 @@
         "MIP Light Barrel (Short)",
         "MIP Extended Light Barrel",
         "OWC Ranger",
-        "OWC Marksman",
-        "GRU Combo Grip"
+        "OWC Marksman"
       ],
       "optic": [
         "Red Dot Sight",
@@ -608,8 +607,7 @@
         "YKM Light Stock",
         "RTC Steady Stock",
         "OWC Skeleton Stock",
-        "No Stock",
-        "Thunderbolt Sling"
+        "No Stock"
       ],
       "perk": [
         "Tough",
@@ -999,157 +997,6 @@
       ]
     }
   ],
-  "Swordfish": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "OWC Light Compensator",
-        "Monolithic Suppressor",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["MIP Light", "MIP Extended Light Barrel", "OWC Ranger"],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "3x Tactical Scope",
-        "4x Tactical Scope",
-        "4.4x Tactical Scope"
-      ],
-      "stock": ["YKM Light Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Tough",
-        "Long Shot",
-        "Melee Master"
-      ],
-      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
-      "underbarrel": [
-        "Strike Foregrip",
-        "Merc Foregrip",
-        "Operator Foregrip",
-        "Ranger Foregrip",
-        "Tactical Foregrip A",
-        "Bipod"
-      ],
-      "ammo": ["Extended Mag A", "Fast Reload", "Halberd Mag"],
-      "rear_grip": [
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape",
-        "Stippled Grip Tape"
-      ]
-    }
-  ],
-  "Kilo_141": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "OWC Light Compensator",
-        "Monolithic Suppressor",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": [
-        "YKM Integral Suppressor Light",
-        "MIP Light Extended Barrel", 
-        "OWC Marksman"
-      ],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "3x Tactical Scope",
-        "4x Tactical Scope",
-        "4.4x Tactical Scope"
-      ],
-      "stock": [
-        "No Stock",
-        "YKM Combat Stock",
-        "OWC Skeleton Stock",
-        "RTC Steady Stock"
-      ],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Tough",
-        "Long Shot",
-        "Melee Master"
-      ],
-      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
-      "underbarrel": [
-        "Strike Foregrip",
-        "Merc Foregrip",
-        "Operator Foregrip",
-        "Ranger Foregrip",
-        "Tactical Foregrip A",
-        "Bipod"
-      ],
-      "ammo": [
-        "Extended Mag A",
-        "Large Extended Mag B",
-        "100 round LMG Drum Mag"
-      ],
-      "rear_grip": [
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape",
-        "Stippled Grip Tape"
-      ]
-    }
-  ],
-  "Oden": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "RTC Huge Suppressor",
-        "Monolithic Suppressor",
-        "OWC Light Compensator",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["MIP Light Barrel (Short)", "OWC Marksman", "OWC Ranger"],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "3x Tactical Scope",
-        "4x Tactical Scope",
-        "4.4x Tactical Scope"
-      ],
-      "stock": ["YKM Light Stock", "YKM Combat Stock", "RTC Steady Stock"],
-      "perk": [
-        "Tough",
-        "FMJ",
-        "Sleight of Hand",
-        "Long Shot",
-        "Melee Master",
-        "Wounding",
-        "Full Ammo",
-        "Disable"
-      ],
-      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
-      "underbarrel": [
-        "Strike Foregrip",
-        "Merc Foregrip",
-        "Operator Foregrip",
-        "Ranger Foregrip",
-        "Tactical Foregrip A"
-      ],
-      "ammo": ["Extended Mag A", "Large Extended Mag B", "Damage Mag", "12.7 mm Duplex Rounds"],
-      "rear_grip": [
-        "Stippled Grip Tape",
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape"
-      ]
-    }
-  ],
   "XPR_50": [
     {
       "muzzle": [
@@ -1494,64 +1341,6 @@
       ]
     }
   ],
-  "SVD": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "Monolithic Suppressor",
-        "RTC Compensator",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["RTC 510mm Light", "RTC 600mm Heavy"],
-      "optic": ["3x Tactical Scope", "4x Tactical Scope", "6x Tactical Scope"],
-      "stock": ["YKM Light Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Bullet Return",
-        "Headshot Slow"
-      ],
-      "laser": ["OWC Laser - Tactical"],
-      "underbarrel": ["Bipod"],
-      "ammo": ["15 Round Extended Mag", "20 Round Extended Mag"]
-    }
-  ],
-  "Koshka": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "Monolithic Suppressor",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["Enhanced Barrel", "MIP Light Barrel (Short)"],
-      "optic": ["3x Tactical Scope", "4x Tactical Scope", "6x Tactical Scope"],
-      "stock": ["Mobility Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Bullet Return",
-        "Headshot Slow"
-      ],
-      "laser": ["OWC Laser - Tactical", "Fast Aim Laser"],
-      "underbarrel": ["Bipod"],
-      "ammo": ["10 Round Extended Mag", "8 Round Fast Mag", "Armour Piercer Mag"],
-      "rear_grip": [
-        "Stippled Grip Tape",
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape"
-      ]
-    }
-  ],
   "S36": [
     {
       "muzzle": [
@@ -1863,54 +1652,6 @@
     }
   ],
   "Hades": [
-    {
-      "muzzle": [
-        "OWC Light Suppressor",
-        "Agency Suppressor",
-        "Infantry Compensator",
-        "MIP Flashguard",
-        "OWC Eliminator",
-        "RTC Muzzle Brake"
-      ],
-      "barrel": [
-        "Rapid Fire Barrel",
-        "Long-Range Barrel",
-        "MIP Extended Light Barrel"
-      ],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "3x Tactical Scope",
-        "4x Tactical Scope",
-        "4.4x Tactical Scope"
-      ],
-      "stock": [
-        "Light Weight Stock",
-        "Marathon Stock",
-        "No Stock",
-        "Agile Stock"
-      ],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Headshot XP",
-        "Empty Reload"
-      ],
-      "laser": ["1mW Steady Aim Laser", "5mW Combat Laser", "Aim Assist Laser"],
-      "underbarrel": ["Crossbar"],
-      "ammo": ["84 Round Hybrid Mag"],
-      "rear_grip": [
-        "Sturdy Grip Tape",
-        "Rustle Grip Tape",
-        "Firm Grip Tape",
-        "Non-Slip Foregrip"
-      ]
-    }
-  ],
-  "PKM": [
     {
       "muzzle": [
         "OWC Light Suppressor",
@@ -2692,142 +2433,6 @@
       "rear_grip": ["Rustle Grip Tape", "Sturdy Grip Tape", "Firm Grip Tape"]
     }
   ],
-  "CBR4": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "Monolithic Suppressor",
-        "OWC Light Compensator",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["MIP Extended Light Barrel", "OWC Marksman"],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "Tactical Scope",
-        "3x Tactical Scope"
-      ],
-      "stock": ["YKM Light Stock", "YKM Combat Stock", "RTC Steady Stock"],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Wild Hip Fire",
-        "Double Kill",
-        "Fast Reload Kill"
-      ],
-      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
-      "rear_grip": [
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape",
-        "Stippled Grip Tape"
-      ]
-    }
-  ],
-  "PPSh_41": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "OWC Light Suppressor",
-        "Monolithic Suppressor",
-        "OWC Light Compensator",
-        "MIP Light FLash Guard",
-        "RTC Light Muzzle Brake"
-      ],
-      "barrel": ["Gurrilla Light Short", "Last Stand Light", "Banner Heavy"],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "Tactical Scope",
-        "3x Tactical Scope"
-      ],
-      "stock": ["No Stock", "OWC Skeleton Stock", "RTC Steady Stock"],
-      "perk": [
-        "FMJ",
-        "Sleight of Hand",
-        "Wounding",
-        "Full Ammo",
-        "Disable",
-        "Wild Hip Fire",
-        "Double Kill",
-        "Fast Reload Kill"
-      ],
-      "laser": ["RTC Laser 1mW", "MIP Laser 5mW", "OWC Laser - Tactical"],
-      "underbarrel": [
-        "Focused Foregrip",
-        "Tough Foregrip",
-        "Resilient Foregrip",
-        "Tactical Foregrip A",
-        "Operator Foregrip"
-      ],
-      "ammo": ["35 Round Fast Reload", "55 Round Light Reload"],
-      "rear_grip": [
-        "Sturdy Grip Tape",
-        "Ruberized Grip Tape",
-        "Rustle Grip Tape"
-      ]
-    }
-  ],
-  "MAC_10": [
-    {
-      "muzzle": [
-        "RTC Muzzle Brake",
-        "MIP Flashguard",
-        "OWC Light Suppressor",
-        "Infantry Compensator",
-        "OWC Eliminator",
-        "Agency Suppressor"
-      ],
-      "barrel": [
-        "6.5\" Rifling Barrel", 
-        "6.1\" Reinforced Heavy",
-        "Taskforce Barrel",
-        "5.5\" Extended Barrel",
-        "6.2\" Cavalry Barrel"
-      ],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "3x Tactical Scope",
-        "4x Tactical Scope"
-      ],
-      "stock": [
-        "Steel Stock",
-        "Swift Stock",
-        "No Stock",
-        "SAS Combat Stock"
-      ],
-      "perk": [
-        "Sleight of Hand",
-        "Wild Hip Fire",
-        "Double Kill",
-        "Fast Reload Kill",
-        "Wounding",
-        "Full Ammo",
-        "Disable"
-      ],
-      "laser": ["1mW Steady Aim Laser", "5mW Combat Laser", "Aim Assist Laser"],
-      "underbarrel": [
-        "BD Foregrip",
-        "Red Cell Foregrip",
-        "Striker Foregrip",
-        "Patrol Foregrip",
-        "Field Agent Foregrip",
-        "SFDD Fast Foregrip"
-      ],
-      "ammo": [
-        "Fast Reload",
-        "43 Round Fast Reload",
-        "43 Fast Reload",
-        "STANAG 53 Round Extended Reload"
-      ],
-      "rear_grip": ["Rustle Grip Tape", "Sturdy Grip Tape", "Firm Grip Tape"]
-    }
-  ],
   "HS2126": [
     {
       "muzzle": [
@@ -3137,58 +2742,6 @@
         "MFT Heavy Smoothbore",
         "MFT Ultra Light Smoothbore",
         "MFT Urban Combat"
-      ],
-      "rear_grip": [
-        "Stippled Grip Tape",
-        "Granulated Grip Tape",
-        "Ruberized Grip Tape"
-      ]
-    }
-  ],
-  "JAK_12": [
-    {
-      "muzzle": [
-        "Tactical Suppressor",
-        "Monolithic Suppressor",
-        "OWC Light Compensator",
-        "Choke",
-        "RTC Light Muzzle Brake",
-        "Flash Guard",
-        "Marauder Suppressor"
-      ],
-      "barrel": ["MIP Extended Light Barrel", "MIP Light Barrel (Short)", "OWC Marksman"],
-      "optic": [
-        "Red Dot Sight",
-        "Holographic Sight",
-        "Tactical Scope",
-        "3x Tactical Scope"
-      ],
-      "stock": [
-        "YKM Light Stock",
-        "YKM Combat Stock",
-        "MIP Stalker Stock"
-      ],
-      "ammo": [
-        "FRAG-12 Explosive Mag",
-        "Extended Mag C",
-        "Large Extended Mag D",
-        "Slug Reload"
-      ],
-      "perk": [
-        "Sleight of Hand",
-        "Speed Up Kill",
-        "Slide Flak Jacket",
-        "Wounding",
-        "Full Ammo",
-        "Disable"
-      ],
-      "laser": ["RTC Laser 1mW", "OWC Laser - Tactical", "MIP Laser 5mW"],
-      "underbarrel": [
-        "Ranger Foregrip", 
-        "Operator Foregrip", 
-        "Merc Foregrip",
-        "Strike Foregrip",
-        "Tactical Foregrip A"
       ],
       "rear_grip": [
         "Stippled Grip Tape",

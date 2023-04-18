@@ -408,7 +408,7 @@ function tips(interaction, client) {
   const all = [
     "You can report bugs by using `/report` and send a suggestion by `/suggest` !",
     "If a gun isn't there, please be paitent and wait for the us to get the stats",
-    "We all recruiting for Javascript bot developers (Total: 4) Please DM the bot for more info",
+    "We all recruiting for bot developers (Total: 4) Please DM the bot for more info",
   ];
   const ran = Math.floor(Math.random() * 50) + 2;
   const rTip = all[Math.floor(Math.random() * all.length)];
@@ -503,7 +503,6 @@ const leven = (te, t) => {
 function chunk(arr, size) {
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => {
     arr.slice(i * size, i * size + size);
-    return arr;
   });
 }
 function progressBar(value, maxValue, size) {

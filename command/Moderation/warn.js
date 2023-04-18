@@ -8,7 +8,7 @@ module.exports = {
   category: "Moderation",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "add",
       description: "Warn a user",
       options: [
@@ -27,7 +27,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "list",
       description: "Show a list of warnings of an user",
       options: [
@@ -40,7 +40,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "remove",
       description: "Remove a latest warn for an user",
       options: [
@@ -59,7 +59,7 @@ module.exports = {
       ],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "clear",
       description: "Clear an user's warns",
       options: [

@@ -1,10 +1,9 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
 const axios = require("axios");
+const moment = require("moment");
 module.exports = {
   name: "build",
   description: "Get gunsmith builds",
-  usage: "[Weapon Name] [Author] [Tag]",
   type: "CHAT_INPUT",
   category: "CODM",
   options: [
@@ -20,109 +19,101 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "Type 25",
-              value: "A01",
+              name: "AK117",
+              value: "ak117",
             },
             {
               name: "M16",
-              value: "A02",
+              value: "m16",
             },
             {
-              name: "AK117",
-              value: "A03",
+              name: "Type 25",
+              value: "type25",
             },
             {
               name: "AK-47",
-              value: "A04",
+              value: "ak47",
             },
             {
               name: "ASM10",
-              value: "A05",
+              value: "asm10",
             },
             {
               name: "M4",
-              value: "A06",
+              value: "m4",
             },
             {
               name: "BK57",
-              value: "A07",
+              value: "bk57",
             },
             {
               name: "LK24",
-              value: "A08",
-            },
-            {
-              name: "ICR-1",
-              value: "A09",
+              value: "lk24",
             },
             {
               name: "Man-o-War",
-              value: "A10",
+              value: "manowar",
+            },
+            {
+              name: "ICR-1",
+              value: "icr1",
             },
             {
               name: "KN-44",
-              value: "A11",
+              value: "kn44",
             },
             {
               name: "HBRa3",
-              value: "A12",
+              value: "hbra3",
             },
             {
               name: "HVK-30",
-              value: "A13",
+              value: "hvk30",
             },
             {
               name: "DR-H",
-              value: "A14",
+              value: "drh",
             },
             {
               name: "Peacekeeper MK2",
-              value: "A15",
+              value: "peacekeepermk2",
             },
             {
               name: "FR .556",
-              value: "A16",
+              value: "fr556",
             },
             {
               name: "AS VAL",
-              value: "A17",
+              value: "asval",
             },
             {
               name: "CR-56 AMAX",
-              value: "A18",
+              value: "cr56amax",
             },
             {
               name: "M13",
-              value: "A19",
+              value: "m13",
             },
             {
               name: "Swordfish",
-              value: "A20",
-            },
-            {
-              name: "Kilo 141",
-              value: "A21",
+              value: "swordfish",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
             {
               name: "Jokesta",
-              value: "Jokesta",
+              value: "jokesta",
             },
-            // {
-            //   name: "Stats On Duty",
-            //   value: "Stats On Duty",
-            // },
           ],
         },
         {
@@ -133,19 +124,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "Aggressive",
+              value: "aggressive",
             },
             {
               name: "Passive",
-              value: "Passive",
+              value: "passive",
             },
             {
-              name: "Search And Destroy",
-              value: "Search And Destroy",
+              name: "Search & Destroy",
+              value: "snd",
             },
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -163,88 +154,80 @@ module.exports = {
           required: true,
           choices: [
             {
-              name: "RUS-79U",
-              value: "D01",
-            },
-            {
-              name: "Chicom",
-              value: "D02",
+              name: "RUS-79u",
+              value: "rus79u",
             },
             {
               name: "PDW-57",
-              value: "D03",
+              value: "pdw57",
             },
             {
               name: "Razorback",
-              value: "D04",
+              value: "razorback",
             },
             {
               name: "MSMC",
-              value: "D05",
+              value: "msmc",
             },
             {
               name: "HG40",
-              value: "D06",
+              value: "hg40",
             },
             {
               name: "Pharo",
-              value: "D07",
+              value: "pharo",
             },
             {
               name: "GKS",
-              value: "D08",
+              value: "gks",
             },
             {
               name: "Cordite",
-              value: "D09",
+              value: "cordite",
             },
             {
               name: "QQ9",
-              value: "D10",
+              value: "qq9",
             },
             {
               name: "Fennec",
-              value: "D11",
+              value: "fennec",
+            },
+            {
+              name: "Chicom",
+              value: "chicom",
             },
             {
               name: "AGR 556",
-              value: "D12",
+              value: "agr556",
             },
             {
               name: "QXR",
-              value: "D13",
+              value: "qxr",
             },
             {
               name: "PP19 Bizon",
-              value: "D14",
+              value: "pp19bizon",
             },
             {
               name: "MX9",
-              value: "D15",
-            },
-            {
-              name: "CBR4",
-              value: "D16",
-            },
-            {
-              name: "PPSh 41",
-              value: "D17",
+              value: "mx9",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
             {
               name: "Jokesta",
-              value: "Jokesta",
+              value: "jokesta",
             },
           ],
         },
@@ -256,19 +239,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "Aggressive",
+              value: "aggressive",
             },
             {
               name: "Passive",
-              value: "Passive",
+              value: "passive",
             },
             {
-              name: "Search And Destroy",
-              value: "Search And Destroy",
+              name: "Search & Destroy",
+              value: "snd",
             },
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -285,54 +268,54 @@ module.exports = {
           description: "Name of the Gun",
           required: true,
           choices: [
-            // {
-            //   name: "XPR-50",
-            //   value: "B01",
-            // },
             {
               name: "Arctic .50",
-              value: "B02",
+              value: "arctic50",
             },
             {
               name: "M21 EBR",
-              value: "B03",
+              value: "m21ebr",
             },
             {
               name: "DL Q33",
-              value: "B04",
+              value: "dlq33",
             },
             {
               name: "Locus",
-              value: "B05",
+              value: "locus",
             },
             // {
+            //   name: "XPR-50",
+            //   value: "xpr50",
+            // },
+            // {
             //   name: "NA-45",
-            //   value: "B06",
+            //   value: "na45",
             // },
             {
               name: "Outlaw",
-              value: "B07",
+              value: "outlaw",
             },
             {
               name: "Rytec AMR",
-              value: "B08",
-            },
-            {
-              name: "SVD",
-              value: "B09",
+              value: "rytecamr",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
+            // {
+            //   name: "little_b",
+            //   value: "littleb",
+            // },
           ],
         },
         {
@@ -343,19 +326,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "Aggressive",
+              value: "aggressive",
             },
             {
               name: "Passive",
-              value: "Passive",
+              value: "passive",
             },
             {
-              name: "Search And Destroy",
-              value: "Search And Destroy",
+              name: "Search & Destroy",
+              value: "snd",
             },
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -374,47 +357,43 @@ module.exports = {
           choices: [
             {
               name: "S36",
-              value: "C01",
+              value: "s36",
             },
             {
               name: "UL736",
-              value: "C02",
+              value: "ul736",
             },
             {
               name: "RPD",
-              value: "C03",
+              value: "rpd",
             },
             {
               name: "M4 LMG",
-              value: "C04",
+              value: "m4lmg",
             },
             {
               name: "Chopper",
-              value: "C05",
+              value: "chopper",
             },
             {
               name: "Holger 26",
-              value: "C06",
+              value: "holger26",
             },
             {
               name: "Hades",
-              value: "C07",
-            },
-            {
-              name: "PKM",
-              value: "C08",
+              value: "hades",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
           ],
         },
@@ -426,19 +405,19 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "Aggressive",
+              value: "aggressive",
             },
             {
               name: "Passive",
-              value: "Passive",
+              value: "passive",
             },
             {
-              name: "Search And Destroy",
-              value: "Search And Destroy",
+              name: "Search & Destroy",
+              value: "snd",
             },
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -457,47 +436,43 @@ module.exports = {
           choices: [
             {
               name: "HS2126",
-              value: "E01",
+              value: "hs2126",
             },
             {
               name: "BY15",
-              value: "E02",
-            },
-            {
-              name: "HS0405",
-              value: "E03",
+              value: "by15",
             },
             {
               name: "Striker",
-              value: "E04",
+              value: "striker",
             },
             {
-              name: "KRM 262",
-              value: "E05",
+              name: "KRM_262",
+              value: "krm262",
             },
             {
               name: "Echo",
-              value: "E06",
+              value: "echo",
+            },
+            {
+              name: "HS0405",
+              value: "hs0405",
             },
             {
               name: "R9-0",
-              value: "E07",
-            },
-            {
-              name: "JAK-12",
-              value: "E08",
+              value: "r90",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
             {
               name: "dHitman",
@@ -513,11 +488,11 @@ module.exports = {
           choices: [
             {
               name: "ADS",
-              value: "ADS",
+              value: "ads",
             },
             {
               name: "Hipfire",
-              value: "Hipfire",
+              value: "hipfire",
             },
           ],
         },
@@ -536,36 +511,36 @@ module.exports = {
           choices: [
             {
               name: "Kilo Bolt-Action",
-              value: "F01",
+              value: "kiloboltaction",
             },
             {
               name: "SKS",
-              value: "F02",
+              value: "sks",
             },
             {
               name: "SP-R 208",
-              value: "F03",
+              value: "spr208",
             },
             {
               name: "MK2",
-              value: "F04",
+              value: "mk2",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
-            {
-              name: "Stats On Duty",
-              value: "Stats On Duty",
-            },
+            // {
+            //   name: "Little_b",
+            //   value: "littleb",
+            // },
           ],
         },
         {
@@ -576,15 +551,15 @@ module.exports = {
           choices: [
             {
               name: "Aggressive",
-              value: "Aggressive",
+              value: "aggressive",
             },
             {
               name: "Passive",
-              value: "Passive",
+              value: "passive",
             },
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -603,44 +578,40 @@ module.exports = {
           choices: [
             {
               name: "J358",
-              value: "G01",
+              value: "j358",
             },
             {
               name: "MW11",
-              value: "G02",
+              value: "mw11",
             },
             {
               name: ".50 GS",
-              value: "G03",
+              value: "gs50",
             },
             {
               name: "Renetti",
-              value: "G04",
+              value: "renetti",
             },
             {
               name: "Shorty",
-              value: "G05",
+              value: "shorty",
             },
             {
               name: "Crossbow",
-              value: "G06",
+              value: "crossbow",
             },
           ],
         },
         {
           type: 3,
-          name: "author",
+          name: "youtuber",
           description: "Select a Content Creator",
           required: true,
           choices: [
             {
-              name: "path.exe",
-              value: "path.exe",
+              name: "Path.exe",
+              value: "path",
             },
-            // {
-            //   name: "Stats On Duty",
-            //   value: "Stats On Duty",
-            // },
           ],
         },
         {
@@ -651,7 +622,7 @@ module.exports = {
           choices: [
             {
               name: "Respawn",
-              value: "Respawn",
+              value: "respawn",
             },
           ],
         },
@@ -659,43 +630,141 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    const cwts = args[1];
+    const allguns = {
+      ak117: "AK117",
+      m16: "M16",
+      type25: "Type 25",
+      ak47: "AK-47",
+      asm10: "ASM10",
+      m4: "M4",
+      bk57: "BK57",
+      lk24: "LK24",
+      manowar: "Man-O-War",
+      icr1: "ICR-1",
+      kn44: "KN-44",
+      hbra3: "HBRa3",
+      hvk30: "HVK-30",
+      drh: "DR-H",
+      peacekeepermk2: "Peacekeeper MK2",
+      fr556: "FR .556",
+      asval: "AS VAL",
+      cr56amax: "CR-56 AMAX",
+      m13: "M13",
+      swordfish: "Swordfish",
+
+      j358: "J358",
+      gs50: ".50 GS",
+      mw11: "MW11",
+      renetti: "Renetti",
+      shorty: "Shorty",
+      crossbow: "Crossbow",
+
+      kiloboltaction: "Kilo Bolt-Action",
+      sks: "SKS",
+      spr208: "SP-R 208",
+      mk2: "mk2",
+
+      s36: "S36",
+      ul736: "UL736",
+      rpd: "RPD",
+      m4lmg: "M4LMG",
+      chopper: "Chopper",
+      holger26: "Holger 26",
+      hades: "Hades",
+
+      arctic50: "Arctic .50",
+      m21ebr: "M21 EBR",
+      dlq33: "DL Q33",
+      locus: "Locus",
+      // na45: "NA 45",
+      // xpr50: "XPR-50",
+      locus: "Locus",
+      outlaw: "Outlaw",
+      rytecamr: "Rytec AMR",
+
+      hs2126: "HS2126",
+      by15: "BY15",
+      striker: "Striker",
+      krm262: "KRM 262",
+      echo: "Echo",
+      hs0405: "HS0405",
+      r90: "R9-0",
+
+      rus79u: "RUS-79U",
+      hg40: "HG-40",
+      pdw57: "PDW-57",
+      chicom: "Chicom",
+      razorback: "Razorback",
+      msmc: "MSMC",
+      pharo: "Pharo",
+      gks: "GKS",
+      cordite: "Cordite",
+      qq9: "QQ9",
+      fennec: "Fennec",
+      agr556: "AGR 556",
+      qxr: "QXR",
+      pp19bizon: "PP19 Bizon",
+      mx9: "MX9",
+    };
+    const all = {
+      assault_rifle: "Assault Rifle",
+      sniper_rifle: "Sniper Rifle",
+      marksman_rifle: "Marksman Rifle",
+      shotgun: "Shotgun",
+      light_machine_gun: "Light Machine Gun",
+      sub_machine_gun: "Sub Machine Gun",
+
+      path: "Path.exe",
+      dhitman: "dHitman",
+      jokesta: "Jokesta",
+      // littleb:"Little B",
+
+      aggressive: "Aggressive",
+      passive: "Passive",
+      snd: "Search And Destroy",
+      respawn: "Respawn",
+      ads: "ADS",
+      hipfire: "Hipfire",
+    };
+    const gun = args[1];
     const cc = args[2];
     const tag = args[3];
     const data = await axios
       .get(
-        `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
+        `${process.env.api}/api/v1/codm/builds?name=${gun}&cc=${cc}&tag=${tag}`,
         {
           headers: {
-            Authorization: process.env.CODM_API_KEY,
+            Authorization: "Gae",
           },
         }
       )
       .then(res => res.data)
-      .catch(e => null);
-    if (!data?.cwts) {
-      const embed = new MessageEmbed()
-        .setDescription(
-          `<:nyx_not_available:897378400031879188> We don't have a **${tag}** gunsmith build for the gun with **CWTS 🆔 ${cwts}** by **${cc}**, Please try another tag or a differnt content creator`
-        )
-        .setColor(client.color);
-      interaction.followUp({ embeds: [embed] });
+      .catch();
+    const unavaliable = new MessageEmbed()
+      .setDescription(
+        `<:nyx_not_available:897378400031879188> We don't have a ${all[tag]} **${allguns[gun]}** gunsmith build by **${all[cc]}**, Please try another tag or a differnt content creator`
+      )
+      .setColor(client.color);
+    if (!data) {
+      interaction.followUp({ embeds: [unavaliable] });
     } else {
       const arr = [];
       data.attachments.map((e, i) => {
-        return arr.push(`**${i + 1}:** ${e}`);
+        return arr.push(`**${i + 1}: ${e}**`);
       });
       const embed = new MessageEmbed()
-        .setTitle(`${tag} build for ${data.weaponName} from ${data.author}`)
+        .setTitle(
+          `${data.weaponName}(${data.weaponType})'s ${all[tag]} build from ${data.author}`
+        )
         .setDescription(
-          `<:nyx_description:897379659665264650> **Description** \`\`\`\n${data.notes}\n \`\`\``
+          `<:nyx_description:897379659665264650> Description \`\`\`\n${data.notes}\n\`\`\``
         )
         .setColor(16580400)
         .setImage(data.imageUrl)
-        .setFooter({
-          text: `Builds Aggregated by ${client.author}`,
-          iconURL: client.user.displayAvatarURL(),
-        })
+        .setFooter(
+          `Builds Aggregated by ${client.author}`,
+          client.user.displayAvatarURL()
+        )
         .setTimestamp()
         .addFields(
           {
@@ -731,3 +800,29 @@ module.exports = {
     }
   },
 };
+
+// ENABLE AFTER Holloween
+
+// run: async (client, interaction, args) => {
+//   const embed = new MessageEmbed()
+//     .setTitle(`Prefix commands are now disabled`)
+//     .setDescription(`Please enable **Application commands** in the channel settings to get access to slash commands, we have discontinued prefix commands.`)
+//     .setColor(client.color)
+//     .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
+//     .addFields(
+//       {
+//         name: "Need help ?",
+//         value: `Join our **[Support Server](https://discord.gg/SR7TeNJG67)**`,
+//         inline: true,
+//       },
+//       {
+//         name: "Support us <a:donate:896985486260846614>",
+//         value: `[KoFi](https://ko-fi.com/cathteam)`,
+//         inline: true,
+//       }
+//       )
+//       .setThumbnail("../../util/assets/images/nyx_logo_transparent.webp")
+//       .setTimestamp();
+//       interaction.followUp({ embeds: [embed] });
+//     },
+//   };

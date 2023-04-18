@@ -3,7 +3,7 @@ module.exports = {
   name: "kick",
   description: "Kick an user",
   UserPerms: ["KICK_MEMBERS"],
-  BotPerms: ["KICK_MEMBERS"],
+  BotPems: ["KICK_MEMBERS"],
   usage: "(User) {Reason}",
   category: "Moderation",
   options: [

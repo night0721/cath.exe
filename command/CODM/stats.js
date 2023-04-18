@@ -1,6 +1,6 @@
 const common = require("../../util/functions/common");
 const data = require("../../util/Data/data.json");
-const { MessageEmbed } = require("discord.js");
+const Discord = require("discord.js");
 
 let currGun,
   currStats,
@@ -11,6 +11,7 @@ let currGun,
   recoilAvailable,
   chart,
   hasError;
+const errMsg = "*Generic placeholder error message*";
 module.exports = {
   name: "stats",
   description: "Check gun stats",
@@ -51,28 +52,23 @@ module.exports = {
     },
   ],
   run: async (client, interaction, args) => {
-    repEmb = null;
     recoilAvailable = false;
     hasError = false;
-    if (args.length == 1)
-      repEmb = statsHandler(args.join(" ").replace("\n", " "));
-    else repEmb = statsHandler(args.join(" + ").replace("\n", " "));
+    console.log(args);
+    const repEmb = statsHandler(args.join(" ").replace("\n", " "));
     if (hasError) {
-      interaction.followUp({
-        content: `**${repEmb || "An error has occured"}**`,
-      });
-    } else {
-      if (recoilAvailable) {
-        repEmb.fields.push({
-          name: "**Recoil Graph**",
-          value:
-            "```\nThe Recoil graph below is dynamic (change based on attachment equipped)```",
-        });
-        const recoilImageLink = await chart.getShortUrl();
-        repEmb.image = { url: recoilImageLink };
-      }
-      interaction.followUp({ embeds: [new MessageEmbed(repEmb)] });
+      interaction.followUp({ embeds: [repEmb] });
     }
+    if (recoilAvailable) {
+      repEmb.fields.push({
+        name: "**Recoil Graph**",
+        value:
+          "```\nThe Recoil graph below is dynamic (change based on attachment equipped)```",
+      });
+      const recoilImageLink = await chart.getShortUrl();
+      repEmb.image = { url: recoilImageLink };
+    }
+    interaction.followUp({ embeds: [repEmb] });
   },
 };
 
@@ -82,38 +78,38 @@ function inpHandler(inpmsg) {
 
 function statsHandler(inpmsg) {
   let statsNames = [
-      "Pellets", //0
-      "Detonation Range", //1
-      "Explosion Radius", //2
-      "Explosion Damage", //3
-      "Firing Mode", //4
-      "Rate of Fire", //5
-      "Bullet in Burst", //6
-      "Time Between Burst", //7
-      "Bullet Speed", //8
-      "Penetration Level", //9
-      "Bullet Spread", //10
-      "Idle Sway", //11
-      "Hipfire Pellet Spread", //12
-      "ADS Pellet Spread", //13
-      "ADS Time", //14
-      "Sprint-to-Fire Time", //15
-      "ADS Zoom", //16
-      "Magazine", //17
-      "Reserve", //18
-      "Reload Type", //19
-      "Cancel Reload Time", //20
-      "Reload Time", //21
-      "Full Reload Time", //22
-      "Drop Time", //23
-      "Raise Time", //24
-      "Sprinting Speed", //25
-      "Walking Speed", //26
-      "Straifing Speed", //27
-      "Damage per Tick", //28
-      "Number of Ticks", //29
-      "Time Between Ticks", //30
-      "Breath Hold Time", //31
+      "Pellets",
+      "Detonation Range",
+      "Explosion Radius",
+      "Explosion Damage",
+      "Firing Mode",
+      "Rate of Fire",
+      "Bullet in Burst",
+      "Time Between Burst",
+      "Bullet Speed",
+      "Penetration Level",
+      "Bullet Spread",
+      "Idle Sway",
+      "Hipfire Pellet Spread",
+      "ADS Pellet Spread",
+      "ADS Time",
+      "Sprint-to-Fire Time",
+      "ADS Zoom",
+      "Magazine",
+      "Reserve",
+      "Reload Type",
+      "Cancel Reload Time",
+      "Reload Time",
+      "Full Reload Time",
+      "Drop Time",
+      "Raise Time",
+      "Sprinting Speed",
+      "Walking Speed",
+      "Straifing Speed",
+      "Damage per Tick",
+      "Number of Ticks",
+      "Time Between Ticks",
+      "Breath Hold Time",
       "shouldNeverHappen0",
       "shouldNeverHappen1",
       "shouldNeverHappen2",
@@ -130,7 +126,11 @@ function statsHandler(inpmsg) {
   currStats = currGun.stats;
   currDRM = currGun.drm[0];
   currAttachments = [];
-  currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
+  currAttachments = common.attachmentsIdentifier(
+    inpmsg,
+    currGun.aments,
+    currStats
+  );
   if (typeof currAttachments == "string") {
     hasError = true;
     return currAttachments;
@@ -188,8 +188,8 @@ function statsHandler(inpmsg) {
       inpIndx = inpIndx.filter(x => outReady[x]);
       return inpIndx.length
         ? {
-            name: `**${inpName}**`,
-            value: `\`\`\`\n${inpIndx.map(x => outReady[x]).join("\n")}\`\`\``,
+            name: "**" + inpName + "**",
+            value: "```\n" + inpIndx.map(x => outReady[x]).join("\n") + "```",
           }
         : "";
     }
@@ -220,17 +220,17 @@ function statsHandler(inpmsg) {
 
     function addUnit(j) {
       switch (j) {
-        case 7:
+        case 07:
         case 14:
         case 15:
         case 23:
         case 24:
         case 31:
           return " ms";
-        case 25:
-        case 26:
         case 27:
         case 28:
+        case 25:
+        case 26:
           return " m/s";
         case 20:
         case 21:
@@ -238,9 +238,9 @@ function statsHandler(inpmsg) {
           return " s";
         case 16:
           return "%";
-        case 6:
+        case 06:
           return " Rounds";
-        case 5:
+        case 05:
           return " RPM";
         default:
           return "";
@@ -257,11 +257,16 @@ function statsHandler(inpmsg) {
       currRecoilArr[2]
     );
     recoilAvailable = true;
-  } else recoilAvailable = false;
-
-  if (chart == "none") recoilAvailable = false;
-  if (chart == "err") hasError = true;
-
+  } else {
+    recoilAvailable = false;
+  }
+  if (chart == "none") {
+    recoilAvailable = false;
+  }
+  if (chart == "err" || currAttachments == "err") {
+    hasError = true;
+    return "Cocaineeee";
+  }
   const dmg =
     common.damageHandler(
       currDRM.damage,
@@ -277,7 +282,7 @@ function statsHandler(inpmsg) {
     currGun.description
       ? {
           name: "**Description:**",
-          value: `\`\`\`\n${currGun.description}\`\`\``,
+          value: "```\n" + currGun.description + "```",
         }
       : {},
     { name: "**Damage Profile:**", value: dmg },
@@ -291,7 +296,7 @@ function statsHandler(inpmsg) {
     footer: {
       text: "[OUTDATED] All data courtesy of Project Lighthouse 2.0 and CoDM Research Crew",
       icon_url:
-        "https://media.discordapp.net/attachments/735590814662656102/806960573753327657/cc.png",
+        "https://media.discordapp.net/attachments/735590814662656102/806960573753327657/cc.png?width=638&height=638",
     },
   };
 }

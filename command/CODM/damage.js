@@ -15,7 +15,7 @@ module.exports = {
   category: "CODM",
   options: [
     {
-      type: 3,
+      type: 7,
       name: "gun",
       description: "Gun name",
       required: true,
@@ -39,7 +39,11 @@ function dmg(inpmsg) {
   }
   currDRM = currGun.drm[0];
   currStats = currGun.stats;
-  currAttachments = common.attachmentsIdentifier(inpmsg, currGun);
+  currAttachments = common.attachmentsIdentifier(
+    inpmsg,
+    currGun.aments,
+    currStats
+  );
   if (typeof currAttachments == "string") {
     hasError = true;
     return currAttachments;

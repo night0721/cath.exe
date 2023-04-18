@@ -12,7 +12,7 @@ client.on("interactionCreate", async interaction => {
       if (option.type === "SUB_COMMAND_GROUP") {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
-          if (x.type === 1) {
+          if (x.type === "SUB_COMMAND") {
             if (x.name) args.push(x.name);
             x.options?.forEach(y => {
               if (y.value) args.push(y.value);
@@ -63,19 +63,19 @@ client.on("interactionCreate", async interaction => {
           embeds: [
             new MessageEmbed()
               .setURL(client.web)
-              .setAuthor({
-                name: interaction.user.tag,
-                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-              })
+              .setAuthor(
+                interaction.user.tag,
+                interaction.user.displayAvatarURL({ dynamic: true })
+              )
               .setColor(client.color)
               .setDescription(
                 `You aren't a premium user. You can either boost support server or subscribe to developer's team [Ko-fi](https://ko-fi.com/cathteam) or gift a nitro to one of the developer team to be premium user`
               )
               .setTimestamp()
-              .setFooter({
-                text: `Made by ${client.author}`,
-                iconURL: client.user.displayAvatarURL(),
-              }),
+              .setFooter(
+                `Made by ${client.author}`,
+                client.user.displayAvatarURL()
+              ),
           ],
         });
       }
@@ -83,7 +83,11 @@ client.on("interactionCreate", async interaction => {
     if (cmd.Level) {
       if (!data.Guild.Level) return;
     }
-
+    if (cmd.directory == "NSFW" && !data.Guild?.NSFW) {
+      interaction.followUp({
+        content: "NSFW commands have been disabled in this server",
+      });
+    }
     if (!interaction.guild.me.permissions.has(cmd.BotPerms || [])) {
       return interaction.followUp({
         content: `You can't use this command. I need to have ${cmd.BotPerms} permission to use this command.`,
@@ -111,65 +115,68 @@ client.on("interactionCreate", async interaction => {
       }
     }
     const random = utils.rndint(3, 6);
-    if (cmd.name == "nsfw" && !data.Guild?.NSFW) {
-      interaction.followUp({
-        content: "NSFW commands have been disabled in this server",
-      });
-      return;
-    }
-    if (cmd.timeout) {
-      const current_time = Date.now();
-      const cooldown_amount = cmd.timeout;
-      cooldown.findOne(
-        { User: interaction.user.id, CMD: cmd.name },
-        async (er, d) => {
-          if (d) {
-            const expiration_time = d.Time + cooldown_amount;
-            if (current_time < expiration_time) {
-              if (data.Guild.Tips) utils.tips(interaction, client);
-              utils.cooldown(d.Time, cooldown_amount, interaction);
+    try {
+      if (cmd.timeout) {
+        const current_time = Date.now();
+        const cooldown_amount = cmd.timeout;
+        cooldown.findOne(
+          { User: interaction.user.id, CMD: cmd.name },
+          async (er, d) => {
+            if (d) {
+              const expiration_time = d.Time + cooldown_amount;
+              if (current_time < expiration_time) {
+                if (data.Guild.Tips) utils.tips(interaction, client);
+                utils.cooldown(d.Time, cooldown_amount, interaction);
+              } else {
+                if (data.Guild.Tips) utils.tips(interaction, client);
+                await cooldown.findOneAndUpdate(
+                  { User: interaction.user.id, CMD: cmd.name },
+                  { Time: current_time }
+                );
+                cmd.run(client, interaction, args, utils, data);
+                client.addcmdsused(interaction.user.id);
+                client.channels.cache.get(client.config.CMDLog).send({
+                  content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
+                });
+                // await client.addXP(interaction.user.id, random, interaction);
+              }
             } else {
               if (data.Guild.Tips) utils.tips(interaction, client);
-              await cooldown.findOneAndUpdate(
-                { User: interaction.user.id, CMD: cmd.name },
-                { Time: current_time }
-              );
-              cmd
-                .run(client, interaction, args, utils, data)
-                .catch(e => sendE(e));
-              client.addcmdsused(interaction.user.id);
+              cmd.run(client, interaction, args, utils, data);
               client.channels.cache.get(client.config.CMDLog).send({
                 content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
               });
+              client.addcmdsused(interaction.user.id);
               // await client.addXP(interaction.user.id, random, interaction);
+              new cooldown({
+                User: interaction.user.id,
+                CMD: cmd.name,
+                Time: current_time,
+                Cooldown: cmd.timeout,
+              }).save();
             }
-          } else {
-            if (data.Guild.Tips) utils.tips(interaction, client);
-            cmd
-              .run(client, interaction, args, utils, data)
-              .catch(e => sendE(e));
-            client.channels.cache.get(client.config.CMDLog).send({
-              content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
-            });
-            client.addcmdsused(interaction.user.id);
-            // await client.addXP(interaction.user.id, random, interaction);
-            new cooldown({
-              User: interaction.user.id,
-              CMD: cmd.name,
-              Time: current_time,
-              Cooldown: cmd.timeout,
-            }).save();
           }
-        }
-      );
-    } else {
-      if (data.Guild.Tips) utils.tips(interaction, client);
-      cmd.run(client, interaction, args, utils, data).catch(e => sendE(e));
-      client.channels.cache.get(client.config.CMDLog).send({
-        content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
-      });
-      client.addcmdsused(interaction.user.id);
-      // await client.addXP(interaction.user.id, random, interaction);
+        );
+      } else {
+        if (data.Guild.Tips) utils.tips(interaction, client);
+        cmd.run(client, interaction, args, utils, data);
+        client.channels.cache.get(client.config.CMDLog).send({
+          content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${cmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
+        });
+        client.addcmdsused(interaction.user.id);
+        // await client.addXP(interaction.user.id, random, interaction);
+      }
+    } catch (e) {
+      const embed = new MessageEmbed()
+        .setTitle("Command Error")
+        .setDescription(`\`\`\`ini\n${e.stack}\`\`\``)
+        .setTimestamp()
+        .setColor(client.color)
+        .setFooter(client.user.username);
+      client.channels.cache
+        .get(client.config.ErrorLog)
+        .send({ embeds: [embed] });
+      console.error(e);
     }
   }
   if (interaction.isContextMenu()) {
@@ -185,7 +192,7 @@ client.on("interactionCreate", async interaction => {
     if (!ownercmd) return;
     const args = [];
     for (const option of interaction.options.data) {
-      if (option.type === 1) {
+      if (option.type === "SUB_COMMAND") {
         if (option.name) args.push(option.name);
         option.options?.forEach(x => {
           if (x.value) args.push(x.value);
@@ -197,20 +204,14 @@ client.on("interactionCreate", async interaction => {
     interaction.member = interaction.guild.members.cache.get(
       interaction.user.id
     );
-    ownercmd.run(client, interaction, args, utils).catch(e => sendE(e));
-    client.channels.cache.get(client.config.CMDLog).send({
-      content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${ownercmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
-    });
-    client.addcmdsused(interaction.user.id);
+    try {
+      ownercmd.run(client, interaction, args, utils);
+      client.channels.cache.get(client.config.CMDLog).send({
+        content: `\`${interaction.user.tag}(${interaction.user.id})\`\n has used \n**${ownercmd.name}**\n command in \n\`${interaction.guild.name}(${interaction.guild.id})\``,
+      });
+      client.addcmdsused(interaction.user.id);
+    } catch (e) {
+      console.log(e);
+    }
   }
 });
-function sendE(e) {
-  const embed = new MessageEmbed()
-    .setTitle("Command Error")
-    .setDescription(`\`\`\`yaml\n${e.stack}\`\`\``)
-    .setTimestamp()
-    .setColor(client.color)
-    .setFooter({ text: client.user.username });
-  interaction.channel.send({ embeds: [embed] });
-  client.channels.cache.get(client.config.ErrorLog).send({ embeds: [embed] });
-}

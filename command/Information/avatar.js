@@ -17,10 +17,10 @@ module.exports = {
     const member =
       interaction.guild.members.cache.get(args[0]) || interaction.member;
     const embed = new MessageEmbed()
-      .setAuthor({
-        name: member.user.tag,
-        iconURL: member.user.displayAvatarURL({ dynamic: true, size: 1024 }),
-      })
+      .setAuthor(
+        member.user.tag,
+        member.user.displayAvatarURL({ dynamic: true, size: 1024 })
+      )
       .setColor(client.color)
       .setTitle(`${member.user.username}'s Avatar`)
       .setDescription(
@@ -41,10 +41,7 @@ module.exports = {
       .setImage(
         member.user.avatarURL({ size: 2048, dynamic: true, format: "png" })
       )
-      .setFooter({
-        text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
-      })
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setURL(client.web)
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });

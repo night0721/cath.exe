@@ -1,4 +1,4 @@
-<h1 align="center"> NYX [Cath.exe] </h1> 
+<h1 align="center"> NYX </h1> 
 <!-- header -->
 <p align="center">
     <a href="https://rebrand.ly/cathSupport" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
@@ -18,20 +18,18 @@
     <a href="https://rebrand.ly/cathSupport"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner2" alt="Support Server" /></a>
 </p>
 
+
 <!-- description -->
 
-**NYX** _(previously known as Cath)_ is a first and only **COD Mobile Statistics & Gunsmith** Bot which also doubles as a multipurpose discord bot with many features that include but are not limited to Moderation, Music and Economy. <br>
-The Call of Duty Stats are courtesy of **Stats on Duty** & **Round Table**<br>
-🔺 **Apex Legends Commands** will be added soon, the player stats command will be added after the global launch when the API supports it.
-<br><br>
+**NYX** *(previously known as Cath)* is a first and only **COD Mobile Statistics & Gunsmith** Bot which also doubles as a multipurpose discord bot with many features that include but are not limited to Moderation, Music and Economy. <br>
+The Call of Duty Stats are courtesy of **Round Table** by Cygnoux Familia.<br><br>
 If you like this bot, feel free to :star: **Star** this repository.<br>
 
 > ⚠ The Verifed bot instance is current called Cath.exe, we are working on getting it changed
-> <br>
+<br>
 
-# Features
-
-> _This is a Non-Exhaustive list for commands. To access the full list of commands, check out our [Documentation](https://thunder75.gitbook.io/cath-bot/core/commands)._
+# Features 
+> *This is a Non-Exhaustive list for commands. To access the full list of commands, check out our [Documentation](https://thunder75.gitbook.io/cath-bot/core/commands).*
 
 <a href="https://thunder75.gitbook.io/cath-bot/core/commands" ><img src="https://img.shields.io/static/v1?label=List %20OF&message=Commands&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
 
@@ -45,22 +43,12 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 
 ## <img height="18px" src="../util/assets/images/cod_logo.svg"> **Call of Duty Mobile**
 
-- **Weapon Statistics** courtesy of **Round Table** & **Stats On Duty**
-- **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe, Stats On Duty and more comming soon.
+- **Weapon Statistics** courtesy of **Round Table** by Cygnoux Familia.
+- **Currated Gunsmith Builds** by various content creators like Jokesta, dHitman, Path.exe and more comming soon.
 - **Perks** detailed info about the perks.
-- **Scorestreak** detailed info about scorestreak with preview videos.
 - **Randomly Generated Class** Wanna try something challenging? try our Randomly Generated Gunsmith builds.
 
 > We also provide access to our database that includes In-depth Weapon statistics & Gunsmith Builds from various Content Creators, & other Call of duty related info, please [contact us](https://rebrand.ly/cathSupport) for more info.
-
-## <img height="16px" src="../util/assets/images/apex/apex-legends-logo-white.svg"> **Apex Legends Mobile**
-> ⚠ *Coming Soon™*  
-
-- **Player Stats** view your in-game stats. <!-- if they support mobile for the stats api -->
-- **Legends** detailed info about legends & their abilities.
-- **Guns** detailed info about guns.
-- **Random Combos** Wanna try something challenging? try to win a game with a random selected legend & Gun combination
-- *& many more, coming soon!*
 
 ## More Info
 
@@ -70,7 +58,8 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 
 A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cath-bot/deployment).
 
-<!-- <details>
+
+<details>
   <summary>Made With</summary>
   
    [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -81,15 +70,24 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
 </details>
 
 <details>
+  <summary>Issues & PRs</summary>
+  
+  [![Open issues](https://img.shields.io/github/issues-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
+  [![Closed issues](https://img.shields.io/github/issues-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/issues)
+  [![Open PRs](https://img.shields.io/github/issues-pr-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
+  [![Closed PRs](https://img.shields.io/github/issues-pr-closed-raw/night0721/cath.exe?style=for-the-badge)](https://github.com/night0721/cath.exe/pulls)
+</details>
+
+<details>
   <summary>Github Stats</summary>
   
   ![Lines of code](https://img.shields.io/tokei/lines/github/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub Discussions](https://img.shields.io/github/discussions/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe) 
-  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe)
+  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe) -->
   
-</details> -->
+</details>
 
 <h1 align = "center"> Support, Feature Request & Bug Reports </h1>
 
@@ -106,7 +104,7 @@ You can report bugs or issues by opening a issue in this repository. Alternateve
   <a href="https://rebrand.ly/cathSupport" target="_blank"><img src="https://discordapp.com/api/guilds/718762019586572341/widget.png?style=banner1"></a>
 </p>
 
-<h1 align="center"> Contributors </h1>
+<h1 align="center"> Contributors </h1> 
 
 Contributions are always welcomed, but make sure to read [Contributing.md](/CONTRIBUTING.md) first.
 
@@ -117,7 +115,5 @@ Contributions are always welcomed, but make sure to read [Contributing.md](/CONT
 <p align = "center">
   <a href="https://discord.gg/mjVwkCsWY7" target="_blank"><img src="https://discordapp.com/api/guilds/756525751594909797/widget.png?style=banner1"></a>
 </p> -->
-
 ⠀
-
 <!-- <img src="https://socialify.git.ci/night0721/cath.exe/image?description=1&descriptionEditable=A%20Discord.js%20v13%20Template%20based%20on%20cath.exe&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark"> -->

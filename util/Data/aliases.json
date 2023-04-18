@@ -26,10 +26,7 @@
     "CR-56 AMAX",
     "Shorty",
     "Crossbow",
-    "R9-0",
-    "PPSh-41",
-    "CBR4",
-    "SVD"
+    "R9-0"
   ],
   "weaponAlliasName": [
     ["MoW"],
@@ -51,17 +48,14 @@
     ["Slow Outlaw", "Slower Outlaw"],
     ["bae"],
     ["Reneti", "Renneti", "Rennetti", "Burst Pistol"],
-    ["pp bizon", "pp19"],
+    ["pp bizon", "pp"],
     ["AUG"],
     ["AKBP", "Vepr"],
     ["AN94"],
     ["CR56", "AMAX"],
     ["725"],
     ["cb", "bow"],
-    ["r9", "R9-O"],
-    ["ppsh", "pp41"],
-    ["p90"],
-    ["Dragonov"]
+    ["r9", "R9-O"]
   ],
   "attachmentActualName": [
     ["akimbo", "Stopping Power"],

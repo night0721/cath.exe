@@ -23,15 +23,12 @@ module.exports = {
         `${interaction.user.username} is set into AFK.\nStatus : ${content}`
       )
       .setTimestamp()
-      .setFooter({
-        text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
-      })
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setColor(client.color)
-      .setAuthor({
-        text: interaction.user.username,
-        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-      })
+      .setAuthor(
+        interaction.user.username,
+        interaction.user.displayAvatarURL({ dynamic: true })
+      )
       .setURL(client.web);
     interaction.followUp({ embeds: [embed] });
   },

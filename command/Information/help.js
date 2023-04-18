@@ -80,10 +80,10 @@ module.exports = {
         .setThumbnail(
           "https://media.discordapp.net/attachments/896078559293104128/896392631565828146/nyx_logo_transparent.webp"
         )
-        .setFooter({
-          text: `Requested by ${interaction.user.tag}`,
-          iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-        });
+        .setFooter(
+          `Requested by ${interaction.user.tag}`,
+          interaction.user.displayAvatarURL({ dynamic: true })
+        );
       const components = state => [
         new Discord.MessageActionRow().addComponents(
           new Discord.MessageSelectMenu()
@@ -122,9 +122,7 @@ module.exports = {
           )
           .setTimestamp()
           .setColor(client.color)
-          .setFooter({
-            text: `Please use /help (Command Name) for more details`,
-          })
+          .setFooter(`Please use /help (Command Name) for more details`)
           .setDescription(
             category.commands
               .map(cmd => {
@@ -170,26 +168,28 @@ module.exports = {
             "**Command**:",
             command.name ? `\`${command.name}\`` : "N/A"
           );
-        if (command.usage)
+        if (command.usage) {
           embed.addField("**Usage**:", `\`/${command.name} ${command.usage}\``);
-        else embed.addField("**Usage**:", `\`/${command.name}\``);
-
-        if (command.description)
+        } else {
+          embed.addField("**Usage**:", `\`/${command.name}\``);
+        }
+        if (command.description) {
           embed.addField("**Description**:", command.description);
-
-        if (command.timeout)
+        }
+        if (command.timeout) {
           embed.addField("**Cooldown**:", utils.timer(command.timeout));
-
-        if (command.UserPerms)
+        }
+        if (command.UserPerms) {
           embed.addField("**Required User Permission**:", UserPerms);
-
-        if (command.BotPerms)
+        }
+        if (command.BotPerms) {
           embed.addField("**Required Bot Permission**:", BotPerms);
+        }
         embed
-          .setFooter({
-            text: `Requested by ${interaction.user.tag}`,
-            iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-          })
+          .setFooter(
+            `Requested by ${interaction.user.tag}`,
+            interaction.user.displayAvatarURL({ dynamic: true })
+          )
           .setTimestamp()
           .setURL(client.web)
           .setColor(client.color);

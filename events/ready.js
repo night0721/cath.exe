@@ -13,5 +13,5 @@ client.on("ready", async () => {
       };
     })
   );
-  console.log(`${client.user.username} ✅`);
+  console.log(`${client.user.username} ✅\nVersion: v${version}`);
 });

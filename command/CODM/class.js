@@ -8,10 +8,10 @@ module.exports = {
   run: async (client, interaction) => {
     const data = async () => {
       const d = await model.findOne({});
-      const weapons =
-        d.Primary[0][
-          d.Categories[Math.floor(Math.random() * d.Categories.length)]
-        ];
+      const types = d.Categories;
+      const names = d.Primary;
+      const category = types[Math.floor(Math.random() * types.length)];
+      const weapons = names[0][category];
       return `${weapons[Math.floor(Math.random() * weapons.length)]}`;
     };
     const primary_weapon = await data();

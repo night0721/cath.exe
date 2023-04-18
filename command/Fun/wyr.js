@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const questions = require("../../util/Data/wyr.json");
+
 module.exports = {
   name: "wyr",
   description: "Send some would-you rather questions",
@@ -14,15 +15,12 @@ module.exports = {
       .setDescription(
         `🇦 ${Option1} \n\n **OR** \n\n :regional_indicator_b: ${Option2}`
       )
-      .setAuthor({
-        name: interaction.user.tag,
-        iconURL: interaction.user.displayAvatarURL({ dyamic: true }),
-      })
+      .setAuthor(
+        interaction.user.tag,
+        interaction.user.displayAvatarURL({ dynamic: true })
+      )
       .setColor(client.color)
-      .setFooter({
-        text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL(),
-      })
+      .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
       .setTimestamp();
     wyrmessage = await interaction.followUp({ embeds: [embed] });
     wyrmessage.react("🇦");

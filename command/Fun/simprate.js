@@ -22,10 +22,7 @@ module.exports = {
           .setTitle(`${user.user.username}'s simp rate`)
           .setDescription(`${user.user.username} is a ${simp}% simp`)
           .setColor(client.color)
-          .setFooter({
-            text: `Made by ${client.author}`,
-            iconURL: client.user.displayAvatarURL(),
-          })
+          .setFooter(`Made by ${client.author}`, client.user.displayAvatarURL())
           .setTimestamp(),
       ],
     });

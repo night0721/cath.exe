@@ -4,13 +4,13 @@ module.exports = {
   category: "Music",
   options: [
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "track",
       description: "Loop the track",
       options: [],
     },
     {
-      type: "SUB_COMMAND",
+      type: 1,
       name: "queue",
       description: "Loop the whole queue",
       options: [],
