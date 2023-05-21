@@ -41,7 +41,7 @@ module.exports = {
     const joinDateFormatted = utils.parseDate(new Date(member.joinedAt));
     const embed = new EmbedBuilder()
       .setAuthor({
-        name: `${member.user.tag} ${client.owners.includes(member.id)) ? client.dev : ""}`,
+        name: member.user.tag,
         iconURL: member.user.displayAvatarURL({ dynamic: true, size: 4096 }),
       })
       .setTimestamp()
@@ -55,7 +55,8 @@ module.exports = {
       .addFields([
         {
           name: "User",
-          value: `**❯ Username:** ${member.user.username}
+          value: `**❯ User Tag:** ${member.user.tag} ${client.owners.includes(member.id)) ? client.dev : ""}
+        **❯ Username:** ${member.user.username}
         **❯ Discriminator:** ${member.user.discriminator}
         **❯ Nickname:** ${nickname}
         **❯ User ID:** ${member.id}
