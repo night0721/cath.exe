@@ -33,8 +33,7 @@ module.exports = {
     const roles = member.roles.cache
       .filter(r => r.id != interaction.guild.id)
       .sort((a, b) => b.position - a.position)
-      .map(role => role.toString())
-      .slice(0, -1);
+      .map(role => role.toString());
     const createDateFormatted = utils.parseDate(
       new Date(member.user.createdAt)
     );
