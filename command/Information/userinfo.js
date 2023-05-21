@@ -29,10 +29,7 @@ module.exports = {
       Date.now() - interaction.guild.members.cache.get(member.id).joinedAt;
     const created = Math.floor(x / 86400000);
     const joined = Math.floor(y / 86400000);
-    const nickname =
-      member.nickname !== undefined && member.nickname !== null
-        ? member.nickname
-        : "None";
+    const nickname = member.nickname || "None";
     const roles = member.roles.cache
       .filter(r => r.id != interaction.guild.id)
       .sort((a, b) => b.position - a.position)
@@ -44,18 +41,17 @@ module.exports = {
     const joinDateFormatted = utils.parseDate(new Date(member.joinedAt));
     const embed = new EmbedBuilder()
       .setAuthor({
-        name: member.user.tag,
-        iconURL: member.user.displayAvatarURL({ dynamic: true, size: 2048 }),
+        name: `${member.user.tag} ${client.owners.includes(member.id)) ? client.dev : ""}`,
+        iconURL: member.user.displayAvatarURL({ dynamic: true, size: 4096 }),
       })
       .setTimestamp()
       .setColor(member.displayHexColor || client.color)
       .setURL(client.web)
       .setFooter({
         text: `Made by ${client.author}`,
-        iconURL: client.user.displayAvatarURL({ dynamic: true }),
+        iconURL: client.user.displayAvatarURL({ dynamic: true, size: 4096 }),
       })
-      .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 512 }))
-      .setColor(member.displayHexColor || client.color)
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 4096 }))
       .addFields([
         {
           name: "User",
@@ -67,7 +63,7 @@ module.exports = {
           dynamic: true,
           size: 2048,
         })})
-        **❯ Time Created:** ${createDateFormatted} \nSince ${created} day(s) ago
+        **❯ Time Created:** ${createDateFormatted} \nSince ${created} day${created <= 1 ? "" : "s"} ago
         \u200b`,
         },
         {
@@ -77,13 +73,13 @@ module.exports = {
               ? "None"
               : member.roles.highest.name
           }
-            **❯ Server Join Date:** ${joinDateFormatted} \nSince ${joined} day(s) ago
+            **❯ Server Join Date:** ${joinDateFormatted} \nSince ${joined} day${joined <= 1 ? "" : "s"} ago
             **❯ Roles [${roles.length}]:** ${
-            roles.length < 10
+            roles.length < 10 && roles.length > 0
               ? roles.join(" **|** ")
-              : roles.length > 10
-              ? utils.trimArray(roles)
-              : "None"
+              : roles.length > 0
+                ? utils.trimArray(roles)
+                : "None"
           }
             \u200b`,
         },
