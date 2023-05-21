@@ -55,9 +55,17 @@ class NYX extends Client {
       "534027706325532694", // Cat drinking a cat
       "381442059111759883", // Thunder
       "556808365574193194", // chunchunmaru
+      "687622268037365774", // Tac Shadow
+      "309681798957498368", // Sideload
+      "707177879984668673", // Random rock
+      "757530324686340197", // Madhav
+      "804712098625486848", // hcs
+      "1078015817184182414", // gaba
+      "774390900411465769" // Alphaus
     ];
     this.currency = "<:nyx_currency:918584872333893703>";
     this.xp = "<:nyx_xp:900309007472926720>";
+    this.dev = "<:discord_bot_dev:840231906200387666>"
     this.path = [
       "614423108388126731", // Camper on Duty
       "767173194943168542", // Dark Bonker
