@@ -54,7 +54,7 @@ module.exports = {
       .addFields([
         {
           name: "User",
-          value: `**❯ User Tag:** ${member.user.tag} ${client.owners.includes(member.id)) ? client.dev : ""}
+          value: `**❯ User Tag:** ${member.user.tag} ${client.owners.includes(member.id) ? client.dev : ""}
         **❯ Username:** ${member.user.username}
         **❯ Discriminator:** ${member.user.discriminator}
         **❯ Nickname:** ${nickname}
