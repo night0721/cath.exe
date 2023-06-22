@@ -506,7 +506,7 @@ function buttons(client) {
     .setLabel("YouTube")
     .setStyle(ButtonStyle.Link)
     .setEmoji("841186450497339412")
-    .setURL("https://youtube.com/Kirito01");
+    .setURL("https://www.youtube.com/@night0721");
   const kofi = new ButtonBuilder()
     .setLabel("Ko-fi")
     .setStyle(ButtonStyle.Link)
