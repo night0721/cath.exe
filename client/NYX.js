@@ -32,7 +32,7 @@ class NYX extends Client {
       ],
       intents: [
         GatewayIntentBits.Guilds,
-        // GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMembers,
         // GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.DirectMessageTyping,
@@ -61,11 +61,11 @@ class NYX extends Client {
       "757530324686340197", // Madhav
       "804712098625486848", // hcs
       "1078015817184182414", // gaba
-      "774390900411465769" // Alphaus
+      "774390900411465769", // Alphaus
     ];
     this.currency = "<:nyx_currency:918584872333893703>";
     this.xp = "<:nyx_xp:900309007472926720>";
-    this.dev = "<:discord_bot_dev:840231906200387666>"
+    this.dev = "<:discord_bot_dev:840231906200387666>";
     this.path = [
       "614423108388126731", // Camper on Duty
       "767173194943168542", // Dark Bonker
