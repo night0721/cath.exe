@@ -1,17 +1,14 @@
 <h1 align="center"> NYX [Cath.exe] </h1> 
 <!-- header -->
 <p align="center">
-    <a href="https://rebrand.ly/cathSupport" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
+    <a href="https://discord.gg/SbQHChmGcp" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
     <br>
     <a href="https://discord.com/oauth2/authorize?client_id=1071021943484055563&permissions=4231314550&scope=bot%20applications.commands" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
-    <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt='Licence CC BY-NC-SA 4.0' src ="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg" width="82">
-    <a href="https://trello.com/b/dIgR0QNm" target="_blank"><img alt='Trello' src="https://img.shields.io/badge/Trello-5865F2?style=for-the-badge&logo=trello&logoColor=white"></a>
     <a href="https://github.com/night0721/cath"><img alt = 'NPM Package' src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
-    <a href="https://thunder75.gitbook.io/cath-bot" target="_blank"><img src="https://img.shields.io/static/v1?label=Docs&message=available&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
     <a href="https://ko-fi.com/I2I35XISJ" target="_blank"><img alt='Kofi' src="https://img.shields.io/static/v1?label=Support%20Us&message=KO.FI&color=ff5e5b&logo=kofi&logoColor=white&style=for-the-badge&scale=1.4"></a> <br>
     <a href="https://nyx-bot.statuspage.io/"target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=NYX&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
-    <a href="https://nyx-bot.statuspage.io/" target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=NYX%202&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
     <a href="https://nyx-bot.statuspage.io/" target="_blank"><img alt='StatusPage' src="https://img.shields.io/static/v1?&label=API&message=Online&color=00DA83&logo=statuspage&logoColor=white&style=for-the-badge&scale=1.4"></a>
+    <img src ="https://forthebadge.com/images/badges/built-with-love.svg" width = "122">
 </p>
 
 <p align = "center">
@@ -66,12 +63,10 @@ If you like this bot, feel free to :star: **Star** this repository.<br>
 ## More Info
 
 [![Top language](https://img.shields.io/github/languages/top/night0721/cath.exe?labelColor=F7DF1E&color=555555&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe)
-[![CodeFactor](https://www.codefactor.io/repository/github/night0721/cath.js/badge?s=57e6f566f73892f4303edbfeb2fe3ea0b849c876&style=for-the-badge)](https://www.codefactor.io/repository/github/night0721/cath.js)
-<a href="https://thunder75.gitbook.io/cath-bot/deployment" target="_blank"><img src="https://img.shields.io/static/v1?label=Deployment&message=Guide&color=5865F2&logo=gitbook&logoColor=white&style=for-the-badge&scale=1.4"></a>
+[![CodeFactor](https://www.codefactor.io/repository/github/night0721/cath.exe/badge?s=57e6f566f73892f4303edbfeb2fe3ea0b849c876&style=for-the-badge)](https://www.codefactor.io/repository/github/night0721/cath.exe)
+[YouTube Deployment video](https://www.youtube.com/watch?v=9Dmtuv6tlTE)
 
-A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cath-bot/deployment).
-
-<!-- <details>
+<details>
   <summary>Made With</summary>
 
    [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -84,13 +79,10 @@ A detailed Deployment guide can be found [here](https://thunder75.gitbook.io/cat
 <details>
   <summary>Github Stats</summary>
 
-  ![Lines of code](https://img.shields.io/tokei/lines/github/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
-  ![GitHub Discussions](https://img.shields.io/github/discussions/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/night0721/cath.exe?color=5865F2&logo=github&logoColor=ffffff&style=for-the-badge)
   [![Last commit](https://img.shields.io/github/last-commit/night0721/cath.exe?icon=discord&color=5865F2&style=for-the-badge&scale=1.4)](https://github.com/night0721/cath.exe)
-  <!-- [![Files](https://tokei.rs/b1/github/night0721/cath.exe?category=files&style=for-the-badge)](https://github.com/night0721/cath.exe)
 
-</details> -->
+</details>
 
 <h1 align = "center"> Support, Feature Request & Bug Reports </h1>
 
@@ -113,12 +105,5 @@ Contributions are always welcomed, but make sure to read [Contributing.md](/CONT
 
 ![Contributors](https://badges.pufler.dev/contributors/night0721/cath.exe?bots=false)
 
-<!-- ## Special Thanks to The Roound Table from Cygnoux Familia.
 
-<p align = "center">
-  <a href="https://discord.gg/mjVwkCsWY7" target="_blank"><img src="https://discordapp.com/api/guilds/756525751594909797/widget.png?style=banner1"></a>
-</p> -->
-
-⠀
-
-<!-- <img src="https://socialify.git.ci/night0721/cath.exe/image?description=1&descriptionEditable=A%20Discord.js%20v13%20Template%20based%20on%20cath.exe&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark"> -->
+<img src="https://socialify.git.ci/night0721/cath.exe/image?description=1&descriptionEditable=A%20Discord.js%20v13%20Template%20based%20on%20cath.exe&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark">
