@@ -36,7 +36,7 @@
     "url": "https://ko-fi.com/cathteam"
   },
   "devDependencies": {
-    "node": "^19.0.0"
+    "node": "^22.15.0"
   },
   "dependencies": {
     "axios": "^1.1.3",
