@@ -9,10 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node . --dev",
-    "start": "node . --prod",
-    "node-update": "npm i --save-dev node@17 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH",
-    "node-clean": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm cache clean --force && npm i",
-    "all": "npm run node-update && npm run node-clean"
+    "start": "node . --prod"
   },
   "repository": {
     "type": "git",
@@ -34,9 +31,6 @@
   "funding": {
     "type": "individual",
     "url": "https://ko-fi.com/cathteam"
-  },
-  "devDependencies": {
-    "node": "^19.0.0"
   },
   "dependencies": {
     "axios": "^1.1.3",
