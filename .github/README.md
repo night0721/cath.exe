@@ -1,7 +1,7 @@
 <h1 align="center"> NYX [Cath.exe] </h1> 
 <!-- header -->
 <p align="center">
-    <a href="https://discord.gg/SbQHChmGcp" target="_blank"><img alt="NYX_banner" src = "https://media.discordapp.net/attachments/896078559293104128/896091759157858394/nyx_banner_3d.png?width=1341&height=447"></a>
+    <a href="https://discord.gg/SbQHChmGcp" target="_blank"><img alt="NYX_banner" src = "https://cdn.discordapp.com/discovery-splashes/718762019586572341/bcb81d25ea1333fc8281f8b0b1f3dd29.png?size=512"></a>
     <br>
     <a href="https://discord.com/oauth2/authorize?client_id=1071021943484055563&permissions=4231314550&scope=bot%20applications.commands" target="_blank"><img alt='Invite' src="https://img.shields.io/badge/-Invite-5865f2?logo=discord&logoColor=white&style=for-the-badge"></a>
     <a href="https://github.com/night0721/cath"><img alt = 'NPM Package' src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
