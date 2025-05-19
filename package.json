@@ -38,7 +38,7 @@
     "discord.js": "14.19.3",
     "dotenv": "16.0.3",
     "goosecache": "10.0.1",
-    "mongoose": "6.0.0",
+    "mongoose": "8.15.0",
     "quickchart-js": "3.1.3"
   }
 }
