@@ -3,7 +3,6 @@ const { GooseCache } = require("goosecache");
 const cachegoose = new GooseCache(mongoose, {
   engine: "memory",
 });
-mongoose.set("useFindAndModify", false);
 const u = require("../../models/users");
 const g = require("../../models/guilds");
 module.exports = {

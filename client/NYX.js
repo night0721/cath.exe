@@ -6,6 +6,7 @@ const {
   Partials,
 } = require("discord.js");
 const config = require("../config");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 class NYX extends Client {
@@ -33,7 +34,7 @@ class NYX extends Client {
       intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
-        // GatewayIntentBits.MessageContent,
+        GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.DirectMessageTyping,
         GatewayIntentBits.DirectMessages,
@@ -56,12 +57,8 @@ class NYX extends Client {
       "381442059111759883", // Thunder
       "556808365574193194", // chunchunmaru
       "687622268037365774", // Tac Shadow
-      "309681798957498368", // Sideload
       "707177879984668673", // Random rock
-      "757530324686340197", // Madhav
       "804712098625486848", // hcs
-      "1078015817184182414", // gaba
-      "774390900411465769", // Alphaus
     ];
     this.currency = "<:nyx_currency:918584872333893703>";
     this.xp = "<:nyx_xp:900309007472926720>";
@@ -76,13 +73,10 @@ class NYX extends Client {
 
   start() {
     require("../util/dist/handler")(this);
-    this.login(
-      process.argv[2] == "--dev" ? process.env.DEV : process.env.TOKEN
-    );
-    this.data
-      .connect(process.env.MONGO)
+    this.login(process.argv[2] === "--dev" ? process.env.DEV : process.env.TOKEN);
+    mongoose.connect(process.env.MONGO, { dbName: "nyx" })
       .then(() => console.log("Connected to MongoDB ✅"))
-      .catch(e => console.log(e));
+      .catch(e => console.error(e));
   }
   err(interaction, error) {
     const embed = new EmbedBuilder()

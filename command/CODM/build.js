@@ -1,5 +1,4 @@
 const { Client, CommandInteraction, EmbedBuilder } = require("discord.js");
-const axios = require("axios");
 module.exports = {
   name: "build",
   description: "Get gunsmith builds",
@@ -666,8 +665,7 @@ module.exports = {
     const cwts = args[1];
     const cc = args[2];
     const tag = args[3];
-    const data = await axios
-      .get(
+    const data = await fetch(
         `${process.env.api}/api/v1/codm/build?cwts=${cwts}&cc=${cc}&tag=${tag}`,
         {
           headers: {
@@ -675,7 +673,7 @@ module.exports = {
           },
         }
       )
-      .then(res => res.data)
+      .then(res => res.json())
       .catch(e => null);
     console.log(data);
     if (!data?.cwts) {

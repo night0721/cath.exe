@@ -1,5 +1,4 @@
 const { EmbedBuilder } = require("discord.js");
-const axios = require("axios");
 module.exports = {
   name: "stats",
   description: "Check Stats of a Weapon by SOD",
@@ -407,13 +406,12 @@ module.exports = {
   // It's not complete, Still work in progress.
   run: async (client, interaction, args, utils) => {
     const cwts = args[1];
-    const data = await axios
-      .get(`${process.env.api}/api/v1/codm/builds?cwts=${cwts}`, {
+    const data = await fetch(`${process.env.api}/api/v1/codm/builds?cwts=${cwts}`, {
         headers: {
           Authorization: process.env.CODM_API_KEY,
         },
       })
-      .then(res => res.data)
+      .then(res => res.json())
       .catch(e => null);
 
     if (!data?.ID) {
